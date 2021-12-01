@@ -35,13 +35,16 @@
     @include('order.popups.copy_order')
 
     <!--Main Breadcrumbs-->
-    <div class="bn-breadcrumbs-take-away d-none d-sm-block">
+    <div class="bn-breadcrumbs-take-away d-none d-sm-block position-relative">
         <div>
-            <img src="{{ asset('asstes/image/item2.png') }}"
-                 data-src="{{ asset('asstes/image/take-away/mask-group-2.png') }}" alt="" class="lazy">
+            <img src="{{ asset('asstes/image/take-away/mask-group-2.png') }}" alt="">
+            <span id="bn-take-away-price"></span>
         </div>
     </div>
     <!--End Main Banner-->
+
+
+
     <!--Email send box-->
     <form action="#">
         <div class="bn-email-item">
@@ -70,9 +73,14 @@
         <!--Search box item-->
         <div class="bn-take-away-search bn-main-story">
             <div class="container">
+                <div class="bn-history-for-index">
+                    <h1 class="bn-his-header mb-lg-4 mb-3">SEO heading</h1>
+                </div>
+
                 <div class="row">
                     <div class="col-lg-4">
-                        <input type="search" id="bn-search-item" class="form-control" placeholder="{{ __('global.search') }}">
+                        <input type="search" id="bn-search-item" class="form-control"
+                               placeholder="{{ __('global.search') }}">
                         <i class="fas fa-search"></i>
                     </div>
                     <div class="col-lg-8">
@@ -89,6 +97,21 @@
         <!--item Food box-->
         <div class="bn-take-away-item">
             <div class="container">
+                <div class="row bn-orange-img-take-away">
+                    <div class="col-12">
+                        @if(getCurrentLang() === 'da')
+                            <img src="{{ asset('asstes/image/take-away/orange-price-order-dk.png') }}" alt=""
+                                 style="margin-bottom: 10px;" class="d-sm-block d-none">
+                            <img src="{{ asset('asstes/image/take-away/orange-mobile-pirce-dk.png') }}" alt=""
+                                 style="margin-bottom: 10px;" class="d-sm-none d-block">
+                        @else
+                            <img src="{{ asset('asstes/image/take-away/orange-price-order.png') }}" alt=""
+                                 style="margin-bottom: 10px" class="d-sm-block d-none">
+                            <img src="{{ asset('asstes/image/take-away/orange-mobile-pirce.png') }}" alt=""
+                                 class="d-sm-none d-block" style="margin-bottom: 10px">
+                        @endif
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="bn-left-side-bar">
@@ -190,7 +213,14 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3 bn-bg-product noborder">
-                                            <div class="bn-price-item">{{ $item->price }},-</div>
+                                            <div class="bn-price-item">
+                                                @if($sectionSlug==='bn-single-meals' && $loop->index === 0)
+                                                    <img src="{{ asset('asstes/image/take-away/discount-arrow.svg') }}"
+                                                         alt="">
+                                                @endif
+                                                <span class="bh-current-price">{{ $item->price }} /</span> <span
+                                                    class="bn-discount-price">{{ $item->price_orange }}</span>
+                                            </div>
                                             <div class="bn-number-product">
                                                 <img data-id="{{ $item->id }}" class="addItem" data-inc="-1"
                                                      src="{{ asset('asstes/image/take-away/min.svg') }}" alt="">

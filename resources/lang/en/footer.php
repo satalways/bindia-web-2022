@@ -11,6 +11,6 @@ return [
     'our_team' => 'Our Team',
     'FAQ' => 'FAQ',
     'glossary' => 'Glossary',
-    'jobs' => 'Job',
+    'jobs' => 'Jobs',
     'contact_us' => 'Contact Us',
 ];

@@ -10,6 +10,8 @@ class OrderItems extends Model
 {
     use HasFactory;
 
+    protected $table = 'ta_items';
+
     public $timestamps = false;
 
     protected $casts = [

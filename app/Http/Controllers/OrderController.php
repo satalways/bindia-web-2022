@@ -55,7 +55,6 @@ class OrderController extends Controller
                 ->orderBy('code')
                 ->get();
         }
-
         $O = new Order();
 
         return view('order.takeaway', [
