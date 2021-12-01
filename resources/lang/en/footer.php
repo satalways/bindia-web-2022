@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'locations' => 'Butikker',
+    'locations' => 'Locations',
     'legal' => 'Legal',
     'privacy_policy' => 'Privacy Policy',
     'terms_condition' => 'Terms & Conditions',

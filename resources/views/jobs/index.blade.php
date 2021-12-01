@@ -606,16 +606,20 @@
                                 </div>
                             </div>
                             <div class="bn-gift-sub-heading">
-                                <h2>Attachments</h2>
+                                <h2>Files</h2>
                             </div>
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <input type="file" class="form-control" placeholder="1) … No files attached"
-                                           name="attachment[1]">
+                                <div class="col-lg-6 position-relative">
+                                    <span id="bn-job-file-attach-one" class="form-control">Attach File...</span>
+                                    <input type="file" id="bn-file-attach-one" name="attachment[1]"
+                                           class="form-control position-absolute top-0" placeholder="Attach File..."
+                                           style="opacity: 0">
                                 </div>
-                                <div class="col-lg-6">
-                                    <input type="file" class="form-control" placeholder="2) … No files attached"
-                                           name="attachment[2]">
+                                <div class="col-lg-6 position-relative">
+                                    <span id="bn-job-file-attach-two" class="form-control">Attach File...</span>
+                                    <input type="file" id="bn-file-attach-two" name="attachment[1]"
+                                           class="form-control position-absolute top-0" placeholder="Attach File..."
+                                           style="opacity: 0">
                                 </div>
                             </div>
                             <div class="row">
