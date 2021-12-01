@@ -336,10 +336,14 @@ function js($code)
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             ';
 
-            if (LaravelLocalization::getCurrentLocale() == 'da') {
+            if (getCurrentLang() == 'da') {
                 $string .= '
                 <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.2.2/dist/messagebox.min.js"></script>
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-message-box@3.2.2/dist/messagebox.min.css">
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/localization/messages_da.min.js"
+                    integrity="sha512-jVUoHWGGjz3AnASc4bcelHoffeTAqPPTNfubjsC4vtV9TrsJc99N4EqNFNYuBCIV2jJRq+MFW61XiFMkp7SWvw=="
+                    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             ';
             }
             return $string;

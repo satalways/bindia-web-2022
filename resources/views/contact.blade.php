@@ -80,7 +80,13 @@
                                       class="form-control @error('comments') error @enderror"
                                       name="comments">{{ old('comments') }}</textarea>
 
-                            <input type="file" name="file" class="form-control">
+                            <div class="position-relative">
+                                <span class="bn-file-attachment-label form-control" id="bn-file-attachment-label">Attach File...</span>
+                                <input type="file" placeholder="Attach File..." id="bn-file-attachment"
+                                       class="form-control bn-file-attachment" name="file">
+                            </div>
+
+                            {{--                            <input type="file" name="file" class="form-control">--}}
 
                             {{--                            <div class="bn-captcha">--}}
                             {{--                                <span>{!! captcha_img() !!}</span>--}}
@@ -109,11 +115,6 @@
 
 @section('js')
     {!! js('validation') !!}
-    @if(getCurrentLang() === 'da')
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/localization/messages_da.min.js"
-                integrity="sha512-jVUoHWGGjz3AnASc4bcelHoffeTAqPPTNfubjsC4vtV9TrsJc99N4EqNFNYuBCIV2jJRq+MFW61XiFMkp7SWvw=="
-                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    @endif
     <script>
         $(function () {
             $('#form1').validate();
@@ -130,6 +131,9 @@
                         }
                     });
                 })
+                .on('submit', '#form1', function () {
+                    show();
+                });
         })
     </script>
 @endsection
