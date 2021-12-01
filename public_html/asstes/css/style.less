@@ -1,52 +1,75 @@
+/*....................................
+Template Name: Taxi Cab HTML5 Template.
+Template URI: http://creativeon/com
+Description: Bindia HTML5 Template one of the most latest bindia Template.
+Author: Bindia   todo
+Author URI: creativeON (Sajid Iqbal)
+portfolio: https://sajid.hostriplex.com/funtray/ (Sajid Iqbal)
+..........................................*/
+
+
+
+
+
+
+
 /*=========================
    Including fonts
    =======================*/
-
-
 @font-face {
   font-family: 'helvetica_neue';
   src: url('fonts/HelveticaNeueLTStd-Cn.eot');
-  src: url('fonts/HelveticaNeueLTStd-Cn.eot?#iefix') format('embedded-opentype'),
-  url('fonts/HelveticaNeueLTStd-Cn.woff2') format('woff2'),
-  url('fonts/HelveticaNeueLTStd-Cn.ttf') format('truetype'),
-  url('fonts/HelveticaNeueLTStd-Cn.svg') format('svg');
+  src: url('fonts/HelveticaNeueLTStd-Cn.eot?#iefix') format('embedded-opentype'), url('fonts/HelveticaNeueLTStd-Cn.woff2') format('woff2'), url('fonts/HelveticaNeueLTStd-Cn.ttf') format('truetype'), url('fonts/HelveticaNeueLTStd-Cn.svg') format('svg');
   font-weight: 500;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'helvetica_neue';
   src: url('fonts/HelveticaNeueLTStd-MdCn.eot');
-  src: url('fonts/HelveticaNeueLTStd-MdCn.eot?#iefix') format('embedded-opentype'),
-  url('fonts/HelveticaNeueLTStd-MdCn.woff2') format('woff2'),
-  url('fonts/HelveticaNeueLTStd-MdCn.ttf') format('truetype'),
-  url('fonts/HelveticaNeueLTStd-MdCn.svg') format('svg');
+  src: url('fonts/HelveticaNeueLTStd-MdCn.eot?#iefix') format('embedded-opentype'), url('fonts/HelveticaNeueLTStd-MdCn.woff2') format('woff2'), url('fonts/HelveticaNeueLTStd-MdCn.ttf') format('truetype'), url('fonts/HelveticaNeueLTStd-MdCn.svg') format('svg');
   font-weight: 600;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'helvetica_neue';
   src: url('fonts/HelveticaNeueLTStd-BdCn.eot');
-  src: url('fonts/HelveticaNeueLTStd-BdCn.eot?#iefix') format('embedded-opentype'),
-  url('fonts/HelveticaNeueLTStd-BdCn.woff2') format('woff2'),
-  url('fonts/HelveticaNeueLTStd-BdCn.ttf') format('truetype'),
-  url('fonts/HelveticaNeueLTStd-BdCn.svg') format('svg');
+  src: url('fonts/HelveticaNeueLTStd-BdCn.eot?#iefix') format('embedded-opentype'), url('fonts/HelveticaNeueLTStd-BdCn.woff2') format('woff2'), url('fonts/HelveticaNeueLTStd-BdCn.ttf') format('truetype'), url('fonts/HelveticaNeueLTStd-BdCn.svg') format('svg');
   font-weight: 700;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'helvetica_neue';
   src: url('fonts/HelveticaNeueLTStd-BlkCn.eot');
-  src: url('fonts/HelveticaNeueLTStd-BlkCn.eot?#iefix') format('embedded-opentype'),
-  url('fonts/HelveticaNeueLTStd-BlkCn.woff2') format('woff2'),
-  url('fonts/HelveticaNeueLTStd-BlkCn.ttf') format('truetype'),
-  url('fonts/HelveticaNeueLTStd-BlkCn.svg') format('svg');
+  src: url('fonts/HelveticaNeueLTStd-BlkCn.eot?#iefix') format('embedded-opentype'), url('fonts/HelveticaNeueLTStd-BlkCn.woff2') format('woff2'), url('fonts/HelveticaNeueLTStd-BlkCn.ttf') format('truetype'), url('fonts/HelveticaNeueLTStd-BlkCn.svg') format('svg');
   font-weight: 800;
   font-style: normal;
 }
 
-body, html {
+body {
   overflow-x: hidden;
-  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;;
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+}
+
+html {
+  overflow-x: hidden;
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+    display: none;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+    display: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    display: none;
+  }
 }
 
 body[data-aos-duration='3000'] {
@@ -56,45 +79,95 @@ body[data-aos-duration='3000'] {
 }
 
 [data-aos=fade-up] {
-  transform: translate3d(0,21px,0);
+  transform: translate3d(0, 21px, 0);
 }
+
 [data-aos][data-aos][data-aos-duration='3000'] {
   transition-duration: 3000ms;
 }
-html::-webkit-scrollbar-track
-{
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  background-color: #F5F5F5;
-  display: none;
-}
 
-html::-webkit-scrollbar
-{
-  width: 6px;
-  background-color: #F5F5F5;
-  display: none;
-}
-
-html::-webkit-scrollbar-thumb
-{
-  background-color: #000000;
-  display: none;
-}
 img {
   width: 100%;
 }
-a, h1, h2, h3, h4, h5, h6,
-p, div, button, input, textarea{
+
+a {
   font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
   font-weight: 500;
   color: #404040;
 }
-p{
+
+h1 {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+
+h2 {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+
+h3 {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+
+h4 {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+
+h5 {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+
+h6 {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+
+p {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
   margin: 0;
 }
+
+div {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+
+button {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+
+input {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+
+textarea {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+
+
 /* =====================
         Top-header
 ======================= */
+
 header.bn-top-header {
   position: fixed;
   top: 0;
@@ -105,21 +178,23 @@ header.bn-top-header {
     background-color: #0A0A0A !important;
     opacity: 91%;
   }
-  .bg-dark{
+  .bg-dark {
     background-color: #1a1a1a !important;
   }
-  .logo{
+  .logo {
     width: 96px;
   }
   .bn-top-menu {
     li {
       text-align: center;
       margin-right: 133px;
-      &:first-child a,
-      &:first-child{
+      &:first-child {
+        a {
+          padding-left: 0;
+        }
         padding-left: 0;
       }
-      a{
+      a {
         text-transform: uppercase;
         padding: 0;
         font: normal normal 500 20px/40px helvetica_neue;
@@ -127,12 +202,14 @@ header.bn-top-header {
         padding-right: 0 !important;
         padding-left: 0 !important;
         letter-spacing: 0.8px;
-        &:hover, &.active{
+        &:hover {
           text-decoration: underline;
         }
       }
+      a.active {
+        text-decoration: underline;
+      }
     }
-
   }
   #menuToggle {
     display: block;
@@ -153,6 +230,25 @@ header.bn-top-header {
       opacity: 0;
       z-index: 2;
       -webkit-touch-callout: none;
+      &:checked {
+      ~ span {
+          opacity: 1;
+          transform: rotate(45deg) translate(0px, 4px);
+          background: #fff;
+          &:nth-last-child(3) {
+            opacity: 0;
+            transform: rotate(-45deg) translate(0, -3px);
+          }
+          &:nth-last-child(2) {
+            opacity: 1;
+            transform: rotate(-45deg) translate(0, -3px);
+          }
+        }
+        ~ ul {
+          transform: scale(1, 1);
+          opacity: 1;
+        }
+      }
     }
     span {
       display: block;
@@ -167,33 +263,12 @@ header.bn-top-header {
       transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
       box-shadow: none;
       border-bottom: 3px solid #fff;
-    }
-    span:first-child {
-      transform-origin: 0% 0%;
-    }
-
-    span:nth-last-child(2) {
-      transform-origin: 0% 100%;
-    }
-
-    input:checked ~ span {
-      opacity: 1;
-      transform: rotate(45deg) translate(0px, 4px);
-      background: #fff;
-    }
-
-    input:checked ~ span:nth-last-child(3) {
-      opacity: 0;
-      transform: rotate(-45deg) translate(0, -3px);
-    }
-
-    input:checked ~ span:nth-last-child(2) {
-      opacity: 1;
-      transform: rotate(-45deg) translate(0, -3px);
-    }
-    input:checked~ul {
-      transform: scale(1.0, 1.0);
-      opacity: 1;
+      &:first-child {
+        transform-origin: 0% 0%;
+      }
+      &:nth-last-child(2) {
+        transform-origin: 0% 100%;
+      }
     }
   }
   #menu {
@@ -207,29 +282,30 @@ header.bn-top-header {
     -webkit-font-smoothing: antialiased;
     transform-origin: 0% 0%;
     transform: translate(100%, 0);
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
     overflow-y: scroll;
     height: 100vh;
     top: 138px;
     li {
       font-size: 15px;
       border-bottom: 1px solid #ffffff85;
-      a{
+      a {
         font-size: 17px;
         font-weight: 500;
         padding: 5px 10px;
+
+      }
+      &:hover {
+        background: #111;
+      }
+      &:first-child {
+        border: none;
       }
     }
-    li:hover {
-      background: #111;
-    }
-    li:first-child{
-      border: none;
-    }
-    li.dropdown:hover{
-      background: #111;
-    }
-    li.dropdown{
+    li.dropdown {
+      &:hover {
+        background: #111;
+      }
       border: none;
       .dropdown-menu {
         position: relative !important;
@@ -237,32 +313,38 @@ header.bn-top-header {
         padding: 21px 0;
         padding-left: 85px;
         transform: translate(0px, 0px) !important;
-        li{
+        li {
           border: none;
-          a:hover,
-          a:focus{
-            background: #1a1a1a;
+          a {
+            &:hover {
+              background: #1a1a1a;
+            }
+            &:focus {
+              background: #1a1a1a;
+            }
           }
         }
       }
-      .dropdown-toggle{
+      .dropdown-toggle {
         background: #1a1a1a;
         border-bottom: 1px solid #ffffff85;
         position: relative !important;
+        &:hover {
+          background: #111;
+        }
+        &::after {
+          position: absolute;
+          right: 13px;
+          top: 17px;
+          transition: 500ms all;
+          font-size: 20px;
+        }
       }
-      .dropdown-toggle:hover,
-      .dropdown-toggle.show{
+      .dropdown-toggle.show {
         background: #111;
-      }
-      .dropdown-toggle::after{
-        position: absolute;
-        right: 13px;
-        top: 17px;
-        transition: 500ms all;
-        font-size: 20px;
-      }
-      .dropdown-toggle.show::after{
-        transform: rotate(178deg);
+        &::after {
+          transform: rotate(178deg);
+        }
       }
     }
     .bn-language-item {
@@ -272,7 +354,7 @@ header.bn-top-header {
         color: #fff;
         text-decoration: none;
       }
-      a.active{
+      a.active {
         font-weight: 700;
       }
       &:hover {
@@ -285,60 +367,70 @@ header.bn-top-header {
   }
   .bn-card-price {
     position: absolute;
-    right: 18%;
-    color: #fff;
-    top: 21px;
+    right: 6%;
+    color: #c1c1c1;
+    top: 14px;
     font-size: 18px;
-    i{
-      padding-right: 8px;
+    cursor: pointer;
+    .bn-price-card {
+      font-size: 24px;
     }
-    span{
-      padding-right: 8px;
-      &:last-child{
-        padding-right: 0;
-      }
+    .bh-current-price {
+      font-size: 16px;
+      font-weight: 500;
+      padding: 0;
+      color: #c1c1c1;
+    }
+    .bn-discount-price {
+      color: #F36A10;
+      font-size: 24px;
+      font-weight: 700;
+    }
+    span.bn-item-card {
+      position: absolute;
+      background: #F36A10;
+      height: 12px;
+      width: 12px;
+      font-size: 10px;
+      border-radius: 100%;
+      text-align: center;
+      line-height: 12px;
+      padding: 0;
+      left: 13px;
+      top: 7px;
+    }
+    i {
+      padding-right: 5px;
+      color: #c1c1c1;
     }
   }
 }
-/*
- *  scroll styel
- */
 
-#menu::-webkit-scrollbar-track
-{
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  background-color: #F5F5F5;
+#menu {
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #000000;
+  }
 }
-
-#menu::-webkit-scrollbar
-{
-  width: 6px;
-  background-color: #F5F5F5;
-}
-
-#menu::-webkit-scrollbar-thumb
-{
-  background-color: #000000;
-}
-
-
 /* =====================
        slider box css
 ======================= */
-div.bn-slider {
-  //margin-top: 63px;
-
-}
-
-.bn-slider.bg-transparent.bn-animation-banner{
+.bn-slider.bg-transparent.bn-animation-banner {
   height: 56vh;
   overflow: hidden;
   position: relative;
-  .bn-image-index{
+  .bn-image-index {
     position: absolute;
     top: -70.961px;
   }
-  .bn-slider-ds-img{
+  .bn-slider-ds-img {
     position: fixed;
     z-index: -1;
     height: 100%;
@@ -350,8 +442,8 @@ div.bn-slider {
        Review box css
 ======================= */
 
-.bn-review-box{
-  background: #D8D8D8;
+.bn-review-box {
+  background: #E3E3E3;
   padding: 25px 0;
   .bn-star-box {
     padding-bottom: 10px;
@@ -360,9 +452,8 @@ div.bn-slider {
     i {
       font-size: 24px;
       color: #171717;
-
     }
-    small{
+    small {
       font-size: 15px;
       font-weight: 700;
       padding-left: 5px;
@@ -377,40 +468,50 @@ div.bn-slider {
     }
   }
   .bn-review-box-img {
-    text-align: right;
     margin-top: 22px;
-    .bn-logo-discount {
-      max-width: 68px;
+    &.bn-trust-img-box{
+      text-align: right;
     }
-    .bn-smile{
-      max-width: 55px;
+    .bn-logo-discount {
+      max-width: 91px;
+    }
+    .bn-smile {
+      max-width: 59px;
     }
     img {
-      margin-right: 26px;
-    }
-    img:last-child{
-      margin: 0;
+      margin-right: 24px;
+      &:last-child {
+        margin: 0;
+        margin-top: -15px;
+      }
     }
   }
-  img.google-review{
+  img.google-review {
     max-width: 115px;
   }
   .bn-trust-review-img {
     max-width: 203px;
   }
-
 }
+
 /* =====================
       Portfolio css
 ======================= */
+
 .bn-portfolio-section {
   padding: 20px 0;
-  padding-bottom: 170px;
+  padding-bottom: 109px;
   background: #fff;
   img {
     padding: 20px 13px;
   }
-  div{
+  .bn-image-orange-price-d {
+    img {
+      padding: 0px 13px;
+      margin-bottom: -7px;
+    }
+  }
+  div {
     padding: 0;
   }
   .bn-link-image-box {
@@ -420,7 +521,7 @@ div.bn-slider {
       bottom: 21px;
       left: 14px;
       top: 46%;
-      background: #00000040;;
+      background: #00000040;
       right: 13px;
       padding: 38px 62px;
       ul {
@@ -436,17 +537,45 @@ div.bn-slider {
     display: inline-block;
     width: 50%;
   }
-
 }
-
 
 .bn-button-box {
   display: none;
 }
+
+/*======================
+    index history css
+========================= */
+.bn-history-for-index{
+  .bn-his-header{
+    font-size: 30px;
+    color: #808080;
+  }
+  .bn-his-paragraph{
+    font-size: 22px;
+    color: #808080;
+    margin-bottom: 15px;
+    p{
+      color: #808080;
+      margin-bottom: 0px;
+      display: none;
+    }
+  }
+  .bn-his-more{
+    color: #000000;
+    font-size: 22px;
+    text-decoration: underline;
+    padding-bottom: 145px;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+  }
+}
+
 /* =====================
          Footer css
 ======================= */
-.bn-footer{
+.bn-footer {
   background: #c1c1c1;
   padding: 103px 0px;
   padding-bottom: 23px;
@@ -463,7 +592,7 @@ div.bn-slider {
         text-decoration: none;
         color: #000000 !important;
         line-height: 10px;
-        strong{
+        strong {
           font-weight: 700;
         }
       }
@@ -471,7 +600,7 @@ div.bn-slider {
   }
   .bn-footer-last {
     padding-top: 92px;
-    i{
+    i {
       font-size: 54px;
       color: #0B0B0B;
     }
@@ -482,28 +611,32 @@ div.bn-slider {
       left: 0px;
       border-radius: 4px;
     }
-    .float-end{
+    .float-end {
       font-size: 20px;
       color: #000000;
     }
   }
 }
 
-
 /*Take Awya Page CSS*/
 
+span#bn-take-away-price {
+  position: absolute;
+  bottom: 60px;
+}
 /* =====================
      Email section
 ======================= */
 .bn-email-item {
   background: #FFF3E2;
   padding: 25px 0;
-  p{
+  p {
     font-size: 24px;
     color: #404040;
     opacity: 50%;
+    text-decoration: underline;
   }
-  input{
+  input {
     height: 35px;
     font-size: 20px;
     border-radius: 0;
@@ -521,10 +654,10 @@ div.bn-slider {
 /* =====================
      Take Away Search
 ======================= */
-.bn-take-away-search{
+.bn-take-away-search {
   background: #E3E3E3;
   padding: 60px 0;
-  padding-bottom: 40px;
+  padding-bottom: 15px;
   .col-lg-4 {
     position: relative;
     i {
@@ -561,12 +694,12 @@ div.bn-slider {
       width: auto;
       border-radius: 8px;
       color: #fff;
-      &.active{
-        color: #000;
-      }
       &:last-child {
         margin: 0;
       }
+    }
+    button.active {
+      color: #000;
     }
   }
 }
@@ -574,79 +707,40 @@ div.bn-slider {
 /* =====================
      Take Away Item
 ======================= */
+
 .bn-take-away-item {
   background: #E3E3E3;
   padding-bottom: 200px;
-  img {
-    cursor: pointer;
-  }
-  .bn-broduct-big-img{
-    padding-bottom: 12px;
-  }
-  .bn-left-side-bar {
-    ul {
-      border: 1px solid;
-      border-left: 0;
-      border-right: 0;
-      padding-top: 14px;
-      li {
-        a {
-          padding-bottom: 12px;
-          padding-left: 36px;
-          display: block;
-          text-decoration: none;
-          font-size: 22px;
-          color: #fff;
-          font-weight: 700;
-          small{
-            font-size: 14px;
-          }
-        }
-        &.active{
-          a{
-            color: #000;
-          }
-        }
-      }
-    }
-    button{
-      font-size: 25px;
-      text-align: left;
-      padding-left: 36px;
-    }
-    &.bn-sticky-left{
-      position: fixed;
-      width: 262px;
-    }
-  }
   .bn-right-side-bar-product {
+    img {
+      cursor: pointer;
+    }
+    img.bn-info-product-icon{
+      opacity: 0;
+      width: 0 !important;
+    }
     .bn-bg-product {
-      background: #fff;
+      background: #F7F7F7;
       padding: 20px;
       position: relative;
       .bn-icon {
         position: absolute;
         bottom: 23px;
         span {
-          border-radius: 38px;
+          border-radius: 11px;
           margin-right: 5px;
           font-size: 16px;
-          &.bn-text-icon {
-            background: #E3E3E3;
-            padding: 6px
-          }
-          &.bn-text-green {
-            color: #17BF44;
-          }
+        }
+        span.bn-text-green {
+          color: #17BF44;
+        }
+        span.bn-text-green-dark{
+          color: #129a36;
         }
         img {
-          width: 30px;
-          top: -3px;
+          width: auto;
           position: relative;
         }
-      }
-      &.bn-border-right {
-        border-right: 1px solid #E3E3E3;
       }
       h2 {
         font-size: 24px;
@@ -664,7 +758,33 @@ div.bn-slider {
         font-weight: 700;
         text-align: right;
         color: #000;
+        .bh-current-price {
+          font-size: 16px;
+          font-weight: 500;
+        }
+        .bn-discount-price {
+          color: #F36A10;
+          font-size: 28px;
+        }
+        img {
+          width: 42px;
+          position: absolute;
+          top: -65px;
+          right: 21px;
+        }
       }
+      & .bn-bg-orange-product{
+        background: #fff;
+      }
+    }
+    .bn-bg-product.bn-border-right {
+      border-right: 1px solid #E3E3E3;
+      &.bn-orange-border-mobile{
+        border-right: none;
+      }
+    }
+    .bn-bg-orange-product{
+      background: #fff;
     }
     .bn-number-product {
       position: absolute;
@@ -675,7 +795,6 @@ div.bn-slider {
         color: #fff;
         padding: 10px;
         border-radius: 42px;
-
       }
       span {
         text-align: center;
@@ -693,43 +812,88 @@ div.bn-slider {
       padding-top: 12px;
     }
     .row {
-      margin-right: 0
+      margin-right: 0;
     }
     .bn-toggle-content {
-      .row{
-        .bn-broduct-big-img{
+      .row {
+        .bn-broduct-big-img {
           display: none;
         }
-        &.bn-img-active{
-          .bn-broduct-big-img{
-            display: block;
-          }
+        div:first-child{
+          padding-right: 8px;
+        }
+      }
+      .row.bn-img-active {
+        .bn-broduct-big-img {
+          display: block;
         }
       }
     }
   }
+  .bn-broduct-big-img {
+    padding-bottom: 12px;
+  }
+  .bn-left-side-bar {
+    ul {
+      border: 1px solid;
+      border-left: 0;
+      border-right: 0;
+      padding-top: 14px;
+      li {
+        a {
+          padding-bottom: 12px;
+          padding-left: 36px;
+          display: block;
+          text-decoration: none;
+          font-size: 22px;
+          color: #fff;
+          font-weight: 700;
+          small {
+            font-size: 14px;
+          }
+        }
+      }
+      li.active {
+        a {
+          color: #000;
+        }
+      }
+    }
+    button {
+      font-size: 25px;
+      text-align: left;
+      padding-left: 36px;
+    }
+  }
+  .bn-left-side-bar.bn-sticky-left {
+    position: fixed;
+    width: 262px;
+
+  }
 }
+
 /* ============================
      Add Drink page css
 =============================== */
-.bn-catering-drink{
+
+.bn-catering-drink {
   padding: 124px 0;
   padding-bottom: 264px;
-  .bn-drink-heading{
-    p{
+  .bn-drink-heading {
+    p {
       font-size: 23px;
       margin-bottom: 52px;
-      b{
+      b {
         color: #f36a10;
       }
     }
   }
-  button{
+  button {
     font-size: 25px;
     padding: 13px 35px;
     border-radius: 0;
     text-align: left;
-    &:first-child{
+    &:first-child {
       background: transparent !important;
       color: #2c2c2c !important;
       border: 4px solid !important;
@@ -737,10 +901,8 @@ div.bn-slider {
     }
   }
 }
-/* ============================
-    Portion page css
-=============================== */
-.bn-buffet-item{
+
+.bn-buffet-item {
   background: #E3E3E3;
   .container {
     padding: 47px 0;
@@ -748,7 +910,7 @@ div.bn-slider {
     border-bottom: 1px solid #707070;
   }
   .bn-buffet-header {
-    .row{
+    .row {
       .bn-border-bottom {
         border-bottom: 1px solid #D5D5D5;
         padding: 6px 12px;
@@ -759,43 +921,48 @@ div.bn-slider {
       font-size: 35px;
       margin-bottom: 30px;
     }
-    p{
+    p {
       font-size: 25px;
       color: #000;
       font-weight: 600;
-      b{
+      b {
         color: #000;
       }
-      .bn-light-black{
+      .bn-light-black {
         opacity: 32%;
       }
-      .bn-org-text{
+      .bn-org-text {
         color: #F36A10;
       }
-      &.bn-light-color-b{
-        opacity: 50%;
-      }
     }
-    a{
+    p.bn-light-color-b {
+      opacity: 50%;
+    }
+    a {
       font-size: 28px;
-      border: 2px solid #2C2C2C !important;;
+      border: 2px solid #2C2C2C !important;
       background: #2C2C2C;
       margin-top: 16px;
       border-radius: 0px;
       padding: 0;
-      &.bn-btn-two{
-        background: transparent !important;
-        border-color: #2C2C2C !important;
-        color: #2C2C2C !important;
-        font-weight: 700;
-      }
+    }
+    a.bn-btn-two {
+      background: transparent !important;
+      border-color: #2C2C2C !important;
+      color: #2C2C2C !important;
+      font-weight: 700;
     }
   }
 }
-.bn-portion-item{
+
+
+
+/* ============================
+    Portion page css
+=============================== */
+.bn-portion-item {
   padding: 70px 0;
 }
-
 
 /* ============================
     optionals page css
@@ -809,20 +976,21 @@ div.bn-slider {
 /* ===========================
     last check order css
 ============================== */
-div#bn-check-last-order {
+
+.bn-check-out-last-order-box {
   top: 36px;
-  .modal-dialog{
+  .modal-dialog {
     max-width: 100%;
-    .modal-content{
+    .modal-content {
       background-color: #F2F2F2;
       border-radius: 0;
       padding: 53px;
       padding-bottom: 38px;
-      h2{
+      h2 {
         font-weight: 700;
         font-size: 26px;
         color: #404040;
-        small{
+        small {
           font-size: 20px;
           font-weight: 500;
           position: relative;
@@ -845,8 +1013,10 @@ div#bn-check-last-order {
       right: 20px;
       bottom: 0;
     }
-    &:last-child:after {
-      bottom: 7px;
+    &:last-child {
+      &:after {
+        bottom: 7px;
+      }
     }
   }
   .row.bn-border-bottom-dash {
@@ -862,17 +1032,19 @@ div#bn-check-last-order {
       right: 20px;
       bottom: 0;
     }
-    &:last-child:after {
-      bottom: 7px;
+    &:last-child {
+      &:after {
+        bottom: 7px;
+      }
     }
   }
-  .row.bn-last-order-footer{
+  .row.bn-last-order-footer {
     padding: 0px 9px;
-    p{
+    p {
       font-size: 20px;
       padding-top: 13px;
     }
-    button{
+    button {
       background: #212529 !important;
       font-size: 28px;
       font-weight: 700;
@@ -881,35 +1053,34 @@ div#bn-check-last-order {
   }
   .bn-radio-order {
     padding-top: 4px;
-    padding-left: 31px;
-    .form-check-input{
+    .form-check-input {
       border: none;
       height: 23px;
       width: 23px;
       margin-right: 9px;
-      &:focus{
+      &:focus {
         box-shadow: none;
       }
-      &:checked{
+      &:checked {
         background-color: white;
         border: none;
         position: relative;
-      }
-      &:checked:before {
-        content: "";
-        height: 11px;
-        width: 11px;
-        background: #767676;
-        position: absolute;
-        border-radius: 50%;
-        left: 6px;
-        top: 6px;
+        &:before {
+          content: "";
+          height: 11px;
+          width: 11px;
+          background: #767676;
+          position: absolute;
+          border-radius: 50%;
+          left: 6px;
+          top: 6px;
+        }
       }
     }
-    label{
+    label {
       font-size: 20px;
     }
-    .form-check{
+    .form-check {
       display: inline-block;
       width: auto;
       padding-right: 23px;
@@ -921,7 +1092,6 @@ div#bn-check-last-order {
       color: #fff;
       padding: 14px;
       border-radius: 42px;
-
     }
     span {
       display: inline-block;
@@ -943,17 +1113,74 @@ div#bn-check-last-order {
     font-weight: 700;
     text-align: right;
     line-height: 40px;
+    .bh-current-price {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .bn-discount-price {
+      color: #F36A10;
+      font-size: 28px;
+    }
   }
   .modal-header {
     padding: 0;
     padding-top: 138px;
     border: none;
-    .btn-close{
+    .btn-close {
       background-image: url("../image/take-away/close.svg");
       background-repeat: no-repeat;
       background-size: 38px;
-      &:focus{
+      &:focus {
         box-shadow: none;
+      }
+    }
+  }
+  .bn-gift-card-order {
+    .row.bn-border-bottom {
+      margin-bottom: 7px;
+    }
+    .bn-radio-order {
+      label {
+        font-size: 22px;
+        margin-left: 66px;
+        span {
+          padding-left: 95px;
+        }
+      }
+    }
+    .bn-gift-row-border {
+      .bn-radio-order {
+        label {
+          margin-left: 84px;
+        }
+      }
+    }
+    .bn-price-item {
+      font-size: 22px;
+      font-weight: 500;
+    }
+    .bn-coupon-code {
+      opacity: 50%;
+    }
+    .bn-price-gift-book {
+      font-size: 26px;
+      font-weight: 700;
+    }
+    .bn-gift-disable {
+      opacity: 50%;
+    }
+    .row.bn-last-order-footer {
+      text-align: right;
+      button {
+        width: auto !important;
+        margin-top: 20px;
+        font-size: 28px;
+        border: 2px solid #212529;
+        &:first-child {
+          background: transparent !important;
+          color: #212529;
+          padding: 5px 25px;
+        }
       }
     }
   }
@@ -962,10 +1189,12 @@ div#bn-check-last-order {
 /* ===========================
     Dine in page css
 ============================== */
+
 .bn-breadcrumbs-dine {
   padding-top: 100px;
   background: #ebebeb;
 }
+
 .bn-dine-menu {
   background: #EBEBEB;
   padding: 69px 0;
@@ -974,26 +1203,24 @@ div#bn-check-last-order {
     p {
       font-size: 23px;
       margin-bottom: 57px;
-      span{
+      span {
         font-weight: 700;
         color: #F36A10;
       }
     }
   }
-  .bn-content-menu{
-    p{
+  .bn-content-menu {
+    p {
       font-size: 22px;
       margin-bottom: 40px;
       line-height: 35px;
-
     }
   }
-  .bn-menu-list{
+  .bn-menu-list {
     font-size: 22px;
     margin-top: 78px;
   }
   .bn-menu-b-box {
-
     ul {
       li {
         a {
@@ -1004,7 +1231,6 @@ div#bn-check-last-order {
     }
   }
 }
-
 /* ===========================
     Our Story page css
 ============================== */
@@ -1014,22 +1240,22 @@ div#bn-check-last-order {
   background-size: cover;
   padding: 397px 0;
   padding-bottom: 171px;
-  box-shadow: inset 0 0 0 2000px rgb(0 0 0 / 25%);
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.25);
   .bn-breadcrumb-text {
     h1 {
       font-size: 60px;
       color: #FFFFFF;
       font-weight: 700;
       line-height: 51px;
-      padding-right: 16px
+      padding-right: 16px;
     }
   }
-  .bn-text-coma{
+  .bn-text-coma {
     position: relative;
     left: 0px;
     top: 94px;
     transform: rotate(180deg);
-    span{
+    span {
       font-size: 262px;
       color: #fff;
       font-weight: 700;
@@ -1046,28 +1272,30 @@ div#bn-check-last-order {
     position: relative;
     top: -287px;
     left: -9px;
-    img{
+    img {
       max-width: 358px;
     }
-    .bn-image-title p {
-      font-size: 25px;
-      padding: 15px 0;
-      color: #707070;
+    .bn-image-title {
+      p {
+        font-size: 25px;
+        padding: 15px 0;
+        color: #707070;
+      }
     }
   }
   .bn-heading-title {
-    h2{
+    h2 {
       font-size: 30px;
       color: #000000;
       margin-bottom: 39px;
     }
   }
-  .bn-text-paragraph{
-    p{
+  .bn-text-paragraph {
+    p {
       font-size: 22px;
       margin-bottom: 27px;
       line-height: 30px;
-      b{
+      b {
         font-weight: 600;
         font-size: 35px;
       }
@@ -1075,12 +1303,12 @@ div#bn-check-last-order {
   }
 }
 
-.bn-history-box-content{
+.bn-history-box-content {
   padding: 120px 0;
   background: #EDEDED;
   padding-bottom: 165px;
-  .row{
-    .col-12{
+  .row {
+    .col-12 {
       padding: 0 18px;
     }
   }
@@ -1091,8 +1319,8 @@ div#bn-check-last-order {
       margin-bottom: 49px;
     }
   }
-  .bn-history-paragraph{
-    p{
+  .bn-history-paragraph {
+    p {
       font-size: 22px;
       margin-bottom: 30px;
       line-height: 30px;
@@ -1100,20 +1328,15 @@ div#bn-check-last-order {
   }
 }
 
-
-/* ===========================
-    Our Value page css
-============================== */
-.bn-profile-values{
+.bn-profile-values {
   margin-top: -251px;
   position: relative;
-  .bn-profile-item{
+  .bn-profile-item {
     text-align: center;
-
-    img{
+    img {
       max-width: 484px;
     }
-    h1{
+    h1 {
       font-size: 40px;
       padding-top: 70px;
       padding-bottom: 55px;
@@ -1122,23 +1345,28 @@ div#bn-check-last-order {
     }
   }
 }
-.bn-values-content{
+
+
+/* ===========================
+    Our Value page css
+============================== */
+.bn-values-content {
   background: #EDEDED;
   text-align: center;
   padding: 160px 0;
-  .row{
-    .col-6{
+  .row {
+    .col-6 {
       padding: 0;
     }
   }
-  .bn-values-text{
-    h2{
+  .bn-values-text {
+    h2 {
       font-size: 35px;
       font-weight: 600;
       margin-bottom: 42px;
       color: #000;
     }
-    p{
+    p {
       font-size: 22px;
       margin-bottom: 42px;
       line-height: 30px;
@@ -1146,10 +1374,10 @@ div#bn-check-last-order {
   }
 }
 
-.bn-text-item-box{
+.bn-text-item-box {
   padding: 90px 0;
-  .bn-text-box{
-    h2{
+  .bn-text-box {
+    h2 {
       font-size: 35px;
       color: #000000;
       opacity: 50%;
@@ -1157,36 +1385,37 @@ div#bn-check-last-order {
     }
   }
 }
-.bn-image-content-values{
+
+.bn-image-content-values {
   background: #EDEDED;
   padding: 120px 0;
   padding-bottom: 237px;
-  .row{
+  .row {
     border-bottom: 1px solid #707070;
     padding-bottom: 95px;
     margin-bottom: 95px;
-    .bn-image-v1{
+    .bn-image-v1 {
       max-width: 322px;
     }
-    .bn-image-v2{
+    .bn-image-v2 {
       max-width: 380px;
     }
-    .bn-image-v3{
+    .bn-image-v3 {
       max-width: 376px;
     }
-    .bn-image-v4{
+    .bn-image-v4 {
       max-width: 420px;
     }
-    .bn-image-v5{
+    .bn-image-v5 {
       max-width: 170px;
     }
-    .bn-content-text-header{
-      h2{
+    .bn-content-text-header {
+      h2 {
         font-size: 30px;
         margin-bottom: 40px;
         color: #000;
       }
-      p{
+      p {
         font-size: 22px;
         margin-bottom: 40px;
         line-height: 30px;
@@ -1201,28 +1430,30 @@ div#bn-check-last-order {
 /* ===========================
      Team page css
 ============================== */
-.bn-our-team{
+
+
+.bn-our-team {
   background: #EDEDED;
   padding: 195px 0;
   padding-bottom: 435px;
-  .bn-team-header{
-    h1{
+  .bn-team-header {
+    h1 {
       font-size: 30px;
       color: #000;
       margin-bottom: 94px;
     }
-    p{
+    p {
       font-size: 23px;
       margin-bottom: 40px;
       color: #000;
-      b{
+      b {
         color: #f36a10;
       }
     }
   }
-  .row{
-    .col-md-3{
-      padding:0 10px;
+  .row {
+    .col-md-3 {
+      padding: 0 10px;
       .bn-team-title {
         p {
           font-size: 22px;
@@ -1232,16 +1463,18 @@ div#bn-check-last-order {
       }
     }
   }
-  .bn-join-team{
+  .bn-join-team {
     font-size: 30px;
     color: #000;
     margin-left: 7px;
   }
 }
 
+
 /*=================================
         Glossary page css
 =================================== */
+
 .bn-glossary-content {
   padding: 145px 0;
   padding-bottom: 203px;
@@ -1254,9 +1487,9 @@ div#bn-check-last-order {
       font-weight: 700;
     }
   }
-  .bn-glossary-sub-header{
+  .bn-glossary-sub-header {
     margin-bottom: 18px;
-    h2{
+    h2 {
       font-size: 22px;
       font-weight: 700;
     }
@@ -1270,61 +1503,67 @@ div#bn-check-last-order {
     }
   }
 }
+
+
+
 /*============================
     Faq page CSS
 ============================== */
-.bn-faq-content{
+
+.bn-faq-content {
   background: #EDEDED;
   padding: 140px 0;
   padding-bottom: 177px;
-  .bn-faq-header{
-    h1{
+  .bn-faq-header {
+    h1 {
       font-size: 35px;
       color: #000;
       font-weight: 700;
     }
-    .bn-faq-text{
+    .bn-faq-text {
       font-size: 28px;
       margin-bottom: 91px;
     }
-    .bn-faq-sub-heading{
+    .bn-faq-sub-heading {
       color: #f58220;
       font-size: 25px;
       font-weight: 700;
       margin-bottom: 25px;
     }
   }
-  .bn-sub-header-faq{
+  .bn-sub-header-faq {
     margin-top: 85px;
   }
-  .bn-faq-text-item{
+  .bn-faq-text-item {
     margin-bottom: 37px;
-    h2{
+    h2 {
       font-size: 26px;
       font-weight: 700;
       margin-bottom: 0;
     }
-    p{
+    p {
       font-size: 22px;
       line-height: 30px;
     }
   }
-  .row{
-    .bn-faq-header{
+  .row {
+    .bn-faq-header {
       margin-left: 0px;
-      .bn-faq-sub-heading{
+      .bn-faq-sub-heading {
         margin-top: 85px;
       }
     }
   }
 }
 
+
 /* ===========================
     Shops page css
 ============================== */
-.bn-shops-banner{
+
+.bn-shops-banner {
   position: relative;
-  .bn-shop-contact{
+  .bn-shop-contact {
     background: #e3e3e3db;
     position: absolute;
     bottom: 0;
@@ -1349,7 +1588,7 @@ div#bn-check-last-order {
       }
       p {
         font-size: 22px;
-        line-height: 28px;;
+        line-height: 28px;
         a {
           text-decoration: none;
         }
@@ -1362,10 +1601,10 @@ div#bn-check-last-order {
           display: block;
           line-height: 18px;
         }
-        .float-start{
+        .float-start {
           width: 50%;
         }
-        .float-end{
+        .float-end {
           width: 50%;
           text-align: right;
           padding-right: 70px;
@@ -1373,7 +1612,7 @@ div#bn-check-last-order {
         }
         img {
           width: 64px;
-          &:last-child{
+          &:last-child {
             width: 43.69px;
             margin-left: 19px;
           }
@@ -1383,29 +1622,26 @@ div#bn-check-last-order {
   }
 }
 
-//map shop CSS
-.bn-map-shop{
+.bn-map-shop {
   position: relative;
-  .bn-map-location{
+  .bn-map-location {
     position: absolute;
     left: 47%;
     top: 50%;
   }
 }
 
-//shop Details box CSS
-
-.bn-details-box{
+.bn-details-box {
   background: #EDEDED;
   padding: 134px 0;
   padding-bottom: 268px;
-  .bn-details-content{
-    h2{
+  .bn-details-content {
+    h2 {
       font-size: 26px;
       font-weight: 700;
       margin-bottom: 23px;
     }
-    p{
+    p {
       font-size: 22px;
       margin-bottom: 30px;
       line-height: 30px;
@@ -1413,39 +1649,37 @@ div#bn-check-last-order {
   }
 }
 
-
-
-
 /*============================
     Privacy Policy page CSS
 ============================== */
-.bn-policy-content{
+
+.bn-policy-content {
   background: #EDEDED;
   padding: 135px 0;
   padding-bottom: 125px;
-  .bn-policy-header{
-    h1{
+  .bn-policy-header {
+    h1 {
       font-size: 30px;
       color: #000;
       font-weight: 600;
     }
-    .bn-policy-text{
+    .bn-policy-text {
       font-size: 22px;
       margin-bottom: 91px;
       line-height: 30px;
     }
   }
-  .bn-policy-text-item{
-    h2{
+  .bn-policy-text-item {
+    h2 {
       font-size: 25px;
       font-weight: 700;
     }
     p {
       font-size: 25px;
       margin-bottom: 45px;
-      span{
+      span {
         display: block;
-        &:first-child{
+        &:first-child {
           text-decoration: underline;
         }
       }
@@ -1456,25 +1690,25 @@ div#bn-check-last-order {
       padding-left: 25px;
     }
   }
-  .bn-policy-text-ex{
+  .bn-policy-text-ex {
     margin-bottom: 45px;
-    p, h2, ul{
+    p {
+      margin-bottom: 0;
+    }
+    h2 {
+      margin-bottom: 0;
+    }
+    ul {
       margin-bottom: 0;
     }
   }
-  .row{
+  .row {
     .col-12 {
       padding: 0 20px;
     }
   }
-
 }
 
-
-
-/*============================
-    Catering menu page CSS
-============================== */
 .bn-buffet-menu-box {
   .container {
     padding: 53px 0;
@@ -1482,29 +1716,34 @@ div#bn-check-last-order {
     border-bottom: none;
   }
 }
-.bn-catering-menu-all{
+
+/*============================
+    Catering menu page CSS
+============================== */
+
+.bn-catering-menu-all {
   padding-top: 45px;
   padding-bottom: 179px;
-  img{
+  img {
     margin-bottom: 20px;
   }
   .nav-tabs {
     border: none;
     .nav-link {
       font-size: 28px;
-      width: 23.60%;
+      width: 23.6%;
       background: #f8f8f8;
       margin-right: 20px;
       color: #0A0A0A;
       border: none;
       border-radius: 0;
       margin-bottom: 0;
-      &:last-child{
+      &:last-child {
         margin-right: 0;
       }
-      &.active{
-        background: #e5e5e5;
-      }
+    }
+    .nav-link.active {
+      background: #e5e5e5;
     }
   }
   div#nav-tabContent {
@@ -1512,31 +1751,31 @@ div#bn-check-last-order {
       .row {
         background: #e5e5e5;
         padding: 70px 82px;
-        margin: 0 auto ;
+        margin: 0 auto;
       }
     }
   }
-  .bn-menu-header{
+  .bn-menu-header {
     color: #000000;
     font-size: 25px;
     font-weight: 800;
   }
-  div#bn-check-last-order {
-    .bn-radio-order{
+  .bn-check-out-last-order-box {
+    .bn-radio-order {
       padding-left: 0;
       margin-bottom: 25px;
-      .bn-radio-form-order{
+      .bn-radio-form-order {
         padding-left: 15px;
       }
-      .form-check{
+      .form-check {
         padding-right: 49px;
       }
     }
-    select{
+    select {
       font-size: 23px;
       margin-bottom: 10px;
       color: #000;
-      &:focus{
+      &:focus {
         box-shadow: none;
         border: none;
         outline: none;
@@ -1545,7 +1784,7 @@ div#bn-check-last-order {
   }
   .bn-right-menu-bar {
     margin-bottom: 14px;
-    span{
+    span {
       display: block;
       font-size: 22px;
       line-height: 30px;
@@ -1554,34 +1793,34 @@ div#bn-check-last-order {
   .bn-light-black-color {
     opacity: 25%;
   }
-  .bn-number-people{
-    input{
+  .bn-number-people {
+    input {
       font-size: 30px;
       font-weight: 700;
       padding: 3px 15px;
       max-width: 19%;
     }
-    span{
+    span {
       font-size: 25px;
       color: #6D6D6D;
       padding-left: 13px;
     }
   }
-  .bn-number-price{
-    h3{
+  .bn-number-price {
+    h3 {
       font-size: 35px;
       font-weight: 700;
     }
-    span{
+    span {
       font-size: 25px;
       line-height: 30px;
       display: block;
     }
   }
-  .bn-button-menu{
+  .bn-button-menu {
     text-align: right;
     margin-top: 16px;
-    button{
+    button {
       background: #2c2c2c;
       color: #fff;
       font-size: 28px;
@@ -1592,12 +1831,7 @@ div#bn-check-last-order {
   }
 }
 
-
-/*============================
-    Check out page CSS
-============================== */
-
-.bn-check-out-last-order{
+.bn-check-out-last-order {
   padding-top: 89px;
   padding-bottom: 12px;
   p {
@@ -1605,27 +1839,36 @@ div#bn-check-last-order {
     font-size: 22px;
   }
 }
+/*============================
+    Check out page CSS
+============================== */
 .bn-check-out {
   background: #E3E3E3;
   padding: 90px 0;
   padding-bottom: 230px;
   div#bn-check-out-order {
-    .modal-dialog{
+    .modal-dialog {
       max-width: 100%;
       margin-top: 0;
-      .modal-content{
+      .modal-content {
         background-color: transparent;
         border-radius: 0;
         border: none;
-        h2{
-          font-size: 23px;
+        position: relative;
+        img {
+          width: 154px;
+          position: absolute;
+          right: 209px;
+          top: -18px;
+        }
+        h2 {
+          font-size: 22px;
           color: #404040;
-          small{
-            font-size: 20px;
+          small {
+            font-size: 16px;
             font-weight: 500;
             position: relative;
             top: 1px;
-            float: right;
           }
         }
       }
@@ -1643,8 +1886,16 @@ div#bn-check-last-order {
         right: 20px;
         bottom: 0;
       }
-      &:last-child:after {
-        bottom: 7px;
+      &:last-child {
+        &:after {
+          bottom: 7px;
+        }
+      }
+    }
+    .row.bn-product-border-b-none{
+      margin-bottom: 0;
+      &:after {
+        border-bottom: none;
       }
     }
     .row.bn-border-bottom-dash {
@@ -1660,32 +1911,34 @@ div#bn-check-last-order {
         right: 20px;
         bottom: 0;
       }
-      &:last-child:after {
-        bottom: 7px;
+      &:last-child {
+        &:after {
+          bottom: 7px;
+        }
       }
     }
-    .row.bn-last-order-footer{
+    .row.bn-last-order-footer {
       padding: 0 9px;
       padding-bottom: 115px;
-      p{
+      p {
         font-size: 20px;
         padding-top: 13px;
         color: #000;
       }
-      button{
+      button {
         background: #212529 !important;
         font-size: 28px;
         font-weight: 700;
         border-radius: 0;
       }
     }
-    .row.bn-total-price{
+    .row.bn-total-price {
       margin-bottom: 0;
-      h2{
+      h2 {
         font-weight: 700;
         font-size: 26px;
       }
-      .bn-price-item{
+      .bn-price-item {
         font-weight: 700;
         font-size: 26px;
       }
@@ -1693,41 +1946,77 @@ div#bn-check-last-order {
         border-bottom: 3px solid #707070;
       }
     }
-    .row.bn-check-box-choose{
+    .row.bn-check-box-choose {
       padding-bottom: 10px;
+    }
+    .row.bn-bottom-space-check {
+      margin-bottom: 120px;
+    }
+    .bn-add-product-all-item{
+      margin-bottom: 29px;
+      .bn-product-child-item{
+        position: relative;
+        //border-bottom: 1px solid;
+        margin-top: 8px;
+        &:after {
+          content: "";
+          border-bottom: 1px solid;
+          position: absolute;
+          left: 7px;
+          right: 7px;
+          bottom: 0;
+        }
+      }
+      .row.bn-border-bottom {
+        align-items: end;
+        margin-bottom: 0;
+        &:after{
+          bottom: 5px;
+          display: none;
+        }
+        .bn-number-product {
+          span {
+            margin-bottom: 5px;
+            display: block;
+          }
+        }
+        .bn-price-item {
+          margin-bottom: 4px;
+        }
+      }
     }
     .bn-radio-order {
       padding-top: 0px;
       padding-left: 24px;
-      .form-check-input{
+      .form-check-input {
         border: none;
         height: 23px;
         width: 23px;
         margin-right: 9px;
-        &:focus{
+        &:focus {
           box-shadow: none;
         }
-        &:checked{
+        &:checked {
           background-color: white;
           border: none;
           position: relative;
-        }
-        &:checked:before {
-          content: "";
-          height: 11px;
-          width: 11px;
-          background: #767676;
-          position: absolute;
-          border-radius: 50%;
-          left: 6px;
-          top: 6px;
+          &:before {
+            content: "";
+            height: 11px;
+            width: 11px;
+            background: #767676;
+            position: absolute;
+            border-radius: 50%;
+            left: 6px;
+            top: 6px;
+          }
         }
       }
-      label{
-        font-size: 22px;
+      label {
+        font-size: 16px;
         color: #000;
       }
-      .form-check{
+      .form-check {
         display: inline-block;
         width: auto;
         padding-right: 23px;
@@ -1757,6 +2046,14 @@ div#bn-check-last-order {
           }
         }
       }
+      .form-check-input.bn-checked-color-chnaged {
+        &:checked {
+          &:before {
+            border: 2px solid #F36A10;
+            border-width: 3px 3px 0 0;
+          }
+        }
+      }
     }
     .bn-number-product {
       i {
@@ -1764,7 +2061,6 @@ div#bn-check-last-order {
         color: #fff;
         padding: 14px;
         border-radius: 42px;
-
       }
       span {
         border: none;
@@ -1776,12 +2072,16 @@ div#bn-check-last-order {
       font-size: 22px;
       text-align: right;
     }
+    .bn-price-item.bn-orange-color {
+      color: #F36A10;
+      font-weight: 700;
+    }
   }
-  .bn-check-out-from{
-    .bn-from-bottom-space{
+  .bn-check-out-from {
+    .bn-from-bottom-space {
       margin-bottom: 26px;
     }
-    input, select, textarea{
+    input, span {
       font-size: 22px;
       height: 59px;
       border-radius: 0;
@@ -1789,55 +2089,93 @@ div#bn-check-last-order {
       margin-bottom: 22px;
       padding-left: 26px;
       color: #717171;
-      &:focus{
+      line-height: 47px;
+      &:focus {
         border: none;
         box-shadow: none;
         outline: none;
       }
     }
-    textarea{
+    select {
+      font-size: 22px;
+      height: 59px;
+      border-radius: 0;
+      border: none;
+      margin-bottom: 22px;
+      padding-left: 26px;
+      color: #717171;
+      &:focus {
+        border: none;
+        box-shadow: none;
+        outline: none;
+      }
+    }
+    textarea {
+      font-size: 22px;
+      height: 59px;
+      border-radius: 0;
+      border: none;
+      margin-bottom: 22px;
+      padding-left: 26px;
+      color: #717171;
       height: 195px;
       padding-top: 15px;
+      &:focus {
+        border: none;
+        box-shadow: none;
+        outline: none;
+      }
     }
     label.bn-date-time {
-     display: none;
+      display: none;
+    }
+  }
+  .bn-order-orange-price {
+    text-align: center;
+    margin-bottom: 70px;
+    margin-top: 32px;
+    img {
+      width: 545px;
     }
   }
 }
-.bn-form-checkout-button{
+
+
+
+.bn-form-checkout-button {
   background: #FFF3E2;
   padding: 33px 0;
   .bn-radio-order {
     padding-top: 4px;
     padding-left: 31px;
-    .form-check-input{
+    .form-check-input {
       border: none;
       height: 23px;
       width: 23px;
       margin-right: 9px;
-      &:focus{
+      &:focus {
         box-shadow: none;
       }
-      &:checked{
+      &:checked {
         background-color: white;
         border: none;
         position: relative;
-      }
-      &:checked:before {
-        content: "";
-        height: 11px;
-        width: 11px;
-        background: #767676;
-        position: absolute;
-        border-radius: 50%;
-        left: 6px;
-        top: 6px;
+        &:before {
+          content: "";
+          height: 11px;
+          width: 11px;
+          background: #767676;
+          position: absolute;
+          border-radius: 50%;
+          left: 6px;
+          top: 6px;
+        }
       }
     }
-    label{
+    label {
       font-size: 20px;
     }
-    .form-check{
+    .form-check {
       display: inline-block;
       width: auto;
       padding-right: 23px;
@@ -1869,7 +2207,7 @@ div#bn-check-last-order {
       }
     }
   }
-  button{
+  button {
     background: #2c2c2c;
     color: #fff;
     font-size: 28px;
@@ -1880,35 +2218,37 @@ div#bn-check-last-order {
   }
 }
 
-
 /*============================
     Contact up page CSS
 ============================== */
-.bn-contact-us{
+
+.bn-contact-us {
   background: #EDEDED;
   padding: 150px 0;
-  .bn-contact-heading{
+  .bn-contact-heading {
     font-size: 30px;
     color: #000;
     margin-bottom: 63px;
   }
-  .bn-contact-text{
-    span{
+  .bn-contact-text {
+    span {
       display: block;
       font-size: 22px;
       margin-bottom: 25px;
     }
   }
-  .bn-contact-form{
-    input{
+  .bn-contact-form {
+    input, span {
       font-size: 22px;
       height: 59px;
       padding-left: 25px;
       border: none;
       border-radius: 0;
       margin-bottom: 32px;
+      line-height: 47px;
+      color: #717171;
     }
-    textarea{
+    textarea {
       font-size: 22px;
       padding-left: 25px;
       height: 132px;
@@ -1916,14 +2256,13 @@ div#bn-check-last-order {
       border-radius: 0;
       margin-bottom: 32px;
     }
-    .bn-captcha{
+    .bn-captcha {
       background: #B2B2B2;
       height: 84px;
       width: 344px;
       margin-bottom: 32px;
-
     }
-    button{
+    button {
       font-size: 28px;
       background: #2c2c2c;
       color: #fff;
@@ -1934,46 +2273,52 @@ div#bn-check-last-order {
       margin-top: 83px;
     }
   }
+  .bn-file-attachment{
+    padding: 14px 9px;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+  }
 }
 
 /*============================
    Review div CSS
 ============================== */
 
-div#bn-review-box{
+div#bn-review-box {
   top: 35px;
-  .modal-dialog{
+  .modal-dialog {
     width: 100%;
     max-width: 100%;
   }
-  .container{
+  .container {
     width: 730px;
   }
-  .bn-left-review-box{
+  .bn-left-review-box {
     width: 100%;
     max-width: 70%;
-    span{
+    span {
       display: block;
       font-size: 17px;
       padding: 15px 36px;
       border: 2px solid;
       border-bottom: none;
       border-right: none;
-      &:last-child{
+      &:last-child {
         border-bottom: 2px solid;
       }
     }
   }
-  .bn-right-review-box{
+  .bn-right-review-box {
     width: 100%;
     max-width: 30%;
-    span{
+    span {
       display: block;
       padding: 15px 36px;
       border: 2px solid;
       font-size: 17px;
       border-bottom: none;
-      &:last-child{
+      &:last-child {
         border-bottom: 2px solid;
       }
     }
@@ -1988,7 +2333,7 @@ div#bn-review-box{
       padding: 15px 0px 50px 32px;
     }
   }
-  .bn-last-footer-review{
+  .bn-last-footer-review {
     text-align: right;
     padding-top: 16px;
     padding-bottom: 75px;
@@ -1998,31 +2343,30 @@ div#bn-review-box{
     padding-bottom: 103px;
     position: sticky;
     top: 26px;
-    button{
-      &:before{
-          content: "";
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: 0;
-          border: 0;
-          height: 100vh;
+    button {
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        border: 0;
+        height: 100vh;
       }
     }
   }
 }
 
-
-
 /*============================
   Overview  Page CSS
 ============================== */
-.bn-menu-overview{
+
+.bn-menu-overview {
   background: #EBEBEB;
   padding-top: 165px;
   padding-bottom: 0;
-  .bn-header-overview{
-    h1{
+  .bn-header-overview {
+    h1 {
       font-size: 25px;
       color: #F36A10;
       font-weight: 700;
@@ -2032,14 +2376,14 @@ div#bn-review-box{
   .bn-menu-overview-box {
     padding: 0 97px;
   }
-  .row.bn-border-bottom{
+  .row.bn-border-bottom {
     position: relative;
     padding-bottom: 4px;
     margin-bottom: 29px;
-    h2{
+    h2 {
       font-size: 22px;
     }
-    span.bn-span-text{
+    span.bn-span-text {
       font-size: 18px;
       float: right;
       margin-top: 16px;
@@ -2076,10 +2420,9 @@ div#bn-review-box{
   }
   .bn-price-item {
     font-size: 22px;
-    .bn-number-product{
+    .bn-number-product {
       text-align: center;
       padding-left: 40px;
-
     }
   }
   img {
@@ -2088,7 +2431,7 @@ div#bn-review-box{
   }
 }
 
-.bn-menu-overview-checkout-form{
+.bn-menu-overview-checkout-form {
   background: #EBEBEB;
   padding-top: 40px;
   div#bn-check-out-order {
@@ -2101,12 +2444,10 @@ div#bn-review-box{
         }
       }
     }
-    .bn-check-box-order {
-      &.bn-choose-drink-box {
-        .form-check {
-          padding-right: 28px;
-          width: 100%;
-        }
+    .bn-check-box-order.bn-choose-drink-box {
+      .form-check {
+        padding-right: 28px;
+        width: 100%;
       }
     }
     .bn-number-product {
@@ -2114,7 +2455,7 @@ div#bn-review-box{
       margin-top: -26px;
       text-align: center;
       padding-left: 55px;
-        span {
+      span {
         display: inline-block;
         text-align: center;
         width: 52px;
@@ -2127,10 +2468,10 @@ div#bn-review-box{
     }
     .row.bn-total-price {
       margin-bottom: 80px;
-      h2{
+      h2 {
         font-size: 26px;
       }
-      .bn-price-item{
+      .bn-price-item {
         font-size: 26px;
       }
     }
@@ -2141,19 +2482,19 @@ div#bn-review-box{
   }
 }
 
-.bn-overview-btn{
-  button{
+.bn-overview-btn {
+  button {
     margin-top: 0px;
     width: auto;
     padding: 0px 56px;
     border: 2px solid #2c2c2c;
-    &:hover{
+    &:hover {
       color: #fff;
     }
-    &:focus{
+    &:focus {
       box-shadow: none;
     }
-    &:first-child{
+    &:first-child {
       background: transparent;
       color: #2c2c2c;
     }
@@ -2164,41 +2505,42 @@ div#bn-review-box{
   }
 }
 
-
 /*============================
   Gift Card  Page CSS
 ============================== */
+
 .bn-breadcrumb-gift {
   padding-top: 55px;
 }
-.bn-gift-card-main{
-  .bn-gift-heading{
-    h1{
+
+.bn-gift-card-main {
+  .bn-gift-heading {
+    h1 {
       font-size: 30px;
       color: #000;
     }
-    p{
+    p {
       font-size: 22px;
     }
   }
-  .bn-gift-sub-heading{
+  .bn-gift-sub-heading {
     margin-top: 80px;
     margin-bottom: 30px;
-    h2{
+    h2 {
       color: #F36A10;
       font-size: 25px;
       font-weight: 700;
     }
   }
-  .bn-gift-price{
-    input{
+  .bn-gift-price {
+    input {
       font-size: 35px;
       font-weight: 700;
       height: 96px;
       padding-left: 25px;
       border-radius: 0;
       line-height: 1;
-      &:focus{
+      &:focus {
         box-shadow: none;
         border: none;
         outline: 0;
@@ -2207,11 +2549,14 @@ div#bn-review-box{
   }
   .bn-check-box-order {
     .form-check {
-      &:first-child{
-        padding-left: 0;
-      }
       display: inline-block;
       width: 130px;
+      &:first-child {
+        padding-left: 0;
+        label {
+          margin-left: 0;
+        }
+      }
       .form-check-input {
         height: 31px;
         width: 31px;
@@ -2219,48 +2564,48 @@ div#bn-review-box{
         border-radius: 0;
         position: relative;
         background: #fff;
-        &:checked:before {
-          content: "";
-          position: absolute;
-          background: transparent;
-          border-radius: 0;
-          left: 7px;
-          top: 8px;
-          height: 11px;
-          width: 17px;
-          border: 2px solid #767676;
-          border-width: 3px 3px 0 0;
-          transform: rotate(121deg);
+        &:checked {
+          &:before {
+            content: "";
+            position: absolute;
+            background: transparent;
+            border-radius: 0;
+            left: 7px;
+            top: 8px;
+            height: 11px;
+            width: 17px;
+            border: 2px solid #767676;
+            border-width: 3px 3px 0 0;
+            transform: rotate(121deg);
+          }
         }
       }
-      label{
+      label {
         margin-left: 10px;
         font-size: 22px;
       }
-      &:first-child{
-        label {
-          margin-left: 0;
-        }
-      }
     }
   }
-  .bn-gift-last-box{
-    input{
+  .bn-gift-last-box {
+    input {
       margin-bottom: 18px;
     }
   }
 }
+
 /*============================
   Jobs  Page CSS
 ============================== */
+
 .bn-breadcrumb-jobs {
   padding-top: 181px;
   background: #EDEDED;
 }
-.bn-jobs-main{
+
+.bn-jobs-main {
   background: #EDEDED;
-  .bn-gift-heading{
-    h1{
+  .bn-gift-heading {
+    h1 {
       margin-bottom: 38px;
     }
     .bn-check-box-order {
@@ -2276,7 +2621,7 @@ div#bn-review-box{
             box-shadow: none;
           }
         }
-        label{
+        label {
           margin-left: 10px;
           text-transform: capitalize;
         }
@@ -2299,24 +2644,24 @@ div#bn-review-box{
       width: auto;
       padding-right: 42px;
       padding-left: 26px;
-      label{
+      label {
         margin-left: 10px;
         text-transform: capitalize;
       }
-      .form-check-input{
+      .form-check-input {
         margin-top: 0px;
       }
-      &.w-50 {
-        width: 53%!important;
-      }
+    }
+    .form-check.w-50 {
+      width: 53% !important;
     }
   }
-  .bn-check-language{
-    .form-check{
-      &:first-child{
+  .bn-check-language {
+    .form-check {
+      &:first-child {
         width: 17%;
       }
-      .form-check-input{
+      .form-check-input {
         height: 23px;
         width: 23px;
         margin-top: 5px;
@@ -2324,23 +2669,25 @@ div#bn-review-box{
         background: #fff;
         border-radius: 82%;
         padding: 0;
-        &:checked:before{
-          left: 6px;
-          top: 6px;
-          height: 11px;
-          width: 11px;
-          background: #767676;
-          border: none;
-          border-radius: 100%;
+        &:checked {
+          &:before {
+            left: 6px;
+            top: 6px;
+            height: 11px;
+            width: 11px;
+            background: #767676;
+            border: none;
+            border-radius: 100%;
+          }
         }
       }
-      label{
+      label {
         margin-left: 0px;
       }
     }
   }
-  .bn-gift-sub-heading{
-    h2{
+  .bn-gift-sub-heading {
+    h2 {
       font-weight: 800;
     }
   }
@@ -2353,96 +2700,159 @@ div#bn-review-box{
   }
 }
 
+/* ========================
+      Feed back page css
+===========================*/
 
-/*================================
-    Gift Card popup
-=============================== */
-
-div#bn-check-last-order {
-  .bn-gift-card-order {
-    .row.bn-border-bottom {
-      margin-bottom: 7px;
+.bn-feedback-main {
+  background: #ededed;
+  padding: 130px 0;
+  .bn-heading-feedback{
+    h2{
+      color: #000000;
+      font-size: 47px;
+      margin-bottom: 75px;
     }
-    .bn-radio-order {
-      label {
-        font-size: 22px;
-        margin-left: 66px;
-        span{
-          padding-left: 95px;
+  }
+  .bn-review-box-feedback{
+    background: #fff;
+    font-size: 22px;
+    margin-bottom: 32px;
+    padding: 6px 26px;
+    height: 59px;
+    line-height: 42px;
+    div{
+      color: #717171;
+    }
+    img{
+      width: 29px;
+    }
+  }
+  .bn-space-bottom-feedback{
+    margin-bottom: 80px;
+  }
+  .bn-space-top-feedback{
+    margin-top: 104px;
+  }
+  div#bn-check-out-order{
+    .form-check-input{
+      border-radius: 100%;
+      padding-left: 0px;
+    }
+    .form-check-label{
+      margin-top: 6px;
+    }
+    .bn-star-feedback{
+      font-size: 0;
+      .form-check-input{
+        padding: 0;
+        border: 1px solid #717171;
+        margin-top: 13px;
+        &:checked{
+          border: 1px solid #717171;
+          &:before{
+            left: 5px;
+            top: 5px;
+          }
         }
       }
-    }
-    .bn-gift-row-border{
-      .bn-radio-order {
-        label {
-          margin-left: 84px;
-        }
-      }
-    }
-    .bn-price-item {
-      font-size: 22px;
-      font-weight: 500;
-    }
-    .bn-coupon-code{
-      opacity: 50%;
-    }
-    .bn-price-gift-book{
-      font-size: 26px;
-      font-weight: 700;
-    }
-    .bn-gift-disable{
-      opacity: 50%;
-    }
-    .row.bn-last-order-footer {
-      text-align: right;
-      button {
-        width: auto !important;
-        margin-top: 20px;
-        font-size: 28px;
-        border: 2px solid #212529;
-        &:first-child{
-          background: transparent !important;
-          color: #212529;
-          padding: 5px 25px;
+      .form-check {
+        padding-right: 50px;
+        &:last-child{
+          padding-right: 0;
         }
       }
     }
   }
+  .bn-feedback-paragraph{
+    font-size: 22px;
+  }
+  .bn-space-t-feedback{
+    margin-top: 83px;
+    input{
+      padding: 6px 12px;
+      height: auto;
+    }
+    label{
+      padding-top: 5px;
+    }
+    .bn-black-button{
+      background: #2c2c2c;
+      font-size: 22px;
+      color: #fff;
+      padding: 4px 55px;
+      border-radius: 0;
+    }
+  }
 }
-// Mobile View Css
+
+button.btn.bn-receipt-btn {
+  color: #fff;
+  background: black;
+  font-size: 22px;
+  border-radius: 0;
+  border: none;
+  padding: 15px 40px;
+}
+
+
 
 @media only screen and (min-width: 1400px) {
-  .container{
+  .container {
     max-width: 1121px;
     padding: 0px;
   }
 }
-@media only screen and (max-width: 1400px) {
-  header.bn-top-header .bn-top-menu {
-    margin-right: 21px;
-  }
-}
 
-
-@media only screen and (max-width: 1100px){
-  header.bn-top-header .bn-top-menu {
-    margin-right: 0;
-  }
-}
-
-@media only screen and (max-width: 768px) and (min-width: 601px){
-  .bn-review-box .bn-review-box-img {
-    text-align: center;
-  }
-}
-
-@media only screen and(max-width: 1024px){
-  header.bn-top-header {
-    .bn-top-menu li {
-      text-align: center;
-      margin: auto 40px;
+@media only screen and (max-width: 1440px) and (min-width: 1200px) {
+  .bn-shops-banner {
+    .bn-shop-contact {
+      top: 28%;
     }
   }
+}
+
+@media only screen and (max-width: 1400px) {
+  header.bn-top-header {
+    .bn-top-menu {
+      margin-right: 21px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  header.bn-top-header {
+    .bn-top-menu {
+      margin-right: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) and (min-width: 601px) {
+  .bn-review-box {
+    .bn-review-box-img {
+      text-align: center;
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  header.bn-top-header {
+    .bn-top-menu {
+      li {
+        text-align: center;
+        margin: auto 40px;
+      }
+    }
+    .bn-card-price {
+      position: absolute;
+      right: 7%;
+      color: #fff;
+      top: 14px;
+      font-size: 18px;
+    }
+  }
+
   .bn-portfolio-section {
     .bn-link-image-box {
       .bn-menu-b-box {
@@ -2456,13 +2866,14 @@ div#bn-check-last-order {
       }
     }
   }
+
   .bn-review-box {
-    .bn-star-box{
+    .bn-star-box {
       padding-bottom: 3px;
-      i{
+      i {
         font-size: 20px;
       }
-      small{
+      small {
         font-size: 12px;
       }
     }
@@ -2473,13 +2884,11 @@ div#bn-check-last-order {
     }
     .bn-review-box-img {
       margin-top: 11px;
-    }
-    .bn-review-box-img img {
-      margin-right: 38px;
+      img {
+        margin-right: 24px;
+      }
     }
   }
-
-  // Take  away page css
 
   .bn-take-away-search {
     .bn-search-tag {
@@ -2511,9 +2920,8 @@ div#bn-check-last-order {
     }
   }
 
-  // catering page
   .bn-catering-menu-all {
-    div#bn-check-last-order {
+   .bn-check-out-last-order-box {
       .bn-radio-order {
         .form-check {
           padding-right: 22px;
@@ -2532,7 +2940,6 @@ div#bn-check-last-order {
     }
   }
 
-  // check out page css
   .bn-check-out {
     div#bn-check-out-order {
       .bn-check-box-order {
@@ -2540,12 +2947,17 @@ div#bn-check-last-order {
           padding-right: 20px;
         }
       }
+      .modal-dialog {
+        .modal-content {
+          img {
+            right: 150px;
+          }
+        }
+      }
     }
   }
 
-  // pre check out page css
-
-  div#bn-check-last-order {
+  .bn-check-out-last-order-box {
     .bn-number-product {
       span {
         width: 38px;
@@ -2553,7 +2965,6 @@ div#bn-check-last-order {
     }
   }
 
-  //shop page css
   .bn-shops-banner {
     .bn-shop-contact {
       top: 15%;
@@ -2571,8 +2982,6 @@ div#bn-check-last-order {
       }
     }
   }
-
-  // Faq page css
 
   .bn-faq-content {
     .bn-faq-text-item {
@@ -2594,20 +3003,29 @@ div#bn-check-last-order {
     }
   }
 
-  // privacy page css
-
   .bn-policy-content {
     .bn-policy-text-item {
-      h2, p, ul {
+      h2 {
+        font-size: 21px;
+      }
+      p {
+        font-size: 21px;
+      }
+      ul {
         font-size: 21px;
       }
     }
   }
 
-  // job page css
   .bn-jobs-main {
     .bn-check-out-from {
-      input, select, textarea {
+      input {
+        font-size: 18px;
+      }
+      select {
+        font-size: 18px;
+      }
+      textarea {
         font-size: 18px;
       }
     }
@@ -2621,13 +3039,12 @@ div#bn-check-last-order {
     }
   }
 
-  // order overview page css
-
   .bn-menu-overview {
     .bn-menu-overview-box {
       padding: 0 46px;
     }
   }
+
   .bn-menu-overview-checkout-form {
     div#bn-check-out-order {
       .bn-number-product {
@@ -2637,12 +3054,14 @@ div#bn-check-last-order {
       }
     }
   }
+
   .bn-overview-btn {
     button {
       padding: 0px 42px;
       font-size: 23px;
     }
   }
+
   .bn-form-checkout-button {
     .bn-check-box-order {
       .form-check {
@@ -2652,25 +3071,26 @@ div#bn-check-last-order {
     .bn-radio-order {
       padding-top: 4px;
       padding-left: 31px;
-    } button {
+    }
+    button {
       font-size: 23px;
       margin-top: 11px;
     }
   }
-
-  // our values page css
 
   .bn-profile-values {
     margin-top: -128px;
     .bn-profile-item {
       img {
         max-width: 281px;
-      } h1 {
+      }
+      h1 {
         font-size: 32px;
         padding-top: 37px;
       }
     }
   }
+
   .bn-values-content {
     .bn-values-text {
       p {
@@ -2678,17 +3098,21 @@ div#bn-check-last-order {
         margin-bottom: 42px;
         line-height: 28px;
       }
-       h2 {
+      h2 {
         font-size: 30px;
         margin-bottom: 32px;
       }
     }
   }
+
   .bn-text-item-box {
-    .bn-text-box h2 {
-      font-size: 30px;
+    .bn-text-box {
+      h2 {
+        font-size: 30px;
+      }
     }
   }
+
   .bn-image-content-values {
     .row {
       .bn-image-v1 {
@@ -2706,9 +3130,8 @@ div#bn-check-last-order {
     }
   }
 
-  // our story page css
   .bn-breadcrumb-our-story {
-      padding: 180px 0;
+    padding: 180px 0;
     .bn-breadcrumb-text {
       h1 {
         font-size: 45px;
@@ -2721,25 +3144,52 @@ div#bn-check-last-order {
       }
     }
   }
+
   .bn-slider.bg-transparent.bn-animation-banner {
-    height: 50vh;
+    height: 48vh;
   }
 }
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
   header.bn-top-header {
     #menuToggle {
       top: 15px;
     }
-    #menu{
+    #menu {
       top: 132px;
     }
     .bn-card-price {
       position: absolute;
-      right: 13%;
+      right: 10%;
       color: #fff;
-      top: 11px;
+      top: 5px;
       font-size: 18px;
+      .bn-price-card {
+        font-size: 24px;
+      }
+      .bh-current-price {
+        font-size: 16px;
+        font-weight: 500;
+        padding: 0;
+      }
+      .bn-discount-price {
+        color: #F36A10;
+        font-size: 24px;
+        font-weight: 700;
+      }
+      span.bn-item-card {
+        position: absolute;
+        background: #F36A10;
+        height: 12px;
+        width: 12px;
+        font-size: 10px;
+        border-radius: 100%;
+        text-align: center;
+        line-height: 12px;
+        padding: 0;
+        left: 13px;
+        top: 7px;
+      }
     }
   }
 
@@ -2747,27 +3197,28 @@ div#bn-check-last-order {
     height: 45vh;
   }
 
-  // Take away page
   .bn-take-away-search {
     .bn-search-tag {
-     text-align: center;
+      text-align: center;
       padding-top: 12px;
     }
   }
+
   .bn-email-item {
     p {
       font-size: 16px;
       padding-top: 4px;
     }
   }
+
   .bn-take-away-item {
-    .bn-left-side-bar{
+    .bn-left-side-bar {
       background: #e3e3e3;
       z-index: 99999;
-      ul{
+      ul {
         display: flex;
       }
-      button{
+      button {
         display: none !important;
       }
     }
@@ -2776,16 +3227,27 @@ div#bn-check-last-order {
       top: 5% !important;
       left: 0;
       background: #CECECE;
-      ul{
+      ul {
         margin-bottom: 0;
         border: none;
       }
     }
+    .bn-right-side-bar-product {
+      .bn-bg-product {
+        .bn-price-item {
+          img {
+            width: 27px;
+            top: -28px;
+          }
+        }
+      }
+    }
   }
+
   .bn-check-out-last-order {
     padding-top: 60px;
   }
-  // catering page css
+
   .bn-buffet-item {
     .bn-buffet-header {
       h1 {
@@ -2794,12 +3256,12 @@ div#bn-check-last-order {
       p {
         font-size: 19px;
       }
-      a{
+      a {
         font-size: 20px;
       }
     }
-
   }
+
   .bn-catering-drink {
     .bn-left-side-bar {
       background: #FFECCF;
@@ -2813,20 +3275,7 @@ div#bn-check-last-order {
       left: 0;
       right: 0;
       z-index: 999999;
-      &.bn-sticky-left{
-        background: #FFECCF;
-        bottom: 0;
-        top: auto !important;
-        display: block;
-        padding: 15px 43px;
-        text-align: right;
-        font-size: 0;
-        position: fixed;
-        left: 0;
-        right: 0;
-        z-index: 999999;
-      }
-      button{
+      button {
         width: 29% !important;
         padding: 2px 0;
         text-align: center;
@@ -2836,7 +3285,21 @@ div#bn-check-last-order {
         font-size: 24px;
       }
     }
+    .bn-left-side-bar.bn-sticky-left {
+      background: #FFECCF;
+      bottom: 0;
+      top: auto !important;
+      display: block;
+      padding: 15px 43px;
+      text-align: right;
+      font-size: 0;
+      position: fixed;
+      left: 0;
+      right: 0;
+      z-index: 999999;
+    }
   }
+
   .bn-catering-menu-all {
     .nav-tabs {
       .nav-link {
@@ -2860,7 +3323,6 @@ div#bn-check-last-order {
         line-height: 20px;
       }
     }
-
     .bn-number-people {
       input {
         font-size: 23px;
@@ -2870,7 +3332,7 @@ div#bn-check-last-order {
       }
     }
     .bn-number-price {
-      h3{
+      h3 {
         font-size: 30px;
       }
       span {
@@ -2884,29 +3346,78 @@ div#bn-check-last-order {
       }
     }
   }
-  div#bn-check-last-order {
+
+  .bn-check-out-last-order-box {
     select {
       font-size: 18px;
     }
     .bn-radio-order {
       margin-bottom: 15px;
+      padding-top: 4px;
+      padding-left: 0px;
       .form-check-input {
         height: 18px;
         width: 18px;
-        &:checked:before {
-          height: 8px;
-          width: 8px;
-          left: 5px;
-          top: 5px;
+        &:checked {
+          &:before {
+            height: 8px;
+            width: 8px;
+            left: 5px;
+            top: 5px;
+          }
         }
       }
       label {
         font-size: 14px;
       }
     }
+    top: 18px;
+    z-index: 9999999999;
+    .bn-number-product {
+      text-align: right;
+    }
+    .row.bn-last-order-footer {
+      button {
+        font-size: 22px;
+      }
+    }
+    .bn-gift-card-order {
+      .bn-radio-order {
+        label {
+          font-size: 19px;
+          margin-left: 10px;
+          span {
+            padding-left: 77px;
+          }
+        }
+      }
+      .bn-price-item {
+        font-size: 19px;
+        font-weight: 500;
+      }
+      .bn-price-gift-book {
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .bn-gift-row-border {
+        .bn-radio-order {
+          label {
+            margin-left: 20px;
+          }
+        }
+      }
+      .row.bn-last-order-footer {
+        button {
+          font-size: 22px;
+        }
+      }
+    }
+    .bn-price-item {
+      .bh-current-price {
+        position: inherit;
+      }
+    }
   }
-
-  // dine in page css
 
   .bn-dine-menu {
     .bn-top-paragraph {
@@ -2924,16 +3435,18 @@ div#bn-check-last-order {
         }
       }
     }
-    .bn-content-menu p {
-      font-size: 16px;
-      line-height: 24px;
+    .bn-content-menu {
+      p {
+        font-size: 16px;
+        line-height: 24px;
+      }
     }
   }
 
-  // gift card page css
-  .bn-breadcrumb-gift{
+  .bn-breadcrumb-gift {
     padding-top: 47px;
   }
+
   .bn-gift-card-main {
     .bn-gift-price {
       input {
@@ -2942,9 +3455,18 @@ div#bn-check-last-order {
       }
     }
   }
+
   .bn-check-out {
     .bn-check-out-from {
-      input, select, textarea {
+      input, span {
+        font-size: 18px;
+        padding-left: 14px;
+      }
+      select {
+        font-size: 18px;
+        padding-left: 14px;
+      }
+      textarea {
         font-size: 18px;
         padding-left: 14px;
       }
@@ -2954,11 +3476,66 @@ div#bn-check-last-order {
         padding-left: 0px;
         padding-top: 20px;
       }
+      .modal-dialog {
+        .modal-content {
+          img {
+            right: 327px;
+          }
+          .bn-radio-order {
+            padding-top: 0px;
+          }
+          .bn-check-out-mobile {
+            margin-bottom: 63px;
+          }
+          .bn-add-product-all-item{
+            .bn-product-child-item{
+              position: relative;
+              //border-bottom: 1px solid;
+              margin-top: 8px;
+              &:after {
+                content: "";
+                border-bottom: 1px solid;
+                position: absolute;
+                left: 7px;
+                right: 7px;
+                bottom: 0;
+              }
+            }
+            margin-bottom: 29px;
+            .row.bn-border-bottom {
+              align-items: end;
+              margin-bottom: 0;
+              &:after{
+                bottom: 5px;
+                display: none;
+              }
+              .bn-number-product {
+                span {
+                  margin-bottom: 5px;
+                  display: block;
+                }
+              }
+              .bn-price-item {
+                margin-bottom: 4px;
+              }
+            }
+          }
+
+          .row.bn-product-border-b-none{
+            margin-bottom: 0;
+          }
+        }
+      }
+      .row.bn-bottom-span-mobile-set {
+        margin-bottom: 0px;
+      }
     }
   }
+
   .bn-form-checkout-button {
     .bn-radio-order {
       padding-left: 0px;
+      padding-top: 2px;
     }
     button {
       font-size: 20px;
@@ -2967,25 +3544,6 @@ div#bn-check-last-order {
     }
   }
 
-
-  // pre check out page css
-
-  div#bn-check-last-order {
-    top: 18px;
-    z-index: 9999999999;
-    .bn-radio-order {
-      padding-top: 4px;
-      padding-left: 0px;
-    }
-    .bn-number-product{
-      text-align: right;
-    }
-    .row.bn-last-order-footer button {
-      font-size: 22px;
-    }
-  }
-
-  // shop page css
   .bn-shops-banner {
     .bn-shop-contact {
       .bn-shop-title {
@@ -3010,14 +3568,14 @@ div#bn-check-last-order {
             display: block;
             line-height: 18px;
           }
-          .float-end{
+          .float-end {
             padding-right: 26px;
           }
         }
       }
     }
   }
-  // team page css
+
   .bn-our-team {
     .row {
       .col-md-3 {
@@ -3029,7 +3587,6 @@ div#bn-check-last-order {
       }
     }
   }
-  // job page css
 
   .bn-jobs-main {
     .bn-gift-heading {
@@ -3052,7 +3609,7 @@ div#bn-check-last-order {
       }
     }
   }
-  // contact us pags css
+
   .bn-contact-us {
     .row {
       .col-12 {
@@ -3062,26 +3619,27 @@ div#bn-check-last-order {
       }
     }
   }
-  // order over view page css
+
   .bn-menu-overview {
     .bn-menu-overview-box {
       padding: 0px 0px;
     }
-    div#bn-check-last-order {
+    .bn-check-out-last-order-box {
       .bn-radio-order {
         margin-bottom: 2px;
       }
-      select{
+      select {
         font-size: 18px;
       }
     }
     .bn-number-people {
-      input {
+      input, span{
         border-radius: 0;
         border: none;
       }
     }
   }
+
   .bn-menu-overview-checkout-form {
     div#bn-check-out-order {
       .modal-dialog {
@@ -3098,13 +3656,6 @@ div#bn-check-last-order {
       }
     }
   }
-  .bn-form-checkout-button {
-    .bn-radio-order {
-      padding-top: 2px;
-    }
-  }
-
-  // Our story page css
 
   .bn-breadcrumb-our-story {
     .bn-breadcrumb-text {
@@ -3122,6 +3673,7 @@ div#bn-check-last-order {
       }
     }
   }
+
   .bn-our-story {
     padding: 32px 0;
     padding-bottom: 0;
@@ -3155,6 +3707,7 @@ div#bn-check-last-order {
       }
     }
   }
+
   .bn-history-box-content {
     .bn-history-header {
       h2 {
@@ -3170,52 +3723,13 @@ div#bn-check-last-order {
     }
   }
 
-  // gift card rdeem page css
-  div#bn-check-last-order {
-    .bn-gift-card-order {
-      .bn-radio-order {
-        label {
-          font-size: 19px;
-          margin-left: 10px;
-          span {
-            padding-left: 77px;
-          }
-        }
-      }
-      .bn-price-item {
-        font-size: 19px;
-        font-weight: 500;
-      }
-      .bn-price-gift-book {
-        font-size: 20px;
-        font-weight: 700;
-      }
-      .bn-gift-row-border {
-        .bn-radio-order {
-          label {
-            margin-left: 20px;
-          }
-        }
-      }
-      .row.bn-last-order-footer {
-        button {
-          font-size: 22px;
-        }
-      }
-    }
-  }
-
-  /* =====================
-     Review box css
-
-======================= */
   .bn-review-box {
-    .bn-star-box{
+    .bn-star-box {
       padding-bottom: 3px;
-      i{
+      i {
         font-size: 19px;
       }
-      small{
+      small {
         font-size: 12px;
       }
     }
@@ -3226,11 +3740,28 @@ div#bn-check-last-order {
     }
     .bn-review-box-img {
       margin-top: 11px;
+        .bn-logo-discount {
+          max-width: 73px;
+        }
+        .bn-smile {
+          max-width: 45px;
+        }
+      img {
+        margin-right: 16px;
+        &:last-child {
+          margin: 0;
+          margin-top: -13px;
+        }
+      }
     }
-    .bn-review-box-img img {
-      margin-right: 4px;
+    .col-lg-4.col-sm-4 {
+      display: inline-block;
+      width: 33%;
+      font-size: 5px;
+      padding: 0;
     }
   }
+
   .bn-portfolio-section {
     .bn-link-image-box {
       .bn-menu-b-box {
@@ -3244,20 +3775,23 @@ div#bn-check-last-order {
       }
     }
   }
-  .bn-review-box .col-lg-4.col-sm-4{
-    display: inline-block;
-    width: 33%;
-    font-size: 5px;
-    padding: 0;
-  }
+
   .bn-footer {
-    h4,
-    ul.list-unstyled li a {
+    h4 {
       font-size: 15px;
     }
-    .bn-footer .col-lg-2 {
-      display: inline-block;
-      width: 33%;
+    ul.list-unstyled {
+      li {
+        a {
+          font-size: 15px;
+        }
+      }
+    }
+    .bn-footer {
+      .col-lg-2 {
+        display: inline-block;
+        width: 33%;
+      }
     }
     .bn-footer-last {
       .float-end {
@@ -3276,16 +3810,6 @@ div#bn-check-last-order {
         border-radius: 4px;
       }
     }
-  }
-  .bn-button-box {
-    display: block;
-    padding: 0 18px;
-    background: #fff;
-    a{
-      font-size: 25px;
-    }
-  }
-  .bn-footer {
     .bn-footer-header {
       font-size: 15px;
     }
@@ -3293,10 +3817,36 @@ div#bn-check-last-order {
       margin-top: 29px !important;
     }
   }
+
+  .bn-button-box {
+    display: block;
+    padding: 0 18px;
+    position: absolute;
+    background: transparent;
+    width: 100%;
+    text-align: center;
+    top: 38%;
+    a {
+      font-size: 25px;
+      border: 1px solid #FFFFFF;
+      border-radius: 8px;
+      background: #ffffff8a;
+      color: #000;
+    }
+  }
+
+  .bn-feedback-main {
+    div#bn-check-out-order{
+      .bn-star-feedback{
+        .bn-radio-order {
+          padding-top: 0px;
+        }
+      }
+    }
+  }
 }
 
-@media only screen and (max-width: 600px){
-  //Header css
+@media only screen and (max-width: 600px) {
   header.bn-top-header {
     position: fixed;
     top: 0;
@@ -3305,7 +3855,6 @@ div#bn-check-last-order {
     nav.navbar.navbar-expand.navbar-dark.bg-dark {
       padding: 16px 0;
       background-color: #0A0A0A !important;
-
     }
     .navbar-dark {
       .navbar-brand {
@@ -3313,7 +3862,7 @@ div#bn-check-last-order {
         padding: 0;
       }
     }
-    .logo{
+    .logo {
       width: 100px;
     }
     #menu {
@@ -3323,14 +3872,16 @@ div#bn-check-last-order {
       top: 140px;
       li.dropdown {
         .dropdown-menu {
-          padding-left: 11px
+          padding-left: 11px;
         }
-        .dropdown-toggle::after {
-          top: 14px;
+        .dropdown-toggle {
+          &::after {
+            top: 14px;
+          }
         }
       }
-      li{
-        a{
+      li {
+        a {
           font-size: 15px;
         }
       }
@@ -3341,7 +3892,7 @@ div#bn-check-last-order {
           line-height: 30px;
           color: #fff;
         }
-        a.active{
+        a.active {
           font-weight: 700;
         }
       }
@@ -3359,12 +3910,12 @@ div#bn-check-last-order {
         border-radius: 0;
         z-index: 1;
         transform-origin: 4px 0px;
-        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
         box-shadow: none;
         border-bottom: 3px solid #fff;
       }
     }
-    .bn-top-menu{
+    .bn-top-menu {
       display: none;
     }
     .container-fluid {
@@ -3374,34 +3925,39 @@ div#bn-check-last-order {
       position: absolute;
       right: 18%;
       color: #fff;
-      top: 21px;
+      top: 15px;
       font-size: 18px;
     }
   }
-  // Slider image box css
+
   div.bn-slider {
     margin-top: 62px;
   }
-  .bn-slider.bg-transparent.bn-animation-banner{
+
+  .bn-slider.bg-transparent.bn-animation-banner {
     height: 30vh;
-    .bn-image-index{
+    .bn-image-index {
       position: absolute;
       top: -1.961px;
     }
   }
-  // Review box css
+
   div.bn-review-box {
-    padding: 20px 0;
+    padding: 11px 0;
     .bn-review-box-img {
       margin-top: 0px;
       .bn-logo-discount {
-        max-width: 27px;
+        max-width: 31px;
       }
       .bn-smile {
-        max-width: 22px;
+        max-width: 19px;
+
       }
       img {
         margin-right: 5px;
+        &:last-child{
+          margin-top: -5px;
+        }
       }
     }
     img.google-review {
@@ -3412,7 +3968,7 @@ div#bn-check-last-order {
     }
     .bn-star-box {
       padding: 0;
-      padding-bottom: 5px;
+      padding-bottom: 3px;
       small {
         font-size: 6px;
         font-weight: 700;
@@ -3429,7 +3985,7 @@ div#bn-check-last-order {
         line-height: 6px;
       }
     }
-    .col-4 {
+    .col-6 {
       line-height: 0;
       padding: 0;
     }
@@ -3437,13 +3993,19 @@ div#bn-check-last-order {
       padding: 0px 30px;
     }
   }
-  // Portfolio css
+
   .bn-portfolio-section {
     padding-top: 6px;
     padding: 0 38px;
     padding-bottom: 76px;
     img {
       padding: 5px 5px;
+    }
+    .bn-image-orange-price-d {
+      img {
+        padding: 18px 5px;
+        margin-bottom: 0px;
+      }
     }
     .bn-link-image-box {
       .bn-menu-b-box {
@@ -3465,7 +4027,7 @@ div#bn-check-last-order {
       }
     }
   }
-  // Footer css
+
   .bn-footer {
     background: #c1c1c1;
     padding: 27px 21px;
@@ -3475,9 +4037,9 @@ div#bn-check-last-order {
       font-size: 8px;
       font-weight: 700;
       margin-bottom: 0;
-      &.mb-0.mt-4 {
-        margin-top: 21px !important;
-      }
+    }
+    .bn-footer-header.mb-0.mt-4 {
+      margin-top: 21px !important;
     }
     .bn-footer-last {
       padding-top: 9px;
@@ -3489,25 +4051,34 @@ div#bn-check-last-order {
         line-height: 13px;
       }
     }
+    h4 {
+      font-size: 8px;
+    }
+    ul.list-unstyled {
+      li {
+        a {
+          font-size: 8px;
+        }
+      }
+    }
   }
 
   .bn-button-box {
     display: block;
     padding: 0 18px;
-    background: #fff;
-    a{
+    top: 26%;
+    a {
       font-size: 17px;
-      background: #121212;
+      border: 1px solid #FFFFFF;
+      border-radius: 8px;
+      background: #ffffff8a;
     }
   }
 
-  /*Take Awya Page CSS*/
   .bn-breadcrumbs-dine {
     padding-bottom: 0;
     padding-top: 14px;
-
   }
-    //Email section
 
   .bn-email-item {
     padding: 15px 0;
@@ -3518,7 +4089,7 @@ div#bn-check-last-order {
     p {
       font-size: 9px;
     }
-    input{
+    input {
       height: 28px;
       font-size: 12px;
     }
@@ -3526,7 +4097,7 @@ div#bn-check-last-order {
       height: 28px;
       font-size: 13px;
     }
-    img{
+    img {
       width: 24px;
     }
     .row {
@@ -3536,10 +4107,21 @@ div#bn-check-last-order {
     }
   }
 
-  //Take Away Search css
-  .bn-take-away-item{
+  .bn-take-away-item {
     padding-bottom: 0px;
+    img.bn-thumbnail-img {
+      padding-top: 25px;
+    }
+    .bn-orange-img-take-away {
+      div{
+        padding: 0;
+      }
+    }
     .bn-right-side-bar-product {
+      img.bn-info-product-icon{
+        opacity: 1;
+        width: auto !important;
+      }
       .bn-toggle-content {
         .row.bn-img-active {
           .bn-broduct-big-img {
@@ -3547,22 +4129,148 @@ div#bn-check-last-order {
           }
         }
         .row {
+          div:first-child {
+            padding: 0;
+          }
           .bn-bg-product {
             p {
               display: none;
+              font-size: 15px;
             }
           }
-          &.bn-text-active {
-            .bn-bg-product {
-              p {
-                display: block;
+        }
+        .row.bn-text-active {
+          .bn-bg-product {
+            p {
+              display: block;
+            }
+          }
+        }
+      }
+      .bn-bg-product {
+        &.bn-border-right {
+          height: 120px;
+          border-bottom: 1px solid #c1c1c1;
+          border-right: none;
+          &.bn-orange-border-mobile{
+            border-bottom: none;
+          }
+        }
+      }
+      .bn-text-active {
+        .bn-bg-product.bn-border-right {
+          height: 200px;
+        }
+        .bn-bg-product {
+          .bn-price-item {
+            top: -184px;
+          }
+        }
+      }
+      .row {
+        margin-right: -12px;
+      }
+      .bn-bg-product {
+        .bn-icon {
+          bottom: 7px;
+          img {
+            top: 0px;
+          }
+          span {
+            background: #F4F4F4;
+            font-style: italic;
+          }
+            .bn-dabble-chili-img{
+              img  {
+                margin-top: -2px;
               }
+            }
+        }
+        .bn-price-item {
+          position: absolute;
+          right: 16px;
+          top: -104px;
+          pointer-events: none;
+          .bh-current-price {
+            font-size: 16px;
+            font-weight: 500;
+          }
+          .bn-discount-price {
+            color: #F36A10;
+            font-size: 24px;
+          }
+          img {
+            width: 18px;
+            position: absolute;
+            top: -29px;
+            right: 9px;
+          }
+        }
+      }
+      .bn-number-product {
+        position: initial;
+        i {
+          background: #000;
+          color: #fff;
+          padding: 14px;
+          border-radius: 100%;
+          font-size: 15px;
+        }
+        span {
+          width: 100%;
+          border: none;
+          background: transparent;
+          font-size: 28px;
+          font-weight: 700;
+          color: #c1c1c1;
+        }
+      }
+      .col-lg-4 {
+        padding: 0px;
+      }
+      .col-lg-12 {
+        padding-top: 0;
+      }
+    }
+    .bn-left-side-bar {
+      background: #CECECE;
+      position: fixed;
+      top: 61px !important;
+      left: 0;
+      right: 0;
+      z-index: 999999;
+      ul {
+        display: flex;
+        padding-top: 0px;
+        border-top: 0px;
+        margin: 0;
+        li {
+          width: 23%;
+          text-align: center;
+          padding: 10px 0;
+          a {
+            padding: 0;
+            display: block;
+            text-decoration: none;
+            font-size: 10px;
+            color: #fff;
+            border-right: 1px solid #fff;
+          }
+          &:last-child {
+            a {
+              border: none;
             }
           }
         }
       }
     }
+    .bn-left-side-bar.bn-sticky-left {
+      top: 61px !important;
+      display: block !important;
+      width: 100%;
+    }
   }
+
   .bn-take-away-search {
     padding-top: 126px;
     input {
@@ -3594,110 +4302,7 @@ div#bn-check-last-order {
     }
   }
 
-  //Take Away Item CSS
-  .bn-take-away-item {
-    .bn-left-side-bar {
-      background: #CECECE;
-      position: fixed;
-      top: 61px !important;
-      left: 0;
-      right: 0;
-      z-index: 999999;
-      &.bn-sticky-left{
-        top: 61px !important;
-      }
-      &.bn-sticky-left {
-        display: block !important;
-        width: 100%;
-      }
-      ul {
-        display: flex;
-        padding-top: 0px;
-        border-top: 0px;
-        margin: 0;
-        li {
-          width: 23%;
-          text-align: center;
-          padding: 10px 0;
-          a {
-            padding: 0;
-            display: block;
-            text-decoration: none;
-            font-size: 10px;
-            color: #fff;
-            border-right: 1px solid #fff;
-          }
-          &:last-child{
-            a{
-              border: none;
-            }
-          }
-        }
-      }
-    }
-    .bn-right-side-bar-product {
-      .bn-bg-product.bn-border-right {
-        height: 120px;
-        border-bottom: 1px solid #c1c1c1;
-      }
-      .bn-text-active {
-        .bn-bg-product.bn-border-right {
-          height: 200px;
-        }
-        .bn-bg-product{
-          .bn-price-item {
-            top: -184px;
-          }
-        }
-      }
-      .row{
-        margin-right: -12px;
-      }
-      .bn-bg-product{
-        .bn-icon {
-          bottom: 7px;
-          img{
-            top: 0px;
-          }
-          span {
-            background: #F4F4F4;
-            font-style: italic;
-          }
-        }
-        .bn-price-item {
-          position: absolute;
-          right: 16px;
-          top: -104px;
-        }
-      }
-      .bn-number-product{
-        position: initial;
-        i {
-          background: #000;
-          color: #fff;
-          padding: 14px;
-          border-radius: 100%;
-          font-size: 15px;
-        }
-        span {
-          width: 100%;
-          border: none;
-          background: transparent;
-          font-size: 28px;
-          font-weight: 700;
-          color: #c1c1c1;
-        }
-      }
-      .col-lg-4{
-        padding: 0px;
-      }
-      .col-lg-12{
-        padding-top: 0;
-      }
-    }
-  }
-  //  last check order css
-  div#bn-check-last-order {
+  .bn-check-out-last-order-box {
     top: 62px;
     z-index: 999999;
     .modal-dialog {
@@ -3705,13 +4310,13 @@ div#bn-check-last-order {
       .modal-content {
         padding: 53px 25px;
         padding-bottom: 38px;
-        .container{
+        .container {
           padding: 0;
         }
-        h2{
+        h2 {
           font-size: 17px;
           font-weight: 600;
-          small{
+          small {
             font-size: 10px;
             left: 0;
             display: block;
@@ -3724,11 +4329,13 @@ div#bn-check-last-order {
       font-size: 17px;
       font-weight: 600;
       line-height: 20px;
+      span.bn-discount-price {
+        font-size: 24px;
+      }
     }
     .row.bn-last-order-footer {
       p {
         font-size: 10px;
-
       }
       button {
         font-size: 20px;
@@ -3763,14 +4370,16 @@ div#bn-check-last-order {
         top: -1px;
         left: -7px;
       }
-      .form-check-input{
+      .form-check-input {
         height: 13px;
         width: 13px;
-        &:checked:before {
-          height: 7px;
-          width: 7px;
-          left: 3px;
-          top: 3px;
+        &:checked {
+          &:before {
+            height: 7px;
+            width: 7px;
+            left: 3px;
+            top: 3px;
+          }
         }
       }
     }
@@ -3790,7 +4399,56 @@ div#bn-check-last-order {
     .modal-header {
       padding-top: 60px;
     }
+    .bn-gift-card-order {
+      .row.bn-border-bottom {
+        padding: 0px 0px;
+        padding-bottom: 0px;
+      }
+      .bn-gift-row-border {
+        .bn-radio-order {
+          label {
+            margin-left: 6px;
+            font-size: 12px;
+            display: block;
+            span {
+              padding-left: 30px;
+            }
+          }
+        }
+      }
+      .bn-radio-order {
+        padding-top: 0px;
+        .form-check {
+          margin: 0;
+          .form-check-input {
+            top: -7px;
+            position: relative;
+          }
+        }
+        label {
+          margin-left: 6px;
+          font-size: 12px;
+          display: block;
+          top: -5px;
+          span {
+            padding-left: 30px;
+          }
+        }
+      }
+      .bn-price-item {
+        font-size: 10px;
+      }
+      .bn-coupon-code {
+        opacity: 100%;
+      }
+      .row.bn-last-order-footer {
+        button {
+          font-size: 16px;
+        }
+      }
+    }
   }
+
   .bn-catering-drink {
     padding: 91px 0;
     padding-bottom: 0;
@@ -3802,7 +4460,7 @@ div#bn-check-last-order {
       padding: 15px 43px;
       text-align: right;
       font-size: 0;
-      button{
+      button {
         font-size: 14px;
         width: 40% !important;
         padding: 2px 0;
@@ -3810,7 +4468,7 @@ div#bn-check-last-order {
         margin-bottom: 0px !important;
         border: 2px solid #212529 !important;
         display: inline-block !important;
-        &:first-child{
+        &:first-child {
           border: 2px solid #212529 !important;
           margin-bottom: 0 !important;
         }
@@ -3820,20 +4478,30 @@ div#bn-check-last-order {
       p {
         font-size: 14px;
         margin-bottom: 26px;
-        b{
+        b {
           font-weight: 700;
           font-size: 14px;
         }
       }
     }
+    .bn-left-side-bar.bn-sticky-left {
+      top: auto !important;
+      button {
+        font-size: 14px;
+        width: 40% !important;
+        padding: 2px 0;
+        text-align: center;
+        margin-bottom: 0px !important;
+        border: 2px solid #212529 !important;
+        display: inline-block !important;
+      }
+    }
   }
 
-
-
-  //Dine in page CSS
   .bn-breadcrumbs {
     padding-top: 15px;
   }
+
   .bn-dine-menu {
     padding: 35px 0;
     padding-bottom: 59px;
@@ -3866,21 +4534,21 @@ div#bn-check-last-order {
       font-size: 20px;
       margin-top: 27px;
       font-weight: 600;
-      a{
+      a {
         font-weight: 600;
       }
     }
-    .container{
+    .container {
       max-width: 314px;
     }
   }
 
-  //OUR Story page CSS
-  .bn-main-story{
-    .container{
+  .bn-main-story {
+    .container {
       padding: 0 36px;
     }
   }
+
   .bn-our-story {
     padding: 0px 0;
     padding-bottom: 35px;
@@ -3888,10 +4556,9 @@ div#bn-check-last-order {
       top: -47px;
       left: 0;
       .bn-image-title {
-        p{
+        p {
           font-size: 9px;
           padding: 2px 0;
-
         }
       }
     }
@@ -3906,7 +4573,7 @@ div#bn-check-last-order {
       p {
         font-size: 16px;
         line-height: 17px;
-        b{
+        b {
           font-size: 16px;
         }
       }
@@ -3929,6 +4596,7 @@ div#bn-check-last-order {
       }
     }
   }
+
   .bn-breadcrumb-our-story {
     background: url("../image/our-story/breadcrumbs-mobile.png");
     background-repeat: no-repeat;
@@ -3939,7 +4607,7 @@ div#bn-check-last-order {
       position: relative;
       left: 16px;
       top: 21px;
-      span{
+      span {
         font-size: 57px;
       }
     }
@@ -3952,29 +4620,27 @@ div#bn-check-last-order {
     }
   }
 
-  // Our Values CSS
   .bn-profile-values {
     margin-top: -51px;
     .bn-profile-item {
       img {
         max-width: 118px;
       }
-      h1{
+      h1 {
         font-size: 17px;
         padding-top: 11px;
         padding-bottom: 26px;
       }
     }
-
   }
 
-  .bn-values-content{
+  .bn-values-content {
     padding: 48px 0;
-    .row{
-      .col-6{
+    .row {
+      .col-6 {
         padding: 0 15px;
-        &:last-child{
-          h2{
+        &:last-child {
+          h2 {
             margin-bottom: 9px;
           }
         }
@@ -3985,7 +4651,7 @@ div#bn-check-last-order {
         font-size: 12px;
         margin-bottom: 23px;
       }
-      p{
+      p {
         font-size: 12px;
         margin-bottom: 23px;
         line-height: 13px;
@@ -4008,19 +4674,19 @@ div#bn-check-last-order {
     .row {
       padding-bottom: 18px;
       margin-bottom: 33px;
-      .bn-image-v1{
+      .bn-image-v1 {
         max-width: 81px;
       }
-      .bn-image-v2{
+      .bn-image-v2 {
         max-width: 95px;
       }
-      .bn-image-v3{
+      .bn-image-v3 {
         max-width: 93px;
       }
-      .bn-image-v4{
+      .bn-image-v4 {
         max-width: 115px;
       }
-      .bn-image-v5{
+      .bn-image-v5 {
         max-width: 59px;
       }
       .bn-content-text-header {
@@ -4028,7 +4694,7 @@ div#bn-check-last-order {
           font-size: 17px;
           margin-bottom: 5px;
         }
-        p{
+        p {
           font-size: 10px;
           margin-bottom: 16px;
           line-height: 13px;
@@ -4040,7 +4706,6 @@ div#bn-check-last-order {
     }
   }
 
-  //Shop page CSS
   .bn-shops-banner {
     .bn-shop-contact {
       bottom: 0;
@@ -4050,7 +4715,7 @@ div#bn-check-last-order {
       padding-top: 23px;
       padding-left: 38px;
       .bn-shop-title {
-        h3{
+        h3 {
           font-size: 14px;
           margin-bottom: 10px;
         }
@@ -4060,7 +4725,7 @@ div#bn-check-last-order {
           font-size: 20px;
           margin-bottom: 6px;
         }
-        p{
+        p {
           font-size: 20px;
           line-height: 21px;
         }
@@ -4074,7 +4739,7 @@ div#bn-check-last-order {
           }
           img {
             width: 27px;
-            &:last-child{
+            &:last-child {
               width: 17.6px;
               margin-left: 7px;
             }
@@ -4082,6 +4747,7 @@ div#bn-check-last-order {
         }
       }
     }
+    padding-top: 52px;
   }
 
   .bn-details-box {
@@ -4091,14 +4757,12 @@ div#bn-check-last-order {
         font-size: 20px;
         margin-bottom: 11px;
       }
-      p{
+      p {
         font-size: 20px;
         line-height: 22px;
       }
     }
   }
-
-  // Our team page css
 
   .bn-our-team {
     padding: 110px 0;
@@ -4134,10 +4798,10 @@ div#bn-check-last-order {
     }
   }
 
-  //Glossary page css
   .bn-breadcrumb-glossary {
     margin-top: 62px;
   }
+
   .bn-glossary-content {
     padding: 42px 0;
     padding-bottom: 115px;
@@ -4147,9 +4811,9 @@ div#bn-check-last-order {
         margin-bottom: 24px;
       }
     }
-    .bn-glossary-sub-header{
+    .bn-glossary-sub-header {
       margin-bottom: 18px;
-      h2{
+      h2 {
         font-size: 12px;
         color: #000;
       }
@@ -4164,10 +4828,10 @@ div#bn-check-last-order {
     }
   }
 
-  //Faq Page css
-  .bn-breadcrumb-faq{
+  .bn-breadcrumb-faq {
     margin-top: 62px;
   }
+
   .bn-faq-content {
     padding: 48px 0;
     padding-bottom: 80px;
@@ -4187,7 +4851,7 @@ div#bn-check-last-order {
     }
     .bn-faq-text-item {
       margin-bottom: 18px;
-      h2{
+      h2 {
         font-size: 16px;
         margin-bottom: 0;
       }
@@ -4196,7 +4860,7 @@ div#bn-check-last-order {
         line-height: 17px;
       }
     }
-    .row{
+    .row {
       .col-12 {
         padding: 0 12px;
       }
@@ -4209,23 +4873,22 @@ div#bn-check-last-order {
     }
   }
 
-  //privacy policy page css
-  .bn-policy-content{
+  .bn-policy-content {
     background: #EDEDED;
     padding: 48px 0;
     padding-bottom: 80px;
-    .bn-policy-header{
-      h1{
+    .bn-policy-header {
+      h1 {
         font-size: 17px;
       }
-      .bn-policy-text{
+      .bn-policy-text {
         font-size: 17px;
         margin-bottom: 37px;
         line-height: 21px;
       }
     }
-    .bn-policy-text-item{
-      h2{
+    .bn-policy-text-item {
+      h2 {
         font-size: 16px;
       }
       p {
@@ -4237,36 +4900,39 @@ div#bn-check-last-order {
         margin-bottom: 18px;
       }
     }
-    .bn-policy-text-ex{
+    .bn-policy-text-ex {
       margin-bottom: 18px;
-      p, h2, ul{
+      p {
+        margin-bottom: 0;
+      }
+      h2 {
+        margin-bottom: 0;
+      }
+      ul {
         margin-bottom: 0;
       }
     }
-    .row{
+    .row {
       .col-12 {
         padding: 0 12px;
       }
     }
   }
 
-  /* ============================
-   Portion page css
-=============================== */
-  .bn-buffet-item{
+  .bn-buffet-item {
     background: #E3E3E3;
     .container {
       padding: 45px 36px;
       padding-top: 113px;
-      border-bottom:none;
+      border-bottom: none;
     }
     .bn-buffet-header {
-      .row{
+      .row {
         .bn-border-bottom {
           border-bottom: 1px solid #D5D5D5;
           padding: 2px 4px;
         }
-        .bn-padding-0{
+        .bn-padding-0 {
           padding: 0;
         }
       }
@@ -4275,57 +4941,56 @@ div#bn-check-last-order {
         font-size: 20px;
         margin-bottom: 20px;
       }
-      p{
+      p {
         font-size: 14px;
         color: #000;
-        b{
+        b {
           color: #000;
         }
-        .bn-light-black{
+        .bn-light-black {
           opacity: 32%;
         }
-        .bn-org-text{
+        .bn-org-text {
           color: #F36A10;
         }
-        &.bn-light-color-b{
-          opacity: 50%;
-        }
       }
-      a{
+      p.bn-light-color-b {
+        opacity: 50%;
+      }
+      a {
         font-size: 14px;
         border: 2px solid;
         background: #2C2C2C;
         margin-top: 16px;
         padding: 2px;
-        &.bn-btn-two{
-          background: transparent !important;
-          border-color: #2C2C2C !important;
-          color: #2C2C2C !important;
-          font-weight: 700;
-        }
-        &:focus{
+        &:focus {
           box-shadow: none;
         }
       }
+      a.bn-btn-two {
+        background: transparent !important;
+        border-color: #2C2C2C !important;
+        color: #2C2C2C !important;
+        font-weight: 700;
+      }
     }
   }
-  .bn-portion-item{
+
+  .bn-portion-item {
     padding: 35px 0;
     padding-bottom: 0;
     background: #fff;
     .bn-drink-heading {
       p {
-        padding:0 24px;
+        padding: 0 24px;
       }
     }
   }
 
-// catering menu page css
-
-  .bn-catering-menu-all{
+  .bn-catering-menu-all {
     padding-bottom: 0;
     padding-top: 0;
-    .container{
+    .container {
       padding: 0;
     }
     .nav-tabs {
@@ -4334,12 +4999,12 @@ div#bn-check-last-order {
         font-size: 14px;
         margin-right: 6px;
         width: 21.6%;
-        &:last-child{
+        &:last-child {
           margin-right: 0;
         }
-        &.active{
-          background: #e5e5e5;
-        }
+      }
+      .nav-link.active {
+        background: #e5e5e5;
       }
     }
     div#nav-tabContent {
@@ -4347,26 +5012,26 @@ div#bn-check-last-order {
         .row {
           background: #e5e5e5;
           padding: 27px 19px;
-          margin: 0 auto ;
+          margin: 0 auto;
         }
       }
     }
-    .bn-menu-header{
+    .bn-menu-header {
       font-size: 14px;
     }
-    div#bn-check-last-order {
-      .bn-radio-order{
+    .bn-check-out-last-order-box {
+      .bn-radio-order {
         padding-left: 0;
         margin-bottom: 4px;
-        .bn-radio-form-order{
+        .bn-radio-form-order {
           padding-left: 0px;
         }
-        .form-check{
+        .form-check {
           padding-right: 0px;
           padding-left: 22px;
         }
       }
-      select{
+      select {
         font-size: 12px;
         margin-bottom: 4px;
         color: #000;
@@ -4374,7 +5039,7 @@ div#bn-check-last-order {
         line-height: 1;
         border: none;
         border-radius: 0;
-        &:focus{
+        &:focus {
           box-shadow: none;
           border: none;
           outline: none;
@@ -4383,7 +5048,7 @@ div#bn-check-last-order {
     }
     .bn-right-menu-bar {
       margin-bottom: 3px;
-      span{
+      span {
         display: block;
         font-size: 10px;
         line-height: 16px;
@@ -4392,8 +5057,8 @@ div#bn-check-last-order {
     .bn-light-black-color {
       opacity: 25%;
     }
-    .bn-number-people{
-      input{
+    .bn-number-people {
+      input {
         font-size: 17px;
         padding: 3px 9px;
         max-width: 27%;
@@ -4402,29 +5067,29 @@ div#bn-check-last-order {
         border: none;
         border-radius: 0;
       }
-      span{
+      span {
         font-size: 12px;
         padding-left: 9px;
       }
     }
-    .bn-number-price{
-      h3{
+    .bn-number-price {
+      h3 {
         font-size: 19px;
         font-weight: 700;
         margin-bottom: 0;
       }
-      span{
+      span {
         font-size: 12px;
         line-height: 15px;
         display: block;
       }
     }
-    .bn-button-menu{
+    .bn-button-menu {
       background: #ffeccf;
       text-align: right;
       margin-top: 0px;
       padding: 20px;
-      button{
+      button {
         background: #2c2c2c;
         color: #fff;
         font-size: 14px;
@@ -4432,38 +5097,52 @@ div#bn-check-last-order {
     }
   }
 
-  // Check Out page css
-
-  .bn-check-out-last-order{
+  .bn-check-out-last-order {
     position: inherit;
     padding-top: 80px;
-    p{
+    p {
       font-size: 12px;
       line-height: 15px;
     }
-    .bn-checkout-col{
+    .bn-checkout-col {
       padding: 0px 4px;
     }
   }
+
   .bn-check-out {
     padding: 40px 0;
+    .bn-order-orange-price {
+      img {
+        width: 285px;
+      }
+    }
     div#bn-check-out-order {
       padding-bottom: 24px;
+      .row.bn-bottom-space-check-mobile {
+        margin-bottom: 15px;
+      }
       .row.bn-border-bottom-dash {
         padding: 0px 9px;
         padding-bottom: 0;
       }
-      .row.bn-total-price{
+      .row.bn-total-price {
         h2 {
           font-size: 19px !important;
         }
-        .bn-price-item{
+        .bn-price-item {
           color: #000;
           font-size: 19px;
         }
       }
+      .row.bn-bottom-span-mobile-set {
+        margin-bottom: 29px;
+      }
       .row.bn-last-order-footer {
         padding-bottom: 58px;
+        p {
+          font-size: 10px;
+          padding-top: 10px;
+        }
       }
       .modal-dialog {
         margin: 0;
@@ -4473,22 +5152,63 @@ div#bn-check-last-order {
             color: #000;
             small {
               font-size: 10px;
-              float: none;
-              display: block;
             }
           }
-          .bn-check-out-mobile{
+          .bn-check-out-mobile {
             margin-bottom: 63px;
-            .bn-col-mobile{
-              padding: 0;
-              .d-inline-block:last-child{
-                padding-left: 10px;
+            .bn-col-mobile {
+              padding-right: 0;
+              .d-inline-block {
+                &:last-child {
+                  padding-left: 10px;
+                }
+              }
+            }
+            .bn-col-mobile-left {
+              padding-left: 0;
+            }
+          }
+          .bn-add-product-all-item{
+            .bn-product-child-item{
+              position: relative;
+              //border-bottom: 1px solid;
+              margin-top: 8px;
+              &:after {
+                content: "";
+                border-bottom: 1px solid;
+                position: absolute;
+                left: 7px;
+                right: 7px;
+                bottom: 0;
+              }
+            }
+            margin-bottom: 29px;
+            .row.bn-border-bottom {
+              align-items: end;
+              margin-bottom: 0;
+              &:after{
+                bottom: 5px;
+                display: none;
+              }
+              .bn-number-product {
+                span {
+                  margin-bottom: 5px;
+                  display: block;
+                }
+              }
+              .bn-price-item {
+                margin-bottom: 4px;
               }
             }
           }
+          img {
+            left: 32%;
+            right: auto;
+            width: 100px;
+          }
         }
       }
-      .bn-price-item{
+      .bn-price-item {
         font-size: 17px;
         color: #000;
       }
@@ -4499,35 +5219,31 @@ div#bn-check-last-order {
           height: 13px;
           width: 13px;
           margin-right: 9px;
-          &:checked:before{
-            height: 7px;
-            width: 7px;
-            left: 3px;
-            top: 3px;
+          &:checked {
+            &:before {
+              height: 7px;
+              width: 7px;
+              left: 3px;
+              top: 3px;
+            }
           }
         }
-         label {
+        label {
           font-size: 10px;
-           margin-left: -5px;
+          margin-left: -5px;
         }
       }
       .bn-check-box-order {
         padding-top: 0px;
         .form-check {
           padding-right: 0px;
-          width: 47%;
+          width: 48%;
         }
-        .form-check-input{
+        .form-check-input {
           margin-top: 3px;
         }
-        label{
-          font-size: 17px;
-        }
-      }
-      .row.bn-last-order-footer {
-        p {
-          font-size: 10px;
-          padding-top: 10px;
+        label {
+          font-size: 15px;
         }
       }
       .bn-number-product {
@@ -4536,22 +5252,30 @@ div#bn-check-last-order {
         }
       }
     }
-  }
-
-  .bn-check-out {
-    .row{
-      &:first-child{
+    .row {
+      &:first-child {
         margin-bottom: 53px;
       }
     }
     .bn-check-out-from {
-      input, select, textarea {
+      input, span {
+        font-size: 14px;
+        height: 41px;
+        padding-left: 16px;
+        margin-bottom: 12px;
+        line-height: 29px;
+      }
+      select {
         font-size: 14px;
         height: 41px;
         padding-left: 16px;
         margin-bottom: 12px;
       }
-      textarea{
+      textarea {
+        font-size: 14px;
+        height: 41px;
+        padding-left: 16px;
+        margin-bottom: 12px;
         height: 141px;
       }
       label.bn-date-time {
@@ -4566,34 +5290,32 @@ div#bn-check-last-order {
         display: block;
       }
       .bn-from-bottom-space {
-        .bn-pr-mobile{
+        .bn-pr-mobile {
           padding-right: 0;
         }
       }
-      .row{
-        .bn-col-pr-mobile{
+      .row {
+        .bn-col-pr-mobile {
           padding-right: 6px;
         }
-        .bn-col-pl-mobile{
+        .bn-col-pl-mobile {
           padding-left: 6px;
         }
       }
     }
   }
+
   .bn-form-checkout-button {
     background: #FFF3E2;
     padding: 6px 0;
     padding-bottom: 12px;
-  }
-
-  .bn-form-checkout-button {
     .bn-radio-order {
-      .form-check{
+      padding-top: 4px;
+      padding-left: 0px;
+      .form-check {
         padding-right: 0;
         margin-bottom: 0px;
       }
-      padding-top: 4px;
-      padding-left: 0px;
       label {
         font-size: 10px;
       }
@@ -4602,55 +5324,56 @@ div#bn-check-last-order {
         width: 14px;
         margin-top: 4px;
         border-radius: 0;
-        &:checked:before{
-          left: 2px;
-          top: 4px;
-          height: 6px;
-          width: 9px;
+        &:checked {
+          &:before {
+            left: 2px;
+            top: 4px;
+            height: 6px;
+            width: 9px;
+          }
         }
       }
     }
-    button{
+    button {
       font-size: 14px;
-      padding: 6px 0 ;
+      padding: 6px 0;
       margin-top: 14PX;
     }
   }
 
-
-  // Contact us page css
-  .bn-contact-us{
+  .bn-contact-us {
+    padding: 41px 0;
     .row {
-      .col-12{
-        &:first-child{
+      .col-12 {
+        &:first-child {
           margin-bottom: 62px;
         }
       }
     }
-    padding: 41px 0;
-    .bn-contact-heading{
+    .bn-contact-heading {
       font-size: 17px;
       font-weight: 700;
       margin-bottom: 27px;
     }
-    .bn-contact-text{
-      span{
+    .bn-contact-text {
+      span {
         display: block;
         font-size: 14px;
         color: #676767;
         margin-bottom: 11px;
       }
     }
-    .bn-contact-form{
-      input{
+    .bn-contact-form {
+      input, span {
         font-size: 14px;
         height: 41px;
         padding-left: 16px;
         border: none;
         border-radius: 0;
         margin-bottom: 18px;
+        line-height: 28px;
       }
-      textarea{
+      textarea {
         font-size: 14px;
         padding-left: 16px;
         height: 73px;
@@ -4658,37 +5381,37 @@ div#bn-check-last-order {
         border-radius: 0;
         margin-bottom: 18px;
       }
-      .bn-captcha{
+      .bn-captcha {
         background: #B2B2B2;
         height: 53px;
         width: 180px;
         margin-bottom: 12px;
         margin-top: 48px;
-
       }
-      button{
+      button {
         font-size: 14px;
         margin-top: 0px;
       }
     }
+    .bn-file-attachment{
+      padding: 10px 16px;
+    }
   }
 
-  // review div css
-
-  div#bn-review-box{
+  div#bn-review-box {
     top: 60px;
-    .modal-dialog{
+    .modal-dialog {
       width: 100%;
       max-width: 100%;
       margin: 0;
     }
-    .container{
+    .container {
       width: 91%;
     }
-    .bn-left-review-box{
+    .bn-left-review-box {
       width: 100%;
       max-width: 70%;
-      span{
+      span {
         display: block;
         font-size: 10px;
         padding: 12px 8px;
@@ -4696,21 +5419,21 @@ div#bn-check-last-order {
         border-bottom: none;
         border-right: none;
         padding-right: 0;
-        &:last-child{
+        &:last-child {
           border-bottom: 1px solid;
         }
       }
     }
-    .bn-right-review-box{
+    .bn-right-review-box {
       width: 100%;
       max-width: 30%;
-      span{
+      span {
         display: block;
         padding: 12px 8px;
         border: 1px solid;
         font-size: 10px;
         border-bottom: none;
-        &:last-child{
+        &:last-child {
           border-bottom: 1px solid;
         }
       }
@@ -4725,7 +5448,7 @@ div#bn-check-last-order {
         padding: 15px 0px 42px 11px;
       }
     }
-    .bn-last-footer-review{
+    .bn-last-footer-review {
       text-align: right;
       padding-top: 9px;
       padding-bottom: 43px;
@@ -4737,25 +5460,23 @@ div#bn-check-last-order {
     }
   }
 
-  // catering overview css
-
   .bn-menu-overview {
     padding-top: 121px;
-    .row.bn-border-bottom{
+    .row.bn-border-bottom {
       padding: 0 34px;
       margin-bottom: 15px;
-      &:after{
+      &:after {
         left: 44px !important;
         right: 45px !important;
       }
-      h2{
+      h2 {
         font-size: 17px;
         color: #000;
       }
     }
     .bn-menu-overview-box {
       padding: 0px 28px;
-      .row.bn-border-bottom{
+      .row.bn-border-bottom {
         padding: 0 0px;
         padding-bottom: 8px;
         &:after {
@@ -4773,14 +5494,14 @@ div#bn-check-last-order {
         }
       }
     }
-    .bn-right-menu-bar{
+    .bn-right-menu-bar {
       margin-bottom: 8px;
     }
-    div#bn-check-last-order {
-      .bn-radio-order{
+    .bn-check-out-last-order-box {
+      .bn-radio-order {
         margin-bottom: 1px;
       }
-      select{
+      select {
         line-height: 1;
         border: none;
         border-radius: 0;
@@ -4798,21 +5519,23 @@ div#bn-check-last-order {
         border: none;
         border-radius: 0;
       }
-      span{
+      span {
         padding-left: 3px;
         position: relative;
         top: 2px;
       }
-      h3{
+      h3 {
         color: #000;
       }
     }
   }
+
   .bn-menu-overview-checkout-form {
     div#bn-check-out-order {
       .modal-dialog {
         .modal-content {
           h2 {
+            font-size: 17px;
             small {
               font-size: 12px;
               font-weight: 500;
@@ -4821,10 +5544,9 @@ div#bn-check-last-order {
               padding-left: 2px;
               display: inline-block;
             }
-            i{
+            i {
               font-size: 10px;
             }
-            font-size: 17px;
           }
         }
       }
@@ -4836,21 +5558,22 @@ div#bn-check-last-order {
           font-size: 12px;
           width: 22px;
         }
-        i{
+        i {
           padding: 4px;
           font-size: 7px;
         }
       }
       .row.bn-total-price {
-        h2, .bn-price-item {
+        h2 {
           font-size: 19px;
         }
+        .bn-price-item {
+          font-size: 19px;
+        }
+        margin-bottom: 43px;
       }
       .row.bn-border-bottom-dash {
         padding-top: 0px;
-      }
-      .row.bn-total-price {
-        margin-bottom: 43px;
       }
       .bn-radio-order {
         .form-check-input {
@@ -4883,6 +5606,7 @@ div#bn-check-last-order {
       padding: 0 20px;
     }
   }
+
   .bn-overview-btn {
     padding: 12px 0;
     button {
@@ -4892,15 +5616,13 @@ div#bn-check-last-order {
     }
   }
 
-  // gift page css
-
   .bn-gift-card-main {
     .bn-gift-heading {
       h1 {
         font-size: 20px;
         font-weight: 700;
       }
-      p{
+      p {
         font-size: 14px;
       }
     }
@@ -4925,11 +5647,13 @@ div#bn-check-last-order {
           height: 14px;
           width: 14px;
           margin-top: 3px;
-          &:checked:before{
-            left: 2px;
-            top: 3px;
-            height: 7px;
-            width: 11px;
+          &:checked {
+            &:before {
+              left: 2px;
+              top: 3px;
+              height: 7px;
+              width: 11px;
+            }
           }
         }
         label {
@@ -4939,23 +5663,24 @@ div#bn-check-last-order {
       }
     }
   }
-  .bn-gift-card-button{
+
+  .bn-gift-card-button {
     padding: 15px 0;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 9999999;
-    button{
+    button {
       margin-top: 3px;
     }
   }
 
-  // Jobs page css
   .bn-breadcrumb-jobs {
     padding-top: 90px;
     background: #EBEBEB;
   }
+
   .bn-jobs-main {
     background: #EBEBEB;
     .bn-gift-heading {
@@ -4965,13 +5690,9 @@ div#bn-check-last-order {
           width: auto;
           padding-right: 12px;
           padding-left: 26px;
-          &:first-child{
+          &:first-child {
             display: inline-block;
             width: auto;
-          }
-          label{
-            font-size: 10px;
-            margin-left: -3px;
           }
         }
       }
@@ -4982,24 +5703,26 @@ div#bn-check-last-order {
         width: auto;
         padding-right: 12px;
         padding-left: 26px;
-        &:first-child{
+        &:first-child {
           display: block;
           width: 100%;
           margin-bottom: 2px;
         }
-        label{
+        label {
           font-size: 14px;
           margin-left: 2px;
         }
         .form-check-input {
           border: none;
-          &:checked:before {
-            left: 2px;
-            top: 2px;
-            height: 6px;
-            width: 7px;
+          &:checked {
+            &:before {
+              left: 2px;
+              top: 2px;
+              height: 6px;
+              width: 7px;
+            }
           }
-          &:focus{
+          &:focus {
             box-shadow: none;
           }
         }
@@ -5022,94 +5745,115 @@ div#bn-check-last-order {
         padding-right: 8px;
         padding-left: 24px;
         .form-check-input {
-          &:checked:before {
-            left: 3px;
-            top: 3px;
-            height: 9px;
-            width: 9px;
-          }
-        }
-      }
-    }
-  }
-  // History Radeem
-
-  div#bn-check-last-order {
-    .bn-gift-card-order {
-      .row.bn-border-bottom {
-        padding: 0px 0px;
-        padding-bottom: 0px;
-      }
-      .bn-gift-row-border {
-        .bn-radio-order {
-          label {
-            margin-left: 6px;
-            font-size: 12px;
-            display: block;
-            span{
-              padding-left: 30px;
+          &:checked {
+            &:before {
+              left: 3px;
+              top: 3px;
+              height: 9px;
+              width: 9px;
             }
           }
         }
       }
-      .bn-radio-order {
-        padding-top: 0px;
-        .form-check {
-          margin: 0;
-          .form-check-input {
-            top: -7px;
-            position: relative;
-          }
-        }
-        label {
-          margin-left: 6px;
-          font-size: 12px;
-          display: block;
-          top: -5px;
-          span{
-            padding-left: 30px;
-          }
-        }
-      }
-      .bn-price-item{
-        font-size: 10px;
-      }
-      .bn-coupon-code {
-        opacity: 100%;
-      }
-      .row.bn-last-order-footer {
-        button {
-          font-size: 16px;
-        }
-      }
     }
   }
-  .bn-breadcrumb-gift,
-  .bn-breadcrumb-our-values,
-  .bn-breadcrumb-terms,
-  .bn-breadcrumb-policy{
+
+  .bn-breadcrumb-gift {
     padding-top: 62px;
   }
-  .bn-shops-banner {
-    padding-top: 52px;
+
+  .bn-breadcrumb-our-values {
+    padding-top: 62px;
   }
-  .bn-catering-drink {
-    .bn-left-side-bar.bn-sticky-left {
-      top: auto !important;
-      button {
+
+  .bn-breadcrumb-terms {
+    padding-top: 62px;
+  }
+
+  .bn-breadcrumb-policy {
+    padding-top: 62px;
+  }
+
+
+  .bn-feedback-main {
+    .bn-review-box-feedback {
+      height: auto;
+      line-height: 22px;
+      div {
         font-size: 14px;
-        width: 40% !important;
-        padding: 2px 0;
-        text-align: center;
-        margin-bottom: 0px !important;
-        border: 2px solid #212529 !important;
-        display: inline-block !important;
+      }
+      img {
+        width: 15px;
+      }
+      .bn-star-feedback {
+       display: block;
+        width: 100%;
+        text-align: right;
+        span {
+          color: #717171;
+          font-size: 14px;
+          line-height: 45px;
+          &:first-child {
+            padding-right: 12px;
+          }
+        }
+      }
+    }
+    .bn-feedback-paragraph {
+      font-size: 14px;
+    }
+    .bn-heading-feedback {
+      h2 {
+        font-size: 17px;
+        margin-bottom: 30px;
+      }
+    }
+    .bn-space-top-feedback {
+      margin-top: 52px;
+    }
+    .bn-space-t-feedback {
+      margin-top: 30px;
+      input {
+        padding: 12px 18px;
+        height: 44px;
+      }
+    }
+    div#bn-check-out-order {
+      .bn-star-feedback {
+        .form-check {
+          padding-right: 10px;
+        }
+        .form-check-input {
+          &:checked:before {
+            left: 2px;
+            top: 2px;
+          }
+        }
+        .form-check-label{
+          font-size: 13px;
+          margin-top: 13px;
+        }
       }
     }
   }
-  .bn-footer h4, .bn-footer ul.list-unstyled li a {
-    font-size: 8px;
+
+  .bn-history-for-index{
+    .bn-his-header{
+      font-size: 20px;
+    }
+    .bn-his-paragraph{
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .bn-his-more{
+      font-size: 16px;
+      padding-bottom: 60px;
+    }
+  }
+  div#bn-check-last-order{
+      .bn-radio-order {
+        margin-bottom: 0px;
+
+      }
   }
 }
-
-

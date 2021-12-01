@@ -13,7 +13,9 @@
             <div class="row">
                 <div class="col-md-12 col-12">
                     <h1>Thank you for your order</h1>
-                    <a target="_blank" class="btn btn-lg bn-receipt-btn" href="{{ $order->pdfLink() }}">View Receipt</a>
+{{--                    <a class="btn bn-receipt-btn">View Receipt</a>--}}
+{{--                    <button class="btn bn-receipt-btn">View Receipt</button>--}}
+                    <a target="_blank" class="btn bn-receipt-btn" href="{{ $order->pdfLink() }}">View Receipt</a>
 
                     {{--                    Your order is completed! Your invoice has been sent to your email address.--}}
                 </div>
@@ -27,9 +29,10 @@
         a.btn.bn-receipt-btn {
             color: #fff;
             background: black;
-            font-size: 16px;
+            font-size: 22px;
             border-radius: 0;
             border: none;
+            padding: 15px 40px;
         }
     </style>
 @endsection

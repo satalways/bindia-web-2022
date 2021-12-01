@@ -606,10 +606,10 @@ function shop($codeName)
     });
 }
 
-function getCurrentLang(): string
+function getCurrentLang()
 {
-    return str_starts_with(request()->path(), 'en/') ? 'en' : 'da';
-    //return LaravelLocalization::getCurrentLocale();
+    //return str_starts_with(request()->path(), 'en/') ? 'en' : 'da';
+    return LaravelLocalization::getCurrentLocale();
 }
 
 function get_admin_link($path = '')

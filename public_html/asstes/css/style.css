@@ -1,3 +1,11 @@
+/*....................................
+Template Name: Taxi Cab HTML5 Template.
+Template URI: http://creativeon/com
+Description: Bindia HTML5 Template one of the most latest bindia Template.
+Author: Bindia   todo
+Author URI: creativeON (Sajid Iqbal)
+portfolio: https://sajid.hostriplex.com/funtray/ (Sajid Iqbal)
+..........................................*/
 /*=========================
    Including fonts
    =======================*/
@@ -29,19 +37,13 @@
   font-weight: 800;
   font-style: normal;
 }
-body,
-html {
+body {
   overflow-x: hidden;
   font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
 }
-body[data-aos-duration='3000'] [data-aos] {
-  transition-duration: 3000ms;
-}
-[data-aos=fade-up] {
-  transform: translate3d(0, 21px, 0);
-}
-[data-aos][data-aos][data-aos-duration='3000'] {
-  transition-duration: 3000ms;
+html {
+  overflow-x: hidden;
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
 }
 html::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -57,27 +59,78 @@ html::-webkit-scrollbar-thumb {
   background-color: #000000;
   display: none;
 }
+body[data-aos-duration='3000'] [data-aos] {
+  transition-duration: 3000ms;
+}
+[data-aos=fade-up] {
+  transform: translate3d(0, 21px, 0);
+}
+[data-aos][data-aos][data-aos-duration='3000'] {
+  transition-duration: 3000ms;
+}
 img {
   width: 100%;
 }
-a,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-div,
-button,
-input,
-textarea {
+a {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+h1 {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+h2 {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+h3 {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+h4 {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+h5 {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+h6 {
   font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
   font-weight: 500;
   color: #404040;
 }
 p {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
   margin: 0;
+}
+div {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+button {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+input {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
+}
+textarea {
+  font-family: 'helvetica_neue', Helvetica, "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #404040;
 }
 /* =====================
         Top-header
@@ -103,8 +156,10 @@ header.bn-top-header .bn-top-menu li {
   text-align: center;
   margin-right: 133px;
 }
-header.bn-top-header .bn-top-menu li:first-child a,
 header.bn-top-header .bn-top-menu li:first-child {
+  padding-left: 0;
+}
+header.bn-top-header .bn-top-menu li:first-child a {
   padding-left: 0;
 }
 header.bn-top-header .bn-top-menu li a {
@@ -116,7 +171,9 @@ header.bn-top-header .bn-top-menu li a {
   padding-left: 0 !important;
   letter-spacing: 0.8px;
 }
-header.bn-top-header .bn-top-menu li a:hover,
+header.bn-top-header .bn-top-menu li a:hover {
+  text-decoration: underline;
+}
 header.bn-top-header .bn-top-menu li a.active {
   text-decoration: underline;
 }
@@ -141,6 +198,23 @@ header.bn-top-header #menuToggle input {
   z-index: 2;
   -webkit-touch-callout: none;
 }
+header.bn-top-header #menuToggle input:checked ~ span {
+  opacity: 1;
+  transform: rotate(45deg) translate(0px, 4px);
+  background: #fff;
+}
+header.bn-top-header #menuToggle input:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(-45deg) translate(0, -3px);
+}
+header.bn-top-header #menuToggle input:checked ~ span:nth-last-child(2) {
+  opacity: 1;
+  transform: rotate(-45deg) translate(0, -3px);
+}
+header.bn-top-header #menuToggle input:checked ~ ul {
+  transform: scale(1, 1);
+  opacity: 1;
+}
 header.bn-top-header #menuToggle span {
   display: block;
   width: 20px;
@@ -160,23 +234,6 @@ header.bn-top-header #menuToggle span:first-child {
 }
 header.bn-top-header #menuToggle span:nth-last-child(2) {
   transform-origin: 0% 100%;
-}
-header.bn-top-header #menuToggle input:checked ~ span {
-  opacity: 1;
-  transform: rotate(45deg) translate(0px, 4px);
-  background: #fff;
-}
-header.bn-top-header #menuToggle input:checked ~ span:nth-last-child(3) {
-  opacity: 0;
-  transform: rotate(-45deg) translate(0, -3px);
-}
-header.bn-top-header #menuToggle input:checked ~ span:nth-last-child(2) {
-  opacity: 1;
-  transform: rotate(-45deg) translate(0, -3px);
-}
-header.bn-top-header #menuToggle input:checked ~ ul {
-  transform: scale(1, 1);
-  opacity: 1;
 }
 header.bn-top-header #menu {
   position: absolute;
@@ -209,11 +266,11 @@ header.bn-top-header #menu li:hover {
 header.bn-top-header #menu li:first-child {
   border: none;
 }
-header.bn-top-header #menu li.dropdown:hover {
-  background: #111;
-}
 header.bn-top-header #menu li.dropdown {
   border: none;
+}
+header.bn-top-header #menu li.dropdown:hover {
+  background: #111;
 }
 header.bn-top-header #menu li.dropdown .dropdown-menu {
   position: relative !important;
@@ -225,7 +282,9 @@ header.bn-top-header #menu li.dropdown .dropdown-menu {
 header.bn-top-header #menu li.dropdown .dropdown-menu li {
   border: none;
 }
-header.bn-top-header #menu li.dropdown .dropdown-menu li a:hover,
+header.bn-top-header #menu li.dropdown .dropdown-menu li a:hover {
+  background: #1a1a1a;
+}
 header.bn-top-header #menu li.dropdown .dropdown-menu li a:focus {
   background: #1a1a1a;
 }
@@ -234,8 +293,7 @@ header.bn-top-header #menu li.dropdown .dropdown-toggle {
   border-bottom: 1px solid #ffffff85;
   position: relative !important;
 }
-header.bn-top-header #menu li.dropdown .dropdown-toggle:hover,
-header.bn-top-header #menu li.dropdown .dropdown-toggle.show {
+header.bn-top-header #menu li.dropdown .dropdown-toggle:hover {
   background: #111;
 }
 header.bn-top-header #menu li.dropdown .dropdown-toggle::after {
@@ -244,6 +302,9 @@ header.bn-top-header #menu li.dropdown .dropdown-toggle::after {
   top: 17px;
   transition: 500ms all;
   font-size: 20px;
+}
+header.bn-top-header #menu li.dropdown .dropdown-toggle.show {
+  background: #111;
 }
 header.bn-top-header #menu li.dropdown .dropdown-toggle.show::after {
   transform: rotate(178deg);
@@ -265,23 +326,43 @@ header.bn-top-header .container-fluid {
 }
 header.bn-top-header .bn-card-price {
   position: absolute;
-  right: 18%;
-  color: #fff;
-  top: 21px;
+  right: 6%;
+  color: #c1c1c1;
+  top: 14px;
   font-size: 18px;
+  cursor: pointer;
+}
+header.bn-top-header .bn-card-price .bn-price-card {
+  font-size: 24px;
+}
+header.bn-top-header .bn-card-price .bh-current-price {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0;
+  color: #c1c1c1;
+}
+header.bn-top-header .bn-card-price .bn-discount-price {
+  color: #F36A10;
+  font-size: 24px;
+  font-weight: 700;
+}
+header.bn-top-header .bn-card-price span.bn-item-card {
+  position: absolute;
+  background: #F36A10;
+  height: 12px;
+  width: 12px;
+  font-size: 10px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 12px;
+  padding: 0;
+  left: 13px;
+  top: 7px;
 }
 header.bn-top-header .bn-card-price i {
-  padding-right: 8px;
+  padding-right: 5px;
+  color: #c1c1c1;
 }
-header.bn-top-header .bn-card-price span {
-  padding-right: 8px;
-}
-header.bn-top-header .bn-card-price span:last-child {
-  padding-right: 0;
-}
-/*
- *  scroll styel
- */
 #menu::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #F5F5F5;
@@ -316,7 +397,7 @@ header.bn-top-header .bn-card-price span:last-child {
        Review box css
 ======================= */
 .bn-review-box {
-  background: #D8D8D8;
+  background: #E3E3E3;
   padding: 25px 0;
 }
 .bn-review-box .bn-star-box {
@@ -340,20 +421,23 @@ header.bn-top-header .bn-card-price span:last-child {
   color: #2B2B2B;
 }
 .bn-review-box .bn-review-box-img {
-  text-align: right;
   margin-top: 22px;
 }
+.bn-review-box .bn-review-box-img.bn-trust-img-box {
+  text-align: right;
+}
 .bn-review-box .bn-review-box-img .bn-logo-discount {
-  max-width: 68px;
+  max-width: 91px;
 }
 .bn-review-box .bn-review-box-img .bn-smile {
-  max-width: 55px;
+  max-width: 59px;
 }
 .bn-review-box .bn-review-box-img img {
-  margin-right: 26px;
+  margin-right: 24px;
 }
 .bn-review-box .bn-review-box-img img:last-child {
   margin: 0;
+  margin-top: -15px;
 }
 .bn-review-box img.google-review {
   max-width: 115px;
@@ -366,11 +450,15 @@ header.bn-top-header .bn-card-price span:last-child {
 ======================= */
 .bn-portfolio-section {
   padding: 20px 0;
-  padding-bottom: 170px;
+  padding-bottom: 109px;
   background: #fff;
 }
 .bn-portfolio-section img {
   padding: 20px 13px;
+}
+.bn-portfolio-section .bn-image-orange-price-d img {
+  padding: 0px 13px;
+  margin-bottom: -7px;
 }
 .bn-portfolio-section div {
   padding: 0;
@@ -396,6 +484,32 @@ header.bn-top-header .bn-card-price span:last-child {
 }
 .bn-button-box {
   display: none;
+}
+/*======================
+    index history css
+========================= */
+.bn-history-for-index .bn-his-header {
+  font-size: 30px;
+  color: #808080;
+}
+.bn-history-for-index .bn-his-paragraph {
+  font-size: 22px;
+  color: #808080;
+  margin-bottom: 15px;
+}
+.bn-history-for-index .bn-his-paragraph p {
+  color: #808080;
+  margin-bottom: 0px;
+  display: none;
+}
+.bn-history-for-index .bn-his-more {
+  color: #000000;
+  font-size: 22px;
+  text-decoration: underline;
+  padding-bottom: 145px;
+  display: block;
+  width: 100%;
+  cursor: pointer;
 }
 /* =====================
          Footer css
@@ -439,6 +553,10 @@ header.bn-top-header .bn-card-price span:last-child {
   color: #000000;
 }
 /*Take Awya Page CSS*/
+span#bn-take-away-price {
+  position: absolute;
+  bottom: 60px;
+}
 /* =====================
      Email section
 ======================= */
@@ -450,6 +568,7 @@ header.bn-top-header .bn-card-price span:last-child {
   font-size: 24px;
   color: #404040;
   opacity: 50%;
+  text-decoration: underline;
 }
 .bn-email-item input {
   height: 35px;
@@ -470,7 +589,7 @@ header.bn-top-header .bn-card-price span:last-child {
 .bn-take-away-search {
   background: #E3E3E3;
   padding: 60px 0;
-  padding-bottom: 40px;
+  padding-bottom: 15px;
 }
 .bn-take-away-search .col-lg-4 {
   position: relative;
@@ -510,11 +629,11 @@ header.bn-top-header .bn-card-price span:last-child {
   border-radius: 8px;
   color: #fff;
 }
-.bn-take-away-search .bn-search-tag button.active {
-  color: #000;
-}
 .bn-take-away-search .bn-search-tag button:last-child {
   margin: 0;
+}
+.bn-take-away-search .bn-search-tag button.active {
+  color: #000;
 }
 /* =====================
      Take Away Item
@@ -523,8 +642,116 @@ header.bn-top-header .bn-card-price span:last-child {
   background: #E3E3E3;
   padding-bottom: 200px;
 }
-.bn-take-away-item img {
+.bn-take-away-item .bn-right-side-bar-product img {
   cursor: pointer;
+}
+.bn-take-away-item .bn-right-side-bar-product img.bn-info-product-icon {
+  opacity: 0;
+  width: 0 !important;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product {
+  background: #F7F7F7;
+  padding: 20px;
+  position: relative;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon {
+  position: absolute;
+  bottom: 23px;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon span {
+  border-radius: 11px;
+  margin-right: 5px;
+  font-size: 16px;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon span.bn-text-green {
+  color: #17BF44;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon span.bn-text-green-dark {
+  color: #129a36;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon img {
+  width: auto;
+  position: relative;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  text-transform: capitalize;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product p {
+  font-size: 20px;
+  color: #696969;
+  line-height: 19px;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-price-item {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: right;
+  color: #000;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-price-item .bh-current-price {
+  font-size: 16px;
+  font-weight: 500;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-price-item .bn-discount-price {
+  color: #F36A10;
+  font-size: 28px;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-price-item img {
+  width: 42px;
+  position: absolute;
+  top: -65px;
+  right: 21px;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-bg-orange-product {
+  background: #fff;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product.bn-border-right {
+  border-right: 1px solid #E3E3E3;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-product.bn-border-right.bn-orange-border-mobile {
+  border-right: none;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-bg-orange-product {
+  background: #fff;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-number-product {
+  position: absolute;
+  display: flex;
+  bottom: 23px;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-number-product i {
+  background: #313131;
+  color: #fff;
+  padding: 10px;
+  border-radius: 42px;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-number-product span {
+  text-align: center;
+  width: 104px;
+  border: none;
+  color: #A3A3A3;
+  font-size: 24px;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-number-product img {
+  width: 35px;
+}
+.bn-take-away-item .bn-right-side-bar-product .col-lg-12 {
+  padding-right: 0;
+  padding-top: 12px;
+}
+.bn-take-away-item .bn-right-side-bar-product .row {
+  margin-right: 0;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-toggle-content .row .bn-broduct-big-img {
+  display: none;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-toggle-content .row div:first-child {
+  padding-right: 8px;
+}
+.bn-take-away-item .bn-right-side-bar-product .bn-toggle-content .row.bn-img-active .bn-broduct-big-img {
+  display: block;
 }
 .bn-take-away-item .bn-broduct-big-img {
   padding-bottom: 12px;
@@ -559,86 +786,6 @@ header.bn-top-header .bn-card-price span:last-child {
   position: fixed;
   width: 262px;
 }
-.bn-take-away-item .bn-right-side-bar-product .bn-bg-product {
-  background: #fff;
-  padding: 20px;
-  position: relative;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon {
-  position: absolute;
-  bottom: 23px;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon span {
-  border-radius: 38px;
-  margin-right: 5px;
-  font-size: 16px;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon span.bn-text-icon {
-  background: #E3E3E3;
-  padding: 6px;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon span.bn-text-green {
-  color: #17BF44;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon img {
-  width: 30px;
-  top: -3px;
-  position: relative;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-bg-product.bn-border-right {
-  border-right: 1px solid #E3E3E3;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-bg-product h2 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #000;
-  text-transform: capitalize;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-bg-product p {
-  font-size: 20px;
-  color: #696969;
-  line-height: 19px;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-price-item {
-  font-size: 24px;
-  font-weight: 700;
-  text-align: right;
-  color: #000;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-number-product {
-  position: absolute;
-  display: flex;
-  bottom: 23px;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-number-product i {
-  background: #313131;
-  color: #fff;
-  padding: 10px;
-  border-radius: 42px;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-number-product span {
-  text-align: center;
-  width: 104px;
-  border: none;
-  color: #A3A3A3;
-  font-size: 24px;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-number-product img {
-  width: 35px;
-}
-.bn-take-away-item .bn-right-side-bar-product .col-lg-12 {
-  padding-right: 0;
-  padding-top: 12px;
-}
-.bn-take-away-item .bn-right-side-bar-product .row {
-  margin-right: 0;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-toggle-content .row .bn-broduct-big-img {
-  display: none;
-}
-.bn-take-away-item .bn-right-side-bar-product .bn-toggle-content .row.bn-img-active .bn-broduct-big-img {
-  display: block;
-}
 /* ============================
      Add Drink page css
 =============================== */
@@ -665,9 +812,6 @@ header.bn-top-header .bn-card-price span:last-child {
   border: 4px solid !important;
   font-weight: 700;
 }
-/* ============================
-    Portion page css
-=============================== */
 .bn-buffet-item {
   background: #E3E3E3;
 }
@@ -716,6 +860,9 @@ header.bn-top-header .bn-card-price span:last-child {
   color: #2C2C2C !important;
   font-weight: 700;
 }
+/* ============================
+    Portion page css
+=============================== */
 .bn-portion-item {
   padding: 70px 0;
 }
@@ -729,37 +876,37 @@ header.bn-top-header .bn-card-price span:last-child {
 /* ===========================
     last check order css
 ============================== */
-div#bn-check-last-order {
+.bn-check-out-last-order-box {
   top: 36px;
 }
-div#bn-check-last-order .modal-dialog {
+.bn-check-out-last-order-box .modal-dialog {
   max-width: 100%;
 }
-div#bn-check-last-order .modal-dialog .modal-content {
+.bn-check-out-last-order-box .modal-dialog .modal-content {
   background-color: #F2F2F2;
   border-radius: 0;
   padding: 53px;
   padding-bottom: 38px;
 }
-div#bn-check-last-order .modal-dialog .modal-content h2 {
+.bn-check-out-last-order-box .modal-dialog .modal-content h2 {
   font-weight: 700;
   font-size: 26px;
   color: #404040;
 }
-div#bn-check-last-order .modal-dialog .modal-content h2 small {
+.bn-check-out-last-order-box .modal-dialog .modal-content h2 small {
   font-size: 20px;
   font-weight: 500;
   position: relative;
   left: -5px;
   top: 1px;
 }
-div#bn-check-last-order .row.bn-border-bottom {
+.bn-check-out-last-order-box .row.bn-border-bottom {
   padding: 0px 9px;
   position: relative;
   padding-bottom: 19px;
   margin-bottom: 29px;
 }
-div#bn-check-last-order .row.bn-border-bottom:after {
+.bn-check-out-last-order-box .row.bn-border-bottom:after {
   content: "";
   border-bottom: 1px solid;
   position: absolute;
@@ -767,16 +914,16 @@ div#bn-check-last-order .row.bn-border-bottom:after {
   right: 20px;
   bottom: 0;
 }
-div#bn-check-last-order .row.bn-border-bottom:last-child:after {
+.bn-check-out-last-order-box .row.bn-border-bottom:last-child:after {
   bottom: 7px;
 }
-div#bn-check-last-order .row.bn-border-bottom-dash {
+.bn-check-out-last-order-box .row.bn-border-bottom-dash {
   padding: 100px 9px;
   position: relative;
   padding-bottom: 19px;
   margin-bottom: 29px;
 }
-div#bn-check-last-order .row.bn-border-bottom-dash:after {
+.bn-check-out-last-order-box .row.bn-border-bottom-dash:after {
   content: "";
   border-bottom: 1px dashed;
   position: absolute;
@@ -784,41 +931,40 @@ div#bn-check-last-order .row.bn-border-bottom-dash:after {
   right: 20px;
   bottom: 0;
 }
-div#bn-check-last-order .row.bn-border-bottom-dash:last-child:after {
+.bn-check-out-last-order-box .row.bn-border-bottom-dash:last-child:after {
   bottom: 7px;
 }
-div#bn-check-last-order .row.bn-last-order-footer {
+.bn-check-out-last-order-box .row.bn-last-order-footer {
   padding: 0px 9px;
 }
-div#bn-check-last-order .row.bn-last-order-footer p {
+.bn-check-out-last-order-box .row.bn-last-order-footer p {
   font-size: 20px;
   padding-top: 13px;
 }
-div#bn-check-last-order .row.bn-last-order-footer button {
+.bn-check-out-last-order-box .row.bn-last-order-footer button {
   background: #212529 !important;
   font-size: 28px;
   font-weight: 700;
   border-radius: 0;
 }
-div#bn-check-last-order .bn-radio-order {
+.bn-check-out-last-order-box .bn-radio-order {
   padding-top: 4px;
-  padding-left: 31px;
 }
-div#bn-check-last-order .bn-radio-order .form-check-input {
+.bn-check-out-last-order-box .bn-radio-order .form-check-input {
   border: none;
   height: 23px;
   width: 23px;
   margin-right: 9px;
 }
-div#bn-check-last-order .bn-radio-order .form-check-input:focus {
+.bn-check-out-last-order-box .bn-radio-order .form-check-input:focus {
   box-shadow: none;
 }
-div#bn-check-last-order .bn-radio-order .form-check-input:checked {
+.bn-check-out-last-order-box .bn-radio-order .form-check-input:checked {
   background-color: white;
   border: none;
   position: relative;
 }
-div#bn-check-last-order .bn-radio-order .form-check-input:checked:before {
+.bn-check-out-last-order-box .bn-radio-order .form-check-input:checked:before {
   content: "";
   height: 11px;
   width: 11px;
@@ -828,21 +974,21 @@ div#bn-check-last-order .bn-radio-order .form-check-input:checked:before {
   left: 6px;
   top: 6px;
 }
-div#bn-check-last-order .bn-radio-order label {
+.bn-check-out-last-order-box .bn-radio-order label {
   font-size: 20px;
 }
-div#bn-check-last-order .bn-radio-order .form-check {
+.bn-check-out-last-order-box .bn-radio-order .form-check {
   display: inline-block;
   width: auto;
   padding-right: 23px;
 }
-div#bn-check-last-order .bn-number-product i {
+.bn-check-out-last-order-box .bn-number-product i {
   background: #000;
   color: #fff;
   padding: 14px;
   border-radius: 42px;
 }
-div#bn-check-last-order .bn-number-product span {
+.bn-check-out-last-order-box .bn-number-product span {
   display: inline-block;
   text-align: center;
   width: 52px;
@@ -852,28 +998,77 @@ div#bn-check-last-order .bn-number-product span {
   margin: 2px 5px 0 4px;
   background: #fff;
 }
-div#bn-check-last-order .bn-number-product img {
+.bn-check-out-last-order-box .bn-number-product img {
   width: 35px;
   margin-top: -10px;
 }
-div#bn-check-last-order .bn-price-item {
+.bn-check-out-last-order-box .bn-price-item {
   font-size: 26px;
   font-weight: 700;
   text-align: right;
   line-height: 40px;
 }
-div#bn-check-last-order .modal-header {
+.bn-check-out-last-order-box .bn-price-item .bh-current-price {
+  font-size: 16px;
+  font-weight: 500;
+}
+.bn-check-out-last-order-box .bn-price-item .bn-discount-price {
+  color: #F36A10;
+  font-size: 28px;
+}
+.bn-check-out-last-order-box .modal-header {
   padding: 0;
   padding-top: 138px;
   border: none;
 }
-div#bn-check-last-order .modal-header .btn-close {
+.bn-check-out-last-order-box .modal-header .btn-close {
   background-image: url("../image/take-away/close.svg");
   background-repeat: no-repeat;
   background-size: 38px;
 }
-div#bn-check-last-order .modal-header .btn-close:focus {
+.bn-check-out-last-order-box .modal-header .btn-close:focus {
   box-shadow: none;
+}
+.bn-check-out-last-order-box .bn-gift-card-order .row.bn-border-bottom {
+  margin-bottom: 7px;
+}
+.bn-check-out-last-order-box .bn-gift-card-order .bn-radio-order label {
+  font-size: 22px;
+  margin-left: 66px;
+}
+.bn-check-out-last-order-box .bn-gift-card-order .bn-radio-order label span {
+  padding-left: 95px;
+}
+.bn-check-out-last-order-box .bn-gift-card-order .bn-gift-row-border .bn-radio-order label {
+  margin-left: 84px;
+}
+.bn-check-out-last-order-box .bn-gift-card-order .bn-price-item {
+  font-size: 22px;
+  font-weight: 500;
+}
+.bn-check-out-last-order-box .bn-gift-card-order .bn-coupon-code {
+  opacity: 50%;
+}
+.bn-check-out-last-order-box .bn-gift-card-order .bn-price-gift-book {
+  font-size: 26px;
+  font-weight: 700;
+}
+.bn-check-out-last-order-box .bn-gift-card-order .bn-gift-disable {
+  opacity: 50%;
+}
+.bn-check-out-last-order-box .bn-gift-card-order .row.bn-last-order-footer {
+  text-align: right;
+}
+.bn-check-out-last-order-box .bn-gift-card-order .row.bn-last-order-footer button {
+  width: auto !important;
+  margin-top: 20px;
+  font-size: 28px;
+  border: 2px solid #212529;
+}
+.bn-check-out-last-order-box .bn-gift-card-order .row.bn-last-order-footer button:first-child {
+  background: transparent !important;
+  color: #212529;
+  padding: 5px 25px;
 }
 /* ===========================
     Dine in page css
@@ -988,9 +1183,6 @@ div#bn-check-last-order .modal-header .btn-close:focus {
   margin-bottom: 30px;
   line-height: 30px;
 }
-/* ===========================
-    Our Value page css
-============================== */
 .bn-profile-values {
   margin-top: -251px;
   position: relative;
@@ -1008,6 +1200,9 @@ div#bn-check-last-order .modal-header .btn-close:focus {
   color: #000000;
   font-weight: 700;
 }
+/* ===========================
+    Our Value page css
+============================== */
 .bn-values-content {
   background: #EDEDED;
   text-align: center;
@@ -1303,22 +1498,26 @@ div#bn-check-last-order .modal-header .btn-close:focus {
 .bn-policy-content .bn-policy-text-ex {
   margin-bottom: 45px;
 }
-.bn-policy-content .bn-policy-text-ex p,
-.bn-policy-content .bn-policy-text-ex h2,
+.bn-policy-content .bn-policy-text-ex p {
+  margin-bottom: 0;
+}
+.bn-policy-content .bn-policy-text-ex h2 {
+  margin-bottom: 0;
+}
 .bn-policy-content .bn-policy-text-ex ul {
   margin-bottom: 0;
 }
 .bn-policy-content .row .col-12 {
   padding: 0 20px;
 }
-/*============================
-    Catering menu page CSS
-============================== */
 .bn-buffet-menu-box .container {
   padding: 53px 0;
   padding-top: 114px;
   border-bottom: none;
 }
+/*============================
+    Catering menu page CSS
+============================== */
 .bn-catering-menu-all {
   padding-top: 45px;
   padding-bottom: 179px;
@@ -1348,29 +1547,29 @@ div#bn-check-last-order .modal-header .btn-close:focus {
 .bn-catering-menu-all div#nav-tabContent .tab-pane .row {
   background: #e5e5e5;
   padding: 70px 82px;
-  margin: 0 auto ;
+  margin: 0 auto;
 }
 .bn-catering-menu-all .bn-menu-header {
   color: #000000;
   font-size: 25px;
   font-weight: 800;
 }
-.bn-catering-menu-all div#bn-check-last-order .bn-radio-order {
+.bn-catering-menu-all .bn-check-out-last-order-box .bn-radio-order {
   padding-left: 0;
   margin-bottom: 25px;
 }
-.bn-catering-menu-all div#bn-check-last-order .bn-radio-order .bn-radio-form-order {
+.bn-catering-menu-all .bn-check-out-last-order-box .bn-radio-order .bn-radio-form-order {
   padding-left: 15px;
 }
-.bn-catering-menu-all div#bn-check-last-order .bn-radio-order .form-check {
+.bn-catering-menu-all .bn-check-out-last-order-box .bn-radio-order .form-check {
   padding-right: 49px;
 }
-.bn-catering-menu-all div#bn-check-last-order select {
+.bn-catering-menu-all .bn-check-out-last-order-box select {
   font-size: 23px;
   margin-bottom: 10px;
   color: #000;
 }
-.bn-catering-menu-all div#bn-check-last-order select:focus {
+.bn-catering-menu-all .bn-check-out-last-order-box select:focus {
   box-shadow: none;
   border: none;
   outline: none;
@@ -1418,9 +1617,6 @@ div#bn-check-last-order .modal-header .btn-close:focus {
   font-weight: 600;
   padding: 3px 39px;
 }
-/*============================
-    Check out page CSS
-============================== */
 .bn-check-out-last-order {
   padding-top: 89px;
   padding-bottom: 12px;
@@ -1429,6 +1625,9 @@ div#bn-check-last-order .modal-header .btn-close:focus {
   opacity: 100%;
   font-size: 22px;
 }
+/*============================
+    Check out page CSS
+============================== */
 .bn-check-out {
   background: #E3E3E3;
   padding: 90px 0;
@@ -1442,17 +1641,23 @@ div#bn-check-last-order .modal-header .btn-close:focus {
   background-color: transparent;
   border-radius: 0;
   border: none;
+  position: relative;
+}
+.bn-check-out div#bn-check-out-order .modal-dialog .modal-content img {
+  width: 154px;
+  position: absolute;
+  right: 209px;
+  top: -18px;
 }
 .bn-check-out div#bn-check-out-order .modal-dialog .modal-content h2 {
-  font-size: 23px;
+  font-size: 22px;
   color: #404040;
 }
 .bn-check-out div#bn-check-out-order .modal-dialog .modal-content h2 small {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   position: relative;
   top: 1px;
-  float: right;
 }
 .bn-check-out div#bn-check-out-order .row.bn-border-bottom {
   padding: 0px 9px;
@@ -1470,6 +1675,12 @@ div#bn-check-last-order .modal-header .btn-close:focus {
 }
 .bn-check-out div#bn-check-out-order .row.bn-border-bottom:last-child:after {
   bottom: 7px;
+}
+.bn-check-out div#bn-check-out-order .row.bn-product-border-b-none {
+  margin-bottom: 0;
+}
+.bn-check-out div#bn-check-out-order .row.bn-product-border-b-none:after {
+  border-bottom: none;
 }
 .bn-check-out div#bn-check-out-order .row.bn-border-bottom-dash {
   padding: 30px 9px;
@@ -1520,6 +1731,39 @@ div#bn-check-last-order .modal-header .btn-close:focus {
 .bn-check-out div#bn-check-out-order .row.bn-check-box-choose {
   padding-bottom: 10px;
 }
+.bn-check-out div#bn-check-out-order .row.bn-bottom-space-check {
+  margin-bottom: 120px;
+}
+.bn-check-out div#bn-check-out-order .bn-add-product-all-item {
+  margin-bottom: 29px;
+}
+.bn-check-out div#bn-check-out-order .bn-add-product-all-item .bn-product-child-item {
+  position: relative;
+  margin-top: 8px;
+}
+.bn-check-out div#bn-check-out-order .bn-add-product-all-item .bn-product-child-item:after {
+  content: "";
+  border-bottom: 1px solid;
+  position: absolute;
+  left: 7px;
+  right: 7px;
+  bottom: 0;
+}
+.bn-check-out div#bn-check-out-order .bn-add-product-all-item .row.bn-border-bottom {
+  align-items: end;
+  margin-bottom: 0;
+}
+.bn-check-out div#bn-check-out-order .bn-add-product-all-item .row.bn-border-bottom:after {
+  bottom: 5px;
+  display: none;
+}
+.bn-check-out div#bn-check-out-order .bn-add-product-all-item .row.bn-border-bottom .bn-number-product span {
+  margin-bottom: 5px;
+  display: block;
+}
+.bn-check-out div#bn-check-out-order .bn-add-product-all-item .row.bn-border-bottom .bn-price-item {
+  margin-bottom: 4px;
+}
 .bn-check-out div#bn-check-out-order .bn-radio-order {
   padding-top: 0px;
   padding-left: 24px;
@@ -1549,7 +1793,7 @@ div#bn-check-last-order .modal-header .btn-close:focus {
   top: 6px;
 }
 .bn-check-out div#bn-check-out-order .bn-radio-order label {
-  font-size: 22px;
+  font-size: 16px;
   color: #000;
 }
 .bn-check-out div#bn-check-out-order .bn-radio-order .form-check {
@@ -1578,6 +1822,10 @@ div#bn-check-last-order .modal-header .btn-close:focus {
   border-width: 3px 3px 0 0;
   transform: rotate(121deg);
 }
+.bn-check-out div#bn-check-out-order .bn-check-box-order .form-check-input.bn-checked-color-chnaged:checked:before {
+  border: 2px solid #F36A10;
+  border-width: 3px 3px 0 0;
+}
 .bn-check-out div#bn-check-out-order .bn-number-product i {
   background: #000;
   color: #fff;
@@ -1593,12 +1841,31 @@ div#bn-check-last-order .modal-header .btn-close:focus {
   font-size: 22px;
   text-align: right;
 }
+.bn-check-out div#bn-check-out-order .bn-price-item.bn-orange-color {
+  color: #F36A10;
+  font-weight: 700;
+}
 .bn-check-out .bn-check-out-from .bn-from-bottom-space {
   margin-bottom: 26px;
 }
 .bn-check-out .bn-check-out-from input,
-.bn-check-out .bn-check-out-from select,
-.bn-check-out .bn-check-out-from textarea {
+.bn-check-out .bn-check-out-from span {
+  font-size: 22px;
+  height: 59px;
+  border-radius: 0;
+  border: none;
+  margin-bottom: 22px;
+  padding-left: 26px;
+  color: #717171;
+  line-height: 47px;
+}
+.bn-check-out .bn-check-out-from input:focus,
+.bn-check-out .bn-check-out-from span:focus {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+.bn-check-out .bn-check-out-from select {
   font-size: 22px;
   height: 59px;
   border-radius: 0;
@@ -1607,19 +1874,37 @@ div#bn-check-last-order .modal-header .btn-close:focus {
   padding-left: 26px;
   color: #717171;
 }
-.bn-check-out .bn-check-out-from input:focus,
-.bn-check-out .bn-check-out-from select:focus,
-.bn-check-out .bn-check-out-from textarea:focus {
+.bn-check-out .bn-check-out-from select:focus {
   border: none;
   box-shadow: none;
   outline: none;
 }
 .bn-check-out .bn-check-out-from textarea {
+  font-size: 22px;
+  height: 59px;
+  border-radius: 0;
+  border: none;
+  margin-bottom: 22px;
+  padding-left: 26px;
+  color: #717171;
   height: 195px;
   padding-top: 15px;
 }
+.bn-check-out .bn-check-out-from textarea:focus {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
 .bn-check-out .bn-check-out-from label.bn-date-time {
   display: none;
+}
+.bn-check-out .bn-order-orange-price {
+  text-align: center;
+  margin-bottom: 70px;
+  margin-top: 32px;
+}
+.bn-check-out .bn-order-orange-price img {
+  width: 545px;
 }
 .bn-form-checkout-button {
   background: #FFF3E2;
@@ -1709,13 +1994,16 @@ div#bn-check-last-order .modal-header .btn-close:focus {
   font-size: 22px;
   margin-bottom: 25px;
 }
-.bn-contact-us .bn-contact-form input {
+.bn-contact-us .bn-contact-form input,
+.bn-contact-us .bn-contact-form span {
   font-size: 22px;
   height: 59px;
   padding-left: 25px;
   border: none;
   border-radius: 0;
   margin-bottom: 32px;
+  line-height: 47px;
+  color: #717171;
 }
 .bn-contact-us .bn-contact-form textarea {
   font-size: 22px;
@@ -1740,6 +2028,12 @@ div#bn-check-last-order .modal-header .btn-close:focus {
   font-weight: 700;
   float: right;
   margin-top: 83px;
+}
+.bn-contact-us .bn-file-attachment {
+  padding: 14px 9px;
+  position: absolute;
+  top: 0;
+  opacity: 0;
 }
 /*============================
    Review div CSS
@@ -1989,6 +2283,9 @@ div#bn-review-box .modal-header button:before {
 .bn-gift-card-main .bn-check-box-order .form-check:first-child {
   padding-left: 0;
 }
+.bn-gift-card-main .bn-check-box-order .form-check:first-child label {
+  margin-left: 0;
+}
 .bn-gift-card-main .bn-check-box-order .form-check .form-check-input {
   height: 31px;
   width: 31px;
@@ -2013,9 +2310,6 @@ div#bn-review-box .modal-header button:before {
 .bn-gift-card-main .bn-check-box-order .form-check label {
   margin-left: 10px;
   font-size: 22px;
-}
-.bn-gift-card-main .bn-check-box-order .form-check:first-child label {
-  margin-left: 0;
 }
 .bn-gift-card-main .bn-gift-last-box input {
   margin-bottom: 18px;
@@ -2070,7 +2364,7 @@ div#bn-review-box .modal-header button:before {
   margin-top: 0px;
 }
 .bn-jobs-main .bn-check-box-order .form-check.w-50 {
-  width: 53%!important;
+  width: 53% !important;
 }
 .bn-jobs-main .bn-check-language .form-check:first-child {
   width: 17%;
@@ -2102,54 +2396,103 @@ div#bn-review-box .modal-header button:before {
 .bn-jobs-main .bn-form-equal-box .form-check:first-child {
   width: 38%;
 }
-/*================================
-    Gift Card popup
-=============================== */
-div#bn-check-last-order .bn-gift-card-order .row.bn-border-bottom {
-  margin-bottom: 7px;
+/* ========================
+      Feed back page css
+===========================*/
+.bn-feedback-main {
+  background: #ededed;
+  padding: 130px 0;
 }
-div#bn-check-last-order .bn-gift-card-order .bn-radio-order label {
+.bn-feedback-main .bn-heading-feedback h2 {
+  color: #000000;
+  font-size: 47px;
+  margin-bottom: 75px;
+}
+.bn-feedback-main .bn-review-box-feedback {
+  background: #fff;
   font-size: 22px;
-  margin-left: 66px;
+  margin-bottom: 32px;
+  padding: 6px 26px;
+  height: 59px;
+  line-height: 42px;
 }
-div#bn-check-last-order .bn-gift-card-order .bn-radio-order label span {
-  padding-left: 95px;
+.bn-feedback-main .bn-review-box-feedback div {
+  color: #717171;
 }
-div#bn-check-last-order .bn-gift-card-order .bn-gift-row-border .bn-radio-order label {
-  margin-left: 84px;
+.bn-feedback-main .bn-review-box-feedback img {
+  width: 29px;
 }
-div#bn-check-last-order .bn-gift-card-order .bn-price-item {
+.bn-feedback-main .bn-space-bottom-feedback {
+  margin-bottom: 80px;
+}
+.bn-feedback-main .bn-space-top-feedback {
+  margin-top: 104px;
+}
+.bn-feedback-main div#bn-check-out-order .form-check-input {
+  border-radius: 100%;
+  padding-left: 0px;
+}
+.bn-feedback-main div#bn-check-out-order .form-check-label {
+  margin-top: 6px;
+}
+.bn-feedback-main div#bn-check-out-order .bn-star-feedback {
+  font-size: 0;
+}
+.bn-feedback-main div#bn-check-out-order .bn-star-feedback .form-check-input {
+  padding: 0;
+  border: 1px solid #717171;
+  margin-top: 13px;
+}
+.bn-feedback-main div#bn-check-out-order .bn-star-feedback .form-check-input:checked {
+  border: 1px solid #717171;
+}
+.bn-feedback-main div#bn-check-out-order .bn-star-feedback .form-check-input:checked:before {
+  left: 5px;
+  top: 5px;
+}
+.bn-feedback-main div#bn-check-out-order .bn-star-feedback .form-check {
+  padding-right: 50px;
+}
+.bn-feedback-main div#bn-check-out-order .bn-star-feedback .form-check:last-child {
+  padding-right: 0;
+}
+.bn-feedback-main .bn-feedback-paragraph {
   font-size: 22px;
-  font-weight: 500;
 }
-div#bn-check-last-order .bn-gift-card-order .bn-coupon-code {
-  opacity: 50%;
+.bn-feedback-main .bn-space-t-feedback {
+  margin-top: 83px;
 }
-div#bn-check-last-order .bn-gift-card-order .bn-price-gift-book {
-  font-size: 26px;
-  font-weight: 700;
+.bn-feedback-main .bn-space-t-feedback input {
+  padding: 6px 12px;
+  height: auto;
 }
-div#bn-check-last-order .bn-gift-card-order .bn-gift-disable {
-  opacity: 50%;
+.bn-feedback-main .bn-space-t-feedback label {
+  padding-top: 5px;
 }
-div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer {
-  text-align: right;
+.bn-feedback-main .bn-space-t-feedback .bn-black-button {
+  background: #2c2c2c;
+  font-size: 22px;
+  color: #fff;
+  padding: 4px 55px;
+  border-radius: 0;
 }
-div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button {
-  width: auto !important;
-  margin-top: 20px;
-  font-size: 28px;
-  border: 2px solid #212529;
-}
-div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:first-child {
-  background: transparent !important;
-  color: #212529;
-  padding: 5px 25px;
+button.btn.bn-receipt-btn {
+  color: #fff;
+  background: black;
+  font-size: 22px;
+  border-radius: 0;
+  border: none;
+  padding: 15px 40px;
 }
 @media only screen and (min-width: 1400px) {
   .container {
     max-width: 1121px;
     padding: 0px;
+  }
+}
+@media only screen and (max-width: 1440px) and (min-width: 1200px) {
+  .bn-shops-banner .bn-shop-contact {
+    top: 28%;
   }
 }
 @media only screen and (max-width: 1400px) {
@@ -2172,6 +2515,13 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     text-align: center;
     margin: auto 40px;
   }
+  header.bn-top-header .bn-card-price {
+    position: absolute;
+    right: 7%;
+    color: #fff;
+    top: 14px;
+    font-size: 18px;
+  }
   .bn-portfolio-section .bn-link-image-box .bn-menu-b-box ul li a {
     font-size: 28px;
   }
@@ -2191,7 +2541,7 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     margin-top: 11px;
   }
   .bn-review-box .bn-review-box-img img {
-    margin-right: 38px;
+    margin-right: 24px;
   }
   .bn-take-away-search .bn-search-tag button {
     margin-right: 3px;
@@ -2211,7 +2561,7 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-take-away-item .bn-right-side-bar-product .bn-number-product span {
     width: 75px;
   }
-  .bn-catering-menu-all div#bn-check-last-order .bn-radio-order .form-check {
+  .bn-catering-menu-all .bn-check-out-last-order-box .bn-radio-order .form-check {
     padding-right: 22px;
   }
   .bn-catering-menu-all .nav-tabs .nav-link {
@@ -2223,7 +2573,10 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-check-out div#bn-check-out-order .bn-check-box-order .form-check {
     padding-right: 20px;
   }
-  div#bn-check-last-order .bn-number-product span {
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content img {
+    right: 150px;
+  }
+  .bn-check-out-last-order-box .bn-number-product span {
     width: 38px;
   }
   .bn-shops-banner .bn-shop-contact {
@@ -2250,13 +2603,21 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-faq-content .bn-sub-header-faq {
     margin-top: 23px;
   }
-  .bn-policy-content .bn-policy-text-item h2,
-  .bn-policy-content .bn-policy-text-item p,
+  .bn-policy-content .bn-policy-text-item h2 {
+    font-size: 21px;
+  }
+  .bn-policy-content .bn-policy-text-item p {
+    font-size: 21px;
+  }
   .bn-policy-content .bn-policy-text-item ul {
     font-size: 21px;
   }
-  .bn-jobs-main .bn-check-out-from input,
-  .bn-jobs-main .bn-check-out-from select,
+  .bn-jobs-main .bn-check-out-from input {
+    font-size: 18px;
+  }
+  .bn-jobs-main .bn-check-out-from select {
+    font-size: 18px;
+  }
   .bn-jobs-main .bn-check-out-from textarea {
     font-size: 18px;
   }
@@ -2332,7 +2693,7 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     font-size: 211px;
   }
   .bn-slider.bg-transparent.bn-animation-banner {
-    height: 50vh;
+    height: 48vh;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -2344,10 +2705,36 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   }
   header.bn-top-header .bn-card-price {
     position: absolute;
-    right: 13%;
+    right: 10%;
     color: #fff;
-    top: 11px;
+    top: 5px;
     font-size: 18px;
+  }
+  header.bn-top-header .bn-card-price .bn-price-card {
+    font-size: 24px;
+  }
+  header.bn-top-header .bn-card-price .bh-current-price {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0;
+  }
+  header.bn-top-header .bn-card-price .bn-discount-price {
+    color: #F36A10;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  header.bn-top-header .bn-card-price span.bn-item-card {
+    position: absolute;
+    background: #F36A10;
+    height: 12px;
+    width: 12px;
+    font-size: 10px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 12px;
+    padding: 0;
+    left: 13px;
+    top: 7px;
   }
   .bn-slider.bg-transparent.bn-animation-banner {
     height: 45vh;
@@ -2380,6 +2767,10 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     margin-bottom: 0;
     border: none;
   }
+  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-price-item img {
+    width: 27px;
+    top: -28px;
+  }
   .bn-check-out-last-order {
     padding-top: 60px;
   }
@@ -2405,6 +2796,15 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     right: 0;
     z-index: 999999;
   }
+  .bn-catering-drink .bn-left-side-bar button {
+    width: 29% !important;
+    padding: 2px 0;
+    text-align: center;
+    margin-bottom: 0px !important;
+    border: 2px solid #212529 !important;
+    display: inline-block !important;
+    font-size: 24px;
+  }
   .bn-catering-drink .bn-left-side-bar.bn-sticky-left {
     background: #FFECCF;
     bottom: 0;
@@ -2417,15 +2817,6 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     left: 0;
     right: 0;
     z-index: 999999;
-  }
-  .bn-catering-drink .bn-left-side-bar button {
-    width: 29% !important;
-    padding: 2px 0;
-    text-align: center;
-    margin-bottom: 0px !important;
-    border: 2px solid #212529 !important;
-    display: inline-block !important;
-    font-size: 24px;
   }
   .bn-catering-menu-all .nav-tabs .nav-link {
     margin-right: 13px;
@@ -2457,24 +2848,60 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-catering-menu-all .bn-button-menu button {
     font-size: 22px;
   }
-  div#bn-check-last-order select {
+  .bn-check-out-last-order-box {
+    top: 18px;
+    z-index: 9999999999;
+  }
+  .bn-check-out-last-order-box select {
     font-size: 18px;
   }
-  div#bn-check-last-order .bn-radio-order {
+  .bn-check-out-last-order-box .bn-radio-order {
     margin-bottom: 15px;
+    padding-top: 4px;
+    padding-left: 0px;
   }
-  div#bn-check-last-order .bn-radio-order .form-check-input {
+  .bn-check-out-last-order-box .bn-radio-order .form-check-input {
     height: 18px;
     width: 18px;
   }
-  div#bn-check-last-order .bn-radio-order .form-check-input:checked:before {
+  .bn-check-out-last-order-box .bn-radio-order .form-check-input:checked:before {
     height: 8px;
     width: 8px;
     left: 5px;
     top: 5px;
   }
-  div#bn-check-last-order .bn-radio-order label {
+  .bn-check-out-last-order-box .bn-radio-order label {
     font-size: 14px;
+  }
+  .bn-check-out-last-order-box .bn-number-product {
+    text-align: right;
+  }
+  .bn-check-out-last-order-box .row.bn-last-order-footer button {
+    font-size: 22px;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .bn-radio-order label {
+    font-size: 19px;
+    margin-left: 10px;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .bn-radio-order label span {
+    padding-left: 77px;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .bn-price-item {
+    font-size: 19px;
+    font-weight: 500;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .bn-price-gift-book {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .bn-gift-row-border .bn-radio-order label {
+    margin-left: 20px;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .row.bn-last-order-footer button {
+    font-size: 22px;
+  }
+  .bn-check-out-last-order-box .bn-price-item .bh-current-price {
+    position: inherit;
   }
   .bn-dine-menu .bn-top-paragraph p {
     font-size: 19px;
@@ -2495,7 +2922,14 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     height: 72px;
   }
   .bn-check-out .bn-check-out-from input,
-  .bn-check-out .bn-check-out-from select,
+  .bn-check-out .bn-check-out-from span {
+    font-size: 18px;
+    padding-left: 14px;
+  }
+  .bn-check-out .bn-check-out-from select {
+    font-size: 18px;
+    padding-left: 14px;
+  }
   .bn-check-out .bn-check-out-from textarea {
     font-size: 18px;
     padding-left: 14px;
@@ -2504,27 +2938,59 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     padding-left: 0px;
     padding-top: 20px;
   }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content img {
+    right: 327px;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-radio-order {
+    padding-top: 0px;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-check-out-mobile {
+    margin-bottom: 63px;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-add-product-all-item {
+    margin-bottom: 29px;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-add-product-all-item .bn-product-child-item {
+    position: relative;
+    margin-top: 8px;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-add-product-all-item .bn-product-child-item:after {
+    content: "";
+    border-bottom: 1px solid;
+    position: absolute;
+    left: 7px;
+    right: 7px;
+    bottom: 0;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-add-product-all-item .row.bn-border-bottom {
+    align-items: end;
+    margin-bottom: 0;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-add-product-all-item .row.bn-border-bottom:after {
+    bottom: 5px;
+    display: none;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-add-product-all-item .row.bn-border-bottom .bn-number-product span {
+    margin-bottom: 5px;
+    display: block;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-add-product-all-item .row.bn-border-bottom .bn-price-item {
+    margin-bottom: 4px;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .row.bn-product-border-b-none {
+    margin-bottom: 0;
+  }
+  .bn-check-out div#bn-check-out-order .row.bn-bottom-span-mobile-set {
+    margin-bottom: 0px;
+  }
   .bn-form-checkout-button .bn-radio-order {
     padding-left: 0px;
+    padding-top: 2px;
   }
   .bn-form-checkout-button button {
     font-size: 20px;
     padding: 5px 27px;
     margin-top: 13px;
-  }
-  div#bn-check-last-order {
-    top: 18px;
-    z-index: 9999999999;
-  }
-  div#bn-check-last-order .bn-radio-order {
-    padding-top: 4px;
-    padding-left: 0px;
-  }
-  div#bn-check-last-order .bn-number-product {
-    text-align: right;
-  }
-  div#bn-check-last-order .row.bn-last-order-footer button {
-    font-size: 22px;
   }
   .bn-shops-banner .bn-shop-contact .bn-shop-title h3 {
     font-size: 20px;
@@ -2565,13 +3031,14 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-menu-overview .bn-menu-overview-box {
     padding: 0px 0px;
   }
-  .bn-menu-overview div#bn-check-last-order .bn-radio-order {
+  .bn-menu-overview .bn-check-out-last-order-box .bn-radio-order {
     margin-bottom: 2px;
   }
-  .bn-menu-overview div#bn-check-last-order select {
+  .bn-menu-overview .bn-check-out-last-order-box select {
     font-size: 18px;
   }
-  .bn-menu-overview .bn-number-people input {
+  .bn-menu-overview .bn-number-people input,
+  .bn-menu-overview .bn-number-people span {
     border-radius: 0;
     border: none;
   }
@@ -2580,9 +3047,6 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   }
   .bn-menu-overview-checkout-form div#bn-check-out-order .bn-radio-order {
     padding-top: 0px;
-  }
-  .bn-form-checkout-button .bn-radio-order {
-    padding-top: 2px;
   }
   .bn-breadcrumb-our-story .bn-breadcrumb-text h1 {
     font-size: 31px;
@@ -2631,31 +3095,6 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     margin-bottom: 30px;
     line-height: 23px;
   }
-  div#bn-check-last-order .bn-gift-card-order .bn-radio-order label {
-    font-size: 19px;
-    margin-left: 10px;
-  }
-  div#bn-check-last-order .bn-gift-card-order .bn-radio-order label span {
-    padding-left: 77px;
-  }
-  div#bn-check-last-order .bn-gift-card-order .bn-price-item {
-    font-size: 19px;
-    font-weight: 500;
-  }
-  div#bn-check-last-order .bn-gift-card-order .bn-price-gift-book {
-    font-size: 20px;
-    font-weight: 700;
-  }
-  div#bn-check-last-order .bn-gift-card-order .bn-gift-row-border .bn-radio-order label {
-    margin-left: 20px;
-  }
-  div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button {
-    font-size: 22px;
-  }
-  /* =====================
-     Review box css
-
-======================= */
   .bn-review-box .bn-star-box {
     padding-bottom: 3px;
   }
@@ -2671,11 +3110,18 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-review-box .bn-review-box-img {
     margin-top: 11px;
   }
-  .bn-review-box .bn-review-box-img img {
-    margin-right: 4px;
+  .bn-review-box .bn-review-box-img .bn-logo-discount {
+    max-width: 73px;
   }
-  .bn-portfolio-section .bn-link-image-box .bn-menu-b-box ul li a {
-    font-size: 20px;
+  .bn-review-box .bn-review-box-img .bn-smile {
+    max-width: 45px;
+  }
+  .bn-review-box .bn-review-box-img img {
+    margin-right: 16px;
+  }
+  .bn-review-box .bn-review-box-img img:last-child {
+    margin: 0;
+    margin-top: -13px;
   }
   .bn-review-box .col-lg-4.col-sm-4 {
     display: inline-block;
@@ -2683,7 +3129,12 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     font-size: 5px;
     padding: 0;
   }
-  .bn-footer h4,
+  .bn-portfolio-section .bn-link-image-box .bn-menu-b-box ul li a {
+    font-size: 20px;
+  }
+  .bn-footer h4 {
+    font-size: 15px;
+  }
   .bn-footer ul.list-unstyled li a {
     font-size: 15px;
   }
@@ -2706,19 +3157,30 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     position: relative;
     border-radius: 4px;
   }
-  .bn-button-box {
-    display: block;
-    padding: 0 18px;
-    background: #fff;
-  }
-  .bn-button-box a {
-    font-size: 25px;
-  }
   .bn-footer .bn-footer-header {
     font-size: 15px;
   }
   .bn-footer .bn-footer-header.mb-0.mt-4 {
     margin-top: 29px !important;
+  }
+  .bn-button-box {
+    display: block;
+    padding: 0 18px;
+    position: absolute;
+    background: transparent;
+    width: 100%;
+    text-align: center;
+    top: 38%;
+  }
+  .bn-button-box a {
+    font-size: 25px;
+    border: 1px solid #FFFFFF;
+    border-radius: 8px;
+    background: #ffffff8a;
+    color: #000;
+  }
+  .bn-feedback-main div#bn-check-out-order .bn-star-feedback .bn-radio-order {
+    padding-top: 0px;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -2791,7 +3253,7 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     position: absolute;
     right: 18%;
     color: #fff;
-    top: 21px;
+    top: 15px;
     font-size: 18px;
   }
   div.bn-slider {
@@ -2805,19 +3267,22 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     top: -1.961px;
   }
   div.bn-review-box {
-    padding: 20px 0;
+    padding: 11px 0;
   }
   div.bn-review-box .bn-review-box-img {
     margin-top: 0px;
   }
   div.bn-review-box .bn-review-box-img .bn-logo-discount {
-    max-width: 27px;
+    max-width: 31px;
   }
   div.bn-review-box .bn-review-box-img .bn-smile {
-    max-width: 22px;
+    max-width: 19px;
   }
   div.bn-review-box .bn-review-box-img img {
     margin-right: 5px;
+  }
+  div.bn-review-box .bn-review-box-img img:last-child {
+    margin-top: -5px;
   }
   div.bn-review-box img.google-review {
     max-width: 43px;
@@ -2827,7 +3292,7 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   }
   div.bn-review-box .bn-star-box {
     padding: 0;
-    padding-bottom: 5px;
+    padding-bottom: 3px;
   }
   div.bn-review-box .bn-star-box small {
     font-size: 6px;
@@ -2842,7 +3307,7 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     font-size: 7px;
     line-height: 6px;
   }
-  div.bn-review-box .col-4 {
+  div.bn-review-box .col-6 {
     line-height: 0;
     padding: 0;
   }
@@ -2856,6 +3321,10 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   }
   .bn-portfolio-section img {
     padding: 5px 5px;
+  }
+  .bn-portfolio-section .bn-image-orange-price-d img {
+    padding: 18px 5px;
+    margin-bottom: 0px;
   }
   .bn-portfolio-section .bn-link-image-box .bn-menu-b-box {
     position: absolute;
@@ -2896,16 +3365,23 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-footer ul li {
     line-height: 13px;
   }
+  .bn-footer h4 {
+    font-size: 8px;
+  }
+  .bn-footer ul.list-unstyled li a {
+    font-size: 8px;
+  }
   .bn-button-box {
     display: block;
     padding: 0 18px;
-    background: #fff;
+    top: 26%;
   }
   .bn-button-box a {
     font-size: 17px;
-    background: #121212;
+    border: 1px solid #FFFFFF;
+    border-radius: 8px;
+    background: #ffffff8a;
   }
-  /*Take Awya Page CSS*/
   .bn-breadcrumbs-dine {
     padding-bottom: 0;
     padding-top: 14px;
@@ -2937,14 +3413,137 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-take-away-item {
     padding-bottom: 0px;
   }
+  .bn-take-away-item img.bn-thumbnail-img {
+    padding-top: 25px;
+  }
+  .bn-take-away-item .bn-orange-img-take-away div {
+    padding: 0;
+  }
+  .bn-take-away-item .bn-right-side-bar-product img.bn-info-product-icon {
+    opacity: 1;
+    width: auto !important;
+  }
   .bn-take-away-item .bn-right-side-bar-product .bn-toggle-content .row.bn-img-active .bn-broduct-big-img {
     display: none;
   }
+  .bn-take-away-item .bn-right-side-bar-product .bn-toggle-content .row div:first-child {
+    padding: 0;
+  }
   .bn-take-away-item .bn-right-side-bar-product .bn-toggle-content .row .bn-bg-product p {
     display: none;
+    font-size: 15px;
   }
   .bn-take-away-item .bn-right-side-bar-product .bn-toggle-content .row.bn-text-active .bn-bg-product p {
     display: block;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product.bn-border-right {
+    height: 120px;
+    border-bottom: 1px solid #c1c1c1;
+    border-right: none;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product.bn-border-right.bn-orange-border-mobile {
+    border-bottom: none;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-text-active .bn-bg-product.bn-border-right {
+    height: 200px;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-text-active .bn-bg-product .bn-price-item {
+    top: -184px;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .row {
+    margin-right: -12px;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon {
+    bottom: 7px;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon img {
+    top: 0px;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon span {
+    background: #F4F4F4;
+    font-style: italic;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon .bn-dabble-chili-img img {
+    margin-top: -2px;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-price-item {
+    position: absolute;
+    right: 16px;
+    top: -104px;
+    pointer-events: none;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-price-item .bh-current-price {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-price-item .bn-discount-price {
+    color: #F36A10;
+    font-size: 24px;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-price-item img {
+    width: 18px;
+    position: absolute;
+    top: -29px;
+    right: 9px;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-number-product {
+    position: initial;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-number-product i {
+    background: #000;
+    color: #fff;
+    padding: 14px;
+    border-radius: 100%;
+    font-size: 15px;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .bn-number-product span {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    font-weight: 700;
+    color: #c1c1c1;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .col-lg-4 {
+    padding: 0px;
+  }
+  .bn-take-away-item .bn-right-side-bar-product .col-lg-12 {
+    padding-top: 0;
+  }
+  .bn-take-away-item .bn-left-side-bar {
+    background: #CECECE;
+    position: fixed;
+    top: 61px !important;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+  }
+  .bn-take-away-item .bn-left-side-bar ul {
+    display: flex;
+    padding-top: 0px;
+    border-top: 0px;
+    margin: 0;
+  }
+  .bn-take-away-item .bn-left-side-bar ul li {
+    width: 23%;
+    text-align: center;
+    padding: 10px 0;
+  }
+  .bn-take-away-item .bn-left-side-bar ul li a {
+    padding: 0;
+    display: block;
+    text-decoration: none;
+    font-size: 10px;
+    color: #fff;
+    border-right: 1px solid #fff;
+  }
+  .bn-take-away-item .bn-left-side-bar ul li:last-child a {
+    border: none;
+  }
+  .bn-take-away-item .bn-left-side-bar.bn-sticky-left {
+    top: 61px !important;
+    display: block !important;
+    width: 100%;
   }
   .bn-take-away-search {
     padding-top: 126px;
@@ -2974,183 +3573,137 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     width: 19%;
     border-radius: 4px;
   }
-  .bn-take-away-item .bn-left-side-bar {
-    background: #CECECE;
-    position: fixed;
-    top: 61px !important;
-    left: 0;
-    right: 0;
-    z-index: 999999;
-  }
-  .bn-take-away-item .bn-left-side-bar.bn-sticky-left {
-    top: 61px !important;
-  }
-  .bn-take-away-item .bn-left-side-bar.bn-sticky-left {
-    display: block !important;
-    width: 100%;
-  }
-  .bn-take-away-item .bn-left-side-bar ul {
-    display: flex;
-    padding-top: 0px;
-    border-top: 0px;
-    margin: 0;
-  }
-  .bn-take-away-item .bn-left-side-bar ul li {
-    width: 23%;
-    text-align: center;
-    padding: 10px 0;
-  }
-  .bn-take-away-item .bn-left-side-bar ul li a {
-    padding: 0;
-    display: block;
-    text-decoration: none;
-    font-size: 10px;
-    color: #fff;
-    border-right: 1px solid #fff;
-  }
-  .bn-take-away-item .bn-left-side-bar ul li:last-child a {
-    border: none;
-  }
-  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product.bn-border-right {
-    height: 120px;
-    border-bottom: 1px solid #c1c1c1;
-  }
-  .bn-take-away-item .bn-right-side-bar-product .bn-text-active .bn-bg-product.bn-border-right {
-    height: 200px;
-  }
-  .bn-take-away-item .bn-right-side-bar-product .bn-text-active .bn-bg-product .bn-price-item {
-    top: -184px;
-  }
-  .bn-take-away-item .bn-right-side-bar-product .row {
-    margin-right: -12px;
-  }
-  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon {
-    bottom: 7px;
-  }
-  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon img {
-    top: 0px;
-  }
-  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-icon span {
-    background: #F4F4F4;
-    font-style: italic;
-  }
-  .bn-take-away-item .bn-right-side-bar-product .bn-bg-product .bn-price-item {
-    position: absolute;
-    right: 16px;
-    top: -104px;
-  }
-  .bn-take-away-item .bn-right-side-bar-product .bn-number-product {
-    position: initial;
-  }
-  .bn-take-away-item .bn-right-side-bar-product .bn-number-product i {
-    background: #000;
-    color: #fff;
-    padding: 14px;
-    border-radius: 100%;
-    font-size: 15px;
-  }
-  .bn-take-away-item .bn-right-side-bar-product .bn-number-product span {
-    width: 100%;
-    border: none;
-    background: transparent;
-    font-size: 28px;
-    font-weight: 700;
-    color: #c1c1c1;
-  }
-  .bn-take-away-item .bn-right-side-bar-product .col-lg-4 {
-    padding: 0px;
-  }
-  .bn-take-away-item .bn-right-side-bar-product .col-lg-12 {
-    padding-top: 0;
-  }
-  div#bn-check-last-order {
+  .bn-check-out-last-order-box {
     top: 62px;
     z-index: 999999;
   }
-  div#bn-check-last-order .modal-dialog {
+  .bn-check-out-last-order-box .modal-dialog {
     margin: 0;
   }
-  div#bn-check-last-order .modal-dialog .modal-content {
+  .bn-check-out-last-order-box .modal-dialog .modal-content {
     padding: 53px 25px;
     padding-bottom: 38px;
   }
-  div#bn-check-last-order .modal-dialog .modal-content .container {
+  .bn-check-out-last-order-box .modal-dialog .modal-content .container {
     padding: 0;
   }
-  div#bn-check-last-order .modal-dialog .modal-content h2 {
+  .bn-check-out-last-order-box .modal-dialog .modal-content h2 {
     font-size: 17px;
     font-weight: 600;
   }
-  div#bn-check-last-order .modal-dialog .modal-content h2 small {
+  .bn-check-out-last-order-box .modal-dialog .modal-content h2 small {
     font-size: 10px;
     left: 0;
     display: block;
     padding-top: 5px;
   }
-  div#bn-check-last-order .bn-price-item {
+  .bn-check-out-last-order-box .bn-price-item {
     font-size: 17px;
     font-weight: 600;
     line-height: 20px;
   }
-  div#bn-check-last-order .row.bn-last-order-footer p {
+  .bn-check-out-last-order-box .bn-price-item span.bn-discount-price {
+    font-size: 24px;
+  }
+  .bn-check-out-last-order-box .row.bn-last-order-footer p {
     font-size: 10px;
   }
-  div#bn-check-last-order .row.bn-last-order-footer button {
+  .bn-check-out-last-order-box .row.bn-last-order-footer button {
     font-size: 20px;
   }
-  div#bn-check-last-order .row.bn-border-bottom {
+  .bn-check-out-last-order-box .row.bn-border-bottom {
     padding: 0px 0px;
     padding-bottom: 19px;
   }
-  div#bn-check-last-order .row.bn-border-bottom:after {
+  .bn-check-out-last-order-box .row.bn-border-bottom:after {
     left: 12px;
     right: 12px;
   }
-  div#bn-check-last-order .row.bn-border-bottom-dash {
+  .bn-check-out-last-order-box .row.bn-border-bottom-dash {
     padding: 62px 0;
     padding-bottom: 19px;
     margin-bottom: 29px;
   }
-  div#bn-check-last-order .row.bn-border-bottom-dash:after {
+  .bn-check-out-last-order-box .row.bn-border-bottom-dash:after {
     left: 12px;
     right: 12px;
   }
-  div#bn-check-last-order .bn-radio-order {
+  .bn-check-out-last-order-box .bn-radio-order {
     padding-left: 0px;
     padding-top: 4px;
   }
-  div#bn-check-last-order .bn-radio-order .form-check {
+  .bn-check-out-last-order-box .bn-radio-order .form-check {
     padding-right: 1px;
   }
-  div#bn-check-last-order .bn-radio-order label {
+  .bn-check-out-last-order-box .bn-radio-order label {
     font-size: 10px;
     position: relative;
     top: -1px;
     left: -7px;
   }
-  div#bn-check-last-order .bn-radio-order .form-check-input {
+  .bn-check-out-last-order-box .bn-radio-order .form-check-input {
     height: 13px;
     width: 13px;
   }
-  div#bn-check-last-order .bn-radio-order .form-check-input:checked:before {
+  .bn-check-out-last-order-box .bn-radio-order .form-check-input:checked:before {
     height: 7px;
     width: 7px;
     left: 3px;
     top: 3px;
   }
-  div#bn-check-last-order .bn-number-product img {
+  .bn-check-out-last-order-box .bn-number-product img {
     width: 19px;
     margin-top: -5px;
   }
-  div#bn-check-last-order .bn-number-product span {
+  .bn-check-out-last-order-box .bn-number-product span {
     width: 40px;
     font-size: 15px;
     margin: 0;
     line-height: 18px;
     padding-top: 5px;
   }
-  div#bn-check-last-order .modal-header {
+  .bn-check-out-last-order-box .modal-header {
     padding-top: 60px;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .row.bn-border-bottom {
+    padding: 0px 0px;
+    padding-bottom: 0px;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .bn-gift-row-border .bn-radio-order label {
+    margin-left: 6px;
+    font-size: 12px;
+    display: block;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .bn-gift-row-border .bn-radio-order label span {
+    padding-left: 30px;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .bn-radio-order {
+    padding-top: 0px;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .bn-radio-order .form-check {
+    margin: 0;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .bn-radio-order .form-check .form-check-input {
+    top: -7px;
+    position: relative;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .bn-radio-order label {
+    margin-left: 6px;
+    font-size: 12px;
+    display: block;
+    top: -5px;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .bn-radio-order label span {
+    padding-left: 30px;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .bn-price-item {
+    font-size: 10px;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .bn-coupon-code {
+    opacity: 100%;
+  }
+  .bn-check-out-last-order-box .bn-gift-card-order .row.bn-last-order-footer button {
+    font-size: 16px;
   }
   .bn-catering-drink {
     padding: 91px 0;
@@ -3185,6 +3738,18 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-catering-drink .bn-drink-heading p b {
     font-weight: 700;
     font-size: 14px;
+  }
+  .bn-catering-drink .bn-left-side-bar.bn-sticky-left {
+    top: auto !important;
+  }
+  .bn-catering-drink .bn-left-side-bar.bn-sticky-left button {
+    font-size: 14px;
+    width: 40% !important;
+    padding: 2px 0;
+    text-align: center;
+    margin-bottom: 0px !important;
+    border: 2px solid #212529 !important;
+    display: inline-block !important;
   }
   .bn-breadcrumbs {
     padding-top: 15px;
@@ -3354,6 +3919,9 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-image-content-values .row .bn-content-text-header p a {
     font-size: 10px;
   }
+  .bn-shops-banner {
+    padding-top: 52px;
+  }
   .bn-shops-banner .bn-shop-contact {
     bottom: 0;
     top: 43%;
@@ -3522,17 +4090,18 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-policy-content .bn-policy-text-ex {
     margin-bottom: 18px;
   }
-  .bn-policy-content .bn-policy-text-ex p,
-  .bn-policy-content .bn-policy-text-ex h2,
+  .bn-policy-content .bn-policy-text-ex p {
+    margin-bottom: 0;
+  }
+  .bn-policy-content .bn-policy-text-ex h2 {
+    margin-bottom: 0;
+  }
   .bn-policy-content .bn-policy-text-ex ul {
     margin-bottom: 0;
   }
   .bn-policy-content .row .col-12 {
     padding: 0 12px;
   }
-  /* ============================
-   Portion page css
-=============================== */
   .bn-buffet-item {
     background: #E3E3E3;
   }
@@ -3576,14 +4145,14 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     margin-top: 16px;
     padding: 2px;
   }
+  .bn-buffet-item .bn-buffet-header a:focus {
+    box-shadow: none;
+  }
   .bn-buffet-item .bn-buffet-header a.bn-btn-two {
     background: transparent !important;
     border-color: #2C2C2C !important;
     color: #2C2C2C !important;
     font-weight: 700;
-  }
-  .bn-buffet-item .bn-buffet-header a:focus {
-    box-shadow: none;
   }
   .bn-portion-item {
     padding: 35px 0;
@@ -3617,23 +4186,23 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-catering-menu-all div#nav-tabContent .tab-pane .row {
     background: #e5e5e5;
     padding: 27px 19px;
-    margin: 0 auto ;
+    margin: 0 auto;
   }
   .bn-catering-menu-all .bn-menu-header {
     font-size: 14px;
   }
-  .bn-catering-menu-all div#bn-check-last-order .bn-radio-order {
+  .bn-catering-menu-all .bn-check-out-last-order-box .bn-radio-order {
     padding-left: 0;
     margin-bottom: 4px;
   }
-  .bn-catering-menu-all div#bn-check-last-order .bn-radio-order .bn-radio-form-order {
+  .bn-catering-menu-all .bn-check-out-last-order-box .bn-radio-order .bn-radio-form-order {
     padding-left: 0px;
   }
-  .bn-catering-menu-all div#bn-check-last-order .bn-radio-order .form-check {
+  .bn-catering-menu-all .bn-check-out-last-order-box .bn-radio-order .form-check {
     padding-right: 0px;
     padding-left: 22px;
   }
-  .bn-catering-menu-all div#bn-check-last-order select {
+  .bn-catering-menu-all .bn-check-out-last-order-box select {
     font-size: 12px;
     margin-bottom: 4px;
     color: #000;
@@ -3642,7 +4211,7 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     border: none;
     border-radius: 0;
   }
-  .bn-catering-menu-all div#bn-check-last-order select:focus {
+  .bn-catering-menu-all .bn-check-out-last-order-box select:focus {
     box-shadow: none;
     border: none;
     outline: none;
@@ -3706,8 +4275,14 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-check-out {
     padding: 40px 0;
   }
+  .bn-check-out .bn-order-orange-price img {
+    width: 285px;
+  }
   .bn-check-out div#bn-check-out-order {
     padding-bottom: 24px;
+  }
+  .bn-check-out div#bn-check-out-order .row.bn-bottom-space-check-mobile {
+    margin-bottom: 15px;
   }
   .bn-check-out div#bn-check-out-order .row.bn-border-bottom-dash {
     padding: 0px 9px;
@@ -3720,8 +4295,15 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     color: #000;
     font-size: 19px;
   }
+  .bn-check-out div#bn-check-out-order .row.bn-bottom-span-mobile-set {
+    margin-bottom: 29px;
+  }
   .bn-check-out div#bn-check-out-order .row.bn-last-order-footer {
     padding-bottom: 58px;
+  }
+  .bn-check-out div#bn-check-out-order .row.bn-last-order-footer p {
+    font-size: 10px;
+    padding-top: 10px;
   }
   .bn-check-out div#bn-check-out-order .modal-dialog {
     margin: 0;
@@ -3732,17 +4314,53 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   }
   .bn-check-out div#bn-check-out-order .modal-dialog .modal-content h2 small {
     font-size: 10px;
-    float: none;
-    display: block;
   }
   .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-check-out-mobile {
     margin-bottom: 63px;
   }
   .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-check-out-mobile .bn-col-mobile {
-    padding: 0;
+    padding-right: 0;
   }
   .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-check-out-mobile .bn-col-mobile .d-inline-block:last-child {
     padding-left: 10px;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-check-out-mobile .bn-col-mobile-left {
+    padding-left: 0;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-add-product-all-item {
+    margin-bottom: 29px;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-add-product-all-item .bn-product-child-item {
+    position: relative;
+    margin-top: 8px;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-add-product-all-item .bn-product-child-item:after {
+    content: "";
+    border-bottom: 1px solid;
+    position: absolute;
+    left: 7px;
+    right: 7px;
+    bottom: 0;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-add-product-all-item .row.bn-border-bottom {
+    align-items: end;
+    margin-bottom: 0;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-add-product-all-item .row.bn-border-bottom:after {
+    bottom: 5px;
+    display: none;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-add-product-all-item .row.bn-border-bottom .bn-number-product span {
+    margin-bottom: 5px;
+    display: block;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content .bn-add-product-all-item .row.bn-border-bottom .bn-price-item {
+    margin-bottom: 4px;
+  }
+  .bn-check-out div#bn-check-out-order .modal-dialog .modal-content img {
+    left: 32%;
+    right: auto;
+    width: 100px;
   }
   .bn-check-out div#bn-check-out-order .bn-price-item {
     font-size: 17px;
@@ -3772,17 +4390,13 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   }
   .bn-check-out div#bn-check-out-order .bn-check-box-order .form-check {
     padding-right: 0px;
-    width: 47%;
+    width: 48%;
   }
   .bn-check-out div#bn-check-out-order .bn-check-box-order .form-check-input {
     margin-top: 3px;
   }
   .bn-check-out div#bn-check-out-order .bn-check-box-order label {
-    font-size: 17px;
-  }
-  .bn-check-out div#bn-check-out-order .row.bn-last-order-footer p {
-    font-size: 10px;
-    padding-top: 10px;
+    font-size: 15px;
   }
   .bn-check-out div#bn-check-out-order .bn-number-product span {
     font-size: 16px;
@@ -3791,14 +4405,24 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     margin-bottom: 53px;
   }
   .bn-check-out .bn-check-out-from input,
-  .bn-check-out .bn-check-out-from select,
-  .bn-check-out .bn-check-out-from textarea {
+  .bn-check-out .bn-check-out-from span {
+    font-size: 14px;
+    height: 41px;
+    padding-left: 16px;
+    margin-bottom: 12px;
+    line-height: 29px;
+  }
+  .bn-check-out .bn-check-out-from select {
     font-size: 14px;
     height: 41px;
     padding-left: 16px;
     margin-bottom: 12px;
   }
   .bn-check-out .bn-check-out-from textarea {
+    font-size: 14px;
+    height: 41px;
+    padding-left: 16px;
+    margin-bottom: 12px;
     height: 141px;
   }
   .bn-check-out .bn-check-out-from label.bn-date-time {
@@ -3851,7 +4475,7 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   }
   .bn-form-checkout-button button {
     font-size: 14px;
-    padding: 6px 0 ;
+    padding: 6px 0;
     margin-top: 14PX;
   }
   .bn-contact-us {
@@ -3871,13 +4495,15 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     color: #676767;
     margin-bottom: 11px;
   }
-  .bn-contact-us .bn-contact-form input {
+  .bn-contact-us .bn-contact-form input,
+  .bn-contact-us .bn-contact-form span {
     font-size: 14px;
     height: 41px;
     padding-left: 16px;
     border: none;
     border-radius: 0;
     margin-bottom: 18px;
+    line-height: 28px;
   }
   .bn-contact-us .bn-contact-form textarea {
     font-size: 14px;
@@ -3897,6 +4523,9 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-contact-us .bn-contact-form button {
     font-size: 14px;
     margin-top: 0px;
+  }
+  .bn-contact-us .bn-file-attachment {
+    padding: 10px 16px;
   }
   div#bn-review-box {
     top: 60px;
@@ -3993,10 +4622,10 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
   .bn-menu-overview .bn-right-menu-bar {
     margin-bottom: 8px;
   }
-  .bn-menu-overview div#bn-check-last-order .bn-radio-order {
+  .bn-menu-overview .bn-check-out-last-order-box .bn-radio-order {
     margin-bottom: 1px;
   }
-  .bn-menu-overview div#bn-check-last-order select {
+  .bn-menu-overview .bn-check-out-last-order-box select {
     line-height: 1;
     border: none;
     border-radius: 0;
@@ -4047,15 +4676,17 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     padding: 4px;
     font-size: 7px;
   }
-  .bn-menu-overview-checkout-form div#bn-check-out-order .row.bn-total-price h2,
+  .bn-menu-overview-checkout-form div#bn-check-out-order .row.bn-total-price {
+    margin-bottom: 43px;
+  }
+  .bn-menu-overview-checkout-form div#bn-check-out-order .row.bn-total-price h2 {
+    font-size: 19px;
+  }
   .bn-menu-overview-checkout-form div#bn-check-out-order .row.bn-total-price .bn-price-item {
     font-size: 19px;
   }
   .bn-menu-overview-checkout-form div#bn-check-out-order .row.bn-border-bottom-dash {
     padding-top: 0px;
-  }
-  .bn-menu-overview-checkout-form div#bn-check-out-order .row.bn-total-price {
-    margin-bottom: 43px;
   }
   .bn-menu-overview-checkout-form div#bn-check-out-order .bn-radio-order .form-check-input {
     margin-top: 5px;
@@ -4155,10 +4786,6 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     display: inline-block;
     width: auto;
   }
-  .bn-jobs-main .bn-gift-heading .bn-check-box-order .form-check label {
-    font-size: 10px;
-    margin-left: -3px;
-  }
   .bn-jobs-main .bn-check-box-order .form-check {
     display: inline-block;
     width: auto;
@@ -4204,70 +4831,82 @@ div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button:fir
     height: 9px;
     width: 9px;
   }
-  div#bn-check-last-order .bn-gift-card-order .row.bn-border-bottom {
-    padding: 0px 0px;
-    padding-bottom: 0px;
+  .bn-breadcrumb-gift {
+    padding-top: 62px;
   }
-  div#bn-check-last-order .bn-gift-card-order .bn-gift-row-border .bn-radio-order label {
-    margin-left: 6px;
-    font-size: 12px;
-    display: block;
+  .bn-breadcrumb-our-values {
+    padding-top: 62px;
   }
-  div#bn-check-last-order .bn-gift-card-order .bn-gift-row-border .bn-radio-order label span {
-    padding-left: 30px;
+  .bn-breadcrumb-terms {
+    padding-top: 62px;
   }
-  div#bn-check-last-order .bn-gift-card-order .bn-radio-order {
-    padding-top: 0px;
-  }
-  div#bn-check-last-order .bn-gift-card-order .bn-radio-order .form-check {
-    margin: 0;
-  }
-  div#bn-check-last-order .bn-gift-card-order .bn-radio-order .form-check .form-check-input {
-    top: -7px;
-    position: relative;
-  }
-  div#bn-check-last-order .bn-gift-card-order .bn-radio-order label {
-    margin-left: 6px;
-    font-size: 12px;
-    display: block;
-    top: -5px;
-  }
-  div#bn-check-last-order .bn-gift-card-order .bn-radio-order label span {
-    padding-left: 30px;
-  }
-  div#bn-check-last-order .bn-gift-card-order .bn-price-item {
-    font-size: 10px;
-  }
-  div#bn-check-last-order .bn-gift-card-order .bn-coupon-code {
-    opacity: 100%;
-  }
-  div#bn-check-last-order .bn-gift-card-order .row.bn-last-order-footer button {
-    font-size: 16px;
-  }
-  .bn-breadcrumb-gift,
-  .bn-breadcrumb-our-values,
-  .bn-breadcrumb-terms,
   .bn-breadcrumb-policy {
     padding-top: 62px;
   }
-  .bn-shops-banner {
-    padding-top: 52px;
+  .bn-feedback-main .bn-review-box-feedback {
+    height: auto;
+    line-height: 22px;
   }
-  .bn-catering-drink .bn-left-side-bar.bn-sticky-left {
-    top: auto !important;
-  }
-  .bn-catering-drink .bn-left-side-bar.bn-sticky-left button {
+  .bn-feedback-main .bn-review-box-feedback div {
     font-size: 14px;
-    width: 40% !important;
-    padding: 2px 0;
-    text-align: center;
-    margin-bottom: 0px !important;
-    border: 2px solid #212529 !important;
-    display: inline-block !important;
   }
-  .bn-footer h4,
-  .bn-footer ul.list-unstyled li a {
-    font-size: 8px;
+  .bn-feedback-main .bn-review-box-feedback img {
+    width: 15px;
+  }
+  .bn-feedback-main .bn-review-box-feedback .bn-star-feedback {
+    display: block;
+    width: 100%;
+    text-align: right;
+  }
+  .bn-feedback-main .bn-review-box-feedback .bn-star-feedback span {
+    color: #717171;
+    font-size: 14px;
+    line-height: 45px;
+  }
+  .bn-feedback-main .bn-review-box-feedback .bn-star-feedback span:first-child {
+    padding-right: 12px;
+  }
+  .bn-feedback-main .bn-feedback-paragraph {
+    font-size: 14px;
+  }
+  .bn-feedback-main .bn-heading-feedback h2 {
+    font-size: 17px;
+    margin-bottom: 30px;
+  }
+  .bn-feedback-main .bn-space-top-feedback {
+    margin-top: 52px;
+  }
+  .bn-feedback-main .bn-space-t-feedback {
+    margin-top: 30px;
+  }
+  .bn-feedback-main .bn-space-t-feedback input {
+    padding: 12px 18px;
+    height: 44px;
+  }
+  .bn-feedback-main div#bn-check-out-order .bn-star-feedback .form-check {
+    padding-right: 10px;
+  }
+  .bn-feedback-main div#bn-check-out-order .bn-star-feedback .form-check-input:checked:before {
+    left: 2px;
+    top: 2px;
+  }
+  .bn-feedback-main div#bn-check-out-order .bn-star-feedback .form-check-label {
+    font-size: 13px;
+    margin-top: 13px;
+  }
+  .bn-history-for-index .bn-his-header {
+    font-size: 20px;
+  }
+  .bn-history-for-index .bn-his-paragraph {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .bn-history-for-index .bn-his-more {
+    font-size: 16px;
+    padding-bottom: 60px;
+  }
+  div#bn-check-last-order .bn-radio-order {
+    margin-bottom: 0px;
   }
 }
 /*# sourceMappingURL=style.css.map */

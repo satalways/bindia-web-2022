@@ -384,6 +384,8 @@
 <!--animation file-->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+<script src="{{ asset('asstes/js/sticky-sidebar-scroll.min.js') }}"></script>
+
 <script src="{{ asset('asstes/js/rellax.min.js') }}"></script>
 
 <!--Custom js file-->
