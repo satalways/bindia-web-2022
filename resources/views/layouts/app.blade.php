@@ -124,13 +124,17 @@
         <div id="cookiePopup">
             <h4>Cookie Policy</h4>
             <p>
-                Når du besøger vores hjemmeside, indsamles der oplysninger om dig med henblik på at optimere brugeroplevelsen af hjemmesiden.
-                Ved at bruge denne hjemmeside, giver du automatisk samtykke til vores <a href="{{ LaravelLocalization::localizeUrl(route('privacy_policy', [], false), 'da') }}#cp">cookiepolitik</a>.
+                Når du besøger vores hjemmeside, indsamles der oplysninger om dig med henblik på at optimere
+                brugeroplevelsen af hjemmesiden.
+                Ved at bruge denne hjemmeside, giver du automatisk samtykke til vores <a
+                    href="{{ LaravelLocalization::localizeUrl(route('privacy_policy', [], false), 'da') }}#cp">cookiepolitik</a>.
             </p>
             <br>
             <p>
                 When you visit our website, specific data are collected to optimize the user experience of the website.
-                By using our website, you automatically consent to our <a href="{{ LaravelLocalization::localizeUrl(route('privacy_policy', [], false), 'en') }}#cp">cookie policy</a>.
+                By using our website, you automatically consent to our <a
+                    href="{{ LaravelLocalization::localizeUrl(route('privacy_policy', [], false), 'en') }}#cp">cookie
+                    policy</a>.
             </p>
             <br>
             <button type="button" class="btn btn-lg btn-black" id="acceptCookie2">OK</button>
@@ -149,7 +153,7 @@
                 <ul class="navbar-nav justify-content-center me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link text-white {{ $routeName=='takeaway'?'active':'' }}" aria-current="page"
-                           href="{{ route('takeaway') }}">{{ __('global.takeaway') }}</a>
+                           href="{{ route('takeaway') }}#bn-take-away-price">{{ __('global.takeaway') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white {{ $routeName=='dinein'?'active':'' }}"
@@ -180,7 +184,7 @@
                 </li>
                 <li class="nav-item" style="border-bottom: 1px solid #ffffff85 !important;">
                     <a class="nav-link text-white"
-                       href="{{ route('takeaway') }}">{{ __('header.takeaway') }}</a>
+                       href="{{ route('takeaway') }}#bn-take-away-price">{{ __('header.takeaway') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('catering') }}">{{ __('header.catering') }}</a>
@@ -259,8 +263,8 @@
                2data-bs-toggle2="modal"
                data-bs-target2="#bn-check-last-order">
                 <i class="fas fa-shopping-basket"></i>
-                <span class="bn-item-card">0x</span>
-                <span class="bn-price-card">0,-</span>
+{{--                <span class="bn-item-card">0x</span>--}}
+{{--                <span class="bn-price-card">0,-</span>--}}
             </a>
         </div>
     @else
@@ -268,25 +272,19 @@
             <a href="#bn-check-last-order" class="text-white text-decoration-none" data-bs-toggle="modal"
                data-bs-target="#bn-check-last-order">
                 <i class="fas fa-shopping-basket"></i>
-                <span class="bn-item-card">0x</span>
-                <span class="bn-price-card">0,-</span>
+                <span class="bn-item-card"></span>
+                <span class="bh-current-price">135/</span>
+                <span class="bn-discount-price">110</span>
+{{--                <span class="bn-item-card">0x</span>--}}
+{{--                <span class="bn-price-card">0,-</span>--}}
             </a>
         </div>
     @endif
 </header>
 <!--Header End-->
 
-
 @yield('content')
 
-<?php
-/**
- * Created by PhpStorm.
- * User: Sajid
- * Date: 9/2/2021
- * Time: 3:38 PM
- */
-?>
 <footer class="bn-footer">
     <div class="container">
         <div class="row">
@@ -294,7 +292,8 @@
                 <h4 class="bn-footer-header">{{ __('footer.locations') }}</h4>
                 <ul class="list-unstyled">
                     @foreach(config('shops') as $shop => $arr)
-                        <li><a class="text-dark" href="{{ route(strtolower($shop)) }}">{!! $arr['long_name'] !!}</a>
+                        <li>
+                            <a class="text-dark" href="{{ route(strtolower($shop)) }}">{!! $arr['long_name'] !!}</a>
                         </li>
                     @endforeach
                 </ul>
@@ -307,23 +306,21 @@
                     <li><a class="text-dark" href="{{ route('our_team') }}">{{ __('footer.our_team') }}</a></li>
                     <li><a class="text-dark" href="{{ route('faq') }}">{{ __('footer.FAQ') }}</a></li>
                     <li><a class="text-dark" href="{{ route('glossary') }}">{{ __('footer.glossary') }}</a></li>
-                    <li><a target="_blank" href="https://staff.bindia.dk/attendance">Attendance</a></li>
                 </ul>
             </div>
             <div class="col-lg-3 col-3">
                 <h4 class="bn-footer-header">{{ __('footer.legal') }}</h4>
-                <ul class="list-unstyled">
+                <ul class="list-unstyled" style="margin-bottom: 0.2rem;">
                     <li><a class="text-dark" href="{{ route('privacy_policy') }}">{{ __('footer.privacy_policy') }}</a>
                     </li>
                     <li>
                         <a class="text-dark"
                            href="{{ route('terms_and_conditions') }}">{{ __('footer.terms_condition') }}</a>
                     </li>
-                    <li><a target="_blank" href="https://staff.bindia.dk/">Admin</a></li>
                 </ul>
 
                 <a href="{{ route('jobs') }}" class="text-decoration-none">
-                    <h4 class="bn-footer-header mb-0  mt-4">
+                    <h4 class="bn-footer-header mb-0 mt-4">
                         {{ __('footer.jobs') }}
                     </h4>
                 </a>
@@ -334,7 +331,13 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-lg-2 col-3"></div>
+            <div class="col-lg-2 col-3">
+                <div class="mt-5" style="margin-top: 102px !important;">&nbsp;</div>
+                <ul class="list-unstyled">
+                    <li><a target="_blank" href="https://staff.bindia.dk/attendance">Attendance</a></li>
+                    <li><a target="_blank" href="https://staff.bindia.dk/">Admin</a></li>
+                </ul>
+            </div>
         </div>
         <div class="bn-footer-last">
             <div class="float-start">
@@ -466,8 +469,9 @@
             }
         }).done(function (data) {
             if (data.qty > 0) {
-                $('div.bn-card-price span.bn-item-card').text(data.qty + 'x');
-                $('div.bn-card-price span.bn-price-card').text(data.amount + ',-');
+                $('div.bn-card-price span.bn-item-card').text(data.qty);
+                $('div.bn-card-price span.bh-current-price').text(data.amount + '/');
+                $('div.bn-card-price span.bn-discount-price').text(data.discount_amount);
                 $('div.bn-card-price').show();
             } else {
                 $('div.bn-card-price').hide();

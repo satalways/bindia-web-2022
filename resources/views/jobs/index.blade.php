@@ -16,6 +16,9 @@
             width: 100%;
             position: absolute;
         }
+        /*div.form-check {*/
+        /*    padding-left: 35px !important;*/
+        /*}*/
     </style>
 
 
@@ -87,7 +90,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="questions[0][4]"
                                            id="questions_0_4"
-                                           value="Yes"">
+                                           value="Yes">
                                     <label class="form-check-label" for="questions_0_0">
                                         {{ __('global.yes') }}
                                     </label>
@@ -252,7 +255,7 @@
                                             {{ $questions[4]['q'][4]['question'] }}
                                         </label>
                                     </div>
-                                    <div class="form-check">
+                                    <div class="form-check" style="padding-left: 33px;">
                                         <input class="form-check-input" type="radio" name="questions[4][4]"
                                                id="questions_4_4"
                                                value="Yes">
@@ -532,17 +535,25 @@
                         </div>
                         <div class="row">
                             <div class="bn-check-box-order">
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        {{ $questions[6]['q'][10]['question'] }}
-                                    </label>
+{{--                                <div class="form-check">--}}
+{{--                                    <label class="form-check-label">--}}
+{{--                                        {{ $questions[6]['q'][10]['question'] }}--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+                                <div class="col-lg-6 position-relative">
+                                    <span id="bn-job-file-attach-one"
+                                          class="form-control">{{ $questions[6]['q'][10]['question'] }}</span>
+                                    <input type="file" id="bn-file-attach-one" name="questions_6_10" accept="image/*"
+                                           class="form-control position-absolute top-0"
+                                           placeholder="{{ $questions[6]['q'][10]['question'] }}"
+                                           style="opacity: 0">
                                 </div>
-                                <div class="col-lg-6">
-                                    <input type="file" class="form-control"
-                                           title="{{ $questions[6]['q'][10]['question'] }}"
-                                           placeholder="{{ $questions[6]['q'][10]['question'] }}" accept="image/*"
-                                           name="questions_6_10" id="questions_6_10">
-                                </div>
+{{--                                <div class="col-lg-6">--}}
+                                    {{--                                    <input type="file" class="form-control"--}}
+                                    {{--                                           title="{{ $questions[6]['q'][10]['question'] }}"--}}
+                                    {{--                                           placeholder="{{ $questions[6]['q'][10]['question'] }}" accept="image/*"--}}
+                                    {{--                                           name="questions_6_10" id="questions_6_10">--}}
+{{--                                </div>--}}
                             </div>
                             <div class="bn-gift-sub-heading">
                                 <h2>{{ __('job.' . $questions[7]['lang_key'] ) }}</h2>

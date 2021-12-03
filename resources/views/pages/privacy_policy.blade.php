@@ -39,7 +39,7 @@
                         <p>{{ __('privacy_policy.data_controller_description') }}</p>
                         <p>
                             <span>{{ __('privacy_policy.contact_info') }}</span>
-                            <span>Bindia Holding ApS</span>
+                            <span>A S 2006 Holding ApS</span>
                             <span>Hvidovrevej 80E</span>
                             <span>2650 Hvidovre</span>
                             <span>Phone: (+45) 30 25 88 38</span>
@@ -64,7 +64,8 @@
                         <p>{{ __('privacy_policy.personal_data_p_5') }}</p>
                         <p>{{ __('privacy_policy.personal_data_p_6') }}</p>
 
-                        <h2 id="cp">{{ __('privacy_policy.cookie_heading') }}</h2>
+                        <p id="cp" style="height:20px">&nbsp;</p>
+                        <h2>{{ __('privacy_policy.cookie_heading') }}</h2>
                         <p>{!! __('privacy_policy.cookie_heading_p1') !!}</p>
                         <p>{!! __('privacy_policy.cookie_heading_p2') !!}</p>
 

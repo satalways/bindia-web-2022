@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2 class="mt-4"><a href="{{ route('takeaway') }}" class="btn btn-dark">Order Take Away</a></h2>
+                        <h2 class="mt-4"><a href="{{ route('takeaway') }}#bn-take-away-price" class="btn btn-dark">Order Take Away</a></h2>
                     </div>
                 </div>
             </div>
@@ -73,13 +73,17 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="bn-image-orange-price-d">
-                        <a href="{{ route('takeaway') }}">
+                        <a href="{{ route('takeaway') }}#bn-take-away-price">
                             @if(getCurrentLang() === 'da')
-                                <img src="{{ asset('asstes/image/orader-orange-price-dk.png') }}" alt="" class="d-sm-block d-none">
-                                <img src="{{ asset('asstes/image/orange-pirce-mobile-dk.png') }}" alt="" class="d-sm-none d-block">
+                                <img src="{{ asset('asstes/image/orader-orange-price-dk.png') }}" alt=""
+                                     class="d-sm-block d-none">
+                                <img src="{{ asset('asstes/image/orange-pirce-mobile-dk.png') }}" alt=""
+                                     class="d-sm-none d-block">
                             @else
-                                <img src="{{ asset('asstes/image/order-orange-price.png') }}" alt="" class="d-sm-block d-none">
-                                <img src="{{ asset('asstes/image/orange-pirce-mobile.png') }}" alt="" class="d-sm-none d-block">
+                                <img src="{{ asset('asstes/image/order-orange-price.png') }}" alt=""
+                                     class="d-sm-block d-none">
+                                <img src="{{ asset('asstes/image/orange-pirce-mobile.png') }}" alt=""
+                                     class="d-sm-none d-block">
                             @endif
                         </a>
                     </div>
@@ -117,19 +121,16 @@
 
     <div class="bn-history-for-index bn-main-story">
         <div class="container">
-            <h2 class="bn-his-header">The history of Bindia</h2>
+            <h2 class="bn-his-header">{{ __('home.seo_heading') }}</h2>
             <div class="bn-his-paragraph d-lg-block d-none">
-                Bindia started out with the shop by Trianglen in September 2003. Back then it was strictly a restaurant, but soon our customers started asking for take away, so we embraced the demand and did both. Due to the increasing demand for take away, we decided to launch
-                <p>Denmark’s first Indian take away shop (without any seating capacity) at H.C. Ørstedsvej on central Frederiksberg in October… 2006. The take away shop at H.C. Ørstedsvej was a great success from day one, and in August 2009 we opened the take away shop at Gl. Kongevej, which also functioned as our production kitchen. This was followed by the take away shop at Elmegade in May 2010, and the shop at Lyngby Hovedgade followed in March 2012.</p>
+                {!! __('home.seo_text') !!}
             </div>
 
             <div class="bn-his-paragraph d-lg-none d-block">
-                Bindia started out with the shop by Trianglen in September 2003. Back then it was strictly a
-                <p>restaurant, but soon our customers started asking for take away, so we embraced the demand and did both. Due to the increasing demand for take away, we decided to launch
-                    Denmark’s first Indian take away shop (without any seating capacity) at H.C. Ørstedsvej on central Frederiksberg in October… 2006. The take away shop at H.C. Ørstedsvej was a great success from day one, and in August 2009 we opened the take away shop at Gl. Kongevej, which also functioned as our production kitchen. This was followed by the take away shop at Elmegade in May 2010, and the shop at Lyngby Hovedgade followed in March 2012.</p>
+                {!! trans('home.seo_text', ['now'=>route('our_values')]) !!}
             </div>
-            <div class="bn-his-more">Show More</div>
-            <div class="bn-his-more" style="display: none;">Show Less</div>
+            <div class="bn-his-more">{{ __('home.more') }}</div>
+            <div class="bn-his-more" style="display: none;">{{ __('home.less') }}</div>
         </div>
     </div>
 

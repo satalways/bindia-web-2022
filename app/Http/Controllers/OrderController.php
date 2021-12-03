@@ -338,7 +338,7 @@ class OrderController extends Controller
         $allData = $request->all();
         $content = 'Web Hook Success: <pre>' . print_r($allData, true) . '</pre>';
         $content .= 'Method: ' . $request->method();
-        send_mail('shakeel@shakeel.pk', 'Nets Success Hook', $content);
+        //send_mail('shakeel@shakeel.pk', 'Nets Success Hook', $content);
 
         $token = $request->get('token');
         $data = decodeString($token);

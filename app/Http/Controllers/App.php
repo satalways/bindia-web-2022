@@ -106,14 +106,16 @@ class App extends Controller
             case 'getCart':
                 $O = new Order();
                 $data = $O->getSessionCart();
-                $amount = $qty1 = 0;
+                $discount_amount = $amount = $qty1 = 0;
                 foreach ($data as $id => $qty) {
                     $amount += item($id)->price * $qty;
+                    $discount_amount += item($id)->price_orange * $qty;
                     $qty1 += $qty;
                 }
                 return response([
                     'qty' => $qty1,
-                    'amount' => $amount
+                    'amount' => $amount,
+                    'discount_amount' => $discount_amount
                 ])->header('Content-Type', 'text/json');
                 break;
             default:

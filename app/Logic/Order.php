@@ -360,6 +360,10 @@ class Order
 
         $checkoutData = $this->getSessionCartData(true);
 
+        if (!$isOnlinePayment && $checkoutData['total_price'] >= 1000) {
+            return __('checkout.large_order');
+        }
+
         /**
          * Pick up Order and Pay at Shop
          */

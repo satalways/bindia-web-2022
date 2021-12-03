@@ -42,5 +42,6 @@ return [
     'select_at_least' => 'Vi kan desværre ikke nå at have din ordre klar før :time',
     'invalid_closing_time' => 'Invalid time selected, Please select time',
     'max_delivery_time' => 'Maximum delivery time is :time',
-    'nan_not_available' => 'Da vi desværre er løbet tør for Nan i dag, må vi venligst bede dig om at fjerne det fra din ordre. Vi anbefaler Paratha eller Pilaoo Ris i stedet for.'
+    'nan_not_available' => 'Da vi desværre er løbet tør for Nan i dag, må vi venligst bede dig om at fjerne det fra din ordre. Vi anbefaler Paratha eller Pilaoo Ris i stedet for.',
+    'large_order' => 'Du bedes betale online, når din ordre overstiger 1.000 DKK.',
 ];

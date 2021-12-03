@@ -30,6 +30,10 @@
                 border-bottom: 2px solid #8c8c8c;
             }
         }
+
+        .bn-icon span img {
+            cursor: default !important;
+        }
     </style>
 
     @include('order.popups.copy_order')
@@ -100,15 +104,19 @@
                 <div class="row bn-orange-img-take-away">
                     <div class="col-12">
                         @if(getCurrentLang() === 'da')
-                            <img src="{{ asset('asstes/image/take-away/orange-price-order-dk.png') }}" alt=""
-                                 style="margin-bottom: 10px;" class="d-sm-block d-none">
-                            <img src="{{ asset('asstes/image/take-away/orange-mobile-pirce-dk.png') }}" alt=""
-                                 style="margin-bottom: 10px;" class="d-sm-none d-block">
+                            <img src="{{ asset('asstes/image/item2.png') }}"
+                                 data-src="{{ asset('asstes/image/take-away/orange-price-order-dk.png') }}" alt=""
+                                 style="margin-bottom: 10px;" class="d-sm-block d-none lazy">
+                            <img src="{{ asset('asstes/image/item2.png') }}"
+                                 data-src="{{ asset('asstes/image/take-away/orange-mobile-pirce-dk.png') }}" alt=""
+                                 style="margin-bottom: 10px;" class="d-sm-none d-block lazy">
                         @else
-                            <img src="{{ asset('asstes/image/take-away/orange-price-order.png') }}" alt=""
-                                 style="margin-bottom: 10px" class="d-sm-block d-none">
-                            <img src="{{ asset('asstes/image/take-away/orange-mobile-pirce.png') }}" alt=""
-                                 class="d-sm-none d-block" style="margin-bottom: 10px">
+                            <img src="{{ asset('asstes/image/item2.png') }}"
+                                 data-src="{{ asset('asstes/image/take-away/orange-price-order.png') }}" alt=""
+                                 style="margin-bottom: 10px" class="d-sm-block d-none lazy">
+                            <img src="{{ asset('asstes/image/item2.png') }}"
+                                 data-src="{{ asset('asstes/image/take-away/orange-mobile-pirce.png') }}" alt=""
+                                 class="d-sm-none d-block lazy" style="margin-bottom: 10px">
                         @endif
                     </div>
                 </div>
@@ -178,36 +186,46 @@
                                             <div class="bn-icon">
                                                 @if($item->dairy)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/milk.svg') }}"
+                                                        <img src="{{ asset('asstes/image/take-away/milk.png') }}"
                                                              alt="">
                                                     </span>
                                                 @endif
                                                 @if($item->nuts)
-                                                    <span><img src="{{ asset('asstes/image/take-away/Nut.svg') }}"
+                                                    <span><img src="{{ asset('asstes/image/take-away/nut.png') }}"
                                                                alt=""></span>
                                                 @endif
                                                 @if($item->gluten)
-                                                    <span><img src="{{ asset('asstes/image/take-away/Wheat.svg') }}"
+                                                    <span><img src="{{ asset('asstes/image/take-away/wheat.png') }}"
                                                                alt=""></span>
                                                 @endif
                                                 @if($item->chili)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/Chili.svg') }}"
+                                                        <img src="{{ asset('asstes/image/take-away/chili.png') }}"
                                                              alt="">
                                                     </span>
                                                 @endif
                                                 @if($item->double_chili)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/Chili2.svg') }}"
+                                                        <img
+                                                            src="{{ asset('asstes/image/take-away/dubble-chili.png') }}"
+                                                            alt="">
+                                                    </span>
+                                                @endif
+                                                <span class="bn-text-icon">
+                                                    <img
+                                                        src="{{ asset('asstes/image/take-away/' .  \Str::slug($item->portion) . '.png') }}">
+                                                </span>
+                                                @if($item->vegan)
+                                                    <span>
+                                                        <img src="{{ asset('asstes/image/take-away/vegan.png') }}"
                                                              alt="">
                                                     </span>
                                                 @endif
-                                                <span class="bn-text-icon">{{ $item->portion }}</span>
-                                                @if($item->vegan)
-                                                    <span class="bn-text-icon  bn-text-green">Vegan</span>
-                                                @endif
                                                 @if($item->veg)
-                                                    <span class="bn-text-icon  bn-text-green">Veg.</span>
+                                                    <span>
+                                                        <img src="{{ asset('asstes/image/take-away/veg.png') }}"
+                                                             alt="">
+                                                    </span>
                                                 @endif
 
                                             </div>

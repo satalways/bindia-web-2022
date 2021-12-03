@@ -19,19 +19,16 @@ Hvis du vælger at lave en kundekonto hos Bindia, bliver dit navn, adresse, tele
 Det er samtidigt dit eget ansvar at tjekke at din ordre stemmer overens med indholdet af det afhentede, før du forlader butikken. Herudover er det også dit ansvar at tjekke at maden er varm (bortset fra kølige madvarer som Raita, Mango Lassi, etc.) før du forlader butikken.
 Klager vedrørende ovenstående afhentningsordrer (som kold mad, forkert eller beskadiget indhold, m.m.) skal ligeledes afgives, inden du forlader butikken.',
     'pick_up_order_description_2' => 'Bindia er ikke ansvarlige for hvad, der sker med indholdet af din afhentningsordre, efter denne har forladt butikken.',
-//    'pick_up_order_description_3' => 'Any complaints about missing items / wrong items / ruined items / cold food / etc. must be
-//                            given before leaving the shop. Bindia cannot be held responsible for what happens with the
-//                            contents of your order after leaving the shop.',
+    'pick_up_order_description_3' => '',
     'delivery_orders' => 'Leveringsordrer',
-    'delivery_order_description_1' => 'Bindia samarbejder med Takeout (link: www.takeout.dk)  vedrørende leveringer.
-Ved leverede ordrer er det dit ansvar at angive det korrekte navn, telefonnummer, e-mail-adresse og leveringsadresse, sammen med typer af information, hvis disse kan være nødvendige for at din levering kan nå frem (som fx et andet navn på døren).
-',
-    'delivery_order_description_2' => 'Det valgte leveringstidspunkt er et estimat; selvom vi gøres vores bedste for at imødekomme leveringstidspunktet, kan dette svinge med +/- 20 minutter grundet alt fra travlhed, trafik, m.m.',
-    'delivery_order_description_3' => 'Bindia er ikke forpligtet til at ringe og få bekræftet at det er den korrekte information, der er blevet givet.
-I tilfælde af at du videregiver ufuldstændig eller forkert information, er buddet ikke i stand til levere din ordre, som herefter vil blive sendt tilbage til den Bindia, hvor den kom fra.
-I sådan et tilfælde, er det muligt at afhente ordren samme dag inden lukketid i den givne butik. Herefter vil det være umuligt at få indholdet eller en refundering af ordren.
-<p>Hvis du har nogen spørgsmål vedrørende transport og levering, kan du kontakte Takeouts kundeservice på tlf. (+45) 70 27 70 30. I tilfælde af at der er noget i vejen med din ordre (som fx manglende eller beskadiget indhold), er det vigtigt at du kontakter den pågældende Bindia-butik så hurtigt som muligt (inden for 30 min.) efter du har modtaget din leveringsordre. I din ordrebekræftelse finder du adresse og telefonnummer på den Bindia, hvor din ordre er blevet behandlet. </p>
-<p>Du er også velkommen til at ringe til vores hovednummer på (+45) 30 25 88 38.</p>',
+    'delivery_order_description_1' => 'Bindia samarbejder med <a href="https://takeout.dk/" target="_blank">Takeout</a> vedrørende leveringer.',
+    'delivery_order_description_2' => 'Det valgte leveringstidspunkt er et estimat; selvom vi gøres vores bedste for at imødekomme leveringstidspunktet, kan dette svinge med +/- 20 minutter grundet travlhed, trafik, m.m.',
+    'delivery_order_description_3' => 'For at sikre leveringen af din ordre, er det dit eget ansvar at angive det korrekte navn, telefonnummer, e-mailadresse og leveringsadresse, sammen med typer af information, hvis disse kan være nødvendige for at din levering kan nå frem (som fx et andet navn på døren). Bindia er ikke forpligtet til at ringe og få bekræftet at det er den korrekte information, der er blevet givet. I tilfælde af at du videregiver ufuldstændig eller forkert information, er buddet ikke i stand til levere din ordre, som herefter vil blive sendt tilbage til den Bindia, hvor den kom fra. I sådan et tilfælde, er det muligt at afhente ordren samme dag inden lukketid i den givne butik. Herefter vil det være umuligt at få indholdet eller en refundering af ordren.',
+    'delivery_order_description_4' => 'I tilfælde af at der er noget i vejen med din ordre (som fx manglende eller beskadiget indhold), er det vigtigt at du kontakter den pågældende Bindia-butik så hurtigt som muligt (inden for 30 min.) efter du har modtaget din leveringsordre. I din ordrebekræftelse finder du adresse og telefonnummer på den Bindia, hvor din ordre er blevet behandlet.',
+    'delivery_order_description_5' => 'Du er også velkommen til at ringe til vores hovednummer på (+45) 30 25 88 38.',
+    'delivery_order_description_6' => 'Hvis du har yderligere spørgsmål vedrørende transport og levering, kan du kontakte Takeouts kundeservice på tlf. (+45) 70 27 70 30.',
+
+
     'cancellation_returns' => 'Afbestillinger og Returneringer',
     'cancel_return_description_1' => 'Du har retten til at annullere din ordre minimum 24 timer inden det ønskede tidspunkt for levering eller afhentning.
             Med under 24 timer til levering eller afhentning, bliver din ordrer automatisk kategoriseret som under behandling. Da dette vedrører tilberedning af mad, er der ikke mulighed for afbestilling og/eller refundering.',

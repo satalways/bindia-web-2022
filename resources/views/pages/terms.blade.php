@@ -44,11 +44,17 @@
                     <div class="bn-policy-text-item">
                         <h2>{{ __('terms.delivery_orders') }}</h2>
                         <p>
-                            {{ __('terms.delivery_order_description_1') }}
+                            {!! __('terms.delivery_order_description_1') !!}
                             <br>
                             {{ __('terms.delivery_order_description_2') }}
                             <br>
                             {!! __('terms.delivery_order_description_3') !!}
+                            <br>
+                            {!! __('terms.delivery_order_description_4') !!}
+                            <br>
+                            {!! __('terms.delivery_order_description_5') !!}
+                            <br>
+                            {!! __('terms.delivery_order_description_6') !!}
                         </p>
                     </div>
                 </div>
@@ -84,8 +90,8 @@
                         <h2>{{ __('terms.spiciness_level:') }} </h2>
                         <p>
                             {{ __('terms.spiciness_description_1') }}
-{{--                            <br>--}}
-{{--                            {{ __('terms.spiciness_description_2') }}--}}
+                            <br>
+                            {{ __('terms.spiciness_description_2') }}
                         </p>
                     </div>
                     <div class="bn-policy-text-item">
@@ -103,9 +109,9 @@
                             <br>
                             {{ __('terms.feedback_complaints_description_3') }}
                             <br>
-                            {{ __('terms.feedback_complaints_description_4') }}
+                            {!! __('terms.feedback_complaints_description_4') !!}
                             <br>
-                            {{ __('terms.feedback_complaints_description_5') }}
+                            {!! __('terms.feedback_complaints_description_5') !!}
                             <br>
                             {!! __('terms.feedback_complaints_description_6') !!}
                         </p>
