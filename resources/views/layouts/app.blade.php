@@ -263,8 +263,8 @@
                2data-bs-toggle2="modal"
                data-bs-target2="#bn-check-last-order">
                 <i class="fas fa-shopping-basket"></i>
-{{--                <span class="bn-item-card">0x</span>--}}
-{{--                <span class="bn-price-card">0,-</span>--}}
+                {{--                <span class="bn-item-card">0x</span>--}}
+                {{--                <span class="bn-price-card">0,-</span>--}}
             </a>
         </div>
     @else
@@ -275,8 +275,8 @@
                 <span class="bn-item-card"></span>
                 <span class="bh-current-price">135/</span>
                 <span class="bn-discount-price">110</span>
-{{--                <span class="bn-item-card">0x</span>--}}
-{{--                <span class="bn-price-card">0,-</span>--}}
+                {{--                <span class="bn-item-card">0x</span>--}}
+                {{--                <span class="bn-price-card">0,-</span>--}}
             </a>
         </div>
     @endif
@@ -355,7 +355,7 @@
 <!--End Footer-->
 
 <!-- My last Order popup -->
-<div class="modal fade" id="bn-check-last-order" tabindex="-1" aria-hidden="true">
+<div class="modal fade bn-check-out-last-order-box" id="bn-check-last-order" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="container">
@@ -423,11 +423,8 @@
                 }).done(function (data) {
                     hide();
                     updateTopCart();
-                    // var newQty = Number(currentQty) + Number(Inc);
-                    // if (newQty < 0) newQty = 0;
-                    // qtyObject.text(newQty);
                     $('#bn-check-last-order .container').html(data.html)
-                    $('[data-single=' + ID + ']').html( data.single_html );
+                    $('[data-single=' + ID + ']').html(data.single_html);
                 })
             })
             .on('click', 'input.spiceCheck', function (e) {

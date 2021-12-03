@@ -30,6 +30,7 @@ class Order
         $itemsSend = $itemsSend->each(function ($item, $key) use ($items, &$bagPoints, &$nanAvailable) {
             $item->qty = $items[$item->id];
             $item->amount = $items[$item->id] * $item->price;
+            $item->amount_orange = $items[$item->id] * $item->price_orange;
             $bagPoints += ($item->bag_points * $items[$item->id]);
             if ($item->code == 610) $nanAvailable = true;
         });
@@ -37,10 +38,12 @@ class Order
         $bags = ceil($bagPoints / config('order.points_for_one_bag'));
         $bags_price = $bags * config('order.bag_price');
         $total_price = $itemsSend->pluck('amount')->sum() + $bags_price;
+        $total_price_orange = $itemsSend->pluck('amount_orange')->sum() + $bags_price;
 
         return [
             'bagPoints' => $bagPoints,
             'total_price' => $total_price,
+            'total_price_orange' => $total_price_orange,
             'bags_price' => $bags_price,
             'bags' => $bags,
             'itemsSend' => $itemsSend,
@@ -70,6 +73,7 @@ class Order
 
         if (!$checkout) {
             $Data['total_price'] -= $Data['bags_price'];
+            $Data['total_price_orange'] -= $Data['bags_price'];
             $Data['bagPoints'] = 0;
             $Data['bags_price'] = 0;
         }
@@ -162,6 +166,7 @@ class Order
         }
 
         $Data['total_price'] -= $discount;
+        $Data['total_price_orange'] -= $discount;
 
         /**
          * Check if there is delivery order and calculating delivery fee
@@ -176,11 +181,13 @@ class Order
             if ($takeOut) {
                 $Data['delivery_fee'] = $takeOut->price;
                 $Data['total_price'] += $takeOut->price;
+                $Data['total_price_orange'] += $takeOut->price;
             }
         }
 
         return [
             'total_price' => $Data['total_price'],
+            'total_price_orange' => $Data['total_price_orange'],
             'total_qty' => array_sum($items),
             'items' => $Data['itemsSend'],
             'bag_points' => $Data['bagPoints'],

@@ -432,7 +432,7 @@ class Orders extends Model
 
     public function orderFiles()
     {
-        $files[] = resource_path('order_files/Loyalty-Programme.pdf');
+        //$files[] = resource_path('order_files/Loyalty-Programme.pdf');
         $files[] = resource_path('order_files/how-to-reheat-your-food-from-bindia.pdf');
         $files[] = resource_path('order_files/' . strtoupper($this->shop) . '-Terms of Sale and Delivery.pdf');
         $files[] = $this->pdf();
