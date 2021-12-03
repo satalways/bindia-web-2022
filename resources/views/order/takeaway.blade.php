@@ -313,7 +313,8 @@
                     console.error(e3);
                 }
             }).done(function (data) {
-                $('#bn-check-last-order .container').html(data)
+                console.error(data);
+                $('#bn-check-last-order .container').html(data.html)
             });
         }
     </script>

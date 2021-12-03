@@ -215,15 +215,19 @@ class Order
     public function setSessionCartSpice(array $spiceArray)
     {
         $sessionCart = $this->getSessionCart();
+        \request()->session()->put('bindiaCartSpice', $spiceArray);
 
-        $finalSpiceArray = [];
-        foreach ($spiceArray as $id => $spice) {
-            if (isset($sessionCart[$id])) {
-                $finalSpiceArray[$id] = $sessionCart[$id] . '-' . $spice;
-            }
-        }
+//        $finalSpiceArray = [];
+//        foreach ($spiceArray as $id => $spice) {
+//            if (isset($sessionCart[$id])) {
+//                foreach($spice as $s) {
+//                    $finalSpiceArray[$id][$s] = isset($finalSpiceArray[$id][$s]) ? $finalSpiceArray[$id][$s] + 1 : 1;
+//                }
+//                //$finalSpiceArray[$id] = $sessionCart[$id] . '-' . $spice;
+//            }
+//        }
 
-        \request()->session()->put('bindiaCartSpice', $finalSpiceArray);
+//        \request()->session()->put('bindiaCartSpice', $finalSpiceArray);
     }
 
     public function setSessionCartItem($id, $what = 1, $qty = 1)

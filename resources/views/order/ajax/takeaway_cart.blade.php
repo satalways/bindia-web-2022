@@ -13,10 +13,10 @@
             <div class="col-xl-2 col-lg-3 col-4 d-lg-inline-block d-none">
                 <div class="bn-number-product float-end">
                     <img class="bn-remove-radio-html addItem" src="{{ asset('asstes/image/take-away/min.svg') }}" alt=""
-                         data-inc="-1" style="cursor: pointer">
+                         data-inc="-1" style="cursor: pointer" data-id="{{ $item->id }}">
                     <span>x{{ $cartItems[$item->id] }}</span>
                     <img class="bn-add-radio-html addItem" src="{{ asset('asstes/image/take-away/max.svg') }}" alt=""
-                         data-inc="+1" style="cursor: pointer">
+                         data-inc="+1" style="cursor: pointer" data-id="{{ $item->id }}">
                 </div>
             </div>
             <div class="col-xl-2 col-lg-2 col-md-4 col-4">
@@ -32,8 +32,8 @@
                                 <input class="form-check-input spiceCheck" type="radio"
                                        name="spice[{{ $item->id }}][{{ $x }}]"
                                        id="exampleRadios1{{ $x.$item->id }}"
-                                       value="default" {{ !isset($spice[$item->id]) || (isset($spice[$item->id]) && str_ends_with($spice[$item->id], 'default')) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="exampleRadios1{{ $item->id }}">
+                                       value="default" {{ !isset($spice[$item->id][$x]) || (isset($spice[$item->id][$x]) && str_ends_with($spice[$item->id][$x], 'default')) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="exampleRadios1{{ $x.$item->id }}">
                                     Standard
                                 </label>
                             </div>
@@ -41,8 +41,8 @@
                                 <input class="form-check-input spiceCheck" type="radio"
                                        name="spice[{{ $item->id }}][{{ $x }}]"
                                        id="exampleRadios2{{ $x.$item->id }}"
-                                       value="hot" {{ isset($spice[$item->id]) && str_ends_with($spice[$item->id], 'hot') ? 'checked' : '' }}>
-                                <label class="form-check-label" for="exampleRadios2{{ $item->id }}">
+                                       value="hot" {{ isset($spice[$item->id][$x]) && str_ends_with($spice[$item->id][$x], 'hot') ? 'checked' : '' }}>
+                                <label class="form-check-label" for="exampleRadios2{{ $x.$item->id }}">
                                     Hot
                                 </label>
                             </div>
@@ -50,8 +50,8 @@
                                 <input class="form-check-input spiceCheck" type="radio"
                                        name="spice[{{ $item->id }}][{{ $x }}]"
                                        id="exampleRadios3{{ $x.$item->id }}"
-                                       value="xhot" {{ isset($spice[$item->id]) && str_ends_with($spice[$item->id], 'xhot') ? 'checked' : '' }}>
-                                <label class="form-check-label" for="exampleRadios3{{ $item->id }}">
+                                       value="xhot" {{ isset($spice[$item->id][$x]) && str_ends_with($spice[$item->id][$x], 'xhot') ? 'checked' : '' }}>
+                                <label class="form-check-label" for="exampleRadios3{{ $x.$item->id }}">
                                     X-Hot
                                 </label>
                             </div>

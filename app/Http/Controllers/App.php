@@ -108,6 +108,7 @@ class App extends Controller
                 $data = $O->getSessionCart();
                 $discount_amount = $amount = $qty1 = 0;
                 foreach ($data as $id => $qty) {
+                    if (empty($id)) continue;
                     $amount += item($id)->price * $qty;
                     $discount_amount += item($id)->price_orange * $qty;
                     $qty1 += $qty;

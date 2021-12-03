@@ -41,6 +41,7 @@ class OrderController extends Controller
                 ];
                 break;
             case 'updateSpice':
+                //\Log::info( print_r($request->post('spice'), true) );
                 $O->setSessionCartSpice($request->post('spice') ?? []);
                 break;
             case 'copyLastOrder':
