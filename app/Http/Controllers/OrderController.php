@@ -23,11 +23,22 @@ class OrderController extends Controller
             case 'setValueCart':
                 $O->setSessionCartItem($request->post('id'), $request->post('what'));
             case 'getCart':
-                echo view('order.ajax.takeaway_cart', [
-                    'items' => $O->getSessionCartData(),
-                    'cartItems' => $O->getSessionCart(),
-                    'spice' => $O->getSessionSpice()
-                ]);
+                //\Log::info($O->getSessionCartData());
+                $items = $O->getSessionCartData();
+                $cartItems = $O->getSessionCart();
+                return [
+                    'html' => view('order.ajax.takeaway_cart', [
+                        'items' => $O->getSessionCartData(),
+                        'cartItems' => $cartItems,
+                        'spice' => $O->getSessionSpice()
+                    ])->render(),
+                    'single_html' => view('order.ajax.takeaway_single_item',
+                        [
+                            'item' => $items['items']->where('id', $request->post('id'))->first(),
+                            'cartItems' => $cartItems,
+                            'id' => $request->post('id') ?? 0
+                        ])->render()
+                ];
                 break;
             case 'updateSpice':
                 $O->setSessionCartSpice($request->post('spice') ?? []);

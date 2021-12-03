@@ -30,9 +30,9 @@ class TestController extends Controller
 {
     public function index()
     {
+        $u = OrderItems::query()->get();
 
-        //dump( LaravelLocalization::getURLFromRouteNameTranslated('en', 'routes.jobs') );
-        dump(LaravelLocalization::localizeUrl(route('privacy_policy', [], false), 'en'));
+        $u->find('id', 10)->get();
 
         die;
         $G = new \App\Logic\GiftCard();
