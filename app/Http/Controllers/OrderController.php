@@ -170,6 +170,7 @@ class OrderController extends Controller
                         'items' => $items,
                         'cartItems' => $O->getSessionCart(),
                         'spice' => $O->getSessionSpice(),
+                        'spice2' => $O->getSessionSpiceCountArray(),
                         'maxPost' => $maxPost,
                         'minPost' => $minPost,
                         'time' => $time,
@@ -279,11 +280,6 @@ class OrderController extends Controller
 
     public function markDone(Request $request)
     {
-//        $content = 'Get:<pre>' . print_r($request->query(), true) . '<br>' .
-//            'Post: ' . print_r($request->post(), true) . '<br>' .
-//            '<br>' . print_r($request->all(), true) . '</pre>';
-//        send_mail('shakeel@shakeel.pk', 'Marking Done: ', $content);
-
         $token = $request->get('token');
         $paymentID = $request->get('paymentId') ?? $request->get('paymentid');
         $token = decodeString($token);
@@ -310,6 +306,9 @@ class OrderController extends Controller
             }
 
             $O = new Order();
+            if (localhost()) {
+                $O->markOrderPaid($order->id);
+            }
             $O->clearSession();
 
             return response()->redirectToRoute('order.success', ['token' => $order->orderToken()]);

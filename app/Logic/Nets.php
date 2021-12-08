@@ -71,15 +71,17 @@ class Nets
         $token = encodeData(['id' => $orderUniqueID, 'type' => 'order']);
 
         # https://tech.dibspayment.com/easy/api/paymentapi#webhooks
-        $data['notifications'] = [
-            'webHooks' => [
-                [
-                    'eventName' => 'payment.checkout.completed',
-                    'url' => route('order.nets.hooks') . '?token=' . $token,
-                    'authorization' => self::secretKey(),
+        if (!localhost()) {
+            $data['notifications'] = [
+                'webHooks' => [
+                    [
+                        'eventName' => 'payment.checkout.completed',
+                        'url' => route('order.nets.hooks') . '?token=' . $token,
+                        'authorization' => self::secretKey(),
+                    ],
                 ],
-            ],
-        ];
+            ];
+        }
         //                [
 //                    'eventName' => 'payment.charge.failed',
 //                    'url' => route('order.nets.cancel') . '?token=' . $token,
@@ -170,9 +172,9 @@ class Nets
             $curl->setOpt(CURLOPT_SSL_VERIFYPEER, 0);
             $curl->post($data);
 
+
             if ($curl->error) {
                 //if (! blank($curl->response)) return $curl->response;
-
                 return $curl->errorCode . ': ' . $curl->errorMessage;
             } else {
                 return $curl->response;

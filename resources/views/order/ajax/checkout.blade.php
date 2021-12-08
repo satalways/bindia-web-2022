@@ -25,70 +25,163 @@
         <div class="container">
             @include('order.popups.copy_order')
 
+            <div class="bn-order-orange-price">
+                <img src="{{ asset('asstes/image/check-out/orange-price-light.png') }}" alt="">
+            </div>
             <div class="" id="bn-check-out-order">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        @foreach($items['items'] as $item)
-                            <div class="row bn-border-bottom bn-check-out-mobile">
-                                <div class="col-lg-5 col-9 bn-col-mobile">
-                                    @if(in_array($item->section,['bn-curries','bn-veg']))
-                                        <h2>{{ $item->name }} <span style="font-size: 65%">(No Sides)</span></h2>
-                                    @else
-                                        <h2>{{ $item->name }}</h2>
+                        @if($items['isOrange'])
+                            <div class="bn-orange-container">
+                                <img src="{{ asset('asstes/image/check-out/orange-frame.svg') }}" alt=""
+                                     class="d-sm-block d-none">
+                                <img src="{{ asset('asstes/image/check-out/orange-moble-frame.png') }}" alt=""
+                                     class="d-sm-none d-block">
+                            </div>
+                        @endif
+
+                        <div class="row bn-border-bottom bn-check-box-choose bn-bottom-space-check-mobile">
+                            <div class="col-lg-8 col-4">
+                                <h2>{{ __('checkout.choose') }}</h2>
+                            </div>
+                            <div class="col-lg-4 col-8">
+                                <div class="bn-radio-order bn-check-box-order">
+                                    <div class="form-check">
+                                        <input class="form-check-input update {{ $items['isOrange']?'bn-checked-color-chnaged':'' }}" type="radio" name="delivery"
+                                               id="choose-pickup"
+                                               value="Pickup at Shop" {{ !isset($items['checkout']['delivery']) || $items['checkout']['delivery']==='Pickup at Shop'?'checked':'' }}>
+                                        <label class="form-check-label" for="choose-pickup">
+                                            {{ __('checkout.pickup') }}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input update" type="radio" name="delivery"
+                                               id="choose-delivery"
+                                               value="By Taxi" {{ isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi'?'checked':'' }}>
+                                        <label class="form-check-label" for="choose-delivery">
+                                            {{ __('checkout.delivery') }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row bn-border-bottom bn-check-box-choose bn-bottom-space-check">
+                            <div class="col-lg-8 col-4">
+                                <h2>{{ __('checkout.payment') }}</h2>
+                            </div>
+                            <div class="col-lg-4 col-8">
+                                <div class="bn-radio-order bn-check-box-order">
+                                    <div class="form-check">
+                                        <input class="form-check-input update {{ $items['isOrange']?'bn-checked-color-chnaged':'' }}" type="radio" name="payment_type"
+                                               id="choose-online"
+                                               value="card" {{ !isset($items['checkout']['payment_type']) || $items['checkout']['payment_type']==='card'?'checked':'' }}>
+                                        <label class="form-check-label" for="choose-online">
+                                            {{ __('checkout.online') }}
+                                        </label>
+                                    </div>
+                                    @if( !isset($items['checkout']['delivery']) || (isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='Pickup at Shop') )
+                                        <div class="form-check">
+                                            <input class="form-check-input update" type="radio" name="payment_type"
+                                                   id="choose-shop"
+                                                   value="atshop" {{ isset($items['checkout']['payment_type']) && $items['checkout']['payment_type']==='atshop'?'checked':'' }}>
+                                            <label class="form-check-label" for="choose-shop">
+                                                {{ __('checkout.shop') }}
+                                            </label>
+                                        </div>
                                     @endif
                                 </div>
-                                <div class="col-3 d-lg-none d-block bn-col-mobile">
-                                    <div class="bn-number-product d-inline-block">
-                                        <span>x{{ $item->qty }}</span>
-                                    </div>
-                                    <div class="bn-price-item d-inline-block float-end">{{ $item->price }},-</div>
-                                </div>
-                                <div class="col-lg-5 col-12">
-                                    @if($item->order_chili)
-                                        <div class="bn-radio-order">
-                                            <div class="btn-group">
-                                                <span style="cursor:default !important;"
-                                                      class="btn {{ !isset($spice[$item->id]) || (isset($spice[$item->id]) && str_ends_with($spice[$item->id],'default'))?'btn-secondary':'' }}">Standard</span>
-                                                <span style="cursor:default !important;"
-                                                      class="btn {{ isset($spice[$item->id]) && str_ends_with($spice[$item->id],'-hot')?'btn-secondary':'' }}">Hot</span>
-                                                <span style="cursor:default !important;"
-                                                      class="btn {{ isset($spice[$item->id]) && str_ends_with($spice[$item->id],'-xhot')?'btn-secondary':'' }}">X-Hot</span>
+                            </div>
+                        </div>
+
+                        <div class="bn-add-product-all-item">
+                            @foreach($items['items'] as $item)
+                                <div class="bn-product-child-item">
+                                    @if ($item->order_chili && isset($spice2[$item->id]))
+                                        @foreach($spice2[$item->id] as $spiceName => $spiceQty)
+                                            <div
+                                                class="row bn-border-bottom bn-check-out-mobile bn-selected-price {{ $loop->index==0?'bn-product-border-b-none':'' }}">
+                                                <div class="col-xl-5 col-lg-5 col-md-6 col-6 bn-col-mobile">
+                                                    <h2>
+                                                        {{ $item->name }}
+                                                        <small class="d-sm-inline-block d-none">(<i>{{ $items['isOrange']?$item->price_orange:$item->price }},-</i>)</small>
+                                                        @if(in_array($item->section,['bn-curries','bn-veg']))
+                                                            <small>(No Sides)</small>
+                                                        @endif
+                                                    </h2>
+                                                </div>
+                                                <div class="col-xl-2 col-lg-2 col-md-2 col-2 bn-col-mobile">
+                                                    <div class="bn-number-product d-inline-block">
+                                                        <span>{{ spiceName($spiceName) }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-2 col-2">
+                                                    <div class="bn-number-product d-inline-block float-end">
+                                                        <span>x{{ $spiceQty }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-2 col-lg-2 col-md-2 col-2 bn-col-mobile-left">
+                                                    @if($items['isOrange'])
+                                                        <div
+                                                            class="bn-price-item d-inline-block float-end bn-orange-color">
+                                                            {{ $item->price_orange * $spiceQty }},-
+                                                        </div>
+                                                    @else
+                                                        <div
+                                                            class="bn-price-item d-inline-block float-end">
+                                                            {{ $item->price * $spiceQty }},-
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <div class="row bn-border-bottom bn-check-out-mobile bn-selected-price">
+                                            <div class="col-xl-5 col-lg-5 col-md-6 col-6 bn-col-mobile">
+                                                <h2>
+                                                    {{ $item->name }}
+                                                    <small class="d-sm-inline-block d-none">(<i>{{ $items['isOrange']?$item->price_orange:$item->price }},-</i>)</small>
+                                                    @if(in_array($item->section,['bn-curries','bn-veg']))
+                                                        <small>(No Sides)</small>
+                                                    @endif
+                                                </h2>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-2 bn-col-mobile">
+                                                <div class="bn-number-product d-inline-block">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-2 col-2">
+                                                <div class="bn-number-product d-inline-block float-end">
+                                                    <span>x{{ $item->qty }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-2 bn-col-mobile-left">
+                                                @if($items['isOrange'])
+                                                    <div
+                                                        class="bn-price-item d-inline-block float-end bn-orange-color">
+                                                        {{ $item->price_orange * $item->qty }},-
+                                                    </div>
+                                                @else
+                                                    <div
+                                                        class="bn-price-item d-inline-block float-end">
+                                                        {{ $item->price * $item->qty }},-
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     @endif
                                 </div>
-                                <div class="col-lg-1 col-4 d-lg-block d-none">
-                                    <div class="bn-number-product">
-                                        <span>x{{ $item->qty }}</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-1 d-lg-block d-none">
-                                    <div class="bn-price-item">{{ $item->price * $item->qty }},-</div>
-                                </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
 
                         @if ( isset($items['bag_price']) && $items['bag_price'] > 0 )
-                            <div class="row bn-border-bottom">
-                                <div class="col-lg-5 col-9 bn-col-mobile">
-                                    <h2>Bag</h2>
+                            <div class="row bn-border-bottom bn-bottom-space-check bn-bottom-span-mobile-set">
+                                <div class="col-lg-6 col-6">
+                                    <h2>Bag <small>x{{ $items['bags'] }}</small></h2>
                                 </div>
-                                <div class="col-3 d-lg-none d-block bn-col-mobile">
-                                    <div class="bn-number-product d-inline-block">
-                                        <span>x{{ $items['bags'] }}</span>
-                                    </div>
-                                    <div class="bn-price-item d-inline-block float-end">{{ $items['bag_price'] }},-
-                                    </div>
-                                </div>
-                                <div class="col-lg-5 col-12">
-                                </div>
-                                <div class="col-lg-1 col-4 d-lg-block d-none">
-                                    <div class="bn-number-product">
-                                        <span>x{{ $items['bags'] }}</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-1 d-lg-block d-none">
-                                    <div class="bn-price-item">{{ $items['bag_price'] }},-</div>
+                                <div class="col-lg-6 col-6">
+                                    <div class="bn-price-item {{ $items['isOrange']?'bn-orange-color':'' }}">{{ $items['bag_price'] }},-</div>
                                 </div>
                             </div>
                         @endif
@@ -106,7 +199,7 @@
                                     </h2>
                                 </div>
                                 <div class="col-lg-6 col-6">
-                                    <div class="bn-price-item">-{{ $items['giftCardDiscount'] }},-</div>
+                                    <div class="bn-price-item">{{ $items['giftCardDiscount'] }},-</div>
                                 </div>
                             </div>
                         @endif
@@ -130,7 +223,7 @@
                                     </h2>
                                 </div>
                                 <div class="col-lg-6 col-6">
-                                    <div class="bn-price-item">{{ $items['delivery_fee'] }},-</div>
+                                    <div class="bn-price-item">-{{ $items['delivery_fee'] }},-</div>
                                 </div>
                             </div>
                         @endif
@@ -140,65 +233,14 @@
                                 <h2>{{ __('checkout.total') }}</h2>
                             </div>
                             <div class="col-lg-6 col-6">
-                                <div class="bn-price-item">{{ $items['total_price'] }},-</div>
+                                <div class="bn-price-item {{ $items['isOrange']?'bn-orange-color':'' }}">{{ $items['total_price'] }},-</div>
                             </div>
                         </div>
+
                         <div class="row bn-last-order-footer align-middle">
                             <div class="col-md-12 col-12">
                                 <p class="float-end">{{ __('checkout.did_you_order_sides') }}</p>
                                 <div class="clearfix"></div>
-                            </div>
-                        </div>
-                        <div class="row bn-border-bottom bn-check-box-choose">
-                            <div class="col-lg-8 col-5">
-                                <h2>{{ __('checkout.choose') }}</h2>
-                            </div>
-                            <div class="col-lg-4 col-7">
-                                <div class="bn-radio-order bn-check-box-order">
-                                    <div class="form-check">
-                                        <input class="form-check-input update" type="radio" name="delivery"
-                                               id="choose-pickup"
-                                               value="Pickup at Shop" {{ !isset($items['checkout']['delivery']) || $items['checkout']['delivery']==='Pickup at Shop'?'checked':'' }}>
-                                        <label class="form-check-label" for="choose-pickup">
-                                            {{ __('checkout.pickup') }}
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input update" type="radio" name="delivery"
-                                               id="choose-delivery"
-                                               value="By Taxi" {{ isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi'?'checked':'' }}>
-                                        <label class="form-check-label" for="choose-delivery">
-                                            {{ __('checkout.delivery') }}
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row bn-border-bottom bn-check-box-choose">
-                            <div class="col-lg-8 col-5">
-                                <h2>{{ __('checkout.payment') }}</h2>
-                            </div>
-                            <div class="col-lg-4 col-7">
-                                <div class="bn-radio-order bn-check-box-order">
-                                    <div class="form-check">
-                                        <input class="form-check-input update" type="radio" name="payment_type"
-                                               id="choose-online"
-                                               value="card" {{ !isset($items['checkout']['payment_type']) || $items['checkout']['payment_type']==='card'?'checked':'' }}>
-                                        <label class="form-check-label" for="choose-online">
-                                            {{ __('checkout.online') }}
-                                        </label>
-                                    </div>
-                                    @if( !isset($items['checkout']['delivery']) || (isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='Pickup at Shop') )
-                                        <div class="form-check">
-                                            <input class="form-check-input update" type="radio" name="payment_type"
-                                                   id="choose-shop"
-                                                   value="atshop" {{ isset($items['checkout']['payment_type']) && $items['checkout']['payment_type']==='atshop'?'checked':'' }}>
-                                            <label class="form-check-label" for="choose-shop">
-                                                {{ __('checkout.shop') }}
-                                            </label>
-                                        </div>
-                                    @endif
-                                </div>
                             </div>
                         </div>
                     </div>

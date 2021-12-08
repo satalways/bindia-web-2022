@@ -4,6 +4,7 @@
     <img data-id="{{ $item->id }}" class="addItem" data-inc="-1" src="{{ asset('asstes/image/take-away/min.svg') }}"
          alt="">
 @endif
+
 <span>
     @if(!empty($item->id) && !empty($cartItems[$item->id]))
         <span data-id="{{ $item->id }}" class="span_qty">
@@ -11,6 +12,8 @@
         </span>
     @endif
 </span>
+
+
 @if (isset($item->id))
     <img data-id="{{ $item->id }}" class="addItem" data-inc="+1" src="{{ asset('asstes/image/take-away/max.svg') }}"
          alt="">

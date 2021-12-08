@@ -38,7 +38,8 @@ function template($id)
     }
 
     if (empty($obj)) {
-        return new class {
+        return new class
+        {
             public $TemplateNo = '';
 
             public $id = 0;
@@ -116,7 +117,7 @@ function is_phone($phone_number, $region_code = 'DK')
         $phoneNumberObject = $phoneNumberUtil->parse($phone_number, $region_code);
 
         return $phoneNumberUtil->isValidNumber($phoneNumberObject);
-    } catch (Exception) {
+    } catch (Exception $exception) {
         return false;
     }
 
@@ -217,25 +218,29 @@ function send_mail($to, string $subject, string $htmlContent, array $fields = []
 
     if (env('MAIL_HOST', 'smtp.sendgrid.net') === 'smtp.sendgrid.net') {
         $email = new \SendGrid\Mail\Mail();
-        $email->setFrom(env('MAIL_FROM_ADDRESS', 'office@bindia.dk'), env('MAIL_FROM_NAME', 'Bindia'));
-        $email->setSubject($subject);
-        $email->addContent('text/html', $htmlContent);
-        if (is_array($attachedFiles)) {
-            foreach ($attachedFiles as $file) {
-                if (!is_file($file)) continue;
-                $file_encoded = base64_encode(file_get_contents($file));
-                $mime_type = \File::mimeType($file);
-                if (strpos($mime_type, ';') !== false) {
-                    $mime_type = substr($mime_type, 0, strpos($mime_type, ';'));
-                }
+        try {
+            $email->setFrom(env('MAIL_FROM_ADDRESS', 'office@bindia.dk'), env('MAIL_FROM_NAME', 'Bindia'));
+            $email->setSubject($subject);
+            $email->addContent('text/html', $htmlContent);
+            if (is_array($attachedFiles)) {
+                foreach ($attachedFiles as $file) {
+                    if (!is_file($file)) continue;
+                    $file_encoded = base64_encode(file_get_contents($file));
+                    $mime_type = \File::mimeType($file);
+                    if (strpos($mime_type, ';') !== false) {
+                        $mime_type = substr($mime_type, 0, strpos($mime_type, ';'));
+                    }
 
-                $email->addAttachment(
-                    $file_encoded,
-                    $mime_type,
-                    basename($file),
-                    "attachment"
-                );
+                    $email->addAttachment(
+                        $file_encoded,
+                        $mime_type,
+                        basename($file),
+                        "attachment"
+                    );
+                }
             }
+        }  catch (\SendGrid\Mail\TypeException $e) {
+            return $e->getMessage();
         }
 
         //You can send variables values on sendgrid templates using addTO
@@ -660,4 +665,18 @@ function nextTime()
     $minutes = \Carbon\Carbon::now()->minute;
     $minutes = ($minutes % 5);
     return \Carbon\Carbon::now()->addMinutes($minutes)->format('H:i');
+}
+
+function spiceName($rawName)
+{
+    switch (strtolower($rawName)) {
+        case 'default':
+            return 'Default';
+        case 'hot':
+            return 'Hot';
+        case 'xhot':
+            return 'xHot';
+        default:
+            return $rawName;
+    }
 }

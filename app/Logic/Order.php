@@ -70,12 +70,17 @@ class Order
         if (!isset($checkoutData['delivery'])) $checkoutData['delivery'] = 'Pickup at Shop';
 
         $Data = $this->calculateItems($items);
+        $Data['isOrange'] = $checkout && $checkoutData['payment_type'] === 'card' && $checkoutData['delivery'] === 'Pickup at Shop';
 
         if (!$checkout) {
             $Data['total_price'] -= $Data['bags_price'];
             $Data['total_price_orange'] -= $Data['bags_price'];
             $Data['bagPoints'] = 0;
             $Data['bags_price'] = 0;
+        }
+
+        if ($Data['isOrange']) {
+            $Data['total_price'] = $Data['total_price_orange'];
         }
 
         /**
@@ -147,9 +152,12 @@ class Order
 
         $discount = 0;
 
-        if ($checkout && isset($checkoutData['payment_type']) && $checkoutData['payment_type'] === 'card') {
-            $discount = floor($Data['total_price'] / 100) * 10;
-        }
+        /**
+         * This discount system is gone since orange prices
+         */
+//        if ($checkout && isset($checkoutData['payment_type']) && $checkoutData['payment_type'] === 'card') {
+//            $discount = floor($Data['total_price'] / 100) * 10;
+//        }
 
         if (empty($checkoutData['date'])) $checkoutData['date'] = \Carbon\Carbon::today()->toDateString();
         if (empty($checkoutData['time'])) {
@@ -199,6 +207,7 @@ class Order
             'gift_card_numbers' => $giftCard->id ?? '',
             'nan_available' => $Data['nan_available'],
             'delivery_fee' => $Data['delivery_fee'],
+            'isOrange' => $Data['isOrange'],
         ];
     }
 
@@ -210,6 +219,21 @@ class Order
     public function getSessionSpice()
     {
         return \request()->session()->get('bindiaCartSpice', []);
+    }
+
+    public function getSessionSpiceCountArray()
+    {
+        $spices = $this->getSessionSpice();
+
+        $stringArray = [];
+        foreach ($spices as $id => $spice) {
+            foreach ($spice as $s) {
+                $stringArray[$id][$s] = isset($stringArray[$id][$s]) ? ($stringArray[$id][$s] + 1) : 1;
+            }
+            //$stringArray[$id][$spice] = isset($stringArray[$id][$spice]) ? $stringArray[$id][$spice]++ : 1;
+        }
+
+        return $stringArray;
     }
 
     public function setSessionCartSpice(array $spiceArray)
@@ -370,7 +394,6 @@ class Order
         $data['guest_id'] = $guest->id;
 
         $checkoutData = $this->getSessionCartData(true);
-
         if (!$isOnlinePayment && $checkoutData['total_price'] >= 1000) {
             return __('checkout.large_order');
         }
@@ -466,7 +489,7 @@ class Order
              */
             if ($dateTime->isToday() && $dateTime->hour >= 16) {
                 if ((($dateTime->hour * 60) + $dateTime->minute) - ($now->hour * 60 + $now->minute) <= $minutesRequired) {
-                    return 'Delivery order cannot deliver before ' . $this->minutesToTime(($now->hour * 60 + $now->minute) + $minutesRequired ). ' at ' . $data['shipping_postal_code'];
+                    return 'Delivery order cannot deliver before ' . $this->minutesToTime(($now->hour * 60 + $now->minute) + $minutesRequired) . ' at ' . $data['shipping_postal_code'];
                 }
             } else {
                 if (($dateTime->hour * 60 + $dateTime->minute) < $minTime) {
@@ -526,7 +549,7 @@ class Order
             $data['comments'] = $data['comments'] . PHP_EOL . 'Gift Card Redeemed: ' . $checkoutData['gift_card_numbers'];
         }
 
-        $spices = $this->getSessionSpice();
+        $spices = $this->getSessionSpiceCountArray();
         unset($data['spice']);
 
         try {
@@ -538,15 +561,22 @@ class Order
         }
 
         foreach ($checkoutData['items'] as $item) {
+            $spice = '';
+            if (isset($spices[$item->id])) {
+                foreach ($spices[$item->id] as $name => $qty) {
+                    $spice .= $qty . '-' . $name . ',';
+                }
+                $spice = rtrim($spice, ',');
+            }
             try {
                 OrderDetails::query()->insert([
                     'order_id' => $order->id,
                     'item_id' => $item->id,
                     'qty' => $item->qty,
-                    'price' => $item->price,
+                    'price' => $checkoutData['isOrange'] ? $item->price_orange : $item->price,
                     'item_title' => $item->name,
                     'code' => $item->code,
-                    'spice' => $spices[$item->id] ?? ''
+                    'spice' => $spice,
                 ]);
             } catch (\Exception $exception) {
                 return $exception->getMessage();

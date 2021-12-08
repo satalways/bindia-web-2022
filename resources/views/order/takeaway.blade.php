@@ -164,22 +164,24 @@
                                     >
                                         <div class="col-md-4">
                                             <img class="bn-thumbnail-img lazy"
-                                                 src="{{ asset('asstes/image/item2.png') }}?v=4"
-                                                 data-src="{{ $item->image }}"
+                                                 src="{{ asset('asstes/image/item2.png') }}?v=1"
+                                                 data-src="{{ $item->image }}?v=5"
                                                  alt="">
                                         </div>
-                                        <div class="col-md-5 bn-bg-product bn-border-right">
+                                        <div class="col-md-5 bn-bg-product bn-border-right bn-orange-border-mobile">
                                             <a href="{{ route('item', ['slug' => $item->slug]) }}"
                                                style="text-decoration: none !important;" target="_blank">
-                                                @if(in_array($item->section,['bn-curries','bn-veg']))
-                                                    <h2>
-                                                        {{ $item->name }}
-                                                        {{--                                                    <small class="d-sm-inline-block"--}}
-                                                        {{--                                                           style="font-weight: normal !important; font-size: 65%">(No Sides)</small>--}}
-                                                    </h2>
-                                                @else
+{{--                                                @if(in_array($item->section,['bn-curries','bn-veg']))--}}
+{{--                                                    <h2>--}}
+{{--                                                        {{ $item->name }}--}}
+{{--                                                        <small class="d-sm-inline-block"--}}
+{{--                                                               style="font-weight: normal !important; font-size: 65%">--}}
+{{--                                                            (No Sides)--}}
+{{--                                                        </small>--}}
+{{--                                                    </h2>--}}
+{{--                                                @else--}}
                                                     <h2>{{ $item->name }}</h2>
-                                                @endif
+{{--                                                @endif--}}
                                             </a>
 
                                             <p>{{ getCurrentLang()=='da'?$item->description_dk:$item->description_en }}</p>
@@ -215,10 +217,6 @@
                                                             alt="">
                                                     </span>
                                                 @endif
-                                                <span class="bn-text-icon">
-                                                    <img
-                                                        src="{{ asset('asstes/image/take-away/' .  \Str::slug($item->portion) . '.png') }}?2">
-                                                </span>
                                                 @if($item->vegan)
                                                     <span>
                                                         <img src="{{ asset('asstes/image/take-away/vegan.png') }}?2"
@@ -231,13 +229,23 @@
                                                              alt="">
                                                     </span>
                                                 @endif
-
+                                                <span class="bn-text-icon">
+                                                    <img
+                                                        src="{{ asset('asstes/image/take-away/' .  \Str::slug($item->portion) . '.png') }}?2">
+                                                </span>
+                                                @if(in_array($item->section,['bn-curries','bn-veg']))
+                                                    <span>
+                                                        <img src="{{ asset('asstes/image/take-away/no-sides.png') }}?2"
+                                                             alt="">
+                                                    </span>
+                                                @endif
                                             </div>
                                         </div>
-                                        <div class="col-md-3 bn-bg-product noborder">
+                                        <div class="col-md-3 bn-bg-product bn-bg-orange-product">
                                             <div class="bn-price-item">
                                                 @if($sectionSlug==='bn-single-meals' && $loop->index === 0)
-                                                    <img src="{{ asset('asstes/image/take-away/discount-arrow.svg') }}" alt="">
+                                                    <img src="{{ asset('asstes/image/take-away/discount-arrow.svg') }}"
+                                                         alt="">
                                                 @endif
                                                 <span class="bh-current-price">{{ $item->price }} /</span> <span
                                                     class="bn-discount-price">{{ $item->price_orange }}</span>
@@ -249,7 +257,7 @@
                                         <div class="col-lg-12 bn-product-big-image">
                                             <div class="bn-broduct-big-img">
                                                 <img src="{{ asset('asstes/image/item2.png') }}"
-                                                     data-src="{{ $item->image }}" alt="" class="lazy">
+                                                     data-src="{{ $item->image }}?v=5" alt="" class="lazy">
                                             </div>
                                         </div>
                                     </div>
