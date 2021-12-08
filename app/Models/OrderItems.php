@@ -54,4 +54,16 @@ class OrderItems extends Model
     {
         return getCurrentLang() == 'en' ? $this->description_en : $this->description_dk;
     }
+
+    public function getPortionSlugAttribute()
+    {
+        if (getCurrentLang() === 'da') {
+            if ($this->portion === '2 pieces') return '2stk';
+            if ($this->portion === '4 pieces') return '4stk';
+            if ($this->portion === 'set of 4') return 'set-med-4';
+            return \Str::slug($this->portion);
+        } else {
+            return \Str::slug($this->portion);
+        }
+    }
 }

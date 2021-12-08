@@ -78,7 +78,7 @@
         <div class="bn-take-away-search bn-main-story">
             <div class="container">
                 <div class="bn-history-for-index">
-                    <h1 class="bn-his-header mb-lg-4 mb-3">SEO heading</h1>
+                    <h1 class="bn-his-header mb-lg-4 mb-3">{{ isset($seo->title_en) ? $seo->getTitle() : ($title ?? 'Bindia Indisk Mad') }}</h1>
                 </div>
 
                 <div class="row">
@@ -152,9 +152,12 @@
                                          @if($item->veg)
                                          data-veg="yes"
                                          @endif
-                                         @if (!$item->gluten)
-                                         data-attr="no-gluten"
-                                         @endif
+                                         {{--                                         @if (!$item->gluten)--}}
+                                         {{--                                         data-attr="no-gluten"--}}
+                                         {{--                                         @endif--}}
+
+                                         data-gluten="{{ $item->gluten?'Yes':'no' }}"
+
                                          @if($item->vegan)
                                          data-vegan="yes"
                                          @endif
@@ -171,17 +174,17 @@
                                         <div class="col-md-5 bn-bg-product bn-border-right bn-orange-border-mobile">
                                             <a href="{{ route('item', ['slug' => $item->slug]) }}"
                                                style="text-decoration: none !important;" target="_blank">
-{{--                                                @if(in_array($item->section,['bn-curries','bn-veg']))--}}
-{{--                                                    <h2>--}}
-{{--                                                        {{ $item->name }}--}}
-{{--                                                        <small class="d-sm-inline-block"--}}
-{{--                                                               style="font-weight: normal !important; font-size: 65%">--}}
-{{--                                                            (No Sides)--}}
-{{--                                                        </small>--}}
-{{--                                                    </h2>--}}
-{{--                                                @else--}}
-                                                    <h2>{{ $item->name }}</h2>
-{{--                                                @endif--}}
+                                                {{--                                                @if(in_array($item->section,['bn-curries','bn-veg']))--}}
+                                                {{--                                                    <h2>--}}
+                                                {{--                                                        {{ $item->name }}--}}
+                                                {{--                                                        <small class="d-sm-inline-block"--}}
+                                                {{--                                                               style="font-weight: normal !important; font-size: 65%">--}}
+                                                {{--                                                            (No Sides)--}}
+                                                {{--                                                        </small>--}}
+                                                {{--                                                    </h2>--}}
+                                                {{--                                                @else--}}
+                                                <h2>{{ $item->name }}</h2>
+                                                {{--                                                @endif--}}
                                             </a>
 
                                             <p>{{ getCurrentLang()=='da'?$item->description_dk:$item->description_en }}</p>
@@ -231,7 +234,7 @@
                                                 @endif
                                                 <span class="bn-text-icon">
                                                     <img
-                                                        src="{{ asset('asstes/image/take-away/' .  \Str::slug($item->portion) . '.png') }}?2">
+                                                        src="{{ asset('asstes/image/take-away/' .  $item->portion_slug . '.png') }}?2">
                                                 </span>
                                                 @if(in_array($item->section,['bn-curries','bn-veg']))
                                                     <span>
