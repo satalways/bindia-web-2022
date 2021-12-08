@@ -671,7 +671,7 @@ function spiceName($rawName)
 {
     switch (strtolower($rawName)) {
         case 'default':
-            return 'Default';
+            return 'Standard';
         case 'hot':
             return 'Hot';
         case 'xhot':

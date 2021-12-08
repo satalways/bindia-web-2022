@@ -263,6 +263,9 @@
                2data-bs-toggle2="modal"
                data-bs-target2="#bn-check-last-order">
                 <i class="fas fa-shopping-basket"></i>
+                <span class="bn-item-card"></span>
+                <span class="bh-current-price">135/</span>
+                <span class="bn-discount-price">110</span>
                 {{--                <span class="bn-item-card">0x</span>--}}
                 {{--                <span class="bn-price-card">0,-</span>--}}
             </a>

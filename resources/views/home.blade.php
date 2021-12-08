@@ -16,7 +16,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2 class="mt-4"><a href="{{ route('takeaway') }}#bn-take-away-price" class="btn btn-dark">Order Take Away</a></h2>
+                        <h2 class="mt-4"><a href="{{ route('takeaway') }}#bn-take-away-price" class="btn btn-dark">Order
+                                Take Away</a></h2>
                     </div>
                 </div>
             </div>
@@ -123,11 +124,11 @@
         <div class="container">
             <h2 class="bn-his-header">{{ __('home.seo_heading') }}</h2>
             <div class="bn-his-paragraph d-lg-block d-none">
-                {!! __('home.seo_text') !!}
+                {!! trans('home.seo_text', ['link'=>route('our_values')]) !!}
             </div>
 
             <div class="bn-his-paragraph d-lg-none d-block">
-                {!! trans('home.seo_text', ['now'=>route('our_values')]) !!}
+                {!! trans('home.seo_text', ['link'=>route('our_values')]) !!}
             </div>
             <div class="bn-his-more">{{ __('home.more') }}</div>
             <div class="bn-his-more" style="display: none;">{{ __('home.less') }}</div>

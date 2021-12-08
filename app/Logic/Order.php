@@ -759,8 +759,13 @@ class Order
             ->orderBy('id', 'desc')
             ->get();
 
+
         foreach ($orders as $order) {
-            $order->createTakeoutOrder();
+            $r = $order->createTakeoutOrder();
+            if ($r !== 'OK') {
+                $content = print_r($r, true);
+                send_mail(['shakeel@shakeel.pk', 'arslan@bindia.dk'], 'Takeout order# ' . $order->id . ' not submitted via API', $content);
+            }
         }
     }
 
