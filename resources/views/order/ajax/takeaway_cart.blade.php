@@ -6,7 +6,7 @@
             <div class="col-xl-8 col-lg-7 col-md-8 col-8">
                 <h2>{{ $item->name }}
                     @if(in_array($item->section, ['bn-veg', 'bn-curries']))
-                        <span>(no Sides)</span>
+                        <small>(no Sides)</small>
                     @endif
                 </h2>
             </div>
@@ -20,9 +20,11 @@
                 </div>
             </div>
             <div class="col-xl-2 col-lg-2 col-md-4 col-4">
-                <div class="bn-price-item"><span
-                        class="bh-current-price">{{ $item->price * $cartItems[$item->id] }} /</span> <span
-                        class="bn-discount-price">{{ $item->price_orange * $cartItems[$item->id] }}</span></div>
+                <div class="bn-price-item">
+                    <span
+                        class="bh-current-price">{{ number_format2($item->price * $cartItems[$item->id],0) }} /</span> <span
+                        class="bn-discount-price">{{ number_format2($item->price_orange * $cartItems[$item->id],0) }}</span>
+                </div>
             </div>
             <div class="col-xl-8 col-8 bn-body-radio-box">
                 @if($item->order_chili)
@@ -90,8 +92,8 @@
         </div>
         <div class="col-lg-6 col-6">
             <div class="bn-price-item position-relative">
-                <span class="bh-current-price">{{ $items['total_price'] }} /</span>
-                <span class="bn-discount-price">{{ $items['total_price_orange'] }}</span>
+                <span class="bh-current-price">{{ number_format2($items['total_price'],0) }} /</span>
+                <span class="bn-discount-price">{{ number_format2($items['total_price_orange'],0) }}</span>
             </div>
         </div>
     </div>

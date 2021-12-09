@@ -456,7 +456,11 @@ function getOption(string $keyName, mixed $defaultValue = null)
 
 function number_format2($value, $decimals = 2)
 {
-    return number_format($value, $decimals, ',', '.');
+    if (isDanish()) {
+        return number_format($value, $decimals, ',', '.');
+    } else {
+        return number_format($value, $decimals);
+    }
 }
 
 
@@ -671,7 +675,7 @@ function spiceName($rawName)
 {
     switch (strtolower($rawName)) {
         case 'default':
-            return 'Standard';
+            return '';
         case 'hot':
             return 'Hot';
         case 'xhot':

@@ -104,7 +104,7 @@
                                                 <div class="col-xl-5 col-lg-5 col-md-6 col-6 bn-col-mobile">
                                                     <h2>
                                                         {{ $item->name }}
-                                                        <small class="d-sm-inline-block d-none">(<i>{{ $items['isOrange']?$item->price_orange:$item->price }},-</i>)</small>
+                                                        <small class="d-sm-inline-block d-none">(<i>{{ $items['isOrange']?$item->price_orange:$item->price }}</i>)</small>
                                                         @if(in_array($item->section,['bn-curries','bn-veg']))
                                                             <small>(no Sides)</small>
                                                         @endif
@@ -124,12 +124,12 @@
                                                     @if($items['isOrange'])
                                                         <div
                                                             class="bn-price-item d-inline-block float-end bn-orange-color">
-                                                            {{ $item->price_orange * $spiceQty }},-
+                                                            {{ $item->price_orange * $spiceQty }}
                                                         </div>
                                                     @else
                                                         <div
                                                             class="bn-price-item d-inline-block float-end">
-                                                            {{ $item->price * $spiceQty }},-
+                                                            {{ $item->price * $spiceQty }}
                                                         </div>
                                                     @endif
                                                 </div>
@@ -140,7 +140,7 @@
                                             <div class="col-xl-5 col-lg-5 col-md-6 col-6 bn-col-mobile">
                                                 <h2>
                                                     {{ $item->name }}
-                                                    <small class="d-sm-inline-block d-none">(<i>{{ $items['isOrange']?$item->price_orange:$item->price }},-</i>)</small>
+                                                    <small class="d-sm-inline-block d-none">(<i>{{ $items['isOrange']?$item->price_orange:$item->price }}</i>)</small>
                                                     @if(in_array($item->section,['bn-curries','bn-veg']))
                                                         <small>(no Sides)</small>
                                                     @endif
@@ -160,12 +160,12 @@
                                                 @if($items['isOrange'])
                                                     <div
                                                         class="bn-price-item d-inline-block float-end bn-orange-color">
-                                                        {{ $item->price_orange * $item->qty }},-
+                                                        {{ $item->price_orange * $item->qty }}
                                                     </div>
                                                 @else
                                                     <div
                                                         class="bn-price-item d-inline-block float-end">
-                                                        {{ $item->price * $item->qty }},-
+                                                        {{ $item->price * $item->qty }}
                                                     </div>
                                                 @endif
                                             </div>
@@ -181,7 +181,7 @@
                                     <h2>Bag <small>x{{ $items['bags'] }}</small></h2>
                                 </div>
                                 <div class="col-lg-6 col-6">
-                                    <div class="bn-price-item {{ $items['isOrange']?'bn-orange-color':'' }}">{{ $items['bag_price'] }},-</div>
+                                    <div class="bn-price-item {{ $items['isOrange']?'bn-orange-color':'' }}">{{ $items['bag_price'] }}</div>
                                 </div>
                             </div>
                         @endif
@@ -199,7 +199,7 @@
                                     </h2>
                                 </div>
                                 <div class="col-lg-6 col-6">
-                                    <div class="bn-price-item">{{ $items['giftCardDiscount'] }},-</div>
+                                    <div class="bn-price-item">{{ $items['giftCardDiscount'] }}</div>
                                 </div>
                             </div>
                         @endif
@@ -210,7 +210,7 @@
                                     <h2>{{ __('checkout.discount') }}</h2>
                                 </div>
                                 <div class="col-lg-6 col-6">
-                                    <div class="bn-price-item">-{{ $items['discount'] }},-</div>
+                                    <div class="bn-price-item">-{{ $items['discount'] }}</div>
                                 </div>
                             </div>
                         @endif
@@ -223,7 +223,7 @@
                                     </h2>
                                 </div>
                                 <div class="col-lg-6 col-6">
-                                    <div class="bn-price-item">-{{ $items['delivery_fee'] }},-</div>
+                                    <div class="bn-price-item">-{{ $items['delivery_fee'] }}</div>
                                 </div>
                             </div>
                         @endif
@@ -233,7 +233,9 @@
                                 <h2>{{ __('checkout.total') }}</h2>
                             </div>
                             <div class="col-lg-6 col-6">
-                                <div class="bn-price-item {{ $items['isOrange']?'bn-orange-color':'' }}">{{ $items['total_price'] }},-</div>
+                                <div class="bn-price-item {{ $items['isOrange']?'bn-orange-color':'' }}">
+                                    {{ number_format2($items['total_price'],0) }}
+                                </div>
                             </div>
                         </div>
 
