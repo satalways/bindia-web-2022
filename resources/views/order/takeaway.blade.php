@@ -146,6 +146,12 @@
                             <div class="bn-toggle-content" id="{{ $sectionSlug }}">
                                 @foreach($itemsArray as $item)
                                     <div class="row"
+                                         @if($sectionSlug === 'bn-drinks')
+                                         data-veg="yes"
+                                         @if($item->code!=='700')
+                                         data-vegan="yes"
+                                         @endif
+                                         @endif
                                          @if(!$item->dairy)
                                          data-dairy="no"
                                          @endif
@@ -159,6 +165,7 @@
                                          data-gluten="{{ $item->gluten?'Yes':'no' }}"
 
                                          @if($item->vegan)
+                                         data-veg="yes"
                                          data-vegan="yes"
                                          @endif
                                          @if(!$item->nuts)
@@ -238,8 +245,9 @@
                                                 </span>
                                                 @if(in_array($item->section,['bn-curries','bn-veg']))
                                                     <span>
-                                                        <img src="{{ isDanish() ? asset('asstes/image/take-away/u-sides.png') : asset('asstes/image/take-away/no-sides.png') }}?4"
-                                                             alt="">
+                                                        <img
+                                                            src="{{ isDanish() ? asset('asstes/image/take-away/u-sides.png') : asset('asstes/image/take-away/no-sides.png') }}?4"
+                                                            alt="">
                                                     </span>
                                                 @endif
 
