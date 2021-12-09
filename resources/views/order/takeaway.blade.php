@@ -242,6 +242,11 @@
                                                              alt="">
                                                     </span>
                                                 @endif
+
+                                                <img src="{{ asset('asstes/image/take-away/info-icon.png') }}"
+                                                     alt=""
+                                                     class="bn-info-product-icon">
+
                                             </div>
                                         </div>
                                         <div class="col-md-3 bn-bg-product bn-bg-orange-product">
