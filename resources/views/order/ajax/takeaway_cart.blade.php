@@ -6,7 +6,7 @@
             <div class="col-xl-8 col-lg-7 col-md-8 col-8">
                 <h2>{{ $item->name }}
                     @if(in_array($item->section, ['bn-veg', 'bn-curries']))
-                        <small>(no Sides)</small>
+                        <small style="margin-left: 5px;">(no Sides)</small>
                     @endif
                 </h2>
             </div>

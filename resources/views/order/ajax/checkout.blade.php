@@ -47,9 +47,11 @@
                             <div class="col-lg-4 col-8">
                                 <div class="bn-radio-order bn-check-box-order">
                                     <div class="form-check">
-                                        <input class="form-check-input update {{ $items['isOrange']?'bn-checked-color-chnaged':'' }}" type="radio" name="delivery"
-                                               id="choose-pickup"
-                                               value="Pickup at Shop" {{ !isset($items['checkout']['delivery']) || $items['checkout']['delivery']==='Pickup at Shop'?'checked':'' }}>
+                                        <input
+                                            class="form-check-input update {{ $items['isOrange']?'bn-checked-color-chnaged':'' }}"
+                                            type="radio" name="delivery"
+                                            id="choose-pickup"
+                                            value="Pickup at Shop" {{ !isset($items['checkout']['delivery']) || $items['checkout']['delivery']==='Pickup at Shop'?'checked':'' }}>
                                         <label class="form-check-label" for="choose-pickup">
                                             {{ __('checkout.pickup') }}
                                         </label>
@@ -73,9 +75,11 @@
                             <div class="col-lg-4 col-8">
                                 <div class="bn-radio-order bn-check-box-order">
                                     <div class="form-check">
-                                        <input class="form-check-input update {{ $items['isOrange']?'bn-checked-color-chnaged':'' }}" type="radio" name="payment_type"
-                                               id="choose-online"
-                                               value="card" {{ !isset($items['checkout']['payment_type']) || $items['checkout']['payment_type']==='card'?'checked':'' }}>
+                                        <input
+                                            class="form-check-input update {{ $items['isOrange']?'bn-checked-color-chnaged':'' }}"
+                                            type="radio" name="payment_type"
+                                            id="choose-online"
+                                            value="card" {{ !isset($items['checkout']['payment_type']) || $items['checkout']['payment_type']==='card'?'checked':'' }}>
                                         <label class="form-check-label" for="choose-online">
                                             {{ __('checkout.online') }}
                                         </label>
@@ -104,7 +108,8 @@
                                                 <div class="col-xl-5 col-lg-5 col-md-6 col-6 bn-col-mobile">
                                                     <h2>
                                                         {{ $item->name }}
-                                                        <small class="d-sm-inline-block d-none">(<i>{{ $items['isOrange']?$item->price_orange:$item->price }}</i>)</small>
+{{--                                                        <small--}}
+{{--                                                            class="d-sm-inline-block d-none">(<i>{{ $items['isOrange']?$item->price_orange:$item->price }}</i>)</small>--}}
                                                         @if(in_array($item->section,['bn-curries','bn-veg']))
                                                             <small>(no Sides)</small>
                                                         @endif
@@ -140,7 +145,9 @@
                                             <div class="col-xl-5 col-lg-5 col-md-6 col-6 bn-col-mobile">
                                                 <h2>
                                                     {{ $item->name }}
-                                                    <small class="d-sm-inline-block d-none">(<i>{{ $items['isOrange']?$item->price_orange:$item->price }}</i>)</small>
+{{--                                                    <small class="d-sm-inline-block d-none">--}}
+{{--                                                        (<i>{{ $items['isOrange']?$item->price_orange:$item->price }}</i>)--}}
+{{--                                                    </small>--}}
                                                     @if(in_array($item->section,['bn-curries','bn-veg']))
                                                         <small>(no Sides)</small>
                                                     @endif
@@ -181,7 +188,7 @@
                                     <h2>Bag <small>x{{ $items['bags'] }}</small></h2>
                                 </div>
                                 <div class="col-lg-6 col-6">
-                                    <div class="bn-price-item {{ $items['isOrange']?'bn-orange-color':'' }}">{{ $items['bag_price'] }}</div>
+                                    <div class="bn-price-item">{{ $items['bag_price'] }}</div>
                                 </div>
                             </div>
                         @endif

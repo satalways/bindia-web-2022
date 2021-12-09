@@ -679,7 +679,7 @@ function spiceName($rawName)
         case 'hot':
             return 'Hot';
         case 'xhot':
-            return 'xHot';
+            return 'X-Hot';
         default:
             return $rawName;
     }
