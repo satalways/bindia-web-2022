@@ -185,7 +185,7 @@
                         @if ( isset($items['bag_price']) && $items['bag_price'] > 0 )
                             <div class="row bn-border-bottom bn-bottom-space-check bn-bottom-span-mobile-set">
                                 <div class="col-lg-6 col-6">
-                                    <h2>Bag <small>x{{ $items['bags'] }}</small></h2>
+                                    <h2>Take Away Bag <small>x{{ $items['bags'] }}</small></h2>
                                 </div>
                                 <div class="col-lg-6 col-6">
                                     <div class="bn-price-item">{{ $items['bag_price'] }}</div>
@@ -240,7 +240,7 @@
                                 <h2>{{ __('checkout.total') }}</h2>
                             </div>
                             <div class="col-lg-6 col-6">
-                                <div class="bn-price-item {{ $items['isOrange']?'bn-orange-color':'' }}">
+                                <div class="bn-price-item">
                                     {{ number_format2($items['total_price'],0) }}
                                 </div>
                             </div>

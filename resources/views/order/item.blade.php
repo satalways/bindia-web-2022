@@ -20,7 +20,12 @@
                 <div class="col-12">
                     <div class="bn-top-paragraph">
                         <h1>
-                            <small style="font-weight:bold; font-size: 62% !important; float: right">{{ $item->price }},-</small>
+
+                            <small style="font-weight:bold; font-size: 62% !important; float: right" class="bn-price-item">
+                                {{ $item->price }}
+                                /
+                                <span style="color: #F36A10; font-size: 28px">{{ $item->price_orange }}</span>
+                            </small>
                             <a style="text-decoration: none; font-weight: bold"
                                href="{{ route('item', ['slug' => $item->slug]) }}">{{ $item->name }}</a>
                         </h1>
