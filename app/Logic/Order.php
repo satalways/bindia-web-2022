@@ -207,7 +207,7 @@ class Order
             'gift_card_numbers' => $giftCard->id ?? '',
             'nan_available' => $Data['nan_available'],
             'delivery_fee' => $Data['delivery_fee'],
-            'isOrange' => $Data['isOrange'],
+            'isOrange' => $Data['isOrange'] ?? true,
         ];
     }
 
