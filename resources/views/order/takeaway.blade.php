@@ -186,7 +186,7 @@
                                                 {{--                                                        {{ $item->name }}--}}
                                                 {{--                                                        <small class="d-sm-inline-block"--}}
                                                 {{--                                                               style="font-weight: normal !important; font-size: 65%">--}}
-                                                {{--                                                            (No Sides)--}}
+                                                {{--                                                            (no Sides)--}}
                                                 {{--                                                        </small>--}}
                                                 {{--                                                    </h2>--}}
                                                 {{--                                                @else--}}
@@ -246,7 +246,7 @@
                                                 @if(in_array($item->section,['bn-curries','bn-veg']))
                                                     <span>
                                                         <img
-                                                            src="{{ isDanish() ? asset('asstes/image/take-away/u-sides.png') : asset('asstes/image/take-away/no-sides.png') }}?4"
+                                                            src="{{ asset('asstes/image/take-away/no-sides.png') }}?4"
                                                             alt="">
                                                     </span>
                                                 @endif

@@ -106,7 +106,7 @@
                                                         {{ $item->name }}
                                                         <small class="d-sm-inline-block d-none">(<i>{{ $items['isOrange']?$item->price_orange:$item->price }},-</i>)</small>
                                                         @if(in_array($item->section,['bn-curries','bn-veg']))
-                                                            <small>(No Sides)</small>
+                                                            <small>(no Sides)</small>
                                                         @endif
                                                     </h2>
                                                 </div>
@@ -142,7 +142,7 @@
                                                     {{ $item->name }}
                                                     <small class="d-sm-inline-block d-none">(<i>{{ $items['isOrange']?$item->price_orange:$item->price }},-</i>)</small>
                                                     @if(in_array($item->section,['bn-curries','bn-veg']))
-                                                        <small>(No Sides)</small>
+                                                        <small>(no Sides)</small>
                                                     @endif
                                                 </h2>
                                             </div>

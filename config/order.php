@@ -6,11 +6,11 @@ return [
             'name' => 'Single Meals'
         ],
         'bn-veg' => [
-            'small' => '(No Sides)',
+            'small' => '(no Sides)',
             'name' => 'Veg. & Vegan'
         ],
         'bn-curries' => [
-            'small' => '(No Sides)',
+            'small' => '(no Sides)',
             'name' => 'Curries',
         ],
         'bn-sides' => [
