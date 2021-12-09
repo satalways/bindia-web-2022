@@ -680,3 +680,7 @@ function spiceName($rawName)
             return $rawName;
     }
 }
+
+function isDanish() {
+    return getCurrentLang() === 'da';
+}

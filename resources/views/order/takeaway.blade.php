@@ -234,11 +234,11 @@
                                                 @endif
                                                 <span class="bn-text-icon">
                                                     <img
-                                                        src="{{ asset('asstes/image/take-away/' .  $item->portion_slug . '.png') }}?2">
+                                                        src="{{ asset('asstes/image/take-away/' .  $item->portion_slug . '.png') }}?4">
                                                 </span>
                                                 @if(in_array($item->section,['bn-curries','bn-veg']))
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/no-sides.png') }}?2"
+                                                        <img src="{{ isDanish() ? asset('asstes/image/take-away/u-sides.png') : asset('asstes/image/take-away/no-sides.png') }}?4"
                                                              alt="">
                                                     </span>
                                                 @endif
