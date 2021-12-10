@@ -17,7 +17,7 @@ class FeedbackController extends Controller
         $token = json_decode($token);
         if (!isset($token->data_id)) abort(404);
 
-        $order = Orders::query()->find($token->data_id);
+        $order = Orders::query()->findOrFail($token->data_id);
 
         $rows = FeedbackDB::query()
             ->where('active', true)

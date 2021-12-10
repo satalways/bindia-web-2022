@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html class="no-js" lang="{{ getCurrentLang() }}">
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     @if(isLiveServer())
@@ -34,7 +34,7 @@
     <link href="{{ asset('asstes/css/parallax.css') }}" rel="stylesheet">
 
     <!--Costume Style css file-->
-    <link rel="stylesheet" href="{{ asset('asstes/css/style.css') }}?v=3">
+    <link rel="stylesheet" href="{{ asset('asstes/css/style2.css') }}?v=13">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <style>
         @media only screen and (min-width: 1440px ) {
@@ -294,6 +294,7 @@
             <div class="col-lg-3 col-3">
                 <h4 class="bn-footer-header">{{ __('footer.locations') }}</h4>
                 <ul class="list-unstyled">
+                    <li><a href="#">Søborg Hovedgade</a></li>
                     @foreach(config('shops') as $shop => $arr)
                         <li>
                             <a class="text-dark" href="{{ route(strtolower($shop)) }}">{!! $arr['long_name'] !!}</a>

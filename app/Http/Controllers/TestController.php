@@ -30,6 +30,8 @@ class TestController extends Controller
 {
     public function index()
     {
+
+        return view('test');
         //return send_mail('shakeel@shakeel.pk', 'TEst', 'Test');
         //$order = Orders::query()->find(144782);
         $O = new Order();

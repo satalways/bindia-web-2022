@@ -1,7 +1,7 @@
 <table class="table table-bordered table-sm">
     <tr style="background-color: #23292c;color: #fff;">
         <th>Product</th>
-        <th>Price</th>
+        <th>Unit Price</th>
         <th>Amount</th>
     </tr>
     @php($total = 0)
@@ -10,7 +10,7 @@
         <tr>
             <td>
                 {{ $item->qty }} x {{ $item->item_title }}
-                {{ $item->spiceHtml() }}
+                {{ $item->spiceHtmlBrackets() }}
             </td>
             <td class="right">{{ number_format2($item->price) }} DKK</td>
             <td class="right">{{ number_format2($item->qty * $item->price) }} DKK</td>

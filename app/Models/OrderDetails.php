@@ -38,4 +38,21 @@ class OrderDetails extends Model
 
         return rtrim($string, ', ');
     }
+
+    public function spiceHtmlBrackets()
+    {
+        if (blank($this->spice)) return '';
+
+        $items = make_array($this->spice);
+
+        $string = '';
+        foreach ($items as $item) {
+            $I = explode('-', $item);
+            if (($I[1] ?? 'default') !== 'default') {
+                $string .= '(' . $I[0] . ' x ' . spiceName(($I[1] ?? 'default')) . ') ';
+            }
+        }
+
+        return rtrim($string, ', ');
+    }
 }
