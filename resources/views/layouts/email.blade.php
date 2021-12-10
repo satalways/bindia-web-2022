@@ -11,7 +11,7 @@
 <div class="container">
     <div style="text-align:right;">
         <a href="https://www.bindia.dk">
-            <img src="https://www.bindia.dk/themes/2016/img/logo.png"
+            <img src="https://www.bindia.dk/asstes/image/logo.png"
                  style="width: 80px; background-color: #000; padding: 5px; border-radius: 3px;"/>
         </a>
     </div>

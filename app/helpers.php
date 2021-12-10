@@ -38,8 +38,7 @@ function template($id)
     }
 
     if (empty($obj)) {
-        return new class
-        {
+        return new class {
             public $TemplateNo = '';
 
             public $id = 0;
@@ -201,6 +200,7 @@ function send_mail($to, string $subject, string $htmlContent, array $fields = []
         $fields
     );
 
+
     $htmlContent = strtr($htmlContent, $fields);
     $htmlContent = view('layouts.email', [
         'content' => $htmlContent,
@@ -239,7 +239,7 @@ function send_mail($to, string $subject, string $htmlContent, array $fields = []
                     );
                 }
             }
-        }  catch (\SendGrid\Mail\TypeException $e) {
+        } catch (\SendGrid\Mail\TypeException $e) {
             return $e->getMessage();
         }
 
@@ -685,6 +685,7 @@ function spiceName($rawName)
     }
 }
 
-function isDanish() {
+function isDanish()
+{
     return getCurrentLang() === 'da';
 }

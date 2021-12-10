@@ -117,7 +117,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
     Route::get('/xyiiodlesdf.html', [\App\Http\Controllers\App::class, 'markPaid']);
 
-    Route::get('/take-away-{area}', [\App\Http\Controllers\OrderController::class, 'areaPage'])->name('area.page');
+    Route::get('/take-away-{area}.html', [\App\Http\Controllers\OrderController::class, 'areaPage'])->name('area.page');
 
     Route::get('/{slug}', [\App\Http\Controllers\OrderController::class, 'itemPage'])->name('item');
 });

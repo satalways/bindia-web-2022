@@ -227,10 +227,11 @@ class Order
 
         $stringArray = [];
         foreach ($spices as $id => $spice) {
-            foreach ($spice as $s) {
-                $stringArray[$id][$s] = isset($stringArray[$id][$s]) ? ($stringArray[$id][$s] + 1) : 1;
+            if (is_array($spice)) {
+                foreach ($spice as $s) {
+                    $stringArray[$id][$s] = isset($stringArray[$id][$s]) ? ($stringArray[$id][$s] + 1) : 1;
+                }
             }
-            //$stringArray[$id][$spice] = isset($stringArray[$id][$spice]) ? $stringArray[$id][$spice]++ : 1;
         }
 
         return $stringArray;
@@ -637,6 +638,7 @@ class Order
         $array['print_link'] = '<div class="center"><a class="bindia_button big_button" href="' . $order->pdfLink() . '">View Receipt</a></div>';
         $array['order_table'] = view('order.items_table', ['order' => $order])->render();
         $array['pickup_date'] = $order->pickup_datetime->format(config('app.date_format'));
+        $array['pickup_time'] = $order->pickup_datetime->format(config('app.time_format'));
         $array['shop_address'] = $order->shopAddress();
         $array['shop_phone'] = $order->ShopPhone();
 
@@ -764,7 +766,7 @@ class Order
             $r = $order->createTakeoutOrder();
             if ($r !== 'OK') {
                 $content = print_r($r, true);
-                send_mail(['shakeel@shakeel.pk', 'arslan@bindia.dk'], 'Takeout order# ' . $order->id . ' not submitted via API', $content);
+                send_mail(['shakeel@shakeel.pk', 'arslan@bindia.dk', 'office@bindia.dk'], 'Delivery order# ' . $order->id . ' not submitted via takeout API', $content);
             }
         }
     }

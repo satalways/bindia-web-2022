@@ -34,7 +34,7 @@
 <table style="width: 100%">
     <tr>
         <td style="color:#666666;font-size:small;width: 150px; vertical-align: top">
-            <img src="https://www.bindia.dk/images/invoice_logo.gif?2" alt=""/>
+            <img src="{{ asset('asstes/image/invoice_logo.gif') }}" alt=""/>
             <br>
             <p>
                 Bindia {!! $order->shopAddress() !!}<br><br>
@@ -80,7 +80,7 @@
             <table class="table_lines">
                 @if (!$order->is_custom_order)
                     <tr style="background-color: #C9C9C9;color: #000000;font-weight: bold;font-size: 12px;">
-                        <td {{ isset($_GET['noprint']) ? 'width="10%"' : "" }}>Code</td>
+{{--                        <td {{ isset($_GET['noprint']) ? 'width="10%"' : "" }}>Code</td>--}}
                         <td {{ isset($_GET['noprint']) ? 'width="53%"' : "" }}>Item</td>
                         <td
                             style="text-align: center" {{ isset($_GET['noprint']) ? 'width="17%"' : "" }}>
@@ -94,14 +94,19 @@
 
                 @foreach ($order->items as $order1)
                     <tr>
-                        <td>
-                            {{ $order1->code }}
-                        </td>
+{{--                        <td>--}}
+{{--                            {{ $order1->code }}--}}
+{{--                        </td>--}}
                         <td>
                             {{ $order1->qty }} x {{ $order1->item_title }}
 
                             {{--                            //echo Spice::to_html($order1["item_title"], $order1["spice"], $order1["qty"]);--}}
                             {!! empty($order1->itemDetail->portion) ? '' : ' (<i style="font-size: 90%">' . $order1->itemDetail->portion . '</i>)' !!}
+
+                            @if (!blank($order1->spiceHtml()))
+                                <br>
+                                {{ $order1->spiceHtml() }}
+                            @endif
                         </td>
                         <td style="text-align: center">
                             {{ $order1["qty"] }} x {{ $order1->price }}</td>
@@ -135,7 +140,7 @@
                 @endif
 
                 <tr style="font-weight: bold">
-                    <td colspan="3" style="text-align:right">Total:</td>
+                    <td colspan="2" style="text-align:right">Total:</td>
                     <td style="text-align:right">
                         {{ number_format2($order->total_amount, 2) }} DKK
                     </td>

@@ -31,7 +31,9 @@ class OrderDetails extends Model
         $string = '';
         foreach ($items as $item) {
             $I = explode('-', $item);
-            $string .= $I[0] . ' x ' . ($I[1] ?? 'Unknown') . ', ';
+            if (($I[1] ?? 'default') !== 'default') {
+                $string .= $I[0] . ' x ' . spiceName(($I[1] ?? 'default')) . ', ';
+            }
         }
 
         return rtrim($string, ', ');
