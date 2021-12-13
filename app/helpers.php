@@ -689,3 +689,7 @@ function isDanish()
 {
     return getCurrentLang() === 'da';
 }
+
+function debug($val) {
+    \Log::info($val);
+}

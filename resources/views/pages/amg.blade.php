@@ -10,7 +10,7 @@
                 <h3>{{ __('global.takeaway') }} & {{ __('global.dinein') }}</h3>
             </div>
             <div class="bn-shop-header">
-                <h2>{{ shop('amg')->long_name }}</h2>
+                <h2>{{ shop('amg')->name }}</h2>
                 <p>{{ shop('amg')->address }}</p>
                 <p><a href="tel:{{ shop('amg')->phone }}">{{ shop('amg')->phone }}</a></p>
                 <p>{{ __('global.mon_sun') }}: 16.00 - 21.00</p>
@@ -24,7 +24,7 @@
 {{--                        <a href="https://www.findsmiley.dk/903529" target="_blank">--}}
                             <img src="{{ asset('asstes/image/shop/smile.svg') }}" alt="" onclick="window.open('https://www.findsmiley.dk/903529')" style="cursor: pointer">
 {{--                        </a>--}}
-                        <img src="{{ asset('asstes/image/shop/map-holder.svg') }}" alt="" onclick="window.open('{{ shop('amg')->google_search }}')" style="cursor: pointer">
+                        <img src="{{ asset('asstes/image/shop/map-holder.svg') }}" alt="" onclick="window.open('{{ shop('amg')->map_link }}')" style="cursor: pointer">
                     </div>
                     <div class="clearfix"></div>
                 </div>

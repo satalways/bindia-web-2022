@@ -44,4 +44,6 @@ return [
     'search' => 'Søg',
     'go' => 'Fortsæt',
     'approx' => 'ca.',
+    'our_team' => 'Vores Team',
+    'want_to_join' => 'Lyst til at være en del af teamet? Ansøg <a href=":link">her</a>',
 ];

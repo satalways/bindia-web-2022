@@ -32,9 +32,9 @@
                     <div class="bn-faq-text-item">
                         <h2>{{ __('faq.question_3') }}</h2>
                         <p>{!! __('faq.answer_3') !!}</p>
-{{--                        <p>{{ __('faq.answer_3_I') }}</p>--}}
-{{--                        <p>{{ __('faq.answer_3_II') }}</p>--}}
-{{--                        <p>{{ __('faq.answer_3_III') }}</p>--}}
+                        <p>{{ __('faq.answer_3_I') }}</p>
+                        <p>{{ __('faq.answer_3_II') }}</p>
+                        <p>{{ __('faq.answer_3_III') }}</p>
                     </div>
 {{--                    <div class="bn-faq-text-item">--}}
 {{--                        <h2>{{ __('faq.question_4') }}</h2>--}}

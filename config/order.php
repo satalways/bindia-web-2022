@@ -94,5 +94,10 @@ return [
             'js_file' => 'https://checkout.dibspayment.eu/v1/checkout.js?v=1',
         ],
         'merchant_id' => 100019422,
-    ]
+    ],
+
+    /**
+     * System can not generate order if total amount is minimum this amount
+     */
+    'min_order_amount' => 100
 ];

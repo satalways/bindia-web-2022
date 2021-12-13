@@ -11,21 +11,21 @@
             </div>
 
             <div class="bn-shop-header">
-                <h2>{!! shop('shg')->long_name !!}</h2>
+                <h2>{!! shop('shg')->name !!}</h2>
                 <p>{{ shop('shg')->address }}</p>
                 <p><a href="tel:{{ shop('shg')->phone }}">{{ shop('shg')->phone }}</a></p>
-                <p>Mon-Sun: 16.00 - 21.00</p>
+                <p>{{ __('global.mon_sun') }}: 16.00 - 21.00</p>
                 <br>
                 <div class="bn-shop-footer-address">
                     <div class="float-start">
-                        <small><strong>Closed</strong> on 24/12 and 31/12.</small>
-                        <small><strong>All</strong> other days open as usual.</small>
+                        <small><strong>{{ __('global.closed') }}</strong> {{ __('global.closing_dates') }}.</small>
+                        <small><strong>{{ __('shop.all') }}</strong> {{ __('shop.other_days') }}</small>
                     </div>
                     <div class="float-end">
 {{--                        <a href="https://www.findsmiley.dk/947692" target="_blank">--}}
                             <img src="{{ asset('asstes/image/shop/smile.svg') }}" alt="" onclick="window.open('https://www.findsmiley.dk/947692')" style="cursor: pointer">
 {{--                        </a>--}}
-                        <img src="{{ asset('asstes/image/shop/map-holder.svg') }}" alt="" onclick="window.open('{{ shop('shg')->google_search }}')" style="cursor: pointer">
+                        <img src="{{ asset('asstes/image/shop/map-holder.svg') }}" alt="" onclick="window.open('{{ shop('shg')->map_link }}')" style="cursor: pointer">
                     </div>
                     <div class="clearfix"></div>
                 </div>

@@ -44,4 +44,6 @@ return [
     'search' => 'Search',
     'go' => 'Go',
     'approx' => 'approx.',
+    'our_team' => 'Our Team',
+    'want_to_join' => 'Want to join the team? Apply <a href=":link">here</a>',
 ];

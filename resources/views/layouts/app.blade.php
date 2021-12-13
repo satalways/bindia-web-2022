@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html class="no-js" lang="{{ getCurrentLang() }}">
+<html lang="{{ getCurrentLang() }}">
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     @if(isLiveServer())
@@ -201,13 +201,12 @@
                         {{ __('footer.locations') }}
                     </a>
                     <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item text-white" href="{{ route('amg') }}">Amagerbrogade</a></li>
-                        <li><a class="dropdown-item text-white" href="{{ route('bdv') }}">Blegdamsver(Trianglen)</a>
-                        </li>
-                        <li><a class="dropdown-item text-white" href="{{ route('elm') }}">Elmegade</a></li>
-                        <li><a class="dropdown-item text-white" href="{{ route('gkv') }}">Gi. Kongevej</a></li>
-                        <li><a class="dropdown-item text-white" href="{{ route('lhg') }}">Lyngby Hovedgade</a></li>
-                        <li><a class="dropdown-item text-white" href="{{ route('shg') }}">Soborg Hovedgade</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('amg') }}">{{ shop('amg')->name }}</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('gkv') }}">{{ shop('gkv')->name }}</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('lhg') }}">{{ shop('lhg')->name }}</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('elm') }}">{{ shop('elm')->name }}</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('shg') }}">{{ shop('shg')->name }}</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('bdv') }}">{{ shop('bdv')->name }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -294,12 +293,17 @@
             <div class="col-lg-3 col-3">
                 <h4 class="bn-footer-header">{{ __('footer.locations') }}</h4>
                 <ul class="list-unstyled">
-                    <li><a href="#">Søborg Hovedgade</a></li>
-                    @foreach(config('shops') as $shop => $arr)
-                        <li>
-                            <a class="text-dark" href="{{ route(strtolower($shop)) }}">{!! $arr['long_name'] !!}</a>
-                        </li>
-                    @endforeach
+                    <li><a class="text-dark" href="{{ route('amg') }}">{!! shop('amg')->name !!}</a></li>
+                    <li><a class="text-dark" href="{{ route('gkv') }}">{!! shop('gkv')->name !!}</a></li>
+                    <li><a class="text-dark" href="{{ route('lhg') }}">{!! shop('lhg')->name !!}</a></li>
+                    <li><a class="text-dark" href="{{ route('elm') }}">{!! shop('elm')->name !!}</a></li>
+                    <li><a class="text-dark" href="{{ route('shg') }}">{!! shop('shg')->name !!}</a></li>
+                    <li><a class="text-dark" href="{{ route('bdv') }}">{!! shop('bdv')->name !!}</a></li>
+{{--                    @foreach(config('shops') as $shop => $arr)--}}
+{{--                        <li>--}}
+{{--                            <a class="text-dark" href="{{ route(strtolower($shop)) }}">{!! $arr['long_name'] !!}</a>--}}
+{{--                        </li>--}}
+{{--                    @endforeach--}}
                 </ul>
             </div>
             <div class="col-lg-3 col-3">

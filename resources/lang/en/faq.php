@@ -9,7 +9,7 @@ return [
     'question_3' => 'Why is it not possible to get beef or pork at Bindia?',
     'answer_3' => 'In Punjab, Muslims and Hindus have lived side by side for centuries - and mutual respect for religion and customs have been a key ingredient for this coexistence.',
     'answer_3_I' => 'Since Muslims do not eat pork and Hindus do not eat beef, these two ingredients have naturally disappeared from the general Punjab cuisine over time.',
-    'answer_3_II' => 'Though Punjab was divided by with the partion of India and Pakistan in 1947, the local culture and customs have remained practically intact.',
+    'answer_3_II' => 'Though Punjab was divided by with the partition of India and Pakistan in 1947, the local culture and customs have remained practically intact.',
     'answer_3_III' => 'In accordance with Bindia’s culinary heritage, we, therefore, do not serve pork or beef.',
     'question_4' => 'Is it Indian or Pakistani food that is made at Bindia?',
     'answer_4' => 'The food we cook is mainly from the region of Punjab. With the partition of India and

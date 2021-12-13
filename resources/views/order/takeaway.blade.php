@@ -174,7 +174,7 @@
                                     >
                                         <div class="col-md-4">
                                             <img class="bn-thumbnail-img lazy"
-                                                 src="{{ asset('asstes/image/item2.png') }}?v=1"
+                                                 src="{{ asset('asstes/image/food_loader.gif') }}?v=1"
                                                  data-src="{{ $item->image }}?v=5"
                                                  alt="">
                                         </div>

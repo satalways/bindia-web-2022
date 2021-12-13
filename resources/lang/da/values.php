@@ -36,7 +36,7 @@ return [
     'paper_bowl_description_3' => 'Do you have any ideas on how we can improve our packaging further, please contact us.',
     'plastic' => 'Farvel til plastik',
     'plastic_description_1' => 'Vi støtter organisationen Plastic Change, fordi vi også vil være med til at gøre en aktiv forskel for miljøet.',
-    'plastic_description_2' => 'Du kan læse mere om Plastic Change på deres <a href="https://plasticchange.org">hjemmeside</a>, hvor du også kan se, hvordan du selv kan deltage i kampen for at nedbringe verdens overforbrug af plastik.',
+    'plastic_description_2' => 'Du kan læse mere om Plastic Change på deres <a target="_blank" href="https://plasticchange.org">hjemmeside</a>, hvor du også kan se, hvordan du selv kan deltage i kampen for at nedbringe verdens overforbrug af plastik.',
 
     'renewable_electricity' => 'Kun grøn strøm',
     'R_E_description_1' => 'Al vores strøm kommer fra vedvarende energikilder certificeret af vores el-leverandør Natur Energi.',

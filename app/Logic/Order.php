@@ -399,6 +399,11 @@ class Order
             return __('checkout.large_order');
         }
 
+
+        if ($checkoutData['total_price'] < config('order.min_order_amount')) {
+            return __('Order amount is :amount, It seems there is some issue, We can not proceed.', ['amount' => $checkoutData['total_price']]);
+        }
+
         /**
          * Pick up Order and Pay at Shop
          */
@@ -463,18 +468,30 @@ class Order
                 }
             }
 
+            /**
+             * If delivery address missing
+             */
             if (empty($data['shipping_address'])) {
                 return __('checkout.delivery_address_missing');
             }
 
+            /**
+             * Check if given postal code by customer is available in database.
+             */
             if (TakeoutZonesModel::query()->whereRaw('(? between post_number and post_number2)', [$data['shipping_postal_code']])->orderByDesc('id')->count() === 0) {
                 return __('checkout.invalid_postal_code');
             }
 
+            /**
+             * Check if city is missing for delivery order
+             */
             if (empty($data['shipping_city'])) {
                 return __('checkout.invalid_city');
             }
 
+            /**
+             * Getting row from database against provided postal code
+             */
             $row = TakeoutZonesModel::query()
                 ->whereRaw('(? between post_number and post_number2)', [$data['shipping_postal_code']])
                 ->whereRaw('(? between start_time and end_time)', [$dateTime->format('H:i')])
@@ -489,6 +506,12 @@ class Order
              * If today's delivery order and customer selecting less then preparation + delivery time.
              */
             if ($dateTime->isToday() && $dateTime->hour >= 16) {
+                if ($now->hour < 16 && ($dateTime->hour * 60) + $dateTime->minute < $minTime) {
+                    return 'Delivery order cannot deliver before ' . $this->minutesToTime((16 * 60) + $minutesRequired) . ' at ' . $data['shipping_postal_code'];
+                } elseif (($now->hour * 60) + $now->minute + $minutesRequired > ($dateTime->hour * 60) + $dateTime->minute) {
+                    return 'Delivery order cannot deliver before ' . $this->minutesToTime(($now->hour * 60) + $now->minute + $minutesRequired) . ' at ' . $data['shipping_postal_code'];
+                }
+
                 if ((($dateTime->hour * 60) + $dateTime->minute) - ($now->hour * 60 + $now->minute) <= $minutesRequired) {
                     return 'Delivery order cannot deliver before ' . $this->minutesToTime(($now->hour * 60 + $now->minute) + $minutesRequired) . ' at ' . $data['shipping_postal_code'];
                 }
@@ -790,7 +813,24 @@ class Order
             }
             if (!blank($item->spice)) $spices[item($item->code)->id] = $item->spice;
         }
-        $this->setSessionCartSpice($spices);
+
+        if (!blank($spices)) {
+            $newSpicesArray = [];
+            foreach ($spices as $id => $row) {
+                $spiceRow = make_array($row);
+                $spiceSingleArray = [];
+                foreach ($spiceRow as $spice) {
+                    list($qty, $spiceName) = explode('-', $spice);
+                    for ($x = 1; $x <= $qty; $x++) {
+                        $spiceSingleArray[] = $spiceName;
+                    }
+                }
+
+                $newSpicesArray[$id] = $spiceSingleArray;
+            }
+
+            $this->setSessionCartSpice($newSpicesArray);
+        }
 
         return 'OK';
     }

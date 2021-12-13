@@ -5,7 +5,7 @@
     <div class="bn-our-team bn-main-story">
         <div class="container">
             <div class="bn-team-header">
-                <h1>Our Team</h1>
+                <h1>{{ __('global.our_team') }}</h1>
                 <p><b>Administration</b><br><a style="font-size: 90% !important;" href="mailto:bindia@bindia.dk">bindia@bindia.dk</a></p>
             </div>
 
@@ -92,7 +92,7 @@
             </div>
 
             <div class="bn-join-team">
-                Want to join the team? Apply <a href="{{ route('jobs') }}">here</a>
+                {!! __('global.want_to_join', ['link' => route('jobs')]) !!}
             </div>
 
         </div>
