@@ -48,11 +48,19 @@
             <div class="row">
                 <div class="col-md-9 col-12">
                     <div class="bn-details-content">
-                        <h2>{{ shop('bdv')->long_name }}</h2>
-                        <p>{{ __('bdv.shop_description_1') }}</p>
-                        <p>
-                            {{ __('bdv.shop_description_2') }}
-                        </p>
+{{--                        <h2>{{ shop('bdv')->long_name }}</h2>--}}
+{{--                        <p>{{ __('bdv.shop_description_1') }}</p>--}}
+{{--                        <p>--}}
+{{--                            {{ __('bdv.shop_description_2') }}--}}
+{{--                        </p>--}}
+
+                        {!! __('bdv.seo_text', [
+    'dine_link' => route('dinein'),
+    'inside_view_link' => shop('bdv')->inside_link,
+    'reheat_link' => route('order.food.reheat.pdf'),
+    'takeaway_link' => route('takeaway'),
+    'value_link' => route('our_values')
+]) !!}
                     </div>
                 </div>
             </div>

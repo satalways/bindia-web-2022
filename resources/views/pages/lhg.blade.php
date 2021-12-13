@@ -49,11 +49,18 @@
             <div class="row">
                 <div class="col-md-9 col-12">
                     <div class="bn-details-content">
-                        <h2>{{ shop('lhg')->long_name }}</h2>
-                        <p>{{ __('lhg.shop_description_1') }}</p>
-                        <p>
-                            {{ __('lhg.shop_description_2') }}
-                        </p>
+{{--                        <h2>{{ shop('lhg')->long_name }}</h2>--}}
+{{--                        <p>{{ __('lhg.shop_description_1') }}</p>--}}
+{{--                        <p>--}}
+{{--                            {{ __('lhg.shop_description_2') }}--}}
+{{--                        </p>--}}
+                        {!! __('lhg.seo_text', [
+    'dine_link' => route('dinein'),
+    'inside_view_link' => shop('lhg')->inside_link,
+    'reheat_link' => route('order.food.reheat.pdf'),
+    'takeaway_link' => route('takeaway'),
+    'value_link' => route('our_values')
+]) !!}
                     </div>
                 </div>
             </div>

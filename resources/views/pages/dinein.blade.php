@@ -41,8 +41,9 @@
                     <div class="bn-menu-b-box">
                         <ul class="list-unstyled">
                             @foreach(config('shops') as $shop => $arr)
-                                <li><a target="_blank" class=""
-                                       href="{{ shop($shop)->map_link }}">{{ $arr['long_name'] }}</a></li>
+                                <li>
+                                    <a target="_blank" class="" href="{{ shop($shop)->inside_link }}">{{ $arr['name'] }}</a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
