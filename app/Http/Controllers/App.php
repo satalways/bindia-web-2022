@@ -66,6 +66,11 @@ class App extends Controller
             'birthday' => '',
 //            'captcha' => 'required|captcha'
         ]);
+
+        /**
+         * if birthday field is selected by any bot then it will not serve.
+         * This option is to stop bots
+         */
         if (!blank($request->birthday)) {
             abort('403');
         }
@@ -82,15 +87,20 @@ class App extends Controller
                     'subject' => 'Contact Form'
                 ]);
 
-            //\Log::info($request->allFiles());
+            $attachedFile = '';
             if ($request->hasFile('file') && $request->file('file')->isValid()) {
-                $request->file('file')->move(storage_path('contact/' . $id), $request->file('file')->getClientOriginalName());
+                try {
+                    $request->file('file')->move(storage_path('contact/' . $id), $request->file('file')->getClientOriginalName());
+                    $attachedFile = storage_path('contact/' . $id) . DIRECTORY_SEPARATOR . $request->file('file')->getClientOriginalName();
+                } catch (\Exception) {
+                    $attachedFile = '';
+                }
             }
 
             $template = template('3.5.3');
             $fields = $request->post();
             $fields['shop'] = '';
-            send_mail('office@bindia.dk', $template->subject, $template->content, $fields);
+            send_mail('office@bindia.dk', $template->subject, $template->content, $fields, $attachedFile);
         } catch (\Exception $exception) {
             return redirect()->back()->with('message', $exception->getMessage());
         }

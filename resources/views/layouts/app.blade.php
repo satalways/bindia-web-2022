@@ -34,7 +34,7 @@
     <link href="{{ asset('asstes/css/parallax.css') }}" rel="stylesheet">
 
     <!--Costume Style css file-->
-    <link rel="stylesheet" href="{{ asset('asstes/css/style2.css') }}?v=13">
+    <link rel="stylesheet" href="{{ asset('asstes/css/style2.css') }}?v=14">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <style>
         @media only screen and (min-width: 1440px ) {
@@ -400,7 +400,7 @@
 <script src="{{ asset('asstes/js/rellax.min.js') }}"></script>
 
 <!--Custom js file-->
-<script src="{{ asset('asstes/js/script.js') }}?3"></script>
+<script src="{{ asset('asstes/js/script.js') }}?4"></script>
 {!! js('lazyload') !!}
 <script>
     $.ajaxSetup({
@@ -508,8 +508,6 @@
             })
 
     });
-
-
 </script>
 
 @yield('js')

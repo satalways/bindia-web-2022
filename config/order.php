@@ -99,5 +99,5 @@ return [
     /**
      * System can not generate order if total amount is minimum this amount
      */
-    'min_order_amount' => 100
+    'min_order_amount' => 25
 ];

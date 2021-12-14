@@ -108,8 +108,8 @@
                                                 <div class="col-xl-5 col-lg-5 col-md-6 col-6 bn-col-mobile">
                                                     <h2>
                                                         {{ $item->name }}
-{{--                                                        <small--}}
-{{--                                                            class="d-sm-inline-block d-none">(<i>{{ $items['isOrange']?$item->price_orange:$item->price }}</i>)</small>--}}
+                                                        {{--                                                        <small--}}
+                                                        {{--                                                            class="d-sm-inline-block d-none">(<i>{{ $items['isOrange']?$item->price_orange:$item->price }}</i>)</small>--}}
                                                         @if(in_array($item->section,['bn-curries','bn-veg']))
                                                             <small>(no Sides)</small>
                                                         @endif
@@ -145,9 +145,9 @@
                                             <div class="col-xl-5 col-lg-5 col-md-6 col-6 bn-col-mobile">
                                                 <h2>
                                                     {{ $item->name }}
-{{--                                                    <small class="d-sm-inline-block d-none">--}}
-{{--                                                        (<i>{{ $items['isOrange']?$item->price_orange:$item->price }}</i>)--}}
-{{--                                                    </small>--}}
+                                                    {{--                                                    <small class="d-sm-inline-block d-none">--}}
+                                                    {{--                                                        (<i>{{ $items['isOrange']?$item->price_orange:$item->price }}</i>)--}}
+                                                    {{--                                                    </small>--}}
                                                     @if(in_array($item->section,['bn-curries','bn-veg']))
                                                         <small>(no Sides)</small>
                                                     @endif
@@ -184,10 +184,15 @@
 
                         @if ( isset($items['bag_price']) && $items['bag_price'] > 0 )
                             <div class="row bn-border-bottom bn-bottom-space-check bn-bottom-span-mobile-set">
-                                <div class="col-lg-6 col-6">
-                                    <h2>Take Away Bag <small>x{{ $items['bags'] }}</small></h2>
+                                <div class="col-xl-7 col-lg-7 col-md-8 col-8">
+                                    <h2>Take Away Bag</h2>
                                 </div>
-                                <div class="col-lg-6 col-6">
+                                <div class="col-xl-3 col-lg-3 col-md-2 col-2">
+                                    <div class="bn-number-product d-inline-block float-end">
+                                        <span>x{{ $items['bags'] }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-2">
                                     <div class="bn-price-item">{{ $items['bag_price'] }}</div>
                                 </div>
                             </div>

@@ -31,11 +31,10 @@ class TestController extends Controller
     public function index()
     {
 
-        return view('test');
-        //return send_mail('shakeel@shakeel.pk', 'TEst', 'Test');
-        //$order = Orders::query()->find(144782);
+        dd( make_array('E:\development\bindia-web-2021-v2\storage\contact/1947\Lyngby DK (2).docx') );
+
         $O = new Order();
-        return $O->sendOrderEmailToCustomer(144782);
+        return $O->sendOrderEmailToCustomer(144790);
 
         die;
         $G = new \App\Logic\GiftCard();

@@ -173,7 +173,7 @@ function localhost()
     }
 
     return in_array($_SERVER["HTTP_HOST"], [
-            'local.bindia.pk', '127.0.0.1', 'localhost', 'admin.bindia.pk', 'bindia.localhost', 'staff.bindia.pk'
+            'local.bindia.pk', '127.0.0.1', 'localhost', 'admin.bindia.pk', 'bindia.localhost', 'staff.bindia.pk', '127.0.0.1:8000'
         ]) || in_array($_SERVER["REMOTE_ADDR"], [
             '::1', '127.0.0.1',
         ]);
@@ -200,7 +200,6 @@ function send_mail($to, string $subject, string $htmlContent, array $fields = []
         $fields
     );
 
-
     $htmlContent = strtr($htmlContent, $fields);
     $htmlContent = view('layouts.email', [
         'content' => $htmlContent,
@@ -215,90 +214,51 @@ function send_mail($to, string $subject, string $htmlContent, array $fields = []
     if (!empty($attachedFiles)) {
         $attachedFiles = make_array($attachedFiles);
     }
+    $dsn = 'smtp://' . env('MAIL_USERNAME') . ':' . env('MAIL_PASSWORD') . '@' . env('MAIL_HOST') . ':' . env('MAIL_PORT') . '?verify_peer=0';
 
-    if (env('MAIL_HOST', 'smtp.sendgrid.net') === 'smtp.sendgrid.net') {
-        $email = new \SendGrid\Mail\Mail();
-        try {
-            $email->setFrom(env('MAIL_FROM_ADDRESS', 'office@bindia.dk'), env('MAIL_FROM_NAME', 'Bindia'));
-            $email->setSubject($subject);
-            $email->addContent('text/html', $htmlContent);
-            if (is_array($attachedFiles)) {
-                foreach ($attachedFiles as $file) {
-                    if (!is_file($file)) continue;
-                    $file_encoded = base64_encode(file_get_contents($file));
-                    $mime_type = \File::mimeType($file);
-                    if (strpos($mime_type, ';') !== false) {
-                        $mime_type = substr($mime_type, 0, strpos($mime_type, ';'));
-                    }
+    try {
+        $mailer = \Symfony\Component\Mailer\Transport::fromDsn($dsn);
+        $email = new   \Symfony\Component\Mime\Email();
 
-                    $email->addAttachment(
-                        $file_encoded,
-                        $mime_type,
-                        basename($file),
-                        "attachment"
-                    );
-                }
-            }
-        } catch (\SendGrid\Mail\TypeException $e) {
-            return $e->getMessage();
-        }
-
-        //You can send variables values on sendgrid templates using addTO
-        //I've sent 2 variables in array with keys username, useremail
-        // In send grid template i used {{username}} and {{useremail}} to get dynamic values
+        $email->from(new \Symfony\Component\Mime\Address(env('MAIL_FROM_ADDRESS', 'office@bindia.dk'), env('MAIL_FROM_NAME', 'Bindia')));
         $to = make_array($to);
-        foreach ($to as $t) {
-            $email->addTo($t);
+        foreach ($to as $e) {
+            $email->addTo($e);
         }
+        $email->subject($subject)
+            ->text(strip_tags($htmlContent))
+            ->html($htmlContent);
 
-        // if you want to send bcc
-//        $email->addBcc(
-//            'admin2@mail.com',
-//            "Example User1",
-//            [
-//                "username" => ucwords($user->name),
-//                "useremail" => ucwords($user->email)
-//            ]
-//        );
-
-        //$email->setTemplateId("YOUT TEMPLATE ID");
-        $sendgrid = new \SendGrid(env('MAIL_PASSWORD', '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'));
-        try {
-            $response = $sendgrid->send($email);
-            //print $response->body() . "\n";
-
-            if ($response->statusCode() !== 202) {
-                $body = $response->body();
-                if (is_json($body)) {
-                    $body = json_decode($body);
-                    return isset($body->errors[0]->message) ? $body->errors[0]->message : $response->body();
-                } else {
-                    return $body;
-                }
+        if (is_array($attachedFiles)) {
+            foreach ($attachedFiles as $file) {
+                if (!is_string($file)) continue;
+                if (is_file($file)) $email->attachFromPath($file);
             }
-        } catch (Exception $e) {
-            return $e->getMessage();
         }
-    } else {
-        try {
-            Mail::send([], [], function (Message $message) use ($to, $subject, $htmlContent, $attachedFiles) {
-                $message
-                    ->from(env('MAIL_FROM_ADDRESS', 'office@bindia.dk'), env('MAIL_FROM_NAME', 'Bindia'))
-                    ->to($to)
-                    ->subject($subject)
-                    ->setBody($htmlContent, 'text/html');
 
-                if (is_array($attachedFiles)) {
-                    foreach ($attachedFiles as $attachedFile) {
-                        if (is_file($attachedFile))
-                            $message->attach($attachedFile);
-                    }
-                }
-            });
-        } catch (Exception $exception) {
-            return $exception->getMessage();
-        }
+        $mailer->send($email);
+    } catch (Exception $exception) {
+        return $exception->getMessage();
     }
+
+//    try {
+//        Mail::send([], [], function (Message $message) use ($to, $subject, $htmlContent, $attachedFiles) {
+//            $message
+//                ->from(env('MAIL_FROM_ADDRESS', 'office@bindia.dk'), env('MAIL_FROM_NAME', 'Bindia'))
+//                ->to($to)
+//                ->subject($subject)
+//                ->setBody($htmlContent, 'text/html');
+//
+//            if (is_array($attachedFiles)) {
+//                foreach ($attachedFiles as $attachedFile) {
+//                    if (is_file($attachedFile))
+//                        $message->attach($attachedFile);
+//                }
+//            }
+//        });
+//    } catch (Exception $exception) {
+//        return $exception->getMessage();
+//    }
 
     try {
         \App\Models\MailLogs::query()->insert([
@@ -690,6 +650,7 @@ function isDanish()
     return getCurrentLang() === 'da';
 }
 
-function debug($val) {
+function debug($val)
+{
     \Log::info($val);
 }

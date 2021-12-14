@@ -644,6 +644,8 @@ class Order
 
         if (!$order->isDelivery() && !$order->isOnlinePayment()) {
             $templateNumber = '12.2.1';
+        } else if ($order->isDelivery() && $order->isOnlinePayment()) {
+            $templateNumber = '12.2.5';
         } else {
             $templateNumber = '12.2.2';
         }
@@ -661,6 +663,10 @@ class Order
         $array['print_link'] = '<div class="center"><a class="bindia_button big_button" href="' . $order->pdfLink() . '">View Receipt</a></div>';
         $array['order_table'] = view('order.items_table', ['order' => $order])->render();
         $array['pickup_date'] = $order->pickup_datetime->format(config('app.date_format'));
+        if ($order->delivery_datetime) {
+            $array['delivery_date'] = $order->delivery_datetime->format(config('app.date_format'));
+            $array['delivery_time'] = $order->delivery_datetime->format(config('app.time_format'));
+        }
         $array['pickup_time'] = $order->pickup_datetime->format(config('app.time_format'));
         $array['shop_address'] = $order->shopAddress();
         $array['shop_phone'] = $order->ShopPhone();

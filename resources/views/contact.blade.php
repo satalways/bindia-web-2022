@@ -35,12 +35,12 @@
                         {{ __('contact.call_us') }}
                     </div>
                     <div class="bn-contact-text">
-                        <span> {{ shop('bdv')->long_name }}: {{ shop('bdv')->phone }}</span>
-                        <span> {{ shop('gkv')->long_name }}: {{ shop('gkv')->phone }}</span>
-                        <span> {{ shop('elm')->long_name }}: {{ shop('elm')->phone }}</span>
-                        <span> {{ shop('lhg')->long_name }}: {{ shop('lhg')->phone }}</span>
-                        <span> {{ shop('amg')->long_name }}: {{ shop('amg')->phone }}</span>
-                        <span> {{ shop('shg')->long_name }}: {{ shop('shg')->phone }}</span>
+                        <span> {{ shop('bdv')->name }}: {{ shop('bdv')->phone }}</span>
+                        <span> {{ shop('gkv')->name }}: {{ shop('gkv')->phone }}</span>
+                        <span> {{ shop('elm')->name }}: {{ shop('elm')->phone }}</span>
+                        <span> {{ shop('lhg')->name }}: {{ shop('lhg')->phone }}</span>
+                        <span> {{ shop('amg')->name }}: {{ shop('amg')->phone }}</span>
+                        <span> {{ shop('shg')->name }}: {{ shop('shg')->phone }}</span>
                         <span> Hovedkontor: (+45) 30 25 88 38</span>
                     </div>
                 </div>

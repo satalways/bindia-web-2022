@@ -198,60 +198,60 @@
                                             <div class="bn-icon">
                                                 @if($item->dairy)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/milk.png') }}?2"
+                                                        <img src="{{ asset('asstes/image/take-away/milk.png') }}?3"
                                                              alt="">
                                                     </span>
                                                 @endif
                                                 @if($item->nuts)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/nut.png') }}?2"
+                                                        <img src="{{ asset('asstes/image/take-away/nut.png') }}?3"
                                                              alt="">
                                                     </span>
                                                 @endif
                                                 @if($item->gluten)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/wheat.png') }}?2"
+                                                        <img src="{{ asset('asstes/image/take-away/wheat.png') }}?3"
                                                              alt="">
                                                     </span>
                                                 @endif
                                                 @if($item->chili)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/chili.png') }}?2"
+                                                        <img src="{{ asset('asstes/image/take-away/chili.png') }}?3"
                                                              alt="">
                                                     </span>
                                                 @endif
                                                 @if($item->double_chili)
                                                     <span>
                                                         <img
-                                                            src="{{ asset('asstes/image/take-away/dubble-chili.png') }}?2"
+                                                            src="{{ asset('asstes/image/take-away/dubble-chili.png') }}?3"
                                                             alt="">
                                                     </span>
                                                 @endif
                                                 @if($item->vegan)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/vegan.png') }}?2"
+                                                        <img src="{{ asset('asstes/image/take-away/vegan.png') }}?3"
                                                              alt="">
                                                     </span>
                                                 @endif
                                                 @if($item->veg)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/veg.png') }}?2"
+                                                        <img src="{{ asset('asstes/image/take-away/veg.png') }}?3"
                                                              alt="">
                                                     </span>
                                                 @endif
                                                 <span class="bn-text-icon">
                                                     <img
-                                                        src="{{ asset('asstes/image/take-away/' .  $item->portion_slug . '.png') }}?4">
+                                                        src="{{ asset('asstes/image/take-away/' .  $item->portion_slug . '.png') }}?3">
                                                 </span>
                                                 @if(in_array($item->section,['bn-curries','bn-veg']))
                                                     <span>
                                                         <img
-                                                            src="{{ asset('asstes/image/take-away/no-sides.png') }}?4"
+                                                            src="{{ asset('asstes/image/take-away/no-sides.png') }}?3"
                                                             alt="">
                                                     </span>
                                                 @endif
 
-                                                <img src="{{ asset('asstes/image/take-away/info-icon.png') }}"
+                                                <img src="{{ asset('asstes/image/take-away/info-icon.png') }}?3"
                                                      alt=""
                                                      class="bn-info-product-icon">
 
@@ -337,7 +337,6 @@
                     console.error(e3);
                 }
             }).done(function (data) {
-                console.error(data);
                 $('#bn-check-last-order .container').html(data.html)
             });
         }
