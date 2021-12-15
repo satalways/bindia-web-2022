@@ -193,6 +193,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-lg-2 col-md-2 col-2">
+
                                     <div class="bn-price-item">{{ $items['bag_price'] }}</div>
                                 </div>
                             </div>
@@ -235,7 +236,7 @@
                                     </h2>
                                 </div>
                                 <div class="col-lg-6 col-6">
-                                    <div class="bn-price-item">-{{ $items['delivery_fee'] }}</div>
+                                    <div class="bn-price-item">{{ $items['delivery_fee'] }}</div>
                                 </div>
                             </div>
                         @endif

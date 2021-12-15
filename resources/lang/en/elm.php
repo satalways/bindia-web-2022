@@ -14,9 +14,10 @@ return [
 
         <h3>Dine in Elmegade</h3>
         <p>In a former organic bakery called Det Gode Brød, we opened another Bindia in 2010. Our place in Nørrebro is a small, yet cozy place with front-row seats to the diverse Nørrebro-life. Like all our other shops, there is a possibility for dine-in, which means you are free to enjoy your Butter Chicken, Dal, or one of our vegetarian and vegan dishes inside the shop. Especially the window seats provide a golden opportunity to enjoy our Indian classics while observing the people in the charming street of Elmegade pass by.
-        <br>Read more about dine-in <a href=":dine_link">here</a>.</p>
-        <p>In 2018, Elmegade underwent a largescale renovation of the road, bike lane, and walkway, which meant that the pavement has widened significantly, allowing for much more life between the bars, take-aways, and shops of Elmegade. Hence, we have chairs and tables outside our shop for our guests during the summer. Like all our other shops, Bindia in Elmegade is open year-round from 16.00 to 21.00 except for the 24th and 31st of December.
-        <br>Have a look inside our Nørrebro Bindia <a href=":inside_view_link" target="_blank">here</a>.</p>
+        Have a look inside our Nørrebro Bindia <a href=":inside_view_link" target="_blank">here</a></p>
+        <p>In 2018, Elmegade underwent a largescale renovation of the road, bike lane, and walkway, which meant that the pavement has widened significantly, allowing for much more life between the bars, take-aways, and shops of Elmegade. Hence, we have chairs and tables outside our shop for our guests during the summer. Like all our other shops, Bindia in Elmegade is open year-round from 16.00 to 21.00 except for the 24th and 31st of December.</p>
+        <p>You’re welcome to take advantage of our Orange Prices when you dine-in at Bindia. All you have to do is order and pay on bindia.dk and use the comment field to let our staff know.
+        Read more about dine-in <a href=":dine_link">here</a>.</p>
 
         <h3>Take away, but where to?</h3>
         <p>As the Nørrebro Bindia is one of our smaller shops, it has mostly served as a take-away shop since it opened in 2010; thankfully, there are many suitable places in the local area to enjoy Bindia’s top-quality take-away.</p>

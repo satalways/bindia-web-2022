@@ -3,8 +3,10 @@
 @section('content')
     <!--Main Breadcrumbs-->
     <div class="bn-breadcrumb-faq bn-main-story">
-        <img src="{{ asset('asstes/image/faq/faq-banner.jpg') }}" data-src="{{ asset('asstes/image/faq/faq-banner.png') }}" alt="" class="d-sm-block d-none lazy">
-        <img src="{{ asset('asstes/image/faq/faq-banner-mibile.jpg') }}" data-src="{{ asset('asstes/image/faq/faq-banner-mibile.png') }}" alt="" class="d-sm-none d-block lazy">
+        <img src="{{ asset('asstes/image/faq/faq-banner.jpg') }}"
+             data-src="{{ asset('asstes/image/faq/faq-banner.png') }}" alt="" class="d-sm-block d-none lazy">
+        <img src="{{ asset('asstes/image/faq/faq-banner-mibile.jpg') }}"
+             data-src="{{ asset('asstes/image/faq/faq-banner-mibile.png') }}" alt="" class="d-sm-none d-block lazy">
     </div>
     <!--Main end Breadcrumbs-->
     <!--faq content-->
@@ -12,7 +14,7 @@
         <div class="container">
             <div class="bn-faq-header">
                 <h1>{{ __('footer.FAQ') }}</h1>
-                <p class="bn-faq-text"> {!! __('faq.history', ['link'=>route('our_story')]) !!}</p>
+                <p class="bn-faq-text"> {!! __('faq.history', ['link'=>route('our_story') . '#bindia-history']) !!}</p>
                 <p class="bn-faq-sub-heading">
                     {{ __('faq.our_cuisine') }}
                 </p>
@@ -36,10 +38,10 @@
                         <p>{{ __('faq.answer_3_II') }}</p>
                         <p>{{ __('faq.answer_3_III') }}</p>
                     </div>
-{{--                    <div class="bn-faq-text-item">--}}
-{{--                        <h2>{{ __('faq.question_4') }}</h2>--}}
-{{--                        <p>{{ __('faq.answer_4') }}</p>--}}
-{{--                    </div>--}}
+                    {{--                    <div class="bn-faq-text-item">--}}
+                    {{--                        <h2>{{ __('faq.question_4') }}</h2>--}}
+                    {{--                        <p>{{ __('faq.answer_4') }}</p>--}}
+                    {{--                    </div>--}}
                 </div>
             </div>
             <div class="bn-faq-header bn-sub-header-faq">
@@ -55,12 +57,12 @@
                         <p>{{ __('faq.answer_5_I') }}</p>
                     </div>
                 </div>
-{{--                <div class="col-lg-6 col-12">--}}
-{{--                    <div class="bn-faq-text-item">--}}
-{{--                        <h2>{{ __('faq.question_6') }}</h2>--}}
-{{--                        <p>{{ __('faq.answer_6') }}</p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                {{--                <div class="col-lg-6 col-12">--}}
+                {{--                    <div class="bn-faq-text-item">--}}
+                {{--                        <h2>{{ __('faq.question_6') }}</h2>--}}
+                {{--                        <p>{{ __('faq.answer_6') }}</p>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
             </div>
             <div class="bn-faq-header bn-sub-header-faq">
                 <p class="bn-faq-sub-heading">
@@ -72,7 +74,8 @@
                     <div class="bn-faq-text-item">
                         <h2>{{ __('faq.question_7_i') }}</h2>
                         <p>{{ __('faq.answer_7_i') }}</p>
-                    </div><div class="bn-faq-text-item">
+                    </div>
+                    <div class="bn-faq-text-item">
                         <h2>{{ __('faq.question_7') }}</h2>
                         <p>{{ __('faq.answer_7') }}</p>
                     </div>
@@ -83,7 +86,7 @@
                     <div class="bn-faq-text-item">
                         <h2>{{ __('faq.question_9') }}</h2>
                         <p>{!! __('faq.answer_9') !!}</p>
-{{--                        <p>{{ __('faq.answer_9_II') }}</p>--}}
+                        {{--                        <p>{{ __('faq.answer_9_II') }}</p>--}}
                     </div>
                     <div class="bn-faq-text-item">
                         <h2>{{ __('faq.question_10') }}</h2>
@@ -145,12 +148,12 @@
                 </p>
             </div>
             <div class="row">
-{{--                <div class="col-lg-6 col-12">--}}
-{{--                    <div class="bn-faq-text-item">--}}
-{{--                        <h2>{{ __('faq.question_21') }}</h2>--}}
-{{--                        <p>{{ __('faq.answer_21') }}</p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                {{--                <div class="col-lg-6 col-12">--}}
+                {{--                    <div class="bn-faq-text-item">--}}
+                {{--                        <h2>{{ __('faq.question_21') }}</h2>--}}
+                {{--                        <p>{{ __('faq.answer_21') }}</p>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
                 <div class="col-lg-6 col-12">
                     <div class="bn-faq-text-item">
                         <h2>{{ __('faq.question_22') }}</h2>
@@ -166,12 +169,15 @@
             <div class="row">
                 <div class="col-lg-6 col-12">
                     <div class="bn-faq-text-item">
+                        {!! __('faq.new_section') !!}
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="bn-faq-text-item">
                         <h2>{!! __('faq.question_23') !!}</h2>
                         <p>{!! __('faq.answer_23', ['link' => route('order.food.reheat.pdf')]) !!}</p>
                     </div>
 
-                </div>
-                <div class="col-lg-6 col-12">
                     <div class="bn-faq-text-item">
                         <h2>{{ __('faq.question_24') }}</h2>
                         <p>{!! __('faq.answer_24') !!}</p>

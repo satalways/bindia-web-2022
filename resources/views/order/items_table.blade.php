@@ -1,7 +1,7 @@
 <table class="table table-bordered table-sm">
     <tr style="background-color: #23292c;color: #fff;">
         <th>Product</th>
-        <th>Unit Price</th>
+        <th>Qty x Unit Price</th>
         <th>Amount</th>
     </tr>
     @php($total = 0)

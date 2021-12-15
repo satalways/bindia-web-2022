@@ -29,7 +29,7 @@ Since, there didn’t exist any official education or degree related to the Nort
                             cooked in an Indian kitchen for many years (often for decades).',
     'our_food' => 'Our food',
     'question_7_i' => 'Do Bindia use ghee?',
-    'answer_7_i' => 'In accordance with true Indian traditions, Bindia use ghee in all dishes.',
+    'answer_7_i' => 'In accordance with true Indian traditions, Bindia use ghee in all dishes with the exception of our vegan dishes.',
     'question_7' => 'What is ghee?',
     'answer_7' => 'Ghee is 100% clarified buffalo/cow butter, and is a central element in the Indian kitchen, which gives the curry just the right taste.',
     'question_8' => 'Is there a lot of butter in the Butter Chicken?',
@@ -79,6 +79,14 @@ This approach is a traditional, culinary practice from the mountainous regions o
 Consequently, the first, slow and patient part of making our traditional curries is done in our central kitchen in Hvidovre, leaving the final part of the cooking to be done in our away shops when your order is placed.',
     'packing_and_serving' => 'Packaging and serving',
     'question_23' => 'Is it possible to heat up the food the day after?',
+
+    'new_section' => '
+        <h2>Can I recycle Bindia’s take-away packaging?</h2>
+        <p>All our packaging is made from 100% recycled, non-bleached paper. Both the paper bags and menu cards can be recycled as paper.</p>
+        <p>To ensure that our bowls can withstand the hot, liquid food, the bowls have a thin plastic coating on the inside. Hence, the bowls and lids must be sorted as regular waste.</p>
+        <p>We also recommend re-using the paper bag as much as possible before recycling it.</p>
+    ',
+
     'answer_23' => 'The food we serve can easily be refrigerated overnight and heated the following day. <a target="_blank" href=":link">See here how to do it.</a>',
     'question_24' => 'Can the take away boxes and lids withstand the heat in a conventional oven and/or microwave oven?',
     'answer_24' => 'The boxes and lids can NOT tolerate the heat in a conventional oven. They are also not suited for extended heating in a microwave, but they do, however, tolerate light heating in a microwave.',

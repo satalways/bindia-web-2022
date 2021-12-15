@@ -1,5 +1,18 @@
 <?php
 return [
+    'right_text' => '
+        <div class="bn-policy-text-item">
+            <h2>Orange Prices</h2>
+            <p>Orange priser gælder udelukkende for ordrer, der opfylder samtlige nedenstående kriterier:</p>
+            <ul>
+                <li>ordren er foretaget i Take Away webshoppen på bindia.dk</li>
+                <li>ordren er betalt online i Take Away webshoppen på bindia.dk</li>
+                <li>ordren er af typen \'Afhentning\', dvs. hvor kunden selv afhenter maden i én af Bindias butikker.</li>
+            </ul>
+        </div>
+    ',
+
+
     'term_sale_delivery' => 'Handelsbetingelser',
     'term_online_ordering' => 'Betingelser for køb og levering for Bindias online ordresystem.',
     'using_online_ordering' => 'Ved brug af vores online ordresystem',
@@ -50,6 +63,8 @@ Klager vedrørende ovenstående afhentningsordrer (som kold mad, forkert eller b
         <br>Du kan også ringe til vores hovednummer på tlf. (+45) 30 25 88 38.
         <br>Ved forespørgsler, spørgsmål samt andre bemærkninger klik her eller send os en email til bindia@bindia.dk.
         <br>Vi svarer under normale omstændigheder indenfor 2 arbejdsdage.',
+    'feedback_complaints_description_5' => '',
+    'feedback_complaints_description_6' => '',
     'disclaimer' => 'Ansvarsfraskrivelse',
     'disclaimer_description' => 'Alle rettigheder er forbeholdt i tilfælde af tastefejl, uddaterede priser i gammel materiale, m.m. ',
     'abuse' => 'Misbrug',

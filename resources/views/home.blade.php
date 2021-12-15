@@ -107,7 +107,7 @@
                             <ul class="list-unstyled">
                                 @foreach(config('shops') as $shop=>$array)
                                     <li><a class="text-white"
-                                           href="{{ route(strtolower($shop)) }}">{!! $array['long_name'] !!}</a></li>
+                                           href="{{ route(strtolower($shop)) }}">{!! $array['name'] !!}</a></li>
                                 @endforeach
                             </ul>
                         </div>

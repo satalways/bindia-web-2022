@@ -29,7 +29,7 @@ Da der ikke fandtes nogen officiel uddannelse inden for det nordindiske køkken 
                             cooked in an Indian kitchen for many years (often for decades).',
     'our_food' => 'Mad',
     'question_7_i' => 'Bruger Bindia Ghee?',
-    'answer_7_i' => 'I overensstemmelse med indiske traditioner bruger vi Ghee i al vores madlavning.',
+    'answer_7_i' => 'I overensstemmelse med indiske traditioner bruger vi Ghee i al vores madlavning med undtagelse af vores veganske retter.',
     'question_7' => 'Hvad er Ghee?',
     'answer_7' => 'Ghee er 100% klaret bøffel/ko-smør og en essentiel del af indisk madlavning, da det er med til at give curryen den helt rigtige smag.',
     'question_8' => 'Er der meget smør i en Butter Chicken?',
@@ -75,10 +75,17 @@ Hvis du derimod er bange for at komme til at lugte af hvidløg, så kan vi berol
 
     'packing_and_serving' => 'Pakning og servering',
     'question_23' => 'Kan maden varmes op dagens efter?',
+
+    'new_section' => '
+        <h2>Kan Bindias emballage genbruges?</h2>
+        <p>Alt vores emballage er fremstillet af 100% genanvendt, ubleget papir. Både vores poser og menukort kan sorteres som papir.</p>
+        <p>For at skålene skal kunne tåle den varme, flydende mad, er en tynd plast-coating på indersiden nødvendig. Derfor skal skåle og tilhørende låg sorteres som almindeligt husholdningsaffald.</p>
+        <p>Vi anbefaler også at man genanvender posen så meget som muligt først.</p>
+    ',
+
     'answer_23' => 'Vores mad kan sagtens kommes på køl og varmes op dagen efter. <a target="_blank" href=":link">Se her hvordan man gør.</a>',
 
     'question_24' => 'Kan take away-bakker og -låg tåle opvarmning i almindelig ovn eller mikroovn?',
-    'answer_24' => 'The boxes and lids can NOT tolerate the heat in a conventional oven. They are also not suited for extended heating in a microwave, but they do, however, tolerate light heating in a microwave.
-Vores bakker og låg tåler IKKE varmen fra en almindelig ovn. De er heller ikke velegnede til langvarig, opvarmning i mikroovn, men tåler dog kortvarig opvarmning i mikroovn.',
+    'answer_24' => 'Vores bakker og låg tåler IKKE varmen fra en almindelig ovn. De er heller ikke velegnede til langvarig, opvarmning i mikroovn, men tåler dog kortvarig opvarmning i mikroovn.',
     //'answer_23' => 'The food we serve can easily be refrigerated overnight and heated the following day.',
 ];

@@ -1,5 +1,17 @@
 <?php
 return [
+    'right_text' => '
+        <div class="bn-policy-text-item">
+            <h2>Orange Prices</h2>
+            <p>Orange prices are only applicable for orders that meet all of the following criteria:</p>
+            <ul>
+                <li>the order is placed in the Take Away web shop at bindia.dk</li>
+                <li>the order is paid online in the Take Away web shop at bindia.dk</li>
+                <li>the order is a \'Pick Up\' order, meaning that the order is picked up by the customer at one of Bindia\'s shops.</li>
+            </ul>
+        </div>
+    ',
+
     'term_sale_delivery' => 'Terms of Sale and Delivery',
     'term_online_ordering' => 'Terms of Sale and Delivery for Bindia’s online ordering system.',
     'using_online_ordering' => 'Using our online ordering system',

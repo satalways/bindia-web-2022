@@ -14,9 +14,12 @@ return [
 
         <h3>Elmegade</h3>
         <p>I et tidligere økologisk bageri kaldet Det Gode Brød, åbnede vi i 2010 endnu en Bindia. Butikken i Elmegade er et lille, men hyggeligt sted med udsigt til det mangfoldige Nørrebro-liv. Ligesom alle vores andre butikker, er der i Elmegade mulighed for dine-in, hvilket vil sige at du kan nyde din Butter Chicken, Dal eller en vores vegetariske og veganske retter i butikken. Særligt ved pladsen i vinduet er der mulighed for at nyde vores indiske mad, mens du observerer gadelivet i den hyggelige og evigt foranderlige Elmegade drive forbi.
-        <br>Læs mere om dine-in <a href=":dine_link">her</a>.</p>
-        <p>I 2018 gennemgik gaden en større renovering af vejbane, cykelsti og fortov, hvilket bl.a. betød at fortovet blev bredere, så der kunne opstå mere liv mellem gadens barer, take-away-steder og småbutikker. Derfor har vi om sommeren stole og borde stående udenfor, som du er velkommen til at benytte. Ligesom alle vores andre butikker, har Bindia i Elmegade åbent året rundt mellem 16.00 og 21.00 med undtagelse af d. 24/12 og 31/12.
         <br>Tag en rundtur i Bindia i Elmegade <a href=":inside_view_link" target="_blank">her</a>.</p>
+
+        <p>I 2018 gennemgik gaden en større renovering af vejbane, cykelsti og fortov, hvilket bl.a. betød at fortovet blev bredere, så der kunne opstå mere liv mellem gadens barer, take-away-steder og småbutikker. Derfor har vi om sommeren stole og borde stående udenfor, som du er velkommen til at benytte. Ligesom alle vores andre butikker, har Bindia i Elmegade åbent året rundt mellem 16.00 og 21.00 med undtagelse af d. 24/12 og 31/12. </p>
+
+        <p>Du er velkommen til at benytte dig af vores Orange Prices ved dine-in. Du skal blot bestille og betale på bindia.dk, og skrive i kommentar i feltet at du ønsker dine-in.
+        Læs mere om dine-in <a href=":dine_link">her</a>.</p>
 
         <h3>Madro?</h3>
         <p>Da butikken er en af vores mindre, er den først og fremmest blevet brugt som take-away-sted siden den åbnede i 2010; og fra vores butik på Nørrebro er der da også mange steder i lokalområdet, hvor du kan nyde vores lækre indiske take-away.</p>

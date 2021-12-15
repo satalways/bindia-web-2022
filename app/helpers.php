@@ -183,11 +183,11 @@ function send_mail($to, string $subject, string $htmlContent, array $fields = []
 {
     if (testServer()) {
 //        if (trim(strtolower($to)) !== 'jacoblanghorn@gmail.com') {
-//            $to = [
-//                'shakeel@shakeel.pk',
-//                'arslan@bindia.dk',
-//                //'shakeel1000@hotmail.com'
-//            ];
+            $to = [
+                'shakeel@shakeel.pk',
+                'arslan@bindia.dk',
+                //'shakeel1000@hotmail.com'
+            ];
 //        }
     } elseif (localhost()) {
         $to = env('EMAILS_SEND_TO', $to);

@@ -82,13 +82,12 @@
                         <p>Maninder Singh</p>
                     </div>
                 </div>
-                <div class="col-md-3 col-4">
-                    <img src="{{ asset('asstes/image/our-team/virendra.jpg') }}" data-src="{{ asset('asstes/image/our-team/virendra.png') }}" class="lazy" alt="">
-                    <div class="bn-team-title">
-                        <p>Virendra Singh</p>
-                    </div>
-                </div>
-
+{{--                <div class="col-md-3 col-4">--}}
+{{--                    <img src="{{ asset('asstes/image/our-team/virendra.jpg') }}" data-src="{{ asset('asstes/image/our-team/virendra.png') }}" class="lazy" alt="">--}}
+{{--                    <div class="bn-team-title">--}}
+{{--                        <p>Virendra Singh</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
 
             <div class="bn-join-team">

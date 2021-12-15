@@ -15,12 +15,14 @@ return [
         <p>I den travle del af Østerbro, for enden af Blegdamsvej ved Trianglen og lige overfor Fælledparkens hovedindgang ligger den allerførste Bindia. Stedet åbnede i september 2003 og i de næste tre år var det eneste sted i København, hvor man kunne nyde Bindias klassiske retter. Stedet blev hurtigt populært og vores gæster begyndte at efterspørge vores indiske retter som take-away; faktisk fik stedets succes vores øjne op for populariteten af Bindias indiske take-away.</p>
         <p>De næste fire steder, vi åbnede, havde vi derfor øget fokus på vores efterspurgte take-away, mens den allerførste Bindia på Østerbro forsat fungerede som restaurant og flagskib for vores populære nordindiske køkken.</p>
         <p>I 2010 blev Bindia på Østerbro totalrenoveret i et omfangsrigt projekt og samarbejde med den internationale arkitektvirksomhed Sweco.
-        <br>Tag en rundtur i vores Østerbro-Bindia <a href=":inside_view_link" target="_blank">her</a>.</p>
+        Tag en rundtur i vores Østerbro-Bindia <a href=":inside_view_link" target="_blank">her</a>.</p>
         <p>I perioden fra 2012 til 2015 blev den første Bindia ved Trianglen også samlingspunkt for vores populære, og altid fuldt-bookede, Cooking Classes med Bindias chefkok og grundlægger Amer Suleman, som hver weekend tog imod et begejstret og engageret publikum.</p>
 
         <h3>Take-away & Dine-in</h3>
-        <p>Som følge af en gennemgående konceptuel strømligning af hele vores kæde i 2020, er stedet ved Trianglen i dag et take-away og dine-in-sted, hvilket vil sige at du som altid kan sidde og nyde din Butter Chicken, Dal eller en vores vegetariske eller veganske retter i vores store lokaler, men at bestilling, betaling og afhentning foregår ved disken.
+        <p>Som følge af en gennemgående konceptuel strømligning af hele vores kæde i 2020, er stedet ved Trianglen i dag et take-away og dine-in-sted, hvilket vil sige at du som altid kan sidde og nyde din Butter Chicken, Dal eller en vores vegetariske eller veganske retter i vores store lokaler, men at bestilling, betaling og afhentning foregår ved disken.</p>
+        <p>Du er velkommen til at benytte dig af vores Orange Prices ved dine-in. Du skal blot bestille og betale på bindia.dk, og skrive i kommentar i feltet at du ønsker dine-in.
         <br>Læs mere om dine-in <a href=":dine_link">her</a>.</p>
+
         <p>Uanset om du kommer alene eller med et selskab, er du altid velkommen i Bindia på Østerbro. Således er vi stadig et yndet stamsted for utallige glade mennesker på vej til (eller fra) landskampe eller store koncerter på Danmarks nationalstadium, Parken, der blot ligger et stenkast nede af Øster Allé.</p>
         <p>Om sommeren nyder vores gæster i stor stil at bruge vores hyggelige terrasse med plads til ca. 40 personer. Terrassen er dejligt og roligt sted at nyde vores indiske mad, da den vender den lille passage, der snor sig mellem Blegdamsvej og Ryesgade. Roen på vores terrasse står i tydelig kontrast til det mylder af trafik, der præger Trianglen blot få meter derfra.</p>
 

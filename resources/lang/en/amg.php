@@ -19,9 +19,10 @@ return [
         <h3>Take-away & Dine-in</h3>
         <p>No doubt, we are proud of our take-away and dine-in on Amager – one of the newer members of the Bindia Family. It’s the culmination of what happened 16 years prior, when we in September of 2003 opened the very first Bindia on Blegdamsvej right next to Trianglen and Fælledparken.</p>
         <p>Here we quickly gained a lot of satisfied customers who increasingly asked to get our Indian dishes as take-away. Due to this success, we increasingly focused on take-away for the Bindia shops we opened the following 15 years. The expansion of our chain of Bindia shops necessitated that we in 2017 finally had to move our production and administration to more fitting facilities in Hvidovre.</p>
-        <p>In order to better share our good food with the Copenhagen area, we opened our two latest take-away and dine-in shops on Amager in 2019 and the following year in Søborg. Not long after opening on Amager, we streamlined the entire concept so that every Bindia – in addition to take-away – offers our guests the opportunity to dine-in, i.e. to stay and eat.
-        <br>Read more about dine-in <a href=":dine_link">here</a>.</p>
+        <p>In order to better share our good food with the Copenhagen area, we opened our two latest take-away and dine-in shops on Amager in 2019 and the following year in Søborg. Not long after opening on Amager, we streamlined the entire concept so that every Bindia – in addition to take-away – offers our guests the opportunity to dine-in, i.e. to stay and eat.<p>
         <p>Because of it’s neat and clever design, the new place on Amager fits both our take-away and dine-in guests perfectly. No matter if you’re waiting by the large open window or eating here with friends, you’ll always find yourself in nice, bright rooms in our Bindia on Amager.</p>
+        <p>You’re welcome to take advantage of our Orange Prices when you dine-in at Bindia. All you have to do is order and pay on bindia.dk and use the comment field to let our staff know.
+        <br>Read more about dine-in <a href=":dine_link">here</a>.</p>
 
         <h3>Take-away on Amager</h3>
         <p>This Bindia is the first Bindia not located on Zealand – and we doubt we could have found a more fitting match for Bindia.</p>

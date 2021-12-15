@@ -26,38 +26,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-5 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="bn-content-menu">
-                        <p>
-                            {{ __('dinein.para_1') }}
-                        </p>
-                        <p>
-                            {{ __('dinein.para_2') }}
-                        </p>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-2 col-md-2 col-sm-2 col-12"></div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
-                    <div class="bn-menu-b-box">
-                        <ul class="list-unstyled">
-                            @foreach(config('shops') as $shop => $arr)
-                                <li>
-                                    <a target="_blank" class="" href="{{ shop($shop)->inside_link }}">{{ $arr['name'] }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-5 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="bn-content-menu">
-                        <p>
-                            {{ __('dinein.para_3') }}
-                        </p>
-                    </div>
-                    <div class="bn-menu-list">
-                        {{ __( 'dinein.see_menu') }} <a href="{{ route('takeaway') }}">{{ __('global.here') }}</a>.
-                    </div>
-                </div>
+                {!! __('dinein.text', [
+                    'amg_inside_link' => shop('amg')->inside_link,
+                    'amg_name' => shop('amg')->name,
+                    'gkv_inside_link' => shop('gkv')->inside_link,
+                    'gkv_name' => shop('gkv')->name,
+                    'lhg_inside_link' => shop('lhg')->inside_link,
+                    'lhg_name' => shop('lhg')->name,
+                    'elm_inside_link' => shop('elm')->inside_link,
+                    'elm_name' => shop('elm')->name,
+                    'shg_inside_link' => shop('shg')->inside_link,
+                    'shg_name' => shop('shg')->name,
+                    'bdv_inside_link' => shop('bdv')->inside_link,
+                    'bdv_name' => shop('bdv')->name,
+
+                    'takeaway_link' => route('takeaway')
+                ]) !!}
+
             </div>
         </div>
     </div>

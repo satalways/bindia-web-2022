@@ -1,20 +1,13 @@
 <?php
 return [
-    'shop_description_1' => 'Our Lyngby shop, Bindia, Indian food takeaway and Dine In is placed right next to the most
-                            beautiful floral shop in the middle of Lyngby Hovedgade. We have outdoor seating because the
-                            street is wide and full of green trees. You will feel like you are sitting in a botanical
-                            garden while enjoying a tasty curry outdoor at Lyngby Hovedgade. It is an experience worth
-                            millions.',
-    'shop_description_2' => 'If you don\'t appreciate artificial colors and taste in your food, the organic (30-60%)
-                            Indian food made with interesting and refreshing spices gained from traditional
-                            Ayurveda-knowledge at Bindia is perfect for you.',
-
     'seo_text' => '
         <h1>Delicious and healthy take-away in Lyngby</h1><br>
         <p>In what’s probably the busiest shopping area north of Copenhagen, you’ll find one of our smaller take-away shops, which, since 2012, have provided quality Indian take-away to the many shoppers and locals of the area.</p>
         <p>As we took over the shop from an optician, a total and complete renovation was necessary before we could open our take-away and dine on Lyngby Hovedgade 72E. Inside we have room for about 6 guests in our small lounge and waiting area. Feel free to use this space for either waiting for your take-away here or simply enjoying our Indian cuisine like our popular Butter Chicken or one of our many vegetarian and vegan dishes.
         <br>Have a look inside our Bindia in Lyngby <a href=":inside_view_link" target="_blank">here</a>.</p>
-        <p>Still, it is in the summer season that our Bindia and the rest of Lyngby Hovedgade truly flourish. When the sun is out, we create a small dining area in front of the shop on the broad and nicely cobbled pavement, right next to a splendid florist. With lots of room for both the dining crowd and passersby as well as plenty of green trees, Lyngby Hovedgade is a perfect match for both outdoor dining as well as quick and easy take-away for the busy shopper. It’s hard to imagine a more fitting spot for our take-away and dine-in.
+        <p>Still, it is in the summer season that our Bindia and the rest of Lyngby Hovedgade truly flourish. When the sun is out, we create a small dining area in front of the shop on the broad and nicely cobbled pavement, right next to a splendid florist. With lots of room for both the dining crowd and passersby as well as plenty of green trees, Lyngby Hovedgade is a perfect match for both outdoor dining as well as quick and easy take-away for the busy shopper. It’s hard to imagine a more fitting spot for our take-away and dine-in.</p>
+
+        <p>You’re welcome to take advantage of our Orange Prices when you dine-in at Bindia. All you have to do is order and pay on bindia.dk and use the comment field to let our staff know.
         <br>Read more about dine-in <a href=":dine_link">here</a>.</p>
 
         <h3>Along the King’s Way to today</h3>
@@ -33,7 +26,7 @@ return [
         <p>Since the 1890s, it has been possible to enjoy a ride with Baadfarten, and they still employ their characteristic boats from back then – and it’s, not least, completely allowed to enjoy our delicious take-away aboard this exquisite ride!</p>
 
         <h3>Nothing wasted</h3>
-        <p>No matter if you want to enjoy our take-away in nature or stay as our dinner guest, you are welcome every day from 16.00 – 21.00 on Blegdamsvej 130!</p>
+        <p>No matter if you want to enjoy our take-away in nature or stay as our dinner guest, you are welcome every day from 16.00 – 21.00 on Lyngby Hovedgade 72E!</p>
         <p>We will serve you large, healthy portions that are furthermore well-suited for refrigeration and reheating. Read more about our recommendations for reheating our take-away <a target="_blank" href=":reheat_link">here</a>.</p>
         <p>As a matter of fact, the good, old-fashioned Indian cooking methods, which we proudly preserve and continue, provide the food a natural and sustainable durability and are a key factor to how we can all help minimize food waste.</p>
         <p>A true Indian curry takes a long time to make as it requires many hours to simmer and settle. The very final part of the cooking is not done until your order is placed – and we never use more than you “take away”.</p>

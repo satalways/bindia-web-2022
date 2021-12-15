@@ -152,13 +152,6 @@ class Order
 
         $discount = 0;
 
-        /**
-         * This discount system is gone since orange prices
-         */
-//        if ($checkout && isset($checkoutData['payment_type']) && $checkoutData['payment_type'] === 'card') {
-//            $discount = floor($Data['total_price'] / 100) * 10;
-//        }
-
         if (empty($checkoutData['date'])) $checkoutData['date'] = \Carbon\Carbon::today()->toDateString();
         if (empty($checkoutData['time'])) {
             $checkoutData['time'] = '16:' . config('order.order_prep_time');
@@ -423,7 +416,8 @@ class Order
         $data['unfinished_notification_sent_at'] = null;
         $data['unfinished_notification_sent_by'] = null;
 
-        $data['discount'] = $checkoutData['discount'];
+        //$data['discount'] = $checkoutData['discount'];
+        $data['discount'] = 0;
         $data['total_price'] = $checkoutData['total_price'];
 
         $successUrl = $paymentUrl = false;
@@ -494,7 +488,6 @@ class Order
              */
             $row = TakeoutZonesModel::query()
                 ->whereRaw('(? between post_number and post_number2)', [$data['shipping_postal_code']])
-                ->whereRaw('(? between start_time and end_time)', [$dateTime->format('H:i')])
                 ->orderByDesc('id')
                 ->first();
             if (!$row) return __('checkout.invalid_postal_code');
@@ -644,7 +637,7 @@ class Order
 
         if (!$order->isDelivery() && !$order->isOnlinePayment()) {
             $templateNumber = '12.2.1';
-        } else if ($order->isDelivery() && $order->isOnlinePayment()) {
+        } else if ($order->isDelivery()) {
             $templateNumber = '12.2.5';
         } else {
             $templateNumber = '12.2.2';
@@ -670,6 +663,8 @@ class Order
         $array['pickup_time'] = $order->pickup_datetime->format(config('app.time_format'));
         $array['shop_address'] = $order->shopAddress();
         $array['shop_phone'] = $order->ShopPhone();
+        $array['shop_name'] = $order->shopNameLong();
+        $array['terms_link'] = route('terms_and_conditions');
 
         return send_mail($order->shipping_email, $template->subject, $template->content, $array, $files);
     }
@@ -768,7 +763,11 @@ class Order
             $G->redeemGiftCardByOrder($order->id);
 
             $O = new Order();
-            $O->sendOrderEmailToCustomer($order->id);
+            /**
+             * Send email to customer if this is not a delivery order.
+             */
+            if (!$order->isDelivery()) $O->sendOrderEmailToCustomer($order->id);
+
             $O->sendOrderEmailToShop($order->id);
         }
         //Log::channel('mail')->info('New order mark paid');
@@ -796,6 +795,8 @@ class Order
             if ($r !== 'OK') {
                 $content = print_r($r, true);
                 send_mail(['shakeel@shakeel.pk', 'arslan@bindia.dk', 'office@bindia.dk'], 'Delivery order# ' . $order->id . ' not submitted via takeout API', $content);
+            } else {
+                $this->sendOrderEmailToCustomer($order->id);
             }
         }
     }

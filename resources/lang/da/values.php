@@ -8,7 +8,7 @@ return [
     'good_long_life_description_1' => 'Bindias madfilosofi udspringer fra en af verdens ældste medicinske videnskaber: Ayurveda, som betyder ”viden om livet og at leve længe”.',
     'good_long_life_description_2' => 'Min morfar var Ayurveda-læge, og kunne måle dit levertal udelukkede ved hjælp af sine fingre. Han havde et helt apotek i sin taske, og hans behandlinger var altid baseret på tilpasning af ens kost.',
     'good_long_life_description_3' => 'I Ayurveda fungerer mad nemlig som forebyggende medicin og som den primære drivkraft bag at holde din krop sund og dit immunforsvar stærkt.',
-    'harvested_consumed' => 'Harvested and consumed in 2 hours',
+    'harvested_consumed' => 'Fra jord til bord på 2 timer',
     'harvested_consumed_description_1' => 'Jeg har kun dejlige minder fra den tid, som jeg tilbragte på landet hos min farfar, da jeg som barn voksede op i Punjab. Han var to meter høj, stærk som en okse og havde et fantastisk helbred.',
     'harvested_consumed_description_2' => 'På hans gård spiste vi kun det, vi selv dyrkede; og alt det vi høstede, blev tilberedt og spist inden for to timer.',
     'harvested_consumed_description_3' => 'Denne periode har givet mig en dyb forståelse og respekt for, hvad gode og friske råvarer betyder for både smag og næring.',

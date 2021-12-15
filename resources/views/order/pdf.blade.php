@@ -126,7 +126,7 @@
 
                 @if ($order->is_delivery && !$order->is_custom_order)
                     <tr style='text-align: right;font-style: italic'>
-                        <td colspan="3">Delivery Fee:</td>
+                        <td colspan="2">Delivery Fee:</td>
                         <td>{{ number_format2($order->delivery_fee, 2) }} DKK</td>
                     </tr>
                 @endif
@@ -146,7 +146,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="text-align: right;">
+                    <td colspan="3" style="text-align: right;">
                         (<b>{{ $order->total_amount * 0.2 }} DKK</b> VAT included)
                     </td>
                 </tr>

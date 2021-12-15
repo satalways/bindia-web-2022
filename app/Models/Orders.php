@@ -206,9 +206,9 @@ class Orders extends Model
             $total -= $this->gift_card_discount;
         }
 
-        if ($this->payment_type === 'card' && $total >= 100) {
-            return round(((int)($total / 100)) * 10, 2);
-        }
+//        if ($this->payment_type === 'card' && $total >= 100) {
+//            return round(((int)($total / 100)) * 10, 2);
+//        }
 
         return 0;
     }
@@ -253,7 +253,6 @@ class Orders extends Model
 
         $row = TakeoutZonesModel::query()
             ->whereRaw('(? between post_number and post_number2)', [$this->shipping_postal_code])
-            ->whereRaw('(? between start_time and end_time)', [$this->delivery_datetime->format('H:i')])
             ->orderByDesc('id')
             ->first();
 
@@ -434,7 +433,7 @@ class Orders extends Model
     {
         //$files[] = resource_path('order_files/Loyalty-Programme.pdf');
         $files[] = resource_path('order_files/how-to-reheat-your-food-from-bindia.pdf');
-        $files[] = resource_path('order_files/' . strtoupper($this->shop) . '-Terms of Sale and Delivery.pdf');
+        //$files[] = resource_path('order_files/' . strtoupper($this->shop) . '-Terms of Sale and Delivery.pdf');
         $files[] = $this->pdf();
 
         if ($this->copy_order) {

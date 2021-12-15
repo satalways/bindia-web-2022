@@ -11,8 +11,9 @@ return [
         <h1>Sund og lækker indisk take-away i hjertet af Frederiksberg</h1><br>
         <p>Dette er den næstældste Bindia, kun overgået af vores restaurant ved Trianglen fra 2003.</p>
         <p>Stedet blev købt i 2007, men på grund af den succes vi oplevede i vores store restaurant ved Trianglen og vores daværende take-away-sted på HC Ørstedvej, fik vi først tid og mulighed for at åbne stedet ordentligt i 2009. De efterfølgende 12 år blev lokalerne her samtidigt brugt som vores centralkøkken, indtil vores engroskøkken i Hvidovre blev taget i brug i 2017.</p>
-        <p>Bindia på Gammel Kongevej bliver for det meste brugt af lokale Frederiksbergborgere som et take-away-sted, men med omtrent 10 siddepladser, er der rigeligt plads til at du kan sidde og nyde en lækker vores populære Butter Chicken eller en af vores vegetariske og veganske retter, mens du observerer det travle liv i en af byens mest ikoniske gader.
-        <br>Læs mere om at vores dine-in-muligheder <a href=":dine_link">her</a>.</p>
+        <p>Bindia på Gammel Kongevej bliver for det meste brugt af lokale Frederiksbergborgere som et take-away-sted, men med omtrent 10 siddepladser, er der rigeligt plads til at du kan sidde og nyde en lækker vores populære Butter Chicken eller en af vores vegetariske og veganske retter, mens du observerer det travle liv i en af byens mest ikoniske gader.</p>
+        <p>Du er velkommen til at benytte dig af vores Orange Prices ved dine-in. Du skal blot bestille og betale på bindia.dk, og skrive i kommentar i feltet at du ønsker dine-in.
+        Læs mere om at vores dine-in-muligheder <a href=":dine_link">her</a>.</p>
         <p>Vores butik på Gammel Kongevej fik i 2021 en prominent birolle i finaleafsnittet i sæson 8 af den efterhånden klassiske komedieserie Klovn med Frank Hvam og Casper Christensen i de altdominerende hovedroller. Størstedelen af serien har altid foregået i og omkring denne historiske og kendte forretningsgade på Frederiksberg, og i sæson 8 blev det Bindias tur til at være en del af historien som Franks foretrukne sted til take-away og catering.
         <br>Tag en rundtur i vores Bindia på Gammel Kongevej <a href=":inside_view_link" target="_blank">her</a>.</p>
 

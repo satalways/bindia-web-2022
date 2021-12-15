@@ -16,4 +16,9 @@ class SEOModel extends Model
     {
         return getCurrentLang() === 'en' ? $this->title_en : $this->title;
     }
+
+    public function getDesc()
+    {
+        return getCurrentLang() === 'en' ? $this->description_en : $this->description;
+    }
 }

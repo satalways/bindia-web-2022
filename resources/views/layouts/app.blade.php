@@ -20,7 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ isset($seo->title_en) ? $seo->getTitle() : ($title ?? 'Bindia Indisk Mad') }}</title>
     <!--Mobile Media-->
-    <meta name="description" content="">
+    <meta name="description" content="{{ isset($seo->description_en) ? $seo->getDesc() : '' }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Bootstrap min css File-->
     <!--    <link rel="stylesheet" href="asstes/css/bootstrap.min.css">-->
@@ -201,12 +201,18 @@
                         {{ __('footer.locations') }}
                     </a>
                     <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item text-white" href="{{ route('amg') }}">{{ shop('amg')->name }}</a></li>
-                        <li><a class="dropdown-item text-white" href="{{ route('gkv') }}">{{ shop('gkv')->name }}</a></li>
-                        <li><a class="dropdown-item text-white" href="{{ route('lhg') }}">{{ shop('lhg')->name }}</a></li>
-                        <li><a class="dropdown-item text-white" href="{{ route('elm') }}">{{ shop('elm')->name }}</a></li>
-                        <li><a class="dropdown-item text-white" href="{{ route('shg') }}">{{ shop('shg')->name }}</a></li>
-                        <li><a class="dropdown-item text-white" href="{{ route('bdv') }}">{{ shop('bdv')->name }}</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('amg') }}">{{ shop('amg')->name }}</a>
+                        </li>
+                        <li><a class="dropdown-item text-white" href="{{ route('gkv') }}">{{ shop('gkv')->name }}</a>
+                        </li>
+                        <li><a class="dropdown-item text-white" href="{{ route('lhg') }}">{{ shop('lhg')->name }}</a>
+                        </li>
+                        <li><a class="dropdown-item text-white" href="{{ route('elm') }}">{{ shop('elm')->name }}</a>
+                        </li>
+                        <li><a class="dropdown-item text-white" href="{{ route('shg') }}">{{ shop('shg')->name }}</a>
+                        </li>
+                        <li><a class="dropdown-item text-white" href="{{ route('bdv') }}">{{ shop('bdv')->name }}</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -299,11 +305,11 @@
                     <li><a class="text-dark" href="{{ route('elm') }}">{!! shop('elm')->name !!}</a></li>
                     <li><a class="text-dark" href="{{ route('shg') }}">{!! shop('shg')->name !!}</a></li>
                     <li><a class="text-dark" href="{{ route('bdv') }}">{!! shop('bdv')->name !!}</a></li>
-{{--                    @foreach(config('shops') as $shop => $arr)--}}
-{{--                        <li>--}}
-{{--                            <a class="text-dark" href="{{ route(strtolower($shop)) }}">{!! $arr['long_name'] !!}</a>--}}
-{{--                        </li>--}}
-{{--                    @endforeach--}}
+                    {{--                    @foreach(config('shops') as $shop => $arr)--}}
+                    {{--                        <li>--}}
+                    {{--                            <a class="text-dark" href="{{ route(strtolower($shop)) }}">{!! $arr['long_name'] !!}</a>--}}
+                    {{--                        </li>--}}
+                    {{--                    @endforeach--}}
                 </ul>
             </div>
             <div class="col-lg-3 col-3">

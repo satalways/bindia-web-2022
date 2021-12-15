@@ -30,11 +30,8 @@ class TestController extends Controller
 {
     public function index()
     {
-
-        dd( make_array('E:\development\bindia-web-2021-v2\storage\contact/1947\Lyngby DK (2).docx') );
-
         $O = new Order();
-        return $O->sendOrderEmailToCustomer(144790);
+        return $O->sendOrderEmailToCustomer(140039);
 
         die;
         $G = new \App\Logic\GiftCard();

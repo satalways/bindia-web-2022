@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <style>
         .bn-date-time {
             display: none !important;

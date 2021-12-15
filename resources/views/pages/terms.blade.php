@@ -59,6 +59,8 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-12">
+                    {!! __('terms.right_text') !!}
+
                     <div class="bn-policy-text-item">
                         <h2>{{ __('terms.cancellation_returns') }} </h2>
                         <p>
@@ -74,8 +76,8 @@
                         <br>
                         <ul>
                             <li>Tandoori Chicken: {{ __('global.approx') }} 300 g.</li>
-                            <li>Biryanies: {{ __('global.approx') }} 500 g.</li>
-                            <li>Platters: {{ __('global.approx') }} 500 g.</li>
+                            <li>Biryanies: {{ __('global.approx') }} 450 g.</li>
+                            <li>Platters: {{ __('global.approx') }} 450 g.</li>
                             <li>Curries: {{ __('global.approx') }} 400 g.</li>
                             <li>{{ __('terms.veg') }}: {{ __('global.approx') }} 400 g.</li>
                             <li>{{ __('terms.pilao_rice') }}: {{ __('global.approx') }} 225 g.</li>
