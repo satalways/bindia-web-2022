@@ -49,7 +49,6 @@ class Feedback
 
         $feedback = new \App\Models\Feedback();
         foreach ($data as $key => $value) {
-            \Log::info($value);
             $feedback->{$key} = $value;
         }
         try {
@@ -58,9 +57,11 @@ class Feedback
             return $exception->getMessage();
         }
 
+        $filePath = '';
         if ($file && $file->isValid()) {
             try {
-                $file->move(storage_path('rf/' . $id), $file->getClientOriginalName());
+                $file->move(storage_path('rf/' . $feedback->id), $file->getClientOriginalName());
+                $filePath = storage_path('rf/' . $feedback->id) . DIRECTORY_SEPARATOR . $file->getClientOriginalName();
             } catch (\Exception) {
 
             }
@@ -68,6 +69,9 @@ class Feedback
         }
 
         $Files[] = $order->pdf();
+        if (is_file($filePath)) {
+            $Files[] = $filePath;
+        }
 
         ## Send email to admin
         $template = template('15.5.13');

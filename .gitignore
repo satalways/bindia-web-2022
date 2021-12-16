@@ -16,4 +16,5 @@ yarn-error.log
 composer.lock
 /storage/jobs
 /storage/contact
+/storage/rf
 public_html/.htaccess

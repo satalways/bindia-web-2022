@@ -72,4 +72,14 @@ class ApiController extends Controller
 
         return Storage::disk('local_main')->allFiles('contact');
     }
+
+    public function rfFiles(Request $request)
+    {
+        if (!localhost()) {
+            if (!$request->header('bindiaKey')) abort(404);
+            if ($request->header('bindiaKey') !== $this->headerKey) abort(404);
+        }
+
+        return Storage::disk('local_main')->allFiles('rf');
+    }
 }

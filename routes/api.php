@@ -18,13 +18,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('files/jobs/list', [\App\Http\Controllers\Api\ApiController::class, 'jobFiles']);
-Route::get('files/jobs/get', [\App\Http\Controllers\Api\ApiController::class, 'getJobFile']);
-Route::get('files/jobs/delete', [\App\Http\Controllers\Api\ApiController::class, 'delJobFile']);
+Route::get('/files/jobs/list', [\App\Http\Controllers\Api\ApiController::class, 'jobFiles']);
+Route::get('/files/jobs/get', [\App\Http\Controllers\Api\ApiController::class, 'getJobFile']);
+Route::get('/files/jobs/delete', [\App\Http\Controllers\Api\ApiController::class, 'delJobFile']);
 
-Route::get('files/contact/list', [\App\Http\Controllers\Api\ApiController::class, 'contactFiles']);
-Route::get('files/contact/get', [\App\Http\Controllers\Api\ApiController::class, 'getJobFile']);
-Route::get('files/contact/delete', [\App\Http\Controllers\Api\ApiController::class, 'delJobFile']);
+Route::get('/files/contact/list', [\App\Http\Controllers\Api\ApiController::class, 'contactFiles']);
+Route::get('/files/contact/get', [\App\Http\Controllers\Api\ApiController::class, 'getJobFile']);
+Route::get('/files/contact/delete', [\App\Http\Controllers\Api\ApiController::class, 'delJobFile']);
+
+Route::get('/files/rf/list', [\App\Http\Controllers\Api\ApiController::class, 'rfFiles']);
+Route::get('/files/rf/get', [\App\Http\Controllers\Api\ApiController::class, 'getJobFile']);
+Route::get('/files/rf/delete', [\App\Http\Controllers\Api\ApiController::class, 'delJobFile']);
 
 Route::any('/nets-web-hooks-success.html', [\App\Http\Controllers\OrderController::class, 'netsSuccess'])->name('order.nets.hooks');
 Route::any('/nets-web-hooks-failed.html', [\App\Http\Controllers\OrderController::class, 'netsFailed'])->name('order.nets.cancel');
