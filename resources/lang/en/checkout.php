@@ -43,4 +43,6 @@ return [
     'max_delivery_time' => 'Maximum delivery time is :time',
     'nan_not_available' => 'We\'re out of Nan for today - please go ahead and remove it from your order. We recommend choosing Paratha or Pilaoo Rice instead.',
     'large_order' => 'Please pay online when your order exceeds 1,000 DKK.',
+    'thankyou' => 'Thank you for your order!',
+    'view_receipt' => 'View Receipt',
 ];

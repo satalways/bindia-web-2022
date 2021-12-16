@@ -36,7 +36,7 @@ return [
             'q' => [
                 [
                     'type' => 'TextArea',
-                    'question' => 'Your future plans within next 2 years?',
+                    'question' => 'What are your future plans within the next 2 years?',
                     'required' => true
                 ],
                 [
@@ -46,15 +46,15 @@ return [
                 ],
                 [
                     'type' => 'TextArea',
-                    'question' => 'What are you doing after 5 years from now?',
+                    'question' => 'Where do you see yourself 5 years from now?',
                 ],
                 [
                     'type' => 'TextArea',
-                    'question' => 'Any Details',
+                    'question' => 'Any other details you would like us to know?',
                 ],
                 [
                     'type' => 'TextArea',
-                    'question' => 'What is your holiday plans for next 6 months.',
+                    'question' => 'What are your holiday plans for the next 6 months?',
                     'required' => true
                 ],
                 [
@@ -109,7 +109,7 @@ return [
                 ],
                 [
                     'type' => 'YesNo',
-                    'question' => 'Would you be open to work nearly every weekend and in the evenings?',
+                    'question' => 'Would you be open to work in the evenings and nearly every weekend?',
                 ],
             ]
         ],
@@ -118,11 +118,11 @@ return [
             'q' => [
                 [
                     'type' => 'TextArea',
-                    'question' => 'Name your 3 best skills'
+                    'question' => 'What are your 3 best skills?'
                 ],
                 [
                     'type' => 'TextArea',
-                    'question' => 'How handy (fix small things) are you?'
+                    'question' => 'How handy are you? (Fixing smaller things.)'
                 ],
                 [
                     'type' => 'TextArea',
@@ -130,7 +130,7 @@ return [
                 ],
                 [
                     'type' => 'TextArea',
-                    'question' => 'Please name your past workplaces'
+                    'question' => 'Please list your past workplaces'
                 ],
                 [
                     'type' => 'YesNo',
@@ -225,7 +225,7 @@ return [
                 ],
                 [
                     'type' => 'Number',
-                    'question' => 'How old are you? *(Min.age required is 18 yrs)',
+                    'question' => 'Age *(Min.age required is 18 yrs)',
                     'required' => true,
                 ],
                 [

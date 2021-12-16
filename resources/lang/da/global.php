@@ -20,7 +20,7 @@ return [
     'accept' => 'Accept',
     'i_accept' => 'Jeg Accepter',
     'dinein' => 'Dine-In',
-    'loading' => 'Loading, Please wait...',
+    'loading' => 'Arbejder – vent venligst…',
     'continue' => 'Fortsæt',
     'back' => 'Tilbage',
     'email' => 'Email',
@@ -46,4 +46,5 @@ return [
     'approx' => 'ca.',
     'our_team' => 'Vores Team',
     'want_to_join' => 'Lyst til at være en del af teamet? Ansøg <a href=":link">her</a>',
+    'main_office' => 'Hovedkontor',
 ];

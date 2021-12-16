@@ -12,7 +12,7 @@ return [
 
     'seo_text' => '
         <h1>Den allerførste!</h1><br>
-        <p>I den travle del af Østerbro, for enden af Blegdamsvej ved Trianglen og lige overfor Fælledparkens hovedindgang ligger den allerførste Bindia. Stedet åbnede i september 2003 og i de næste tre år var det eneste sted i København, hvor man kunne nyde Bindias klassiske retter. Stedet blev hurtigt populært og vores gæster begyndte at efterspørge vores indiske retter som take-away; faktisk fik stedets succes vores øjne op for populariteten af Bindias indiske take-away.</p>
+        <p>For enden af Blegdamsvej ved Trianglen og lige overfor Fælledparkens hovedindgang ligger den allerførste Bindia. Stedet åbnede i september 2003 og i de næste tre år var det eneste sted i København, hvor man kunne nyde Bindias klassiske retter. Stedet blev hurtigt populært og vores gæster begyndte at efterspørge vores indiske retter som take-away; faktisk fik stedets succes vores øjne op for populariteten af Bindias indiske take-away.</p>
         <p>De næste fire steder, vi åbnede, havde vi derfor øget fokus på vores efterspurgte take-away, mens den allerførste Bindia på Østerbro forsat fungerede som restaurant og flagskib for vores populære nordindiske køkken.</p>
         <p>I 2010 blev Bindia på Østerbro totalrenoveret i et omfangsrigt projekt og samarbejde med den internationale arkitektvirksomhed Sweco.
         Tag en rundtur i vores Østerbro-Bindia <a href=":inside_view_link" target="_blank">her</a>.</p>

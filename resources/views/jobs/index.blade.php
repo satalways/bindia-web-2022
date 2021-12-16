@@ -16,6 +16,10 @@
             width: 100%;
             position: absolute;
         }
+
+        .bn-jobs-main .bn-check-box-order .form-check label {
+            text-transform: none !important;
+        }
         /*div.form-check {*/
         /*    padding-left: 35px !important;*/
         /*}*/

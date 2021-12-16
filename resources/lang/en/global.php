@@ -20,7 +20,7 @@ return [
     'accept' => 'Accept',
     'i_accept' => 'I Accept',
     'dinein' => 'Dine-In',
-    'loading' => 'Loading, Please wait...',
+    'loading' => 'Loading – please wait…',
     'continue' => 'Continue',
     'back' => 'Back',
     'email' => 'Email',
@@ -46,4 +46,5 @@ return [
     'approx' => 'approx.',
     'our_team' => 'Our Team',
     'want_to_join' => 'Want to join the team? Apply <a href=":link">here</a>',
+    'main_office' => 'Main office',
 ];

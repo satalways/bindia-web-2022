@@ -1,125 +1,112 @@
 @extends('layouts.app')
 
 @section('content')
-    <!--Main Breadcrumbs-->
-    <div class="bn-breadcrumb-faq bn-main-story">
-        <img src="{{ asset('asstes/image/faq/terms-banner.jpg') }}" data-src="{{ asset('asstes/image/faq/terms-banner.png') }}" alt="" class="d-sm-block d-none lazy">
-        <img src="{{ asset('asstes/image/faq/trems-mobile.jpg') }}" data-src="{{ asset('asstes/image/faq/trems-mobile.png') }}" alt="" class="d-sm-none d-block lazy">
+    <div class="bn-feedback-banner">
+        <img src="{{ asset('asstes/image/feedback/requst-feedback-banner.png') }}" alt="">
     </div>
 
-    <!--Main end Breadcrumbs-->
-    <div class="bn-contact-us bn-main-story">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-12">
-                    <div class="bn-contact-heading">
-                        <h1>Feedback Rating</h1>
-                        <p>
-                            Dear {{ $order->full_name }}, Please send us your valuable feedback.
-                        </p>
-                    </div>
+    <div class="bn-check-out bn-feedback-main">
+        <form action="{{ route('order.feedback.post') }}" method="post" id="form1" enctype="multipart/form-data">
+            <div class="container">
+                <div class="bn-heading-feedback">
+                    <h2>Feedback</h2>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 col-12">
-                    <div class="bn-contact-form">
-                        <form action="{{ route('order.feedback.post') }}" method="post" id="form1">
-                            <input type="hidden" name="action" value="saveRating">
-                            <input type="hidden" name="data_id" value="{{ $order->id }}">
-                            <input type="hidden" name="type"
-                                   value="{{ $order->isDelivery()?'weborder2':'weborder' }}">
-                            @foreach($rows as $row)
-                                <div class="row">
-                                    @if('Rating' === $row->question_type_name)
-                                        <div class="col-lg-8 col-12">
-                                            <b style="font-size: 130%">{{ $row->question }}</b>
-                                        </div>
-                                        <div class="col-lg-4 col-12" style="text-align: right">
-                                            <input id="input-id" type="text" class="rating" data-step="1"
-                                                   data-animate="false" name="answers[{{ $row->id }}]" value="0"
-                                                   data-show-clear="false" data-show-caption="false" data-size="md"
-                                                   style="margin-bottom: 0 !important; height: auto !important;">
-                                        </div>
-                                    @elseif ($row->question_type_name === 'YesNo')
-                                        <div class="col-lg-8 col-12">
-                                            <b style="font-size: 130%">{{ $row->question }}</b>
-                                        </div>
-                                        <div class="col-lg-4 col-12" style="text-align: right">
-                                            <input class="form-check-input" type="radio"
-                                                   name="answers[{{ $row->id }}]" checked
-                                                   id="inlineRadio1{{ $row->id }}" value="-1"
-                                                   style="display: none">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio"
-                                                       name="answers[{{ $row->id }}]"
-                                                       id="inlineRadio1{{ $row->id }}" value="Yes"
-                                                       style="height: 22px !important;">
-                                                <label class="form-check-label"
-                                                       for="inlineRadio1{{ $row->id }}">Yes</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio"
-                                                       name="answers[{{ $row->id }}]"
-                                                       id="inlineRadio2{{ $row->id }}" value="No"
-                                                       style="height: 22px !important;">
-                                                <label class="form-check-label"
-                                                       for="inlineRadio2{{ $row->id }}">No</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio"
-                                                       name="answers[{{ $row->id }}]"
-                                                       id="inlineRadio3{{ $row->id }}" value="-1"
-                                                       style="height: 22px !important;">
-                                                <label class="form-check-label"
-                                                       for="inlineRadio3{{ $row->id }}">N/A</label>
-                                            </div>
-                                        </div>
-                                    @elseif ($row->question_type_name === 'TextArea')
-                                        <div class="col-lg-12 col-12">
-                                            <b style="font-size: 130%">{{ $row->question }}</b>
-                                        </div>
-                                        <div class="col-lg-12 col-12">
-                                            <textarea name="answers[{{ $row->id }}]" placeholder="Your suggestions"
-                                                      class="form-control"></textarea>
-                                        </div>
-                                    @endif
-                                </div>
-                            @endforeach
 
-                            <button type="submit" class="btn">
-                                {{ __('global.send') }}
-                            </button>
-                        </form>
+
+                <div class="bn-check-out-from" id="bn-check-out-order">
+
+                    <input type="hidden" name="action" value="saveRating">
+                    <input type="hidden" name="data_id" value="{{ $order->id }}">
+                    <input type="hidden" name="type"
+                           value="{{ $order->isDelivery()?'weborder2':'weborder' }}">
+
+                    @foreach($rows as $row)
+                        @if('Rating' === $row->question_type_name)
+                            <div class="bn-review-box-feedback">
+                                <div class="float-start">{{ $row->question }}</div>
+                                <div class="float-end bn-star-feedback starDiv" data-id="{{ $row->id }}">
+                                    <input type="hidden" name="answers[{{ $row->id }}]" id="star{{ $row->id }}"
+                                           value="0">
+                                    {{--                                    <input id="input-id" type="text" class="rating" data-step="1"--}}
+                                    {{--                                           data-animate="false" name="answers[{{ $row->id }}]" value="0"--}}
+                                    {{--                                           data-show-clear="false" data-show-caption="false" data-size="md"--}}
+                                    {{--                                    >--}}
+                                    <img src="{{ asset('asstes/image/feedback/gray-star.svg') }}" alt="1" title="1"
+                                         data-target="star{{ $row->id }}" data-value="1" style="cursor: pointer"
+                                         class="starimg" data-id="{{ $row->id }}">
+                                    <img src="{{ asset('asstes/image/feedback/gray-star.svg') }}" alt="2" title="2"
+                                         data-target="star{{ $row->id }}" data-value="2" style="cursor: pointer"
+                                         class="starimg" data-id="{{ $row->id }}">
+                                    <img src="{{ asset('asstes/image/feedback/gray-star.svg') }}" alt="3" title="3"
+                                         data-target="star{{ $row->id }}" data-value="3" style="cursor: pointer"
+                                         class="starimg" data-id="{{ $row->id }}">
+                                    <img src="{{ asset('asstes/image/feedback/gray-star.svg') }}" alt="4" title="4"
+                                         data-target="star{{ $row->id }}" data-value="4" style="cursor: pointer"
+                                         class="starimg" data-id="{{ $row->id }}">
+                                    <img src="{{ asset('asstes/image/feedback/gray-star.svg') }}" alt="5" title="5"
+                                         data-target="star{{ $row->id }}" data-value="5" style="cursor: pointer"
+                                         class="starimg" data-id="{{ $row->id }}">
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        @elseif ($row->question_type_name === 'YesNo')
+                            <div class="bn-review-box-feedback">
+                                <div class="float-start">{{ $row->question }}</div>
+                                <div class="float-end bn-star-feedback">
+                                    <div class="bn-radio-order float-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="answers[{{ $row->id }}]"
+                                                   id="exampleRadios4{{ $row->id }}" value="Yes">
+                                            <label class="form-check-label" for="exampleRadios4{{ $row->id }}">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="answers[{{ $row->id }}]"
+                                                   id="exampleRadios5{{ $row->id }}" value="No">
+                                            <label class="form-check-label" for="exampleRadios5{{ $row->id }}">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        @elseif ($row->question_type_name === 'TextArea')
+                            <div class="row bn-space-top-feedback">
+                                <div class="col-md-12">
+                                    <textarea class="form-control" name="answers[{{ $row->id }}]"
+                                              placeholder="{{ $row->question }}"></textarea>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+
+                    <div class="row bn-space-t-feedback">
+                        <div class="col-md-6">
+                            <div class="position-relative">
+                                <span class="bn-file-attachment-label form-control" id="bn-file-attachment-label">Attach File...</span>
+                                <input type="file" placeholder="Attach File..." id="bn-file-attachment"
+                                       class="form-control bn-file-attachment position-absolute top-0"
+                                       name="file" style="opacity: 0">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn bn-black-button float-end">Submit</button>
+                        </div>
                     </div>
                 </div>
+
             </div>
-        </div>
+        </form>
     </div>
 @endsection
 
 @section('js')
     {!! js('form') !!}
-    <!-- with v4.1.0 Krajee SVG theme is used as default (and must be loaded as below) - include any of the other theme CSS files as mentioned below (and change the theme property of the plugin) -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.1.2/themes/krajee-svg/theme.min.css"
-          integrity="sha512-q6XeY4ys7Foi9D1oD7BaADWxjvqeI+58MAg/f7a61vpnclnScvmdCHdFf+X8kNVxKUkhcyDoKfcNJa150v5MEw=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.1.2/css/star-rating.min.css"
-          integrity="sha512-0VKIzRYJRN0QKkUNbaW7Ifj5sPZiJVAKF1ZmHB/EMHtZKXlzzbs4ve0Z0chgkwDWP6HkZlGShFj5FHoPstke1w=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <!-- with v4.1.0 Krajee SVG theme is used as default (and must be loaded as below) - include any of the other theme JS files as mentioned below (and change the theme property of the plugin) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.1.2/js/star-rating.min.js"
-            integrity="sha512-BjVoLC9Qjuh4uR64WRzkwGnbJ+05UxQZphP2n7TJE/b0D/onZ/vkhKTWpelfV6+8sLtQTUqvZQbvvGnzRZniTQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.1.2/themes/krajee-svg/theme.min.js"
-            integrity="sha512-tl/PJxCMfgyb4CtWoIgSXi/1x5As+ufhB62D67+nF4F5i2MafacNEuBCRgh6FHb3iAsfLXabp4cC6qDWMCZnSw=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <script>
         $(function () {
-            $('input.rating').rating();
-
             $(document)
                 .on('submit', '#form1', function (e) {
                     e.preventDefault();
@@ -131,6 +118,7 @@
                             alert(e3);
                         },
                         success: function (data) {
+                            console.error(data);
                             if (data.substr(0, 2) === 'OK') {
                                 window.location.href = "{{ route('order.feedback.success') }}";
                             } else {
@@ -139,6 +127,49 @@
                             }
                         }
                     });
+                })
+                .on('mouseenter', '.starimg', function (e) {
+                    //e.stopPropagation();
+                    $(this).attr('src', '{{ asset('asstes/image/feedback/black-star.svg') }}')
+
+                    var Val = Number($(this).attr('data-value'));
+                    var ID = $(this).attr('data-id');
+                    if (Val > 1) {
+                        for (x = 1; x < Val; x++) {
+                            $('img.starimg[data-value=' + x + '][data-id=' + ID + ']').attr('src', '{{ asset('asstes/image/feedback/black-star.svg') }}');
+                        }
+                    }
+                    if (Val < 5) {
+                        for (x = Val + 1; x <= 5; x++) {
+                            $('img.starimg[data-value=' + x + '][data-id=' + ID + ']').attr('src', '{{ asset('asstes/image/feedback/gray-star.svg') }}');
+                        }
+                    }
+                })
+                .on('mouseout', '.starimg', function (e) {
+                    //e.stopPropagation();
+                })
+                .on('click', '.starimg', function () {
+                    var Val = Number($(this).attr('data-value'));
+                    var ID = $(this).attr('data-target');
+
+                    $('#' + ID).val(Val);
+                })
+                .on('mouseleave', '.starDiv', function () {
+                    var ID = $(this).attr('data-id');
+                    var Val = Number($('#star' + ID).val());
+
+                    if (Val === 0) {
+                        for (x = 1; x <= 5; x++) {
+                            $('img.starimg[data-value=' + x + '][data-id=' + ID + ']').attr('src', '{{ asset('asstes/image/feedback/gray-star.svg') }}');
+                        }
+                    } else {
+                        for (x = 1; x <= Val; x++) {
+                            $('img.starimg[data-value=' + x + '][data-id=' + ID + ']').attr('src', '{{ asset('asstes/image/feedback/black-star.svg') }}');
+                        }
+                        for (x = Val + 1; x <= 5; x++) {
+                            $('img.starimg[data-value=' + x + '][data-id=' + ID + ']').attr('src', '{{ asset('asstes/image/feedback/gray-star.svg') }}');
+                        }
+                    }
                 })
         })
     </script>

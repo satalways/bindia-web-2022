@@ -7,7 +7,7 @@ return [
         'order_name' => 'Amagerbrogade 146, 2300 Kbh. S',
         'address' => 'Amagerbrogade 146, 2300 Kbh. S',
         'address2' => 'Amagerbrogade 146<br>2300 Copenhagen S',
-        'phone' => '+(45) 33 60 76 46',
+        'phone' => '(+45) 33 60 76 46',
         'cvr' => '39788217',
         'account_number' => '0012662777',
         'iban' => 'DK1530000012662777',

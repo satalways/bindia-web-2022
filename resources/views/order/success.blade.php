@@ -12,10 +12,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-12">
-                    <h1>Thank you for your order</h1>
+                    <h1>{{ __('checkout.thankyou') }}</h1>
 {{--                    <a class="btn bn-receipt-btn">View Receipt</a>--}}
 {{--                    <button class="btn bn-receipt-btn">View Receipt</button>--}}
-                    <a target="_blank" class="btn bn-receipt-btn" href="{{ $order->pdfLink() }}">View Receipt</a>
+                    <a target="_blank" class="btn bn-receipt-btn" href="{{ $order->pdfLink() }}">{{ __('checkout.view_receipt') }}</a>
 
                     {{--                    Your order is completed! Your invoice has been sent to your email address.--}}
                 </div>

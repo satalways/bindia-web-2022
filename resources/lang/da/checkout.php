@@ -44,4 +44,6 @@ return [
     'max_delivery_time' => 'Maximum delivery time is :time',
     'nan_not_available' => 'Da vi desværre er løbet tør for Nan i dag, må vi venligst bede dig om at fjerne det fra din ordre. Vi anbefaler Paratha eller Pilaoo Ris i stedet for.',
     'large_order' => 'Du bedes betale online, når din ordre overstiger 1.000 DKK.',
+    'thankyou' => 'Tak for din ordre!',
+    'view_receipt' => 'Vis kvittering',
 ];

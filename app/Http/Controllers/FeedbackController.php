@@ -40,7 +40,7 @@ class FeedbackController extends Controller
         switch ($request->post('action')) {
             case 'saveRating':
                 $Feedback = new Feedback();
-                return $Feedback->saveFeedback($request->except('action'));
+                return $Feedback->saveFeedback($request->except('action'), $request->file('file') );
             default:
                 abort(404);
         }

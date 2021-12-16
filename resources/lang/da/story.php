@@ -8,7 +8,7 @@ Jeg er opvokset i Punjab i det nordlige Indien med to hårdtarbejdende forældre
     'chef_story_2' => 'Vores naboer, derimod, tilhørte en af de berømte kulinariske familier, hvor ældgamle opskrifter og hemmeligheder var blevet delt i generationer. Hver dag kunne jeg dufte den fantastiske aroma fra den magi, der opstod i deres køkken. Denne magiske duft var næsten en slags sød tortur: uimodståelig, men altid uden for rækkevidde.',
     'chef_story_3' => 'Hvorfor duftede vores mad aldrig lige så godt?<br>
 Jeg svor at jeg ville finde ud af det, og startede mit eget liv i køkkenet.<br>
-Der er her jeg bruger det meste af mit liv, men også hvor jeg holder af at være.
+Der er her jeg bruger det meste af min tid, men også hvor jeg holder af at være.
 ',
     'history_bindia' => 'Bindias historie',
     'history_1' => 'Det hele startede med den første restaurant på Trianglen i september 2003. Til at starte med var vi udelukkende restaurant, men vores kunder bad i stigende grad også om at få vores retter med hjem.',

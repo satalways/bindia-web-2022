@@ -35,13 +35,36 @@
                         {{ __('contact.call_us') }}
                     </div>
                     <div class="bn-contact-text">
-                        <span> {{ shop('bdv')->name }}: {{ shop('bdv')->phone }}</span>
-                        <span> {{ shop('gkv')->name }}: {{ shop('gkv')->phone }}</span>
-                        <span> {{ shop('elm')->name }}: {{ shop('elm')->phone }}</span>
-                        <span> {{ shop('lhg')->name }}: {{ shop('lhg')->phone }}</span>
-                        <span> {{ shop('amg')->name }}: {{ shop('amg')->phone }}</span>
-                        <span> {{ shop('shg')->name }}: {{ shop('shg')->phone }}</span>
-                        <span> Hovedkontor: (+45) 30 25 88 38</span>
+                        <table>
+                            <tr>
+                                <td><span>{{ shop('amg')->name }}:</span></td>
+                                <td style="padding-left: 15px;"><span>{{ shop('amg')->phone }}</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>{{ shop('gkv')->name }}:</span></td>
+                                <td style="padding-left: 15px;"><span>{{ shop('gkv')->phone }}</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>{{ shop('lhg')->name }}:</span></td>
+                                <td style="padding-left: 15px;"><span>{{ shop('lhg')->phone }}</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>{{ shop('elm')->name }}:</span></td>
+                                <td style="padding-left: 15px;"><span>{{ shop('elm')->phone }}</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>{{ shop('shg')->name }}:</span></td>
+                                <td style="padding-left: 15px;"><span>{{ shop('shg')->phone }}</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>{{ shop('bdv')->name }}:</span></td>
+                                <td style="padding-left: 15px;"><span>{{ shop('bdv')->phone }}</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>{{ __('global.main_office') }}:</span></td>
+                                <td style="padding-left: 15px;"><span>(+45) 30 25 88 38</span></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
                 <div class="col-lg-6 col-12">

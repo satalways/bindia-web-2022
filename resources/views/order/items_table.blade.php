@@ -12,7 +12,9 @@
                 {{ $item->qty }} x {{ $item->item_title }}
                 {{ $item->spiceHtmlBrackets() }}
             </td>
-            <td class="right">{{ number_format2($item->price) }} DKK</td>
+            <td class="right">
+                {{ $item->qty }} x {{ number_format2($item->price) }}
+            </td>
             <td class="right">{{ number_format2($item->qty * $item->price) }} DKK</td>
         </tr>
     @endforeach

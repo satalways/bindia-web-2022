@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 class Feedback
 {
-    public function saveFeedback(array $args = [])
+    public function saveFeedback(array $args = [], $file)
     {
         $default = [
             'type' => '',
@@ -56,6 +56,15 @@ class Feedback
             $feedback->save();
         } catch (\Exception $exception) {
             return $exception->getMessage();
+        }
+
+        if ($file && $file->isValid()) {
+            try {
+                $file->move(storage_path('rf/' . $id), $file->getClientOriginalName());
+            } catch (\Exception) {
+
+            }
+
         }
 
         $Files[] = $order->pdf();
