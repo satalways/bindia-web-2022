@@ -15,7 +15,7 @@ return [
         <p>Da vi overtog lokalet fra en optiker, krævede det i første omgang en total ombygning, men i dag står der en lille og funky take-away og dine-in på Lyngby Hovedgade 72E. Indenfor er der plads til omkring 6 gæster kan vente på deres take-away eller spise en af vores retter som fx vores populære Butter Chicken eller en af vores vegetariske og veganske retter.
         <br>Kig indenfor i Bindia i Lyngby <a href=":inside_view_link" target="_blank">her</a>.</p>
         <p>Det er dog i sommerhalvåret at vores Bindia i Lyngby og resten af Lyngby Hovedgade for alvor kommer til sin ret. Her har vi nemlig borde og stole stående foran butikken på gadens brede, brolagte fortov lige ved siden af en flot og stor blomsterhandel. Med masser af plads til både siddende gæster og forbipasserende samt gadens mange grønne træer, passer Lyngby Hovedgade perfekt til både udendørsservering eller hurtig og nem take-away til den travle handlende. Det er svært at forestille sig en bedre placering til vores take-away og dine-in.</p>
-        <p>Du er velkommen til at benytte dig af vores Orange Prices ved dine-in. Du skal blot bestille og betale på bindia.dk, og skrive i kommentar i feltet at du ønsker dine-in.
+        <p>Du er velkommen til at benytte dig af vores Orange Prices ved dine-in. Du skal blot bestille og betale på bindia.dk, og skrive i kommentarfeltet, at du ønsker dine-in.
         Læs mere om dine-in <a href=":dine_link">her</a>.</p>
 
         <h3>Fra Kongevej til handelsgade</h3>

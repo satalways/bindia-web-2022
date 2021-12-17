@@ -18,7 +18,7 @@ return [
 
         <p>I 2018 gennemgik gaden en større renovering af vejbane, cykelsti og fortov, hvilket bl.a. betød at fortovet blev bredere, så der kunne opstå mere liv mellem gadens barer, take-away-steder og småbutikker. Derfor har vi om sommeren stole og borde stående udenfor, som du er velkommen til at benytte. Ligesom alle vores andre butikker, har Bindia i Elmegade åbent året rundt mellem 16.00 og 21.00 med undtagelse af d. 24/12 og 31/12. </p>
 
-        <p>Du er velkommen til at benytte dig af vores Orange Prices ved dine-in. Du skal blot bestille og betale på bindia.dk, og skrive i kommentar i feltet at du ønsker dine-in.
+        <p>Du er velkommen til at benytte dig af vores Orange Prices ved dine-in. Du skal blot bestille og betale på bindia.dk, og skrive i kommentarfeltet, at du ønsker dine-in.
         Læs mere om dine-in <a href=":dine_link">her</a>.</p>
 
         <h3>Madro?</h3>

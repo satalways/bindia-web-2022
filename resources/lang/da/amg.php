@@ -21,7 +21,7 @@ return [
         <p>Her fik vi hurtigt en masse glade kunder, som i stigende grad bad om få vores indiske retter med som take-away. Successen med take-away gjorde at de Bindia-butikker, vi åbnede de næste 15 år, i højere grad fokuserede på take-away. Udvidelsen af Bindia-kæden nødvendiggjorde at vi til sidste måtte flytte vores produktion og administration til passende lokaler i Hvidovre i 2017.</p>
         <p>For bedre at få udbredt den gode Bindia-mad i Københavnsområdet, lukkede vi vores første deciderede take-away-sted med henblik på at åbne vores to seneste take-away og dine-in-steder: først på Amager i 2019 og senere i Søborg. Ikke lang tid efter, vi havde åbnet på Amager, strømlinede vi vores koncept således at alle vores steder nu – i tillæg til at lave take-away – tilbyder vores gæster muligheden for dine-in, hvilket vil sige at man altid kan blive og spise sin mad til samme gode pris.</p>
         <p>Grundet sin smarte opdeling, passer det nye sted på Amager perfekt til både vores take-away- og dine-in-gæster. Uanset om du sidder ved det store vindue og venter på din take-away eller du sidder med et større selskab som gæst på stedet, befinder du dig altid i behagelige og lyse lokaler med udsigt til livet på Amagerbrogade.</p>
-        <p>Du er velkommen til at benytte dig af vores Orange Prices ved dine-in. Du skal blot bestille og betale på bindia.dk, og skrive i kommentar i feltet at du ønsker dine-in.
+        <p>Du er velkommen til at benytte dig af vores Orange Prices ved dine-in. Du skal blot bestille og betale på bindia.dk, og skrive i kommentarfeltet, at du ønsker dine-in.
         Læs mere om dine-in <a href=":dine_link">her</a>.</p>
 
         <h3>Take-away på Amager</h3>

@@ -104,11 +104,21 @@ class Order
                 ->where('card_number', $checkoutData['giftcard'])->first();
 
             if ($giftCard) {
-                if ($giftCard->final_balance > 0) {
-                    if ($giftCard->amount_type === 'percent') {
-                        $giftCardDiscount = round($Data['total_price'] * $giftCard->balance / 100, 0);
-                    } else {
-                        $giftCardDiscount = $giftCard->final_balance;
+                if ($Data['isOrange']) {
+                    if ($giftCard->orange_final_balance > 0) {
+                        if ($giftCard->amount_type === 'percent') {
+                            $giftCardDiscount = round($Data['total_price'] * $giftCard->balance / 100, 0);
+                        } else {
+                            $giftCardDiscount = $giftCard->orange_final_balance;
+                        }
+                    }
+                } else {
+                    if ($giftCard->final_balance > 0) {
+                        if ($giftCard->amount_type === 'percent') {
+                            $giftCardDiscount = round($Data['total_price'] * $giftCard->balance / 100, 0);
+                        } else {
+                            $giftCardDiscount = $giftCard->final_balance;
+                        }
                     }
                 }
 
@@ -118,6 +128,7 @@ class Order
                         $I = OrderItems::query()
                             ->where('code', $code)
                             ->first();
+
                         $GCItems[$I->id] = [
                             'qty' => $qty,
                             'id' => $I->id,

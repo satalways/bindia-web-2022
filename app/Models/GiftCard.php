@@ -141,36 +141,70 @@ class GiftCard extends Model
 
     public function getBalanceAttribute()
     {
-        if ( $this->amount_type === 'percent' ) {
+        if ($this->amount_type === 'percent') {
             return $this->attributes['balance'];
         } else {
             return $this->amount - $this->getSubCardsAttribute()->sum('amount');
         }
     }
 
+    public function getOrangeItemBalanceAttribute()
+    {
+        if (is_array($this->selected_items)) {
+            $items = \App\Models\OrderItems::query()
+                ->where('active', true)
+                ->whereIn('code', array_keys($this->selected_items))
+                ->select(['code', 'price_orange'])
+                ->orderBy('code')
+                ->get();
+
+            $qtyArray = $this->selected_items;
+
+            $amount = 0;
+            foreach ($items as $item) {
+                if (isset($qtyArray[$item->code])) {
+                    $amount += ($qtyArray[$item->code] * $item->price_orange);
+                }
+            }
+
+            return $amount;
+        } else {
+            return 0;
+        }
+    }
+
     public function getItemBalanceAttribute()
     {
-        $items = \App\Models\OrderItems::query()
-            ->where('active', true)
-            ->whereIn('code', array_keys($this->selected_items))
-            ->select(['code', 'price'])
-            ->orderBy('code')
-            ->get();
+        if (is_array($this->selected_items)) {
+            $items = \App\Models\OrderItems::query()
+                ->where('active', true)
+                ->whereIn('code', array_keys($this->selected_items))
+                ->select(['code', 'price'])
+                ->orderBy('code')
+                ->get();
 
-        $qtyArray = $this->selected_items;
+            $qtyArray = $this->selected_items;
 
-        $amount = 0;
-        foreach ($items as $item) {
-            if (isset($qtyArray[$item->code])) {
-                $amount += ($qtyArray[$item->code] * $item->price);
+            $amount = 0;
+            foreach ($items as $item) {
+                if (isset($qtyArray[$item->code])) {
+                    $amount += ($qtyArray[$item->code] * $item->price);
+                }
             }
-        }
 
-        return $amount;
+            return $amount;
+        } else {
+            return 0;
+        }
     }
 
     public function getFinalBalanceAttribute()
     {
         return $this->getBalanceAttribute() + $this->getItemBalanceAttribute();
+    }
+
+    public function getOrangeFinalBalanceAttribute()
+    {
+        return $this->getBalanceAttribute() + $this->getOrangeItemBalanceAttribute();
     }
 }

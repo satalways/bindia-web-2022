@@ -20,7 +20,7 @@ return [
 
         <h3>Take-away & Dine-in</h3>
         <p>Som følge af en gennemgående konceptuel strømligning af hele vores kæde i 2020, er stedet ved Trianglen i dag et take-away og dine-in-sted, hvilket vil sige at du som altid kan sidde og nyde din Butter Chicken, Dal eller en vores vegetariske eller veganske retter i vores store lokaler, men at bestilling, betaling og afhentning foregår ved disken.</p>
-        <p>Du er velkommen til at benytte dig af vores Orange Prices ved dine-in. Du skal blot bestille og betale på bindia.dk, og skrive i kommentar i feltet at du ønsker dine-in.
+        <p>Du er velkommen til at benytte dig af vores Orange Prices ved dine-in. Du skal blot bestille og betale på bindia.dk, og skrive i kommentarfeltet, at du ønsker dine-in.
         <br>Læs mere om dine-in <a href=":dine_link">her</a>.</p>
 
         <p>Uanset om du kommer alene eller med et selskab, er du altid velkommen i Bindia på Østerbro. Således er vi stadig et yndet stamsted for utallige glade mennesker på vej til (eller fra) landskampe eller store koncerter på Danmarks nationalstadium, Parken, der blot ligger et stenkast nede af Øster Allé.</p>
