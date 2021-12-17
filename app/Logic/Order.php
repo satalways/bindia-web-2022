@@ -87,6 +87,8 @@ class Order
          * Proceed Gift Card if available in shopping cart
          */
         $giftCardDiscount = 0;
+        $discount = 0;
+
         if ($checkout && isset($checkoutData['payment_type']) && $checkoutData['payment_type'] === 'card' && !empty($checkoutData['giftcard'])) {
             $giftCard = GiftCard::query()
                 ->where('deleted', false)
@@ -101,16 +103,12 @@ class Order
                 })
                 ->where('card_number', $checkoutData['giftcard'])->first();
 
-            //$GCbalanceAmount = $GCItemsAmount = 0;
-
             if ($giftCard) {
                 if ($giftCard->final_balance > 0) {
                     if ($giftCard->amount_type === 'percent') {
                         $giftCardDiscount = round($Data['total_price'] * $giftCard->balance / 100, 0);
-                        //$GCbalanceAmount = round($Data['total_price'] * $giftCard->balance / 100, 0);
                     } else {
                         $giftCardDiscount = $giftCard->final_balance;
-                        //$GCbalanceAmount = $giftCard->balance;
                     }
                 }
 
@@ -133,24 +131,32 @@ class Order
                         } else if ($items[$id] < $GCItem['qty']) {
                             $items[$id] = $GCItem['qty'];
                         }
-
-                        //$giftCardDiscount += $GCItem['qty'] * $GCItem['item']->price;
-                        //$GCItemsAmount += $GCItem['qty'] * $GCItem['item']->price;
                     }
                 }
             }
 
             $Data = $this->calculateItems($items);
+            $Data['isOrange'] = $checkout && $checkoutData['payment_type'] === 'card' && $checkoutData['delivery'] === 'Pickup at Shop';
 
-            if ($Data['total_price'] < $giftCardDiscount) {
-                $giftCardDiscount = $Data['total_price'];
-                $Data['total_price'] = 0;
+
+            if ($Data['isOrange']) {
+                if ($Data['total_price_orange'] < $giftCardDiscount) {
+                    $giftCardDiscount = $Data['total_price_orange'];
+                    $Data['total_price_orange'] = 0;
+                } else {
+                    $Data['total_price_orange'] -= $giftCardDiscount;
+                }
+
+                $Data['total_price'] = $Data['total_price_orange'];
             } else {
-                $Data['total_price'] -= $giftCardDiscount;
+                if ($Data['total_price'] < $giftCardDiscount) {
+                    $giftCardDiscount = $Data['total_price'];
+                    $Data['total_price'] = 0;
+                } else {
+                    $Data['total_price'] -= $giftCardDiscount;
+                }
             }
         }
-
-        $discount = 0;
 
         if (empty($checkoutData['date'])) $checkoutData['date'] = \Carbon\Carbon::today()->toDateString();
         if (empty($checkoutData['time'])) {
@@ -159,7 +165,7 @@ class Order
 
         try {
             $dateObject = Carbon::create($checkoutData['date'] . ' ' . $checkoutData['time']);
-        } catch (\Exception $exception) {
+        } catch (\Exception) {
             $dateObject = Carbon::now();
         }
         if (Carbon::now()->diffInMinutes($dateObject) < config('order.order_prep_time')) {
@@ -200,7 +206,7 @@ class Order
             'gift_card_numbers' => $giftCard->id ?? '',
             'nan_available' => $Data['nan_available'],
             'delivery_fee' => $Data['delivery_fee'],
-            'isOrange' => $Data['isOrange'] ?? true,
+            'isOrange' => isset($Data['isOrange']) ? $Data['isOrange'] : true,
         ];
     }
 
@@ -392,10 +398,9 @@ class Order
             return __('checkout.large_order');
         }
 
-
-        if ($checkoutData['total_price'] < config('order.min_order_amount')) {
-            return __('Order amount is :amount, It seems there is some issue, We can not proceed.', ['amount' => $checkoutData['total_price']]);
-        }
+//        if ($checkoutData['total_price'] < config('order.min_order_amount')) {
+//            return __('Order amount is :amount, It seems there is some issue, We can not proceed.', ['amount' => $checkoutData['total_price']]);
+//        }
 
         /**
          * Pick up Order and Pay at Shop

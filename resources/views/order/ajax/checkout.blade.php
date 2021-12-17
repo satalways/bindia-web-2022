@@ -212,7 +212,7 @@
                                     </h2>
                                 </div>
                                 <div class="col-lg-6 col-6">
-                                    <div class="bn-price-item">{{ $items['giftCardDiscount'] }}</div>
+                                    <div class="bn-price-item">-{{ $items['giftCardDiscount'] }}</div>
                                 </div>
                             </div>
                         @endif
