@@ -8,7 +8,9 @@ class Pages extends Controller
 {
     public function dinein()
     {
-        return view('pages.dinein');
+        return view('pages.dinein', [
+            'seo' => seo('dinein')
+        ]);
     }
 
     public function amg()
@@ -55,36 +57,50 @@ class Pages extends Controller
 
     public function story()
     {
-        return view('pages.story');
+        return view('pages.story', [
+            'seo' => seo('Story')
+        ]);
     }
 
     public function values()
     {
-        return view('pages.values');
+        return view('pages.values', [
+            'seo' => seo('Our Values')
+        ]);
     }
 
     public function team()
     {
-        return view('pages.team');
+        return view('pages.team', [
+            'seo' => seo('Our Team')
+        ]);
     }
 
     public function faq()
     {
-        return view('pages.faq');
+        return view('pages.faq', [
+            'seo' => seo('FAQ')
+        ]);
     }
 
     public function glossary()
     {
-        return view('pages.glossary');
+        return view('pages.glossary',[
+            'seo' => seo('Glossary')
+        ]);
     }
 
     public function privacy_policy()
     {
-        return view('pages.privacy_policy');
+        return view('pages.privacy_policy', [
+            'seo' => seo('Privacy Policy')
+        ]);
     }
 
     public function terms()
     {
-        return view('pages.terms');
+        return view('pages.terms', [
+            'seo' =>  seo('Terms Conditions')
+        ]);
     }
 }

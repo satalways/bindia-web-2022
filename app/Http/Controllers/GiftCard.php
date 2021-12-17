@@ -11,7 +11,9 @@ class GiftCard extends Controller
 {
     public function index()
     {
-        return view('gc.index');
+        return view('gc.index', [
+            'seo' => seo('Gift Card')
+        ]);
     }
 
     public function ajax(Request $request)

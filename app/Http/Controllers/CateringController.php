@@ -31,7 +31,7 @@ class CateringController extends Controller
             'curries' => $curries,
             'vegs' => $vegs,
             'session' => $sessionData,
-            'seo' => seo('Catering Evening')
+            'seo' => seo('Catering Buffet')
         ]);
     }
 
