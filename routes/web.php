@@ -100,6 +100,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
 
     Route::get('/test/', [\App\Http\Controllers\TestController::class, 'index']);
+    Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index']);
 
     Route::get('/captcha', [\App\Http\Controllers\Captcha::class, 'myCaptcha'])->name('captcha');
     //Route::post('/captcha', [\App\Http\Controllers\Captcha::class, 'myCaptchaPost'])->name('captcha.post');
@@ -114,7 +115,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::get('/how-to-reheat-food-from-bindia.pdf', [\App\Http\Controllers\OrderController::class, 'orderReaheatPDF'])->name('order.food.reheat.pdf');
 
     Route::get('/coming.html', [\App\Http\Controllers\TestController::class, 'comingSoon'])->name('coming');
-
     Route::get('/xyiiodlesdf.html', [\App\Http\Controllers\App::class, 'markPaid']);
 
     Route::get('/take-away-{area}.html', [\App\Http\Controllers\OrderController::class, 'areaPage'])->name('area.page');
