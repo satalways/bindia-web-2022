@@ -424,12 +424,33 @@ class OrderController extends Controller
             $row->save();
         }
 
-        $row = TakeoutZonesModel::query()->where('area_slug', $area)->firstOrFail();
-        $rows = TakeoutZonesModel::query()->select(['area_slug'])->distinct('area_slug')->get();
+        $row = TakeoutZonesModel::query()->where('area_slug', $area)
+            ->whereNotIn('area', ['Lyngby', 'Søborg', 'Frederiksberg'])->firstOrFail();
+        $rows = TakeoutZonesModel::query()
+            ->select(['area_slug', 'area'])
+            ->whereNotIn('area', ['Lyngby', 'Søborg', 'Frederiksberg'])
+            ->distinct('area_slug')->orderBy('area')->get();
+
+        if (getCurrentLang() === 'en') {
+            $title = 'Take Away ' . $row->area . ' - Indian Food Restaurant ' . $row->area . ' - Bindia.dk';
+            $description = 'Best Indian Food Take Away ' . $row->area . '. Indian Dishes Menu - Indian Food Restaurant ' . $row->area . ' Bindia.dk';
+            $heading = 'Take Away ' . $row->area . ' - Indian Food Restaurant ' . $row->area;
+        } else {
+            $title = 'Take Away ' . $row->area . ' - Indisk Mad Restaurant ' . $row->area . ' - Bindia.dk';
+            $description = 'Bedste Indisk Mad Take Away ' . $row->area . '. Indiske Retter Menu - Indisk Mad Restaurant ' . $row->area . ' Bindia.dk';
+            $heading = 'Take Away ' . $row->area . ' - Indisk Mad Restaurant ' . $row->area;
+        }
+
+        $items = OrderItems::all();
 
         return view('seo_pages.take-away', [
             'row' => $row,
-            'rows' => $rows
+            'rows' => $rows,
+            'title' => $title,
+            'description' => $description,
+            'heading' => $heading,
+            'cols' => isMobile() ? 3 : 5,
+            'items' => $items
         ]);
     }
 

@@ -67,8 +67,8 @@
                             {{ __('global.go') }}
                         </button>
                     </div>
-                    <div class="col-2 d-sm-none d-block text-center"><img
-                            src="{{ asset('asstes/image/take-away/close.svg') }}" alt="">
+                    <div class="col-2 d-sm-none d-block text-center">
+                        <img src="{{ asset('asstes/image/take-away/close.svg') }}" alt="">
                     </div>
 
                 </div>

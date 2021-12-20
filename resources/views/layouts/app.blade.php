@@ -20,7 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ isset($seo->title_en) ? $seo->getTitle() : ($title ?? 'Bindia Indisk Mad') }}</title>
     <!--Mobile Media-->
-    <meta name="description" content="{{ isset($seo->description_en) ? $seo->getDesc() : '' }}">
+    <meta name="description" content="{{ isset($seo->description_en) ? $seo->getDesc() : ($description ?? '') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Bootstrap min css File-->
     <!--    <link rel="stylesheet" href="asstes/css/bootstrap.min.css">-->

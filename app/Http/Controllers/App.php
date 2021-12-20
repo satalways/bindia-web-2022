@@ -183,4 +183,24 @@ class App extends Controller
                 abort(403, 'Unauthorized!');
         }
     }
+
+    public function areaPage($area)
+    {
+        $fixAreas = TakeoutZonesModel::query()
+            ->whereNull('area_slug')
+            ->get();
+
+        foreach ($fixAreas as $row) {
+            $row->area_slug = \Str::slug($row->area);
+            $row->save();
+        }
+
+        $row = TakeoutZonesModel::query()->where('area_slug', $area)->firstOrFail();
+        $rows = TakeoutZonesModel::query()->select(['area_slug'])->distinct('area_slug')->get();
+
+        return view('seo_pages.take-away', [
+            'row' => $row,
+            'rows' => $rows
+        ]);
+    }
 }
