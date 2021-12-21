@@ -74,6 +74,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
      * All routes related with order
      */
     Route::get('/checkout.html', [\App\Http\Controllers\OrderController::class, 'checkout'])->name('checkout');
+    Route::get('/checkout-address.html', [\App\Http\Controllers\OrderController::class, 'address'])->name('checkout.address');
     Route::post('/checkout.html', [\App\Http\Controllers\OrderController::class, 'checkoutPost'])->name('checkout.post');
     Route::get('/order_print_receipt.php', [\App\Http\Controllers\OrderController::class, 'pdfFile'])->name('order.pdf');
 

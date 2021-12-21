@@ -30,8 +30,7 @@ class TestController extends Controller
 {
     public function index()
     {
-        $O = new Order();
-        return $O->sendOrderEmailToCustomer(140039);
+        $O = Orders::query()->find(147649);
 
         die;
         $G = new \App\Logic\GiftCard();

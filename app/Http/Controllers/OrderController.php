@@ -90,6 +90,20 @@ class OrderController extends Controller
         return view('order.checkout');
     }
 
+    public function address() {
+        return response()->json([
+            ["value"=> 1, "text" => "Google Cloud Platform"],
+            ["value"=> 2, "text" => "Amazon AWS"],
+            ["value"=> 3, "text" => "Docker"],
+            ["value"=> 4, "text" => "Digital Ocean"],
+            ["value"=> 5, "text" => "Pakistan"]
+        ]);
+//        return response()->json([
+//            ['value' => 'Andorra', 'data' => 'AD'],
+//            ['value' => 'Pakistan', 'data' => 'PK'],
+//        ]);
+    }
+
     public function checkoutPost(Request $request)
     {
         if (!$request->ajax()) abort(404);

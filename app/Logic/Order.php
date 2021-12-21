@@ -807,6 +807,7 @@ class Order
 
 
         foreach ($orders as $order) {
+            if ($order->id === 147649 ) continue;
             $r = $order->createTakeoutOrder();
             if ($r !== 'OK') {
                 $content = print_r($r, true);

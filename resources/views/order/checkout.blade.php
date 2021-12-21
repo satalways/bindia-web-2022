@@ -16,6 +16,9 @@
     {!! js('date') !!}
     {!! js('form') !!}
     {!! js('cookie') !!}
+
+    <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@master/dist/latest/bootstrap-autocomplete.min.js"></script>
+
     <script>
         var datePicker = function (minDate, minTime) {
             $('[name=date]').pickadate({
@@ -55,6 +58,50 @@
                 $('#content').html(data.html);
                 datePicker(data.minDate, data.minTime);
                 loadCookieData();
+
+                $('#shipping_address').autoComplete({
+                    {{--resolver: 'custom',--}}
+                    {{--events: {--}}
+                    {{--    search: function (qry, callback) {--}}
+                    {{--        // let's do a custom ajax call--}}
+                    {{--        $.ajax(--}}
+                    {{--            '{{ route('checkout.address') }}',--}}
+                    {{--            {--}}
+                    {{--                data: { 'qry': qry}--}}
+                    {{--            }--}}
+                    {{--        ).done(function (res) {--}}
+                    {{--            console.error(res);--}}
+                    {{--            callback(res.results)--}}
+                    {{--        });--}}
+                    {{--    }--}}
+                    {{--}--}}
+                });
+                // $('#shipping_address').autoComplete('show');
+
+                {{--$('#address').autocomplete({--}}
+                {{--    --}}{{--serviceUrl: '{{ route('checkout.address') }}',--}}
+                {{--        --}}{{--onSelect: function (suggestion) {--}}
+                {{--        --}}{{--    alert('You selected: ' + suggestion.value + ', ' + suggestion.data);--}}
+                {{--        --}}{{--}--}}
+
+                {{--    lookup: function (query, done) {--}}
+                {{--        // Do Ajax call or lookup locally, when done,--}}
+                {{--        // call the callback and pass your results:--}}
+                {{--        var result = {--}}
+                {{--            "query": "Unit",--}}
+                {{--            suggestions: [--}}
+                {{--                {"value": "United Arab Emirates", "data": "AE"},--}}
+                {{--                {"value": "United Kingdom", "data": "UK"},--}}
+                {{--                {"value": "United States", "data": "US"}--}}
+                {{--            ]--}}
+                {{--        };--}}
+
+                {{--        done(result);--}}
+                {{--    },--}}
+                {{--    onSelect: function (suggestion) {--}}
+                {{--        alert('You selected: ' + suggestion.value + ', ' + suggestion.data);--}}
+                {{--    }--}}
+                {{--});--}}
             });
         }
 
@@ -211,6 +258,9 @@
                             }
                         });
                     }
+                })
+                .on('input', '#shipping_address', function () {
+                    console.error($(this).val())
                 })
         });
     </script>

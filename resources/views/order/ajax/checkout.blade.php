@@ -282,7 +282,8 @@
                     <div class="row bn-from-bottom-space">
                         <div class="col-md-6 col-12">
                             <input type="text" class="form-control update2" placeholder="{{ __('global.address') }}"
-                                   name="shipping_address" value="{{ $items['checkout']['shipping_address'] ?? '' }}">
+                                   id="shipping_address" name="shipping_address" autocomplete="off"
+                                   value="{{ $items['checkout']['shipping_address'] ?? '' }}" data-url="{{ route('checkout.address') }}">
                         </div>
                         <div class="col-md-3 col-4 bn-pr-mobile">
                             <input type="number" class="form-control" placeholder="{{ __('global.postal_code') }}"
