@@ -129,8 +129,8 @@ class Orders extends Model
 
     public function pdf($inline = false)
     {
-        Storage::disk('local')->makeDirectory('orders/invoices');
-        $path = Storage::path('orders/invoices/bindia_order_receipt_' . $this->id . '.pdf');
+        Storage::disk('local')->makeDirectory('orders' . DIRECTORY_SEPARATOR . 'invoices');
+        $path = Storage::path('orders' . DIRECTORY_SEPARATOR . 'invoices' . DIRECTORY_SEPARATOR . 'bindia_order_receipt_' . $this->id . '.pdf');
 
         if ($inline) {
             return PDF::create_pdf_file_from_view('order.pdf', [

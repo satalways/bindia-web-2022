@@ -11,10 +11,19 @@ class CronController extends Controller
     {
         $O = new Order();
         $O->sendOrdersToTakeOut();
+
+        //send_mail('shakeel@shakeel.pk', 'Testing 1 min cron', 'Is it delivered?');
     }
 
     public function fiveMin()
     {
 
+    }
+
+    public function oneDay()
+    {
+        $O = new Order();
+
+        $O->deleteTempPDFFiles();
     }
 }

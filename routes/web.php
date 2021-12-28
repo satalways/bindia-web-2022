@@ -110,6 +110,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
     Route::get('/cron/1min.html', [\App\Http\Controllers\CronController::class, 'min']);
     Route::get('/cron/5min.html', [\App\Http\Controllers\CronController::class, 'fiveMin']);
+    Route::get('/cron/1day.html', [\App\Http\Controllers\CronController::class, 'oneDay']);
+
+
     Route::get('/confirm_interview.html', [\App\Http\Controllers\App::class, 'confirmInterview'])->name('confirm.interview');
 
     Route::get('/copy-my-last-order-terms.pdf', [\App\Http\Controllers\OrderController::class, 'copyMyLastOrderPDF'])->name('order.copy.last.order.pdf');

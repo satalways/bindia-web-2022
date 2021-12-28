@@ -30,7 +30,13 @@ class TestController extends Controller
 {
     public function index()
     {
-        $O = Orders::query()->find(147649);
+        $T = new Order();
+        dd( $T->deleteTempPDFFiles() );
+
+        die;
+        $T = new Takeout();
+        dd( $T->getDeliveryInfo() );
+        dd( $T->autocompleteAddress('Bastebrostræde') );
 
         die;
         $G = new \App\Logic\GiftCard();

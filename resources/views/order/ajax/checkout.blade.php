@@ -281,9 +281,11 @@
                 @if( isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi' )
                     <div class="row bn-from-bottom-space">
                         <div class="col-md-6 col-12">
-                            <input type="text" class="form-control update2" placeholder="{{ __('global.address') }}"
-                                   id="shipping_address" name="shipping_address" autocomplete="off"
-                                   value="{{ $items['checkout']['shipping_address'] ?? '' }}" data-url="{{ route('checkout.address') }}">
+                                <input type="text" class="form-control update2" placeholder="{{ __('global.address') }}"
+                                       id="shipping_address" name="shipping_address" autocomplete="off"
+                                       value="{{ $items['checkout']['shipping_address'] ?? '' }}"
+                                       data-url="{{ route('checkout.address') }}">
+
                         </div>
                         <div class="col-md-3 col-4 bn-pr-mobile">
                             <input type="number" class="form-control" placeholder="{{ __('global.postal_code') }}"
@@ -292,7 +294,7 @@
                         </div>
                         <div class="col-md-3 col-8">
                             <input type="text" class="form-control update2" placeholder="{{ __('global.city') }}"
-                                   name="shipping_city"
+                                   name="shipping_city" id="shipping_city"
                                    value="{{ $items['checkout']['shipping_city'] ?? '' }}" id="city"
                                    readonly="readonly">
                         </div>

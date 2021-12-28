@@ -11,6 +11,7 @@ use App\Models\OrdersGuest;
 use App\Models\TakeoutZonesModel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class Order
 {
@@ -367,7 +368,8 @@ class Order
          * Check if all shop on closed on these dates
          */
         foreach (config('order.closing_dates') as $closingDate) {
-            if (Carbon::create($closingDate . '-' . date('Y'))->toDateString() === $dateTime->toDateString()) {
+            $closingDate = Carbon::create($closingDate . '-' . date('Y'));
+            if ($closingDate->toDateString() === $dateTime->toDateString()) {
                 return __('checkout.shop_closed', ['date' => $closingDate->format(config('app.date_format'))]);
             }
         }
@@ -474,7 +476,7 @@ class Order
              */
             foreach (config('order.stop_delivery_on_dates') as $stopDate) {
                 if (Carbon::create($stopDate . '-' . date('Y'))->toDateString() === $dateTime->toDateString()) {
-                    return __('checkout.delivery_order_not_allowed_on_date', ['date' => $dateTime->format(config('date_format'))]);
+                    return __('checkout.delivery_order_not_allowed_on_date', ['date' => $dateTime->format(config('app.date_format'))]);
                 }
             }
 
@@ -702,7 +704,7 @@ class Order
         ])->render();
         $array['order_id'] = $order->id;
         $array['customer_guest_id'] = $order->guest_id;
-        $array['order_staff_link'] = 'https://admin.bindia.pk/porders.php?id=' . $order->id;
+        $array['order_staff_link'] = get_admin_link('porders.php?id=' . $order->id);
         $array['order_comments'] = $order->comments;
         $array['customer_phone'] = $order->shipping_phone;
         $array['order_table'] = view('order.items_table', ['order' => $order])->render();
@@ -807,7 +809,7 @@ class Order
 
 
         foreach ($orders as $order) {
-            if ($order->id === 147649 ) continue;
+            if ($order->id === 147649) continue;
             $r = $order->createTakeoutOrder();
             if ($r !== 'OK') {
                 $content = print_r($r, true);
@@ -857,5 +859,15 @@ class Order
         }
 
         return 'OK';
+    }
+
+    /**
+     * @return bool
+     *
+     * Delete folder where all temporary PDF files are stored.
+     */
+    public function deleteTempPDFFiles()
+    {
+        return Storage::deleteDirectory('orders' . DIRECTORY_SEPARATOR . 'invoices');
     }
 }

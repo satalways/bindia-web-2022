@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Logic\Nets;
 use App\Logic\Order;
+use App\Logic\Takeout;
 use App\Models\OrderItems;
 use App\Models\Orders;
 use App\Models\TakeoutZonesModel;
@@ -90,14 +91,10 @@ class OrderController extends Controller
         return view('order.checkout');
     }
 
-    public function address() {
-        return response()->json([
-            ["value"=> 1, "text" => "Google Cloud Platform"],
-            ["value"=> 2, "text" => "Amazon AWS"],
-            ["value"=> 3, "text" => "Docker"],
-            ["value"=> 4, "text" => "Digital Ocean"],
-            ["value"=> 5, "text" => "Pakistan"]
-        ]);
+    public function address()
+    {
+        $T = new Takeout();
+        return response()->json($T->autocompleteAddress(\request()->query('query')));
 //        return response()->json([
 //            ['value' => 'Andorra', 'data' => 'AD'],
 //            ['value' => 'Pakistan', 'data' => 'PK'],

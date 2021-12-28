@@ -46,4 +46,5 @@ return [
     'large_order' => 'Du bedes betale online, når din ordre overstiger 1.000 DKK.',
     'thankyou' => 'Tak for din ordre!',
     'view_receipt' => 'Vis kvittering',
+    'delivery_order_not_allowed_on_date' => 'Delivery orders are not available on :date',
 ];

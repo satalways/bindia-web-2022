@@ -66,8 +66,13 @@ return [
      */
     'stop_delivery_orders' => false,
 
+    /**
+     * Delivery orders will not be available on these dates.
+     */
     'stop_delivery_on_dates' => [
-        '01-Jan',
+        '24-Dec',
+        '25-Dec',
+        '31-Dec',
     ],
 
     /**

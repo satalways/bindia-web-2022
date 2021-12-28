@@ -12,7 +12,11 @@ class PDF extends \mikehaertl\wkhtmlto\Pdf
     {
         parent::__construct();
 
-        $this->binary = env('WKHTML_PDF_BINARY', 'wkhtmltopdf');
+        if (localhost()) {
+            $this->binary = env('WKHTML_PDF_BINARY', 'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe');
+        } else {
+            $this->binary = env('WKHTML_PDF_BINARY', 'wkhtmltopdf');
+        }
     }
 
     /**
