@@ -159,6 +159,7 @@
                 datePicker(data.minDate, data.minTime);
                 loadCookieData();
 
+                @if (!isLiveServer())
                 $('#shipping_address').typeahead({
                         hint: true,
                         highlight: true,
@@ -194,7 +195,6 @@
                         }
                     })
                     .on('typeahead:selected', function (evt, item) {
-                        console.error(item);
                         if (item.data.postnr) {
                             $('#postal_code').val(item.data.postnr);
                             $('#shipping_city').val(item.data.supplerendebynavn);
@@ -212,73 +212,7 @@
                         $(this).removeClass('loading');
                         //$('.Typeahead-spinner').hide();
                     });
-
-                {{--$('#shipping_address').typeahead({--}}
-                {{--    hint: true,--}}
-                {{--    highlight: true,--}}
-                {{--    minLength: 1,--}}
-                {{--    source: function (typeahead, query) {--}}
-                {{--        return $.ajax({--}}
-                {{--            url: "{{ route('checkout.address') }}",--}}
-                {{--            method: 'post',--}}
-                {{--            data: {query:query},--}}
-                {{--            error: function(e1,e2,e3) {--}}
-                {{--                console.error(e3);--}}
-                {{--            },--}}
-                {{--            success: function(data) {--}}
-                {{--                console.error(data);--}}
-                {{--            }--}}
-                {{--        });--}}
-                {{--        --}}{{--return $.post('{{ route('checkout.address') }}', {query: query}, function (data) {--}}
-                {{--        --}}{{--    console.error(data);--}}
-                {{--        --}}{{--    return typeahead.process(data);--}}
-                {{--        --}}{{--});--}}
-                {{--    }--}}
-                {{--});--}}
-
-                // $('#shipping_address').autoComplete({
-                {{--resolver: 'custom',--}}
-                {{--events: {--}}
-                {{--    search: function (qry, callback) {--}}
-                {{--        // let's do a custom ajax call--}}
-                {{--        $.ajax(--}}
-                {{--            '{{ route('checkout.address') }}',--}}
-                {{--            {--}}
-                {{--                data: { 'qry': qry}--}}
-                {{--            }--}}
-                {{--        ).done(function (res) {--}}
-                {{--            console.error(res);--}}
-                {{--            callback(res.results)--}}
-                {{--        });--}}
-                {{--    }--}}
-                {{--}--}}
-                // });
-                // $('#shipping_address').autoComplete('show');
-
-                {{--$('#address').autocomplete({--}}
-                {{--    --}}{{--serviceUrl: '{{ route('checkout.address') }}',--}}
-                {{--        --}}{{--onSelect: function (suggestion) {--}}
-                {{--        --}}{{--    alert('You selected: ' + suggestion.value + ', ' + suggestion.data);--}}
-                {{--        --}}{{--}--}}
-
-                {{--    lookup: function (query, done) {--}}
-                {{--        // Do Ajax call or lookup locally, when done,--}}
-                {{--        // call the callback and pass your results:--}}
-                {{--        var result = {--}}
-                {{--            "query": "Unit",--}}
-                {{--            suggestions: [--}}
-                {{--                {"value": "United Arab Emirates", "data": "AE"},--}}
-                {{--                {"value": "United Kingdom", "data": "UK"},--}}
-                {{--                {"value": "United States", "data": "US"}--}}
-                {{--            ]--}}
-                {{--        };--}}
-
-                {{--        done(result);--}}
-                {{--    },--}}
-                {{--    onSelect: function (suggestion) {--}}
-                {{--        alert('You selected: ' + suggestion.value + ', ' + suggestion.data);--}}
-                {{--    }--}}
-                {{--});--}}
+                @endif
             });
         }
 
@@ -418,9 +352,9 @@
                             hide();
                             if (data.substr(0, 2) === 'OK') {
                                 var D = JSON.parse(data.substr(2));
-                                alert(D.message);
 
-                                $('#city').val(D.city);
+                                $('#shipping_city').val(D.city);
+                                alert(D.message);
                                 $('#choose-delivery').trigger('click');
 
                                 // if (confirm(D.message)) {

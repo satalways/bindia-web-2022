@@ -14,6 +14,79 @@ class GiftCard
     const Redeemed = 4;
     const PartialRedeemed = 1;
 
+    /**
+     * @param array $args
+     *
+     * This method will generate gift card for customer. it will be paid always.
+     */
+    public function generateCard($args = [])
+    {
+        $default = [
+            'accept' => 0,
+            'amount' => 0,
+            'customer_email' => '',
+            'customer_name' => '',
+            'customer_phone' => '',
+            'send' => 'now',
+            'date' => '',
+            'time' => '',
+            'from_email' => '',
+            'from_name' => '',
+            'from_phone' => '',
+            'to_message' => '',
+        ];
+        $args = set_args($args, $default);
+
+        if (!$args['accept']) return 'Please accept terms and conditions';
+        if (!is_numeric($args['amount'])) return 'Invalid amount';
+        if ($args['amount'] < 100) return 'Select minimum 100 kr for gift card';
+        if (blank($args['customer_name'])) return 'Recipient name missing';
+        if (!is_phone($args['customer_phone'])) return 'Recipient phone is not valid';
+        if (!is_email($args['customer_email'])) return 'Recipient email is not valid';
+        if (blank($args['from_name'])) return 'Your name missing';
+        if (!is_phone($args['from_phone'])) return 'Your phone # is not valid';
+        if (!is_email($args['from_email'])) return 'Your email is not valid';
+        if ($args['send'] === 'now') {
+            $args['send_datetime'] = Carbon::now();
+        } else {
+            $args['send_datetime'] = Carbon::create($args['date'] . ' ' . $args['time']);
+        }
+
+        try {
+            $giftCard = new \App\Models\GiftCard();
+            $giftCard->amount = intval($args['amount']);
+            $giftCard->balance = intval($args['amount']);
+            $giftCard->customer_name = $args['customer_name'];
+            $giftCard->customer_phone = formatize_phone_number($args['customer_phone']);
+            $giftCard->customer_email = $args['customer_email'];
+            $giftCard->from_name = $args['from_name'];
+            $giftCard->from_email = $args['from_email'];
+            $giftCard->from_phone = formatize_phone_number($args['from_phone']);
+            $giftCard->sent_time = $args['send_datetime'];
+            $giftCard->customer_card = true;
+            $giftCard->card_type = 'PD';
+            $giftCard->validity = 36;
+            $giftCard->staff_instructions = 'This card is purchased by customer from web site.';
+            $giftCard->sent = false;
+            $giftCard->generated_time = Carbon::now();
+            $giftCard->generated_ip = request()->ip();
+            $giftCard->issued = true;
+            $giftCard->issued_comments = 'This card is purchased by customer from web site.';
+
+            $giftCard->paid_by_customer = false;
+            $giftCard->paid = false;
+
+            $giftCard->valid_date = Carbon::today()->addMonths(36);
+            $giftCard->to_message = $args['to_message'];
+            $giftCard->deleted = false;
+            $giftCard->card_for = 'TA';
+            $giftCard->save();
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+
+        return 'OK' . route('giftcard.payment') . '?token=' . $giftCard->orderToken();
+    }
 
     public function redeemGiftCardByOrder($orderID)
     {

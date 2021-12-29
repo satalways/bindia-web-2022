@@ -91,6 +91,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::get('/payment.html', [\App\Http\Controllers\OrderController::class, 'payment'])->name('order.payment');
     Route::get('/mark-payment-done.html', [\App\Http\Controllers\OrderController::class, 'markDone'])->name('order.markDone');
 
+    /**
+     * Gift card routes
+     */
     if (!isLiveServer()) {
         Route::get('/gift-card.html', [\App\Http\Controllers\GiftCard::class, 'index'])->name('giftcard');
         Route::post('/gift-card.html', [\App\Http\Controllers\GiftCard::class, 'ajax'])->name('giftcard.post');
@@ -98,7 +101,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::get('/gift-card.html', [\App\Http\Controllers\TestController::class, 'comingSoon'])->name('giftcard');
         Route::post('/gift-card.html', [\App\Http\Controllers\GiftCard::class, 'ajax'])->name('giftcard.post');
     }
-
+    Route::get('/gift-card-payment.html', [\App\Http\Controllers\GiftCard::class, 'paymentPage'])->name('giftcard.payment');
 
     Route::get('/test/', [\App\Http\Controllers\TestController::class, 'index']);
     Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index']);

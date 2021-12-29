@@ -183,4 +183,83 @@ class Nets
             return $exception->getMessage();
         }
     }
+
+    public static function getGiftCardPaymentID($ID)
+    {
+        try {
+            $giftCard = \App\Models\GiftCard::query()->find($ID);
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+        if (!$giftCard) return 'Gift card not found in database.';
+
+        $orderUniqueID = 'GC' . $giftCard->id;
+
+        if (self::Test()) {
+            $orderUniqueID = 'T' . $orderUniqueID;
+        }
+
+        $data = [
+            'order' => [
+                'currency' => 'DKK',
+                'amount' => $giftCard->amount * 100,
+                'reference' => $orderUniqueID,
+            ],
+            'checkout' => [
+                'url' => route('order.markDone') . '?token=' . $giftCard->orderToken(),
+                'returnUrl' => route('order.markDone') . '?token=' . $giftCard->orderToken(),
+                'termsUrl' => route('terms_and_conditions'),
+                'charge' => true,
+                'merchantHandlesConsumerData' => true,
+            ]
+        ];
+
+        $token = encodeData(['id' => $orderUniqueID, 'type' => 'order']);
+
+        # https://tech.dibspayment.com/easy/api/paymentapi#webhooks
+        if (!localhost()) {
+            $data['notifications'] = [
+                'webHooks' => [
+                    [
+                        'eventName' => 'payment.checkout.completed',
+                        'url' => route('order.nets.hooks.gc') . '?token=' . $token,
+                        'authorization' => self::secretKey(),
+                    ],
+                ],
+            ];
+        }
+
+        $total = 0;
+        $vatPercent = config('order.VAT');
+
+        $url = self::endPointURL() . '/payments';
+        dump($data);
+        return $url;
+
+        //$content = "<pre>Url: " . $url . '<br>' . print_r($data, true) . "</pre>";
+        //\Log::info(var_dump($data));
+        //send_mail('shakeel@shakeel.pk', 'Order Data: ' . $order->id, $content);
+
+        try {
+            $curl = new Curl();
+            $curl->setHeaders([
+                'Content-Type' => 'application/json',
+                'Authorization' => self::secretKey(),
+            ]);
+            $curl->url = $url;
+            $curl->setOpt(CURLOPT_SSL_VERIFYHOST, 0);
+            $curl->setOpt(CURLOPT_SSL_VERIFYPEER, 0);
+            $curl->post($data);
+
+
+            if ($curl->error) {
+                //if (! blank($curl->response)) return $curl->response;
+                return $curl->errorCode . ': ' . $curl->errorMessage;
+            } else {
+                return $curl->response;
+            }
+        } catch (Exception $exception) {
+            return $exception->getMessage();
+        }
+    }
 }

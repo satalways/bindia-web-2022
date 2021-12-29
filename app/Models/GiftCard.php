@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Firebase\JWT\JWT;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -206,5 +207,10 @@ class GiftCard extends Model
     public function getOrangeFinalBalanceAttribute()
     {
         return $this->getBalanceAttribute() + $this->getOrangeItemBalanceAttribute();
+    }
+
+    public function orderToken()
+    {
+        return encodeData(['id' => $this->id]);
     }
 }

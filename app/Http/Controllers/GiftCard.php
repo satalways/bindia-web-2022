@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Logic\Nets;
 use App\Logic\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -81,8 +82,25 @@ class GiftCard extends Controller
                     return 'mail' . send_mail($request->post('string'), 'Please review your gift cards', $html);
                 }
                 break;
+            case 'sendCustomerGiftCard':
+                $G = new \App\Logic\GiftCard();
+                return $G->generateCard(request()->except('action'));
+                break;
             default:
                 abort(404);
         }
+    }
+
+    public function paymentPage()
+    {
+        $token = \request()->get('token');
+        if (!$token) abort(404);
+        $data = decodeString($token);
+        if (!isset($data->id)) abort(404);
+        $giftCard = \App\Models\GiftCard::query()->findOrFail($data->id);
+        if ($giftCard->paid_by_customer) abort(404);
+
+        $Nets = new Nets();
+        dd($Nets->getGiftCardPaymentID($giftCard->id));
     }
 }
