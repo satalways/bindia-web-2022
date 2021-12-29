@@ -30,6 +30,7 @@ class TestController extends Controller
 {
     public function index()
     {
+
         $T = new Order();
         dd( $T->deleteTempPDFFiles() );
 
