@@ -240,6 +240,7 @@ class Nets
         //\Log::info(var_dump($data));
         //send_mail('shakeel@shakeel.pk', 'Order Data: ' . $order->id, $content);
 
+
         try {
             $curl = new Curl();
             $curl->setHeaders([
