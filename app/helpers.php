@@ -652,8 +652,8 @@ function isDanish()
     return getCurrentLang() === 'da';
 }
 
-function debug($val)
-{
-    if (is_bool($val)) $val = $val ? 'TRUE' : 'FALSE';
-    \Log::info($val);
-}
+//function debug($val)
+//{
+//    if (is_bool($val)) $val = $val ? 'TRUE' : 'FALSE';
+//    \Log::info($val);
+//}

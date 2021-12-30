@@ -32,5 +32,8 @@ Route::get('/files/rf/delete', [\App\Http\Controllers\Api\ApiController::class, 
 
 Route::any('/nets-web-hooks-success.html', [\App\Http\Controllers\OrderController::class, 'netsSuccess'])->name('order.nets.hooks');
 Route::any('/nets-web-hooks-failed.html', [\App\Http\Controllers\OrderController::class, 'netsFailed'])->name('order.nets.cancel');
+
+Route::any('/nets-web-hooks-success-gc.html', [\App\Http\Controllers\OrderController::class, 'netsSuccessGC'])->name('order.nets.hooks.gc');
+
 //Route::any('/__files/nets_webhooks.php', [\App\Http\Controllers\OrderController::class, 'netsSuccess'])->name('order.nets.hooks2');
 //Route::post('/nets-web-hooks-success.html', [\App\Http\Controllers\OrderController::class, 'netsSuccess'])->name('order.nets.hooks');

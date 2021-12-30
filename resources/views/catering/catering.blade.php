@@ -681,17 +681,17 @@
                     Form.find('[name=menu]').val(menu);
                     Form.find('[name=persons]').val($('#persons' + menu).val());
 
-                    show();
+                    showLoader();
                     Form.ajaxSubmit({
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             alert(e3);
                         },
                         success: function (data) {
                             if (data.substr(0, 2) === 'OK') {
                                 window.location.href = "{{ route('catering.drinks') }}";
                             } else {
-                                hide();
+                                hideLoader();
                                 alert(data);
                             }
                         }

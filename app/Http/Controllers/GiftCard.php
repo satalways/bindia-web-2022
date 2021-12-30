@@ -101,6 +101,36 @@ class GiftCard extends Controller
         if ($giftCard->paid_by_customer) abort(404);
 
         $Nets = new Nets();
-        dd($Nets->getGiftCardPaymentID($giftCard->id));
+        $payment_id = $Nets->getGiftCardPaymentID($giftCard->id);
+
+        try {
+            $giftCard->payment_id = $payment_id;
+            $giftCard->save();
+        } catch (\Exception $exception) {
+            dd($exception->getMessage());
+        }
+
+        return view('gc.payment', [
+            'giftCard' => $giftCard,
+            'jsFile' => Nets::JsFile(),
+            'checkoutKey' => Nets::checkoutKey(),
+            'merchantID' => Nets::merchantID()
+        ]);
+    }
+
+    public function success()
+    {
+        if (!\request()->get('token')) abort(404);
+        $token = decodeString(\request()->get('token'));
+        if (!isset($token->id)) abort(404);
+
+        if (localhost()) {
+            $Gc = new \App\Logic\GiftCard();
+            $Gc->markDonePayment($token->id);
+        }
+
+        return view('gc.success', [
+            'id' => $token->id
+        ]);
     }
 }

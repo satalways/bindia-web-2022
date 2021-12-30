@@ -102,6 +102,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::post('/gift-card.html', [\App\Http\Controllers\GiftCard::class, 'ajax'])->name('giftcard.post');
     }
     Route::get('/gift-card-payment.html', [\App\Http\Controllers\GiftCard::class, 'paymentPage'])->name('giftcard.payment');
+    Route::get('/gift-card-payment-accepted.html', [\App\Http\Controllers\GiftCard::class, 'success'])->name('giftcard.success');
 
     Route::get('/test/', [\App\Http\Controllers\TestController::class, 'index']);
     Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index']);

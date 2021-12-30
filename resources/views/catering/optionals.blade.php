@@ -25,17 +25,17 @@
 
                     if (Add === "-1" && $(this).next().text() === 'x0') return;
 
-                    show();
+                    showLoader();
                     $.ajax({
                         url: "{{ route('catering.post') }}",
                         method: 'post',
                         data: {action: 'updatePortionSideCart', code: Code, add: Add},
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             alert(e3);
                         }
                     }).done(function (data) {
-                        hide();
+                        hideLoader();
                         $('#html').html(data);
                     });
                 })

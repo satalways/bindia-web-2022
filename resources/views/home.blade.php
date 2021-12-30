@@ -124,7 +124,7 @@
 
     <div class="bn-history-for-index bn-main-story">
         <div class="container">
-            <h2 class="bn-his-header">{{ __('home.seo_heading') }}</h2>
+            <h1 class="bn-his-header">{{ __('home.seo_heading') }}</h1>
             <div class="bn-his-paragraph d-lg-block d-none">
                 {!! trans('home.seo_text', ['link'=>route('our_values')]) !!}
             </div>

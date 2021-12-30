@@ -78,7 +78,9 @@
         <div class="bn-take-away-search bn-main-story">
             <div class="container">
                 <div class="bn-history-for-index">
-                    <h1 class="bn-his-header mb-lg-4 mb-3">{{ isset($seo->title_en) ? $seo->getTitle() : ($title ?? 'Bindia Indisk Mad') }}</h1>
+                    <h1 class="bn-his-header mb-lg-4 mb-3">
+                        {{ __('takeaway.heading') }}
+                    </h1>
                 </div>
 
                 <div class="row">
@@ -305,17 +307,17 @@
                 })
                 .on('click', '#copyLastOrderButton', function (e) {
                     e.preventDefault();
-                    show();
+                    showLoader();
                     $.ajax({
                         url: "{{ route('takeaway.post') }}",
                         method: "post",
                         data: {action: 'copyLastOrder', email: $('#copy_email').val()},
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             alert(e3);
                         }
                     }).done(function (data) {
-                        hide();
+                        hideLoader();
                         if (data.substr(0, 2) === 'OK') {
                             updateTopCart();
                             getCart();

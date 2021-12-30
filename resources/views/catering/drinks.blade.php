@@ -27,17 +27,17 @@
                         return;
                     }
 
-                    show();
+                    showLoader();
                     $.ajax({
                         url: "{{ route('catering.post') }}",
                         method: 'post',
                         data: {action: 'addItemToCart', code: Code, add: Add},
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             alert(a3);
                         }
                     }).done(function (data) {
-                        hide();
+                        hideLoader();
                         $('#html').html(data);
                     });
                 })

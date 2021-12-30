@@ -18,17 +18,17 @@
                         return;
                     }
 
-                    show();
+                    showLoader();
                     $.ajax({
                         url: "{{ route('catering.post') }}",
                         method: 'post',
                         data: {action: 'updatePersons', 'add': Add},
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             alert(e3);
                         }
                     }).done(function (data) {
-                        hide();
+                        hideLoader();
                         $('#html').html(data);
                     });
                 })
@@ -37,17 +37,17 @@
                     var Add = $(this).attr('data-add');
                     var Item = $(this).attr('data-item');
 
-                    show();
+                    showLoader();
                     $.ajax({
                         url: "{{ route('catering.post') }}",
                         method: 'post',
                         data: {action: 'addDrink', code: Code, add: Add, item: Item},
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             alert(e3);
                         }
                     }).done(function (data) {
-                        hide();
+                        hideLoader();
                         if (data.substr(0, 2) === 'OK') {
                             $('#html').html(data.substr(2));
                         } else {
@@ -58,17 +58,17 @@
                 .on('change', '#thermo', function () {
                     var thermo = $(this).is(':checked') ? 1 : 0;
 
-                    show();
+                    showLoader();
                     $.ajax({
                         url: "{{ route('catering.post') }}",
                         method: 'post',
                         data: {action: 'updateThermo', thermo: thermo},
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             alert(e3);
                         }
                     }).done(function (data) {
-                        hide();
+                        hideLoader();
                         $('#html').html(data);
                     });
                 })
@@ -96,33 +96,33 @@
 
                     var Form = $('#form1');
                     Form.find('[name=action]').val('saveOrder');
-                    show();
+                    showLoader();
                     Form.ajaxSubmit({
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             Form.find('[name=action]').val('updateCheckoutForm');
                             alert(e3);
                         },
                         success: function (data) {
-                            hide();
+                            hideLoader();
                             Form.find('[name=action]').val('updateCheckoutForm');
                             alert(data);
                         }
                     });
                 })
                 .on('change', '#postal_code', function () {
-                    show();
+                    showLoader();
 
                     $.ajax({
                         url: '{{ route('catering.post') }}',
                         method: 'post',
                         data: {action: 'getCityByPostalCode', postal_code: $(this).val()},
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             alert(e3);
                         }
                     }).done(function (data) {
-                        hide();
+                        hideLoader();
                         if (data.substr(0,2) === 'OK') {
                             $('#html').html(data.substr(2));
                         } else {

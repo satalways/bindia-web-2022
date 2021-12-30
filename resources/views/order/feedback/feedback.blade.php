@@ -111,18 +111,17 @@
                 .on('submit', '#form1', function (e) {
                     e.preventDefault();
 
-                    show();
+                    showLoader();
                     $('#form1').ajaxSubmit({
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             alert(e3);
                         },
                         success: function (data) {
-                            console.error(data);
                             if (data.substr(0, 2) === 'OK') {
                                 window.location.href = "{{ route('order.feedback.success') }}";
                             } else {
-                                hide();
+                                hideLoader();
                                 alert(data);
                             }
                         }

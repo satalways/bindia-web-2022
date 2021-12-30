@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'heading' => 'Order the best Indian take-away in Copenhagen',
     'no_item_found' => 'No items selected yet.',
 
     'copy_order_pop_heading' => 'Copy My Last Order - how it works',

@@ -84,34 +84,34 @@
 
                     if (Add === "-1" && $(this).next().text() === 'x0') return;
 
-                    show();
+                    showLoader();
                     $.ajax({
                         url: "{{ route('catering.post') }}",
                         method: 'post',
                         data: {action: 'updatePortionItemCart', code: Code, add: Add},
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             alert(e3);
                         }
                     }).done(function (data) {
-                        hide();
+                        hideLoader();
                         $('#html').html(data);
                     });
                 })
                 .on('click', '#continueBtn', function (e) {
                     e.preventDefault();
 
-                    show();
+                    showLoader();
                     $('#form1').ajaxSubmit({
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             alert(e3);
                         },
                         success: function (data) {
                             if (data.substr(0, 2) === 'OK') {
                                 window.location.href = "{{ route('catering.optionals') }}";
                             } else {
-                                hide();
+                                hideLoader();
                                 alert(data);
                             }
                         }

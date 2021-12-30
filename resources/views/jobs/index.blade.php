@@ -676,14 +676,14 @@
                 .on('submit', '#form1', function (e) {
                     e.preventDefault();
 
-                    show();
+                    showLoader();
                     $('#form1').ajaxSubmit({
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             alert(e3);
                         },
                         success: function (data) {
-                            hide();
+                            hideLoader();
                             if (typeof data === 'object' && data.error) {
                                 $('#' + data.id).trigger('focus');
                                 setTimeout(function () {

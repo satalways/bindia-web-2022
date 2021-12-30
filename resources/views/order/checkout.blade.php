@@ -145,16 +145,16 @@
         }
 
         var loadItems = function (loadDiv = true) {
-            if (loadDiv) show();
+            if (loadDiv) showLoader();
             $.ajax({
                 url: '{{ route('checkout.post') }}',
                 method: 'post',
                 data: {action: 'loadCart'},
                 error: function (e1, e2, e3) {
-                    hide();
+                    hideLoader();
                 }
             }).done(function (data) {
-                hide();
+                hideLoader();
                 $('#content').html(data.html);
                 datePicker(data.minDate, data.minTime);
                 loadCookieData();
@@ -210,7 +210,6 @@
                     })
                     .on('typeahead:asynccancel typeahead:asyncreceive', function () {
                         $(this).removeClass('loading');
-                        //$('.Typeahead-spinner').hide();
                     });
                 @endif
             });
@@ -232,18 +231,18 @@
             $(document)
                 .on('click', '#redeemGiftcard', function (e) {
                     e.preventDefault();
-                    show();
+                    showLoader();
 
                     $.ajax({
                         url: '{{ route('giftcard.post') }}',
                         method: 'post',
                         data: {action: 'checkGiftCards', string: $('#giftcard').val()},
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             alert(e3);
                         }
                     }).done(function (data) {
-                        hide();
+                        hideLoader();
                         if (data.substr(0, 6) === 'mailOK') {
                             alert('{{ __('checkout.gc_email_sent') }}');
                         } else if (data.substr(0, 2) === 'OK') {
@@ -275,16 +274,16 @@
                     var Action = $('#checkoutForm [name=action]').val();
 
                     if (Action !== 'updateSessionCart2') {
-                        show();
+                        showLoader();
                     }
                     $('#checkoutForm').ajaxSubmit({
                         error: function (e1, e2, e3) {
-                            hide();
+                            hideLoader();
                             alert(e3);
                         },
                         success: function (data) {
                             if (typeof data === 'object') {
-                                hide();
+                                hideLoader();
                                 if (data.message) {
                                     alert(data.message)
                                 }
@@ -293,14 +292,14 @@
                                 }
 
                                 if (Action === 'updateSessionCart') {
-                                    hide();
+                                    hideLoader();
                                     $('#html').html(data.html);
                                     loadItems();
                                 } else if (Action === 'makeOrder') {
                                     if (data.substr(0, 4) === 'GOTO') {
                                         window.location.href = data.substr(4);
                                     } else {
-                                        hide();
+                                        hideLoader();
                                         alert(data);
                                     }
                                 }
@@ -308,7 +307,7 @@
                                 if (data.substr(0, 4) === 'GOTO') {
                                     window.location.href = data.substr(4);
                                 } else {
-                                    hide();
+                                    hideLoader();
                                     alert(data);
                                 }
                             }
@@ -325,8 +324,6 @@
                 })
                 .on('click', '#checkoutButton', function (e) {
                     e.preventDefault();
-
-                    //if (!$('#checkoutForm').valid()) return false;
 
                     var Form = $('#checkoutForm');
                     Form.find('[name=action]').val('makeOrder');
@@ -346,10 +343,10 @@
                             method: 'post',
                             data: {action: 'checkingPostalCode', 'postal_code': $(this).val()},
                             error: function (e1, e2, e3) {
-                                hide();
+                                hideLoader();
                             }
                         }).done(function (data) {
-                            hide();
+                            hideLoader();
                             if (data.substr(0, 2) === 'OK') {
                                 var D = JSON.parse(data.substr(2));
 

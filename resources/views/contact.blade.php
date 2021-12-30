@@ -155,7 +155,7 @@
                     });
                 })
                 .on('submit', '#form1', function () {
-                    show();
+                    showLoader();
                 });
         })
     </script>

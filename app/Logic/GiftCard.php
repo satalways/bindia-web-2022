@@ -72,6 +72,9 @@ class GiftCard
             $giftCard->generated_ip = request()->ip();
             $giftCard->issued = true;
             $giftCard->issued_comments = 'This card is purchased by customer from web site.';
+            $giftCard->issued_time = now();
+            $giftCard->issued_ip = request()->ip();
+            $giftCard->issued_by = -1;
 
             $giftCard->paid_by_customer = false;
             $giftCard->paid = false;
@@ -84,6 +87,21 @@ class GiftCard
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
+
+//        try {
+//            GiftCardSubCards::query()->insert([
+//                'card_id' => $giftCard->id,
+//                'amount' => 0,
+//                'items' => '[]',
+//                'time' => now(),
+//                'ip' => request()->ip(),
+//                'by' => 0,
+//                'comments' => 'This card is purchased by customer from web site.',
+//                'customer_comments' => $args['to_message']
+//            ]);
+//        } catch (\Exception $exception) {
+//
+//        }
 
         return 'OK' . route('giftcard.payment') . '?token=' . $giftCard->orderToken();
     }
@@ -151,4 +169,22 @@ class GiftCard
         return 'OK';
     }
 
+    public function markDonePayment($id)
+    {
+        $giftCard = \App\Models\GiftCard::query()->find($id);
+        if (!$giftCard) return 'Gift card not found in database.';
+        if ($giftCard->paid_by_customer) return 'Gift card is already paid by customer';
+
+        try {
+            $giftCard->paid = true;
+            $giftCard->paid_by_customer = true;
+            $giftCard->paid_ip = request()->ip();
+            $giftCard->paid_time = now();
+            $giftCard->save();
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+
+        return 'OK';
+    }
 }

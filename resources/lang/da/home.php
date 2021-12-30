@@ -1,6 +1,6 @@
 <?php
 return [
-    'seo_heading' => 'Indisk mad – på Bindia måden',
+    'seo_heading' => 'Indisk mad – på Bindia-måden',
     'seo_text' => '
         At prøve at sige noget entydigt om indisk mad, er nærmest en umulig opgave.
         <p>

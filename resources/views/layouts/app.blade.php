@@ -423,7 +423,7 @@
 
                 var qtyObject = $('span.span_qty[data-id=' + ID + ']');
                 var currentQty = qtyObject.text();
-                show();
+                showLoader();
 
                 $.ajax({
                     url: "{{ route('takeaway.post') }}",
@@ -431,11 +431,11 @@
                     type: 'post',
                     data: {action: 'setValueCart', id: ID, what: Inc},
                     error: function (e1, e2, e3) {
-                        hide();
+                        hideLoader();
                         console.error(e3);
                     }
                 }).done(function (data) {
-                    hide();
+                    hideLoader();
                     updateTopCart();
                     $('#bn-check-last-order .container').html(data.html)
                     $('[data-single=' + ID + ']').html(data.single_html);
@@ -455,7 +455,7 @@
             })
     });
 
-    function show(text = '') {
+    function showLoader(text = '') {
         if (text === '') {
             $.LoadingOverlay('show', {
                 'text': '{{ __('global.loading') }}'
@@ -467,7 +467,7 @@
         }
     }
 
-    function hide() {
+    function hideLoader() {
         $.LoadingOverlay('hide');
     }
 

@@ -59,6 +59,8 @@ class OrderController extends Controller
 
     public function takeaway()
     {
+        $currentLang = getCurrentLang();
+        //return cache()->remember('takeawayPage' . $currentLang, now()->addDay(), function () {
         $sections = config('order.sections');
         $items = [];
         foreach ($sections as $slug => $array) {
@@ -77,7 +79,8 @@ class OrderController extends Controller
             'items' => $items,
             'cartItems' => $O->getSessionCart(),
             'seo' => seo('Takeaway')
-        ]);
+        ])->render();
+        //});
     }
 
     public function checkout()
@@ -381,6 +384,20 @@ class OrderController extends Controller
         } else {
             return send_mail('shakeel@shakeel.pk', 'Web Hook > Nops!', $content);
             //abort(404);
+        }
+    }
+
+    public function netsSuccessGC(Request $request)
+    {
+        $token = $request->get('token');
+        $data = decodeString($token);
+
+        if (isset($data->id)) {
+            if (str_starts_with($data->id, 'T')) $data->id = substr($data->id, 1);
+            if (str_starts_with($data->id, 'GC')) $data->id = substr($data->id, 2);
+
+            $Gc = new \App\Logic\GiftCard();
+            return $Gc->markDonePayment($data->id);
         }
     }
 

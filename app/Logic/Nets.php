@@ -11,6 +11,7 @@ class Nets
     public static function Test()
     {
         if (isPKIp()) return true;
+        if (localhost()) return true;
         return env('NETS_TEST_MODE', false);
     }
 
@@ -82,11 +83,6 @@ class Nets
                 ],
             ];
         }
-        //                [
-//                    'eventName' => 'payment.charge.failed',
-//                    'url' => route('order.nets.cancel') . '?token=' . $token,
-//                    'authorization' => self::secretKey(),
-//                ]
 
         if ($order->is_custom_order) {
             $data['order']['items'][] = [
@@ -206,12 +202,24 @@ class Nets
                 'reference' => $orderUniqueID,
             ],
             'checkout' => [
-                'url' => route('order.markDone') . '?token=' . $giftCard->orderToken(),
-                'returnUrl' => route('order.markDone') . '?token=' . $giftCard->orderToken(),
+                'url' => route('giftcard.success') . '?token=' . $giftCard->orderToken(),
+                'returnUrl' => route('giftcard.success') . '?token=' . $giftCard->orderToken(),
                 'termsUrl' => route('terms_and_conditions'),
                 'charge' => true,
                 'merchantHandlesConsumerData' => true,
             ]
+        ];
+
+        $data['order']['items'][] = [
+            'reference' => 'discount',
+            'name' => 'Gift Card # ' . $giftCard->id,
+            'quantity' => 1,
+            'unit' => 'unit',
+            'unitPrice' => $giftCard->amount * 100,
+            'taxRate' => 0,
+            'taxAmount' => 0,
+            'grossTotalAmount' => $giftCard->amount * 100,
+            'netTotalAmount' => $giftCard->amount * 100,
         ];
 
         $token = encodeData(['id' => $orderUniqueID, 'type' => 'order']);
@@ -242,12 +250,12 @@ class Nets
             $curl->setOpt(CURLOPT_SSL_VERIFYPEER, 0);
             $curl->post($data);
 
-
             if ($curl->error) {
-                //if (! blank($curl->response)) return $curl->response;
                 return $curl->errorCode . ': ' . $curl->errorMessage;
             } else {
-                return $curl->response;
+                if (isset( $curl->response->paymentId )) return $curl->response->paymentId;
+                if (isset( $curl->response->paymentid )) return $curl->response->paymentid;
+                return null;
             }
         } catch (Exception $exception) {
             return $exception->getMessage();

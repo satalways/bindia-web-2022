@@ -166,35 +166,32 @@
                     $('#date, #time').prop('disabled', true);
                 })
                 .on('change', '#customer_name', function () {
-                    if ($('#from_name').val() == '') {
-                        $('#from_name').val($(this).val());
-                    }
+                    $('#from_name').val($(this).val());
                 })
                 .on('change', '#customer_phone', function () {
-                    if ($('#from_phone').val() == '') {
-                        $('#from_phone').val($(this).val());
-                    }
+                    $('#from_phone').val($(this).val());
                 })
                 .on('change', '#customer_email', function () {
-                    if ($('#from_email').val() == '') {
-                        $('#from_email').val($(this).val());
-                    }
+                    $('#from_email').val($(this).val());
                 })
                 .on('submit', '#form1', function (e) {
                     e.preventDefault();
 
+                    showLoader();
                     $('#form1').ajaxSubmit({
                         error: function (e1, e2, e3) {
+                            hideLoader();
                             alert(e3);
                         },
                         success: function (data) {
-                            alert(data);
-                            console.error(data);
+                            if (data.substr(0, 2) === 'OK') {
+                                window.location.href = data.substr(2);
+                            } else {
+                                hideLoader();
+                                alert(data);
+                            }
                         }
                     });
-
-                    //console.error('asdf');
-                    //console.error( $(this).valid() );
                 })
         });
     </script>

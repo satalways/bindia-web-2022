@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'heading' => 'Bestil Københavns bedste indiske take-away fra Bindia',
     'no_item_found' => 'No items selected yet.',
 
     'copy_order_pop_heading' => 'Kopiér min seneste ordre – hvordan det virker',
