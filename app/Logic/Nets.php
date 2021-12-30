@@ -229,17 +229,7 @@ class Nets
             ];
         }
 
-        $total = 0;
-        $vatPercent = config('order.VAT');
-
         $url = self::endPointURL() . '/payments';
-        dump($data);
-        return $url;
-
-        //$content = "<pre>Url: " . $url . '<br>' . print_r($data, true) . "</pre>";
-        //\Log::info(var_dump($data));
-        //send_mail('shakeel@shakeel.pk', 'Order Data: ' . $order->id, $content);
-
 
         try {
             $curl = new Curl();
