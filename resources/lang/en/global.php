@@ -47,4 +47,5 @@ return [
     'our_team' => 'Our Team',
     'want_to_join' => 'Want to join the team? Apply <a href=":link">here</a>',
     'main_office' => 'Main office',
+    'order_now' => 'Order now',
 ];

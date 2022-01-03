@@ -55,7 +55,7 @@
                 <div class="col-md-9 col-12">
                     <div class="bn-details-content">
                         <div class="text-center mb-5">
-                            <a href="{{ route('takeaway') }}" class="btn btn-lg btn-dark">Order Take Away</a>
+                            <a href="{{ route('takeaway') }}" class="btn btn-lg btn-dark">{{ __('global.order_now') }}</a>
                             <a href="{{ shop('amg')->rating_link }}" target="_blank" style="text-decoration: none">
                                 <img src="{{ asset('images/google-review.png') }}" alt="" style="height: 50px; width: auto">
                             </a>

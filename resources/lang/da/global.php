@@ -47,4 +47,5 @@ return [
     'our_team' => 'Vores Team',
     'want_to_join' => 'Lyst til at være en del af teamet? Ansøg <a href=":link">her</a>',
     'main_office' => 'Hovedkontor',
+    'order_now' => 'Bestil her!',
 ];
