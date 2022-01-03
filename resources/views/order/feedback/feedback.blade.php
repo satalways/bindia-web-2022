@@ -12,9 +12,7 @@
                     <h2>Feedback</h2>
                 </div>
 
-
                 <div class="bn-check-out-from" id="bn-check-out-order">
-
                     <input type="hidden" name="action" value="saveRating">
                     <input type="hidden" name="data_id" value="{{ $order->id }}">
                     <input type="hidden" name="type"

@@ -337,7 +337,7 @@
                     if ($(this).val() == '') {
                         $('.update2').trigger('change');
                     } else {
-                        show("{{ __('checkout.calculating_delivery_fee') }}");
+                        showLoader("{{ __('checkout.calculating_delivery_fee') }}");
                         $.ajax({
                             url: '{{ route('checkout.post') }}',
                             method: 'post',

@@ -54,6 +54,7 @@ class GiftCard
 
         try {
             $giftCard = new \App\Models\GiftCard();
+            $giftCard->card_number = strtoupper(\Str::random(10));
             $giftCard->amount = intval($args['amount']);
             $giftCard->balance = intval($args['amount']);
             $giftCard->customer_name = $args['customer_name'];
@@ -62,7 +63,7 @@ class GiftCard
             $giftCard->from_name = $args['from_name'];
             $giftCard->from_email = $args['from_email'];
             $giftCard->from_phone = formatize_phone_number($args['from_phone']);
-            $giftCard->sent_time = $args['send_datetime'];
+            $giftCard->send_datetime = $args['send_datetime'];
             $giftCard->customer_card = true;
             $giftCard->card_type = 'PD';
             $giftCard->validity = 36;

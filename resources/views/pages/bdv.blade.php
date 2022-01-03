@@ -48,19 +48,23 @@
             <div class="row">
                 <div class="col-md-9 col-12">
                     <div class="bn-details-content">
-{{--                        <h2>{{ shop('bdv')->long_name }}</h2>--}}
-{{--                        <p>{{ __('bdv.shop_description_1') }}</p>--}}
-{{--                        <p>--}}
-{{--                            {{ __('bdv.shop_description_2') }}--}}
-{{--                        </p>--}}
+                        <div class="text-center mb-5">
+                            <a href="{{ route('takeaway') }}" class="btn btn-lg btn-dark">Order Take Away</a>
+                            <a href="{{ shop('bdv')->rating_link }}" target="_blank" style="text-decoration: none">
+                                <img src="{{ asset('images/google-review.png') }}" alt="" style="height: 50px; width: auto">
+                            </a>
+                            <a href="{{ shop('bdv')->inside_link }}" target="_blank" class="btn btn-lg btn-danger">
+                                Inside Our Shop
+                            </a>
+                        </div>
 
                         {!! __('bdv.seo_text', [
-    'dine_link' => route('dinein'),
-    'inside_view_link' => shop('bdv')->inside_link,
-    'reheat_link' => route('order.food.reheat.pdf'),
-    'takeaway_link' => route('takeaway'),
-    'value_link' => route('our_values')
-]) !!}
+                            'dine_link' => route('dinein'),
+                            'inside_view_link' => shop('bdv')->inside_link,
+                            'reheat_link' => route('order.food.reheat.pdf'),
+                            'takeaway_link' => route('takeaway'),
+                            'value_link' => route('our_values')
+                        ]) !!}
                     </div>
                 </div>
             </div>

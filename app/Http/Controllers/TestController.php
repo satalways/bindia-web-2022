@@ -30,9 +30,7 @@ class TestController extends Controller
 {
     public function index()
     {
-
-        $T = new Order();
-        dd( $T->deleteTempPDFFiles() );
+        dd( strtoupper(\Str::random(10)) );
 
         die;
         $T = new Takeout();

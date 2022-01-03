@@ -16,7 +16,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2 class="mt-4"><a href="{{ route('takeaway') }}#bn-take-away-price" class="btn btn-dark">
+                        <h2 class="mt-4">
+                            <a href="{{ route('takeaway') }}#bn-take-away-price" class="btn btn-dark">
                                 Order Take Away
                             </a>
                         </h2>
