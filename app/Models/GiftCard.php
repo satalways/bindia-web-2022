@@ -143,6 +143,8 @@ class GiftCard extends Model
     public function getBalanceAttribute()
     {
         if ($this->amount_type === 'percent') {
+            if ($this->attributes['balance'] > $this->attributes['amount']) return $this->attributes['amount'];
+
             return $this->attributes['balance'];
         } else {
             return $this->amount - $this->getSubCardsAttribute()->sum('amount');

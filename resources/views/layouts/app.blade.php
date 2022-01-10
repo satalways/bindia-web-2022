@@ -1,7 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="{{ getCurrentLang() }}">
-<head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+<head>    <!-- Global site tag (gtag.js) - Google Analytics -->
     @if(isLiveServer())
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58516958-1"></script>
         <script>
@@ -35,6 +34,23 @@
 
     <!--Costume Style css file-->
     <link rel="stylesheet" href="{{ asset('asstes/css/style2.css') }}?v=14">
+
+    <meta property="og:description"
+          content="{{ isset($seo->description_en) ? $seo->getDesc() : ($description ?? '') }}"/>
+    <meta property="og:title"
+          content="{{ isset($seo->title_en) ? $seo->getTitle() : ($title ?? 'Bindia Indisk Mad') }}"/>
+    <meta property="og:site_name" content="Bindia"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="DK"/>
+    <meta property="og:url" content="{{ request()->url() }}"/>
+    <meta property="article:publisher"
+          content="https://www.facebook.com/Bindia-Indian-Restaurant-Take-Away-423997224656298"/>
+    <meta property="og:image" content="{{ $social_image ?? 'https://www.bindia.dk/asstes/image/slider-image.png' }}"/>
+    <meta property="og:image:width" content="806"/>
+    <meta property="og:image:height" content="575"/>
+    <meta name="og:email" content="office@bindia.dk"/>
+    <meta name="og:phone_number" content="+45 30 25 88 38"/>
+
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <style>
         @media only screen and (min-width: 1440px ) {

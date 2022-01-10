@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <!--Main Banner-->
     <div class="bn-slider bg-transparent bn-animation-banner">
         <div class="d-sm-block d-none bn-slider-ds-img">

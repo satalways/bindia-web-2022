@@ -31,7 +31,8 @@ class CateringController extends Controller
             'curries' => $curries,
             'vegs' => $vegs,
             'session' => $sessionData,
-            'seo' => seo('Catering Buffet')
+            'seo' => seo('Catering Buffet'),
+            'social_image' => 'https://www.bindia.dk/asstes/image/catering-menu/nav-menu-four.png'
         ]);
     }
 
@@ -51,6 +52,7 @@ class CateringController extends Controller
             'items' => $items,
             'session' => $session,
             'back_link' => $back_link,
+            'social_image' => 'https://www.bindia.dk/asstes/image/catering-menu/nav-menu-four.png',
         ]);
     }
 
@@ -187,6 +189,7 @@ class CateringController extends Controller
             ->get();
 
         $viewName = $ajax ? 'catering.ajax.portion' : 'catering.portion';
+
         return view($viewName, [
             'curries' => $curries,
             'vegs' => $vegs,

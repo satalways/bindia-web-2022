@@ -78,7 +78,8 @@ class OrderController extends Controller
             'item_filters' => config('order.item_filters'),
             'items' => $items,
             'cartItems' => $O->getSessionCart(),
-            'seo' => seo('Takeaway')
+            'seo' => seo('Takeaway'),
+            'social_image' => asset('asstes/image/take-away/mask-group-2.png')
         ])->render();
         //});
     }
@@ -241,18 +242,8 @@ class OrderController extends Controller
         $data = decodeString($token, false);
         if (!isset($data->id)) abort(404);
 
-//        $content = '<pre>Post: ' . print_r($request->post(), true);
-//        $content .= '<pre>Get: ' . print_r($request->query(), true);
-//        $content .= '<pre>All: ' . print_r($request->all(), true);
-//        $content .= '<br>' . print_r($data, true);
-        //send_mail('shakeel@shakeel.pk', 'Success Page', $content);
-
         $order = Orders::query()->find($data->id);
         if (!$order) abort(404);
-//        $O = new Order();
-//        if ($order->isUnfinished()) {
-//            $O->markOrderPaid($order->id);
-//        }
 
         return view('order.success', [
             'order' => $order
