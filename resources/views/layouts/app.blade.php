@@ -51,6 +51,8 @@
     <meta name="og:email" content="office@bindia.dk"/>
     <meta name="og:phone_number" content="+45 30 25 88 38"/>
 
+    <link href="{{ request()->url() }}" rel="canonical">
+
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <style>
         @media only screen and (min-width: 1440px ) {
