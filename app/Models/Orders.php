@@ -244,13 +244,6 @@ class Orders extends Model
         if ($this->etakeaway_id > 0) return 'Order is already created in takeout system.';
         if ($this->attributes['delivery_datetime'] === '0000-00-00 00:00:00' || blank($this->attributes['delivery_datetime'])) return 'Invalid delivery time.';
 
-//        $data = [
-//            'shipping_postal_code' => $this->shipping_postal_code ?? 0,
-//            'pickup_date' => $this->delivery_datetime->toDateTimeString() ?? Carbon::now()->toDateTimeString(),
-//            'total_price' => $this->getTotalAmountAttribute(),
-//            'items' => $this->items->toArray() ?? [],
-//        ];
-
         $row = TakeoutZonesModel::query()
             ->whereRaw('(? between post_number and post_number2)', [$this->shipping_postal_code])
             ->orderByDesc('id')

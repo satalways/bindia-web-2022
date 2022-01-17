@@ -220,7 +220,7 @@ function send_mail($to, string $subject, string $htmlContent, array $fields = []
         $mailer = \Symfony\Component\Mailer\Transport::fromDsn($dsn);
         $email = new   \Symfony\Component\Mime\Email();
 
-        debug(env('MAIL_FROM_ADDRESS', 'office@bindia.dk'));
+        //debug(env('MAIL_FROM_ADDRESS', 'office@bindia.dk'));
         $email->from(new \Symfony\Component\Mime\Address(env('MAIL_FROM_ADDRESS', 'office@bindia.dk'), env('MAIL_FROM_NAME', 'Bindia')));
 
         $to = make_array($to);
@@ -652,8 +652,8 @@ function isDanish()
     return getCurrentLang() === 'da';
 }
 
-//function debug($val)
-//{
-//    if (is_bool($val)) $val = $val ? 'TRUE' : 'FALSE';
-//    \Log::info($val);
-//}
+function debug_my($val)
+{
+    if (is_bool($val)) $val = $val ? 'TRUE' : 'FALSE';
+    \Log::info($val);
+}

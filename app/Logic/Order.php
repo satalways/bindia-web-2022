@@ -130,11 +130,13 @@ class Order
                             ->where('code', $code)
                             ->first();
 
-                        $GCItems[$I->id] = [
-                            'qty' => $qty,
-                            'id' => $I->id,
-                            'item' => $I
-                        ];
+                        if ($I) {
+                            $GCItems[$I->id] = [
+                                'qty' => $qty,
+                                'id' => $I->id,
+                                'item' => $I
+                            ];
+                        }
                     }
 
                     foreach ($GCItems as $id => $GCItem) {
@@ -198,10 +200,20 @@ class Order
                 ->first();
 
             if ($takeOut) {
-                $Data['delivery_fee'] = $takeOut->price;
-                $Data['total_price'] += $takeOut->price;
-                $Data['total_price_orange'] += $takeOut->price;
+                if (!isLiveServer()) {
+                    $Data['delivery_fee'] = session()->get('delivery')->Data->DeliveryFee;
+                    $Data['total_price'] += session()->get('delivery')->Data->DeliveryFee;
+                    $Data['total_price_orange'] += session()->get('delivery')->Data->DeliveryFee;
+                } else {
+                    $Data['delivery_fee'] = $takeOut->price;
+                    $Data['total_price'] += $takeOut->price;
+                    $Data['total_price_orange'] += $takeOut->price;
+                }
             }
+        }
+
+        if (!isLiveServer()) {
+            $Data['delivery_fee'] = session()->get('delivery')->Data->DeliveryFee;
         }
 
         return [
@@ -282,6 +294,11 @@ class Order
         }
 
         \request()->session()->put('bindiaCart', $items);
+    }
+
+    public function setSessionDeliveryInfo($deliveryData)
+    {
+        request()->session()->put('delivery', $deliveryData);
     }
 
     public function makeOrder(array $data)
@@ -870,4 +887,6 @@ class Order
     {
         return Storage::deleteDirectory('orders' . DIRECTORY_SEPARATOR . 'invoices');
     }
+
+
 }

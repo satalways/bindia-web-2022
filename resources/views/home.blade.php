@@ -43,19 +43,21 @@
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-center" data-bs-toggle="modal"
                      data-bs-target="#bn-review-box">
-                    <div class="bn-star-box">
-                        <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i> <i class="fas fa-star"></i>
-                        <small>{{ $feedbacks->first()->shortName() }}
-                            , {{ $feedbacks->first()->time->format(config('app.date_format')) }}</small>
-                    </div>
-                    <div class="bn-text-review">
-                        <i>
-                            <span>&#10075;</span><span>&#10075;</span>
-                            {{ $feedbacks->first()->limitedComment() }}
-                            <span>&#10076;</span><span>&#10076;</span>
-                        </i>
-                    </div>
+                    @if(!$feedbacks->empty())
+                        <div class="bn-star-box">
+                            <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+                                class="fas fa-star"></i> <i class="fas fa-star"></i>
+                            <small>{{ $feedbacks->first()->shortName() }}
+                                , {{ $feedbacks->first()->time->format(config('app.date_format')) }}</small>
+                        </div>
+                        <div class="bn-text-review">
+                            <i>
+                                <span>&#10075;</span><span>&#10075;</span>
+                                {{ $feedbacks->first()->limitedComment() }}
+                                <span>&#10076;</span><span>&#10076;</span>
+                            </i>
+                        </div>
+                    @endif
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                     <div class="bn-review-box-img bn-trust-img-box">
@@ -183,14 +185,14 @@
                             @endfor
                         </div>
                         <div class="bn-last-footer-review">
-                            {{ $feedback->shortName() }}
-                            , {{ $feedback->time->format(config('app.date_format')) }} {!! shop($feedback->shop)->long_name ?? '' !!}
+                            @if($feedback)
+                                {{ $feedback->shortName() }}
+                                , {{ $feedback->time->format(config('app.date_format')) }} {!! shop($feedback->shop)->long_name ?? '' !!}
+                            @endif
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
     </div>
-
-
 @endsection

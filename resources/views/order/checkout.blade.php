@@ -197,7 +197,11 @@
                     .on('typeahead:selected', function (evt, item) {
                         if (item.data.postnr) {
                             $('#postal_code').val(item.data.postnr);
-                            $('#shipping_city').val(item.data.supplerendebynavn);
+                            if (item.data.postnrnavn) {
+                                $('#shipping_city').val(item.data.postnrnavn);
+                            } else if (item.data.supplerendebynavn) {
+                                $('#shipping_city').val(item.data.supplerendebynavn);
+                            }
                         } else {
                             $('#shipping_address').trigger('blur');
                             setTimeout(function () {
@@ -210,7 +214,8 @@
                     })
                     .on('typeahead:asynccancel typeahead:asyncreceive', function () {
                         $(this).removeClass('loading');
-                    });
+                    })
+                ;
                 @endif
             });
         }
@@ -334,7 +339,7 @@
                 })
                 .on('change', '[name=shipping_postal_code]', function (e) {
                     e.preventDefault();
-                    if ($(this).val() == '') {
+                    if ($.trim($(this).val()) === '') {
                         $('.update2').trigger('change');
                     } else {
                         showLoader("{{ __('checkout.calculating_delivery_fee') }}");
@@ -346,6 +351,7 @@
                                 hideLoader();
                             }
                         }).done(function (data) {
+                            console.error(data);
                             hideLoader();
                             if (data.substr(0, 2) === 'OK') {
                                 var D = JSON.parse(data.substr(2));
@@ -369,6 +375,27 @@
                 })
                 .on('input', '#shipping_address', function () {
                     //console.error($(this).val())
+                })
+                .on('click', '#calculateDelivery', function (e) {
+                    e.preventDefault();
+                    showLoader();
+
+                    $.ajax({
+                        url: '{{ route('checkout.post') }}',
+                        method: 'post',
+                        data: {
+                            action: 'calculateDelivery',
+                            address: $('#shipping_address').val(),
+                            zip: $('#postal_code').val(),
+                            deliveryTime: $('#date').val() + ' ' + $('#time').val()
+                        },
+                        error: function (e1, e2, e3) {
+                            hideLoader();
+                        }
+                    }).done(function (data) {
+                        console.error(data);
+                        hideLoader();
+                    });
                 })
         });
     </script>

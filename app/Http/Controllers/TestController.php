@@ -30,12 +30,20 @@ class TestController extends Controller
 {
     public function index()
     {
-        dd( strtoupper(\Str::random(10)) );
+        $O = new Order();
+        dd($O->getSessionCartData());
 
-        die;
+        dd( \request()->session()->get('delivery')->Data );
+
+
         $T = new Takeout();
-        dd( $T->getDeliveryInfo() );
-        dd( $T->autocompleteAddress('Bastebrostræde') );
+        $address = 'Bagagevej 3, 2770 Kastrup';
+
+        dd( $T->getDeliveryInfo([
+            'address' => $address,
+            'zip' => 2770
+        ]) );
+        //$shops = $T->getShopsDistanceByAddress('Skudehavnsvej 2A, 2150 Nordhavn');
 
         die;
         $G = new \App\Logic\GiftCard();

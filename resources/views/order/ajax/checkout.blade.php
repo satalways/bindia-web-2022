@@ -251,7 +251,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row bn-last-order-footer align-middle">
                             <div class="col-md-12 col-12">
                                 <p class="float-end">{{ __('checkout.did_you_order_sides') }}</p>
@@ -281,21 +280,22 @@
                 @if( isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi' )
                     <div class="row bn-from-bottom-space">
                         <div class="col-md-6 col-12">
-                                <input type="text" class="form-control update2" placeholder="{{ __('global.address') }}"
-                                       id="shipping_address" name="shipping_address" autocomplete="off"
-                                       value="{{ $items['checkout']['shipping_address'] ?? '' }}"
-                                       data-url="{{ route('checkout.address') }}">
+                            <input type="text" class="form-control update2" placeholder="{{ __('global.address') }}"
+                                   id="shipping_address" name="shipping_address" autocomplete="off"
+                                   value="{{ $items['checkout']['shipping_address'] ?? '' }}"
+                                   data-url="{{ route('checkout.address') }}">
 
                         </div>
                         <div class="col-md-3 col-4 bn-pr-mobile">
                             <input type="number" class="form-control" placeholder="{{ __('global.postal_code') }}"
                                    name="shipping_postal_code" max="{{ $maxPost }}" min="{{ $minPost }}"
+                                   readonly="readonly"
                                    value="{{ $items['checkout']['shipping_postal_code'] ?? '' }}" id="postal_code">
                         </div>
                         <div class="col-md-3 col-8">
                             <input type="text" class="form-control update2" placeholder="{{ __('global.city') }}"
                                    name="shipping_city" id="shipping_city"
-                                   value="{{ $items['checkout']['shipping_city'] ?? '' }}" id="city"
+                                   value="{{ $items['checkout']['shipping_city'] ?? '' }}"
                                    readonly="readonly">
                         </div>
                     </div>
@@ -320,13 +320,13 @@
                     </div>
                     <div class="col-md-3 col-6 bn-col-pr-mobile bn-col-lr-mobile position-relative">
                         <label class="bn-date-time">{{ __('global.select_date') }}</label>
-                        <input type="text" class="form-control update2" name="date"
+                        <input type="text" class="form-control update2" name="date" id="date"
                                value="{{ $items['checkout']['date'] ?? \Carbon\Carbon::today()->format(config('date_format')) }}"
                                min="{{ \Carbon\Carbon::today()->toDateString() }}">
                     </div>
                     <div class="col-md-3 col-6 bn-col-lr-mobile position-relative">
                         <label class="bn-date-time">{{ __('global.select_time') }}</label>
-                        <input type="text" class="form-control update2"
+                        <input type="text" class="form-control update2" id="time"
                                min="{{ '16:'.config('order.order_prep_time') }}"
                                name="time"
                                value="{{ $time }}">
@@ -365,6 +365,9 @@
                     </div>
                 </div>
                 <div class="col-md-3 col-4">
+                    @if(!isLiveServer() && isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi')
+                        <button type="button" class="btn" id="calculateDelivery">Calculate Delivery</button>
+                    @endif
                     <button type="button" class="btn" id="checkoutButton">Checkout</button>
                 </div>
             </div>

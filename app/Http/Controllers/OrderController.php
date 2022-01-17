@@ -210,6 +210,17 @@ class OrderController extends Controller
                         'message' => __('checkout.customer_price_consent', ['price' => $row->price])
                     ]);
                 break;
+            case 'calculateDelivery':
+                $T = new Takeout();
+                $data = $T->getDeliveryInfo([
+                    'address' => $request->post('address'),
+                    'zip' => $request->post('zip'),
+                    'deliveryTime' => $request->post('deliveryTime')
+                ]);
+
+                $O->setSessionDeliveryInfo($data);
+                return $data;
+                break;
             default:
                 abort(404);
         }
