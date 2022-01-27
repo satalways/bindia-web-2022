@@ -35,11 +35,12 @@
 
     <!--Shop Maps-->
     <div class="bn-map-shop">
-        <img src="{{ asset('asstes/image/shop/map-shop.jpg') }}" data-src="{{ asset('asstes/image/shop/map-shop.png') }}" alt="" class="d-sm-block d-none lazy">
-        <img src="{{ asset('asstes/image/shop/map-shop-mobile.jpg') }}" data-src="{{ asset('asstes/image/shop/map-shop-mobile.png') }}" alt="" class="d-sm-none d-block lazy">
-        <div class="bn-map-location d-sm-block d-none">
-            <img src="{{ asset('asstes/image/shop/location-holder.svg') }}" alt="">
-        </div>
+{{--        <img src="{{ asset('asstes/image/shop/map-shop.jpg') }}" data-src="{{ asset('asstes/image/shop/map-shop.png') }}" alt="" class="d-sm-block d-none lazy">--}}
+{{--        <img src="{{ asset('asstes/image/shop/map-shop-mobile.jpg') }}" data-src="{{ asset('asstes/image/shop/map-shop-mobile.png') }}" alt="" class="d-sm-none d-block lazy">--}}
+{{--        <div class="bn-map-location d-sm-block d-none">--}}
+{{--            <img src="{{ asset('asstes/image/shop/location-holder.svg') }}" alt="">--}}
+{{--        </div>--}}
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2246.4914737282775!2d12.514392351906666!3d55.73258918045262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465253085ee9eaed%3A0xfb8a56a28c883e1c!2sBindia%20Indisk%20Mad%20Take%20Away%20S%C3%B8borg!5e0!3m2!1sen!2s!4v1642429493056!5m2!1sen!2s" width="100%" height="512" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
 
     <!--Shop Details box-->

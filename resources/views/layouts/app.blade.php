@@ -137,27 +137,25 @@
 </head>
 <body>
 
-@if (!isLiveServer())
-    @if (!request()->cookie('CookieConsent'))
-        <div id="cookiePopup">
-            <h4>Cookie Policy</h4>
-            <p>
-                Når du besøger vores hjemmeside, indsamles der oplysninger om dig med henblik på at optimere
-                brugeroplevelsen af hjemmesiden.
-                Ved at bruge denne hjemmeside, giver du automatisk samtykke til vores <a
-                    href="{{ LaravelLocalization::localizeUrl(route('privacy_policy', [], false), 'da') }}#cp">cookiepolitik</a>.
-            </p>
-            <br>
-            <p>
-                When you visit our website, specific data are collected to optimize the user experience of the website.
-                By using our website, you automatically consent to our <a
-                    href="{{ LaravelLocalization::localizeUrl(route('privacy_policy', [], false), 'en') }}#cp">cookie
-                    policy</a>.
-            </p>
-            <br>
-            <button type="button" class="btn btn-lg btn-black" id="acceptCookie2">OK</button>
-        </div>
-    @endif
+@if (!request()->cookie('CookieConsent'))
+    <div id="cookiePopup">
+        <h4>Cookie Policy</h4>
+        <p>
+            Når du besøger vores hjemmeside, indsamles der oplysninger om dig med henblik på at optimere
+            brugeroplevelsen af hjemmesiden.
+            Ved at bruge denne hjemmeside, giver du automatisk samtykke til vores <a
+                href="{{ LaravelLocalization::localizeUrl(route('privacy_policy', [], false), 'da') }}#cp">cookiepolitik</a>.
+        </p>
+        <br>
+        <p>
+            When you visit our website, specific data are collected to optimize the user experience of the website.
+            By using our website, you automatically consent to our <a
+                href="{{ LaravelLocalization::localizeUrl(route('privacy_policy', [], false), 'en') }}#cp">cookie
+                policy</a>.
+        </p>
+        <br>
+        <button type="button" class="btn btn-lg btn-black" id="acceptCookie2">OK</button>
+    </div>
 @endif
 
 <!--Header start-->
@@ -441,7 +439,7 @@
 
                 var qtyObject = $('span.span_qty[data-id=' + ID + ']');
                 var currentQty = qtyObject.text();
-                showLoader();
+                showLoader('.....');
 
                 $.ajax({
                     url: "{{ route('takeaway.post') }}",
@@ -537,6 +535,20 @@
 @yield('js')
 
 @if(isLiveServer())
+    {{--    <!--Start of Tawk.to Script-->--}}
+    {{--    <script type="text/javascript">--}}
+    {{--        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();--}}
+    {{--        (function () {--}}
+    {{--            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];--}}
+    {{--            s1.async = true;--}}
+    {{--            s1.src = 'https://embed.tawk.to/5c813d3e101df77a8be16ae6/default';--}}
+    {{--            s1.charset = 'UTF-8';--}}
+    {{--            s1.setAttribute('crossorigin', '*');--}}
+    {{--            s0.parentNode.insertBefore(s1, s0);--}}
+    {{--        })();--}}
+    {{--    </script>--}}
+    {{--    <!--End of Tawk.to Script-->--}}
+
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();

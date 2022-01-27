@@ -42,7 +42,8 @@ class Feedback extends Model
         $sum = $count = 0;
         for ($x = 0; $x <= 12; $x++) {
             $field = 'question_' . $x . '_answer';
-            if (substr($this->{$field}, 0, 7) === 'rating_') {
+            if (str_starts_with($this->{$field}, 'rating_')) {
+                if ( substr($this->{$field}, 7) == 0 ) continue;
                 $count++;
                 $sum += substr($this->{$field}, 7);
             }

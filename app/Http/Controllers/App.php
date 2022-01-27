@@ -23,21 +23,21 @@ class App extends Controller
             ->where('time', '>=', Carbon::now()->subMonths(3))
             ->where('published', true)
             ->where('deleted', false)
-            ->where(function ($query) {
-                $query->where(function ($query) {
-                    $query->where('type', 'weborder')
-                        ->where('question_6_answer', '<>', '')
-                        ->where('question_7_answer', 'Yes');
-                })
-                    ->orWhere(function ($query) {
-                        $query->where('type', 'weborder2')
-                            ->where('question_5_answer', '<>', '')
-                            ->where('question_6_answer', 'Yes');
-                    });
-            })
+//            ->where(function ($query) {
+//                $query->where(function ($query) {
+//                    $query->where('type', 'weborder')
+//                        ->where('question_6_answer', '<>', '')
+//                        ->where('question_7_answer', 'Yes');
+//                })
+//                    ->orWhere(function ($query) {
+//                        $query->where('type', 'weborder2')
+//                            ->where('question_5_answer', '<>', '')
+//                            ->where('question_6_answer', 'Yes');
+//                    });
+//            })
             ->limit(20)
             ->get();
-
+        //dd(getLastQuery());
         return view('home', [
             'feedbacks' => $feedbacks,
             'seo' => seo('home')

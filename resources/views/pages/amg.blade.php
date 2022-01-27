@@ -38,13 +38,14 @@
 
     <!--Shop Maps-->
     <div class="bn-map-shop">
-        <img src="{{ asset('asstes/image/shop/map-shop.jpg') }}"
-             data-src="{{ asset('asstes/image/shop/map-shop.png') }}" alt="" class="d-sm-block d-none lazy">
-        <img src="{{ asset('asstes/image/shop/map-shop-mobile.jpg') }}"
-             data-src="{{ asset('asstes/image/shop/map-shop-mobile.png') }}" alt="" class="d-sm-none d-block lazy">
-        <div class="bn-map-location d-sm-block d-none">
-            <img src="{{ asset('asstes/image/shop/location-holder.svg') }}" alt="">
-        </div>
+{{--        <img src="{{ asset('asstes/image/shop/map-shop.jpg') }}"--}}
+{{--             data-src="{{ asset('asstes/image/shop/map-shop.png') }}" alt="" class="d-sm-block d-none lazy">--}}
+{{--        <img src="{{ asset('asstes/image/shop/map-shop-mobile.jpg') }}"--}}
+{{--             data-src="{{ asset('asstes/image/shop/map-shop-mobile.png') }}" alt="" class="d-sm-none d-block lazy">--}}
+{{--        <div class="bn-map-location d-sm-block d-none">--}}
+{{--            <img src="{{ asset('asstes/image/shop/location-holder.svg') }}" alt="">--}}
+{{--        </div>--}}
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2250.874681661505!2d12.606907051904416!3d55.65638858043207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465253f94e06b5d3%3A0x25d44c203fa7e60c!2sBindia%20Indisk%20Mad%20Take%20Away%20Amager!5e0!3m2!1sen!2s!4v1642425693253!5m2!1sen!2s" width="100%" height="512" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
 
     <!--Shop Details box-->
@@ -55,6 +56,10 @@
                 <div class="col-md-9 col-12">
                     <div class="bn-details-content">
                         <div class="text-center mb-5">
+                            <div style="margin-bottom: 15px;">
+                                <div class="review-widget_net" data-uuid="c768ac37-3833-4b53-ad0a-7c3216da819f" data-template="10" data-filter="" data-lang="en" data-theme="light"><center><a href="https://www.review-widget.net/" target="_blank" rel="noopener"><img src="https://grwapi.net/assets/spinner/spin.svg" title="Google Review Widget" alt="Review Widget"></a></center></div><script async type="text/javascript" src="https://grwapi.net/widget.min.js"></script>
+                            </div>
+
                             <a href="{{ route('takeaway') }}" class="btn btn-lg btn-dark">{{ __('global.order_now') }}</a>
                             <a href="{{ shop('amg')->rating_link }}" target="_blank" style="text-decoration: none">
                                 <img src="{{ asset('images/google-review.png') }}" alt="" style="height: 50px; width: auto">

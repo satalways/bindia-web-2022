@@ -1,3 +1,10 @@
+{{--@if ( $deliveryData['is_delivery'] && $deliveryData['DeliveryFee'] > 0 )--}}
+{{--    <script>--}}
+{{--        alert({{ $deliveryData['DeliveryFee'] }})--}}
+{{--    </script>--}}
+{{--@endif--}}
+
+
 <form action="{{ route('checkout.post') }}" method="post" id="checkoutForm">
     <input type="hidden" name="action" value="sendOrder">
     <div class="bn-email-item bn-check-out-last-order bn-main-story">
@@ -21,6 +28,9 @@
         </div>
     </div>
     <!--check out box-->
+    {{--    <pre>--}}
+    {{--        {{ print_r($items, true) }}--}}
+    {{--    </pre>--}}
     <div class="bn-check-out bn-main-story">
         <div class="container">
             @include('order.popups.copy_order')
@@ -84,7 +94,8 @@
                                             {{ __('checkout.online') }}
                                         </label>
                                     </div>
-                                    @if( !isset($items['checkout']['delivery']) || (isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='Pickup at Shop') )
+
+                                    @if( !$isDelivery )
                                         <div class="form-check">
                                             <input class="form-check-input update" type="radio" name="payment_type"
                                                    id="choose-shop"
@@ -287,25 +298,29 @@
 
                         </div>
                         <div class="col-md-3 col-4 bn-pr-mobile">
-                            <input type="number" class="form-control" placeholder="{{ __('global.postal_code') }}"
-                                   name="shipping_postal_code" max="{{ $maxPost }}" min="{{ $minPost }}"
-                                   readonly="readonly"
+                            <input type="hidden" class="form-control" placeholder="{{ __('global.postal_code') }}"
+                                   name="shipping_postal_code" readonly="readonly"
                                    value="{{ $items['checkout']['shipping_postal_code'] ?? '' }}" id="postal_code">
+                            <label class="bn-date-time">{{ __('global.select_date') }}</label>
+                            <input type="text" class="form-control update2" name="date" id="date"
+                                   value="{{ $items['checkout']['date'] ?? \Carbon\Carbon::today()->format(config('date_format')) }}"
+                                   min="{{ \Carbon\Carbon::today()->toDateString() }}">
                         </div>
                         <div class="col-md-3 col-8">
-                            <input type="text" class="form-control update2" placeholder="{{ __('global.city') }}"
+                            <input type="hidden" class="form-control update2" placeholder="{{ __('global.city') }}"
                                    name="shipping_city" id="shipping_city"
                                    value="{{ $items['checkout']['shipping_city'] ?? '' }}"
                                    readonly="readonly">
+                            <label class="bn-date-time">{{ __('global.select_time') }}</label>
+                            <input type="text" class="form-control update2" id="time"
+                                   min="{{ $isDelivery ? '16:40' : '16:'.config('order.order_prep_time') }}"
+                                   name="time"
+                                   value="{{ $time }}">
                         </div>
                     </div>
-                @endif
-                <div class="row">
-                    <div class="col-md-6 col-12">
-                        @if( isset($items['checkout']['delivery']) && $items['checkout']['delivery'] === 'By Taxi' )
-                            <input class="form-control" value="Select delivery time:" disabled
-                                   style="text-align: right;">
-                        @else
+                @else
+                    <div class="row">
+                        <div class="col-md-6 col-12">
                             <select class="form-select update2" required="required"
                                     name="shop" {{ isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi'?'disabled':'' }}>
                                 <option value="">{{ __('checkout.pick_up_at') }}</option>
@@ -316,22 +331,22 @@
                                     </option>
                                 @endforeach
                             </select>
-                        @endif
+                        </div>
+                        <div class="col-md-3 col-6 bn-col-pr-mobile bn-col-lr-mobile position-relative">
+                            <label class="bn-date-time">{{ __('global.select_date') }}</label>
+                            <input type="text" class="form-control update2" name="date" id="date"
+                                   value="{{ $items['checkout']['date'] ?? \Carbon\Carbon::today()->format(config('date_format')) }}"
+                                   min="{{ \Carbon\Carbon::today()->toDateString() }}">
+                        </div>
+                        <div class="col-md-3 col-6 bn-col-lr-mobile position-relative">
+                            <label class="bn-date-time">{{ __('global.select_time') }}</label>
+                            <input type="text" class="form-control update2" id="time"
+                                   min="{{ '16:'.config('order.order_prep_time') }}"
+                                   name="time"
+                                   value="{{ $time }}">
+                        </div>
                     </div>
-                    <div class="col-md-3 col-6 bn-col-pr-mobile bn-col-lr-mobile position-relative">
-                        <label class="bn-date-time">{{ __('global.select_date') }}</label>
-                        <input type="text" class="form-control update2" name="date" id="date"
-                               value="{{ $items['checkout']['date'] ?? \Carbon\Carbon::today()->format(config('date_format')) }}"
-                               min="{{ \Carbon\Carbon::today()->toDateString() }}">
-                    </div>
-                    <div class="col-md-3 col-6 bn-col-lr-mobile position-relative">
-                        <label class="bn-date-time">{{ __('global.select_time') }}</label>
-                        <input type="text" class="form-control update2" id="time"
-                               min="{{ '16:'.config('order.order_prep_time') }}"
-                               name="time"
-                               value="{{ $time }}">
-                    </div>
-                </div>
+                @endif
                 <div class="row">
                     <div class="col-md-12">
                         <textarea class="form-control" placeholder="{{ __('global.comments_in_english') }}"
@@ -342,6 +357,13 @@
         </div>
     </div>
     <!--check out button-->
+
+    @if (!isLiveServer())
+        {{--        <pre>--}}
+        {{--        <div id="deliveryResult">{{ print_r($deliveryData, true) }}</div>--}}
+        {{--            </pre>--}}
+    @endif
+
     <div class="bn-form-checkout-button bn-main-story">
         <div class="container">
             <div class="row bn-border-bottom bn-check-box-choose">
@@ -351,7 +373,7 @@
                             <input class="form-check-input" type="checkbox" name="term_accept" id="policy-choose"
                                    value="1" required>
                             <label class="form-check-label" for="policy-choose">
-                                {!! __('checkout.i_accept_checout_terms', ['link' => route('terms_and_conditions')]) !!}
+                                {!! __('checkout.i_accept_checkout_terms', ['link' => route('terms_and_conditions')]) !!}
                             </label>
                         </div>
                         <div class="form-check mb-0">
@@ -365,14 +387,18 @@
                     </div>
                 </div>
                 <div class="col-md-3 col-4">
-                    @if(!isLiveServer() && isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi')
-                        <button type="button" class="btn" id="calculateDelivery">Calculate Delivery</button>
+                    {{--                    @if(!isLiveServer() && isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi')--}}
+                    {{--                        <button type="button" class="btn" id="calculateDelivery">Calculate Delivery</button>--}}
+                    {{--                    @endif--}}
+
+                    @if (isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi' && empty($items['delivery_fee']) )
+                        <button type="button" class="btn" disabled="disabled" id="checkoutButton">Checkout</button>
+                    @else
+                        <button type="button" class="btn" id="checkoutButton">Checkout</button>
                     @endif
-                    <button type="button" class="btn" id="checkoutButton">Checkout</button>
                 </div>
             </div>
 
         </div>
     </div>
 </form>
-

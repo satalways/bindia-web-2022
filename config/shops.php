@@ -2,6 +2,7 @@
 
 return [
     'AMG' => [
+        'code' => 'AMG',
         'name' => 'Amager',
         'long_name' => 'Amagerbrogade',
         'order_name' => 'Amagerbrogade 146, 2300 Kbh. S',
@@ -22,6 +23,7 @@ return [
         'lng' => '12.6091011'
     ],
     'GKV' => [
+        'code' => 'GKV',
         'name' => 'Frederiksberg',
         'long_name' => 'Gammel Kongevej',
         'order_name' => 'Gl. Kongevej 141, 1850 Frb. C',
@@ -42,6 +44,7 @@ return [
         'lng' => '12.5394355',
     ],
     'LHG' => [
+        'code' => 'LHG',
         'name' => 'Lyngby',
         'long_name' => 'Lyngby Hovedgade',
         'order_name' => 'Lyngby Hovedgade 72E, 2800 Kgs. Lyngby',
@@ -62,6 +65,7 @@ return [
         'lng' => '12.504548',
     ],
     'ELM' => [
+        'code' => 'ELM',
         'name' => 'Nørrebro',
         'long_name' => 'Elmegade',
         'order_name' => 'Elmegade 6, 2200 Kbh. N',
@@ -82,6 +86,7 @@ return [
         'lng' => '12.5582023'
     ],
     'SHG' => [
+        'code' => 'SHG',
         'name' => 'Søborg',
         'long_name' => 'Søborg Hovedgade',
         'order_name' => 'Søborg Hovedgade 57, 2860 Søborg',
@@ -102,6 +107,7 @@ return [
         'lng' => '12.5165864'
     ],
     'BDV' => [
+        'code' => 'BDV',
         'name' => 'Østerbro',
         'long_name' => 'Blegdamsvej (Trianglen)',
         'order_name' => 'Blegdamsvej 130 (Trianglen), 2100 Kbh. Ø',

@@ -186,22 +186,22 @@
                                     <td>Delivery</td>
                                 </tr>
                                 @if (!$order->is_custom_order)
-                                    <tr style='font-weight:bold'>
-                                        <td>Pick up Time for Takeout</td>
-                                        <td>{{ $order->etakeaway_pickup_time ? $order->etakeaway_pickup_time->format('M, d Y (D) H:i') : '' }}</td>
-                                    </tr>
+{{--                                    <tr style='font-weight:bold'>--}}
+{{--                                        <td>Pick up Time for Takeout</td>--}}
+{{--                                        <td>{{ $order->etakeaway_pickup_time ? $order->etakeaway_pickup_time->format('M, d Y (D) H:i') : '' }}</td>--}}
+{{--                                    </tr>--}}
                                     <tr>
                                         <td>Delivery Time for customer</td>
                                         <td>{{ $order->delivery_datetime ? $order->delivery_datetime->format('M, d Y (D) H:i') : '' }}</td>
                                     </tr>
                                 @else
                                     @if ($order->etakeaway_pickup_time)
-                                        <tr style='font-weight:bold'>
-                                            <td>Pick up Time for Takeout</td>
-                                            <td>{{ $order->etakeaway_pickup_time ? $order->etakeaway_pickup_time->format('M, d Y (D) H:i') : '' }}</td>
-                                        </tr>
+{{--                                        <tr style='font-weight:bold'>--}}
+{{--                                            <td>Pick up Time for Takeout</td>--}}
+{{--                                            <td>{{ $order->etakeaway_pickup_time ? $order->etakeaway_pickup_time->format('M, d Y (D) H:i') : '' }}</td>--}}
+{{--                                        </tr>--}}
                                         <tr>
-                                            <td>Delivery Time for customer</td>
+                                            <td>Delivery Time:</td>
                                             <td>{{ $order->delivery_datetime ? $order->delivery_datetime->format('M, d Y (D) H:i') : '' }}</td>
                                         </tr>
                                     @elseif (!empty($order["pickup_datetime"]))

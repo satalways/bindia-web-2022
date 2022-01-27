@@ -91,7 +91,6 @@ class OrderController extends Controller
             return redirect(route('takeaway'));
         }
 
-        //dd($O->getSessionSpice());
         return view('order.checkout');
     }
 
@@ -108,7 +107,6 @@ class OrderController extends Controller
     public function checkoutPost(Request $request)
     {
         if (!$request->ajax()) abort(404);
-
         $O = new Order();
         switch ($request->post('action')) {
             case 'updateSessionCart':
@@ -120,11 +118,9 @@ class OrderController extends Controller
                 session()->put('checkout', $post);
 
                 if ($request->post('action') === 'updateSessionCart2') {
-                    break;
+                    //break;
                 }
             case 'loadCart':
-                $maxPost = TakeoutZonesModel::query()->max('post_number2');
-                $minPost = TakeoutZonesModel::query()->min('post_number');
                 $items = $O->getSessionCartData(true);
 
                 if (Carbon::create($items['checkout']['date'])->isToday()) {
@@ -142,15 +138,9 @@ class OrderController extends Controller
                     $time = $items['checkout']['time'] ?? '16:' . config('order.order_prep_time');
                 }
 
-//                try {
-//                    if (Carbon::create($items['checkout']['date'])->isToday() && $O->timeToMinutes($time) - $O->timeToMinutes(Carbon::now()->format('H:i')) <= config('order.order_prep_time')) {
-//                        $time = Carbon::now()->addMinutes(config('order.order_prep_time') + 5)->format('H:i');
-//                    } else if ($O->timeToMinutes($time) - $O->timeToMinutes(Carbon::now()->format('H:i')) <= config('order.order_prep_time')) {
-//                        $time = '16:' . config('order.order_prep_time');
-//                    }
-//                } catch (\Exception $exception) {
-//                    $time = '16:' . config('order.order_prep_time');
-//                }
+                if (isset($items['checkout']['delivery']) && $items['checkout']['delivery'] === 'By Taxi' && $time === '16:20') {
+                    $time = '';
+                }
 
                 $minTime = 'new Date( ' . \Carbon\Carbon::now()->subMonth()->format('Y,m,d') . ' )';
                 $now = Carbon::now();
@@ -177,18 +167,44 @@ class OrderController extends Controller
                     $minTime = '16:' . config('order.order_prep_time');
                 }
 
+//                $deliveryData['is_delivery'] = !empty($items['checkout']['delivery']) && $items['checkout']['delivery'] === 'By Taxi';
+//                if (!empty($items['checkout']['delivery']) && $items['checkout']['delivery'] === 'By Taxi' && !blank($time) && !empty($items['checkout']['date']) && !empty($items['checkout']['shipping_postal_code']) && !empty($items['checkout']['shipping_address'])) {
+//                    $T = new Takeout();
+//                    $deliveryData = $T->getDeliveryInfo([
+//                        'address' => $items['checkout']['shipping_address'],
+//                        'zip' => $items['checkout']['shipping_postal_code'],
+//                        'deliveryTime' => $items['checkout']['date'] . ' ' . $time
+//                    ]);
+//
+//                    if (isset($deliveryData->Status) && $deliveryData->Status) {
+//                        $deliveryData = (array)$deliveryData->Data;
+//                        $deliveryData['is_delivery'] = true;
+//                        $items['delivery_fee'] = $deliveryData['DeliveryFee'];
+//                    }
+//                }
+
+                if ($items['isDelivery']) $minTime = '16:40';
+
                 return [
+                    'post' => $request->post(),
+                    //'is_delivery' => !empty($items['checkout']['delivery']) && $items['checkout']['delivery'] === 'By Taxi',
+                    'is_delivery' => $items['isDelivery'],
                     'minDate' => $minDate,
                     'minTime' => $minTime,
                     'time' => $time,
+                    'delivery_fee' => !empty($items['delivery_fee']) ? __('checkout.customer_price_consent', ['price' => $items['delivery_fee'] ?? 0]) : '',
+                    'isDelivery' => $items['isDelivery'],
+                    'isOrange' => $items['isOrange'],
+                    'DeliveryData' => $items['DeliveryData'],
+                    //'items' => $items,
                     'html' => view('order.ajax.checkout', [
                         'items' => $items,
                         'cartItems' => $O->getSessionCart(),
                         'spice' => $O->getSessionSpice(),
                         'spice2' => $O->getSessionSpiceCountArray(),
-                        'maxPost' => $maxPost,
-                        'minPost' => $minPost,
                         'time' => $time,
+                        'isOrange' => $items['isOrange'],
+                        'isDelivery' => $items['isDelivery'],
                     ])->render(),
                 ];
             case 'makeOrder':
@@ -219,7 +235,7 @@ class OrderController extends Controller
                 ]);
 
                 $O->setSessionDeliveryInfo($data);
-                return $data;
+                return '<pre>' . print_r($data, true) . '</pre>';
                 break;
             default:
                 abort(404);
@@ -490,7 +506,8 @@ class OrderController extends Controller
 
         return view('order.item', [
             'item' => $item,
-            'title' => getCurrentLang() == 'en' ? $item->name . ' - Indian Food Take Away - Bindia.Dk' : $item->name . ' - Indisk Mad Takeaway - Bindia.Dk'
+            'title' => getCurrentLang() == 'en' ? $item->name . ' Copenhagen - Indian Food Take Away - Bindia.Dk' : $item->name . ' København - Indisk Mad Takeaway - Bindia.Dk',
+            'description' => (getCurrentLang() == 'en' ? $item->name . ' Copenhagen - ' : $item->name . ' København - ') . $item->getDescription()
         ]);
     }
 }

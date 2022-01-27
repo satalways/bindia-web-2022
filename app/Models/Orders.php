@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Logic\Nets;
 use App\Logic\PDF;
 use Carbon\Carbon;
-use Curl\Curl;
 use Firebase\JWT\JWT;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -241,29 +240,14 @@ class Orders extends Model
     public function createTakeoutOrder()
     {
         if (!$this->isDelivery()) return 'Order is not deliverable';
+        if (!$this->isPaid()) return 'This order is not paid and can not send to takeout';
         if ($this->etakeaway_id > 0) return 'Order is already created in takeout system.';
         if ($this->attributes['delivery_datetime'] === '0000-00-00 00:00:00' || blank($this->attributes['delivery_datetime'])) return 'Invalid delivery time.';
-
-        $row = TakeoutZonesModel::query()
-            ->whereRaw('(? between post_number and post_number2)', [$this->shipping_postal_code])
-            ->orderByDesc('id')
-            ->first();
-
-        if ($row) {
-            try {
-                $this->etakeaway_pickup_time = $this->delivery_datetime->subMinutes($row->deliveryMinutes());
-                $this->save();
-            } catch (\Exception $exception) {
-                return $exception->getMessage();
-            }
-        } else {
-            return 'No takeout data found.';
-        }
 
         $name = $this->shipping_first_name . " " . $this->shipping_last_name;
         $address = $this->shipping_address;
         $phone = $this->shipping_phone;
-        $location = $this->shipping_postal_code;
+        //$location = $this->shipping_postal_code;
         $comments = $this->comments;
         $details = "Order Details Below\r\n";
         foreach ($this->items as $cart) {
@@ -288,12 +272,13 @@ class Orders extends Model
         } else {
             $keys["Data"]["OrderID"] = $this->id;
         }
-        $keys["Data"]["OrderPrice"] = $this->getTotalAmountAttribute();
+        $keys["Data"]["OrderPrice"] = $this->getTotalAmountAttribute() - $this->delivery_fee;
         //$keys["Data"]["PickupDate"] = date("Y-m-d", strtotime($delivery_time_et)) . "T" . date("H:i:s", strtotime($delivery_time_et));  //"2015-07-30T21:30:00";
         $keys["Data"]["PickupDate"] = $this->etakeaway_pickup_time->toAtomString();
 
-        $keys["Data"]["RecipientName"] = $name;
+        $keys["Data"]["RecipientName"] = trim($name);
         $keys["Data"]["RecipientAddress"] = $address;
+        $keys['Data']['RecipientZip'] = $this->shipping_postal_code;
 
         # Added in 1.3
         $keys["Data"]["RecipientAddressNotes"] = "";
@@ -301,12 +286,13 @@ class Orders extends Model
 
         # Added in 1.3
         $keys["Data"]["RecipientCompany"] = "";
-        $keys["Data"]["RecipientLocation"] = $location;
+        //$keys["Data"]["RecipientLocation"] = $location;
 
         # Added in 1.3
         $keys["Data"]["RecipientCount"] = 1;
         $keys["Data"]["OrderComments"] = $comments;
         $keys["Data"]["OrderDetails"] = $details;
+        //$keys["Data"]["CalculateDeliveryFee"] = 0;
 
         try {
             $this->sent_to_etakeaway = json_encode($keys);
@@ -314,28 +300,6 @@ class Orders extends Model
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
-
-        /*
-        $Curl = new Curl();
-        $Curl->url =$e->api_url;
-        $Curl->setOpts([
-            CURLOPT_ENCODING => 'gzip,deflate',
-            CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36',
-            CURLOPT_SSL_VERIFYHOST => 0,
-            CURLOPT_SSL_VERIFYPEER => 0,
-        ]);
-        //$keys = $Curl->buildPostData($keys);
-        //$Curl->post($e->api_url, 'data: ' . $keys);
-        $Curl->post(  $keys);
-
-        if ($Curl->error) {
-            return $Curl->errorMessage;
-        }
-
-        echo $Curl->response;
-
-        $result = $Curl->response;
-        */
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $e->api_url);
@@ -356,21 +320,11 @@ class Orders extends Model
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
         $result = curl_exec($ch);
-        if (!is_json($result)) {
-            return $result;
-        }
-
         try {
             $this->response_from_takeout = $result;
             $this->save();
         } catch (\Exception $e) {
 
-        }
-
-        try {
-            $this->response_from_takeout = $result;
-            $this->save();
-        } catch (\Exception $e) {
         }
 
         if (!is_json($result)) {
@@ -434,5 +388,10 @@ class Orders extends Model
         }
 
         return $files;
+    }
+
+    public function getEtakeawayPickupTimeAttribute()
+    {
+        if (!$this->attributes['etakeaway_pickup_time']) return $this->pickup_datetime;
     }
 }

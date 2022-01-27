@@ -30,6 +30,10 @@ class TestController extends Controller
 {
     public function index()
     {
+        $order = Orders::query()->find(151023);
+        dd( $order->createTakeoutOrder() );
+        dd($order);
+
         $O = new Order();
         dd($O->getSessionCartData());
 

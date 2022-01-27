@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-center" data-bs-toggle="modal"
                      data-bs-target="#bn-review-box">
-                    @if(!$feedbacks->empty())
+                    @if(!$feedbacks->isEmpty())
                         <div class="bn-star-box">
                             <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
                                 class="fas fa-star"></i> <i class="fas fa-star"></i>
@@ -57,6 +57,8 @@
                                 <span>&#10076;</span><span>&#10076;</span>
                             </i>
                         </div>
+                    @else
+                        <h1>Empty</h1>
                     @endif
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
@@ -170,7 +172,7 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                         @else
-                                            {{ $feedback->{'question_' . $x . '_answer'} }}
+                                            &nbsp;{{ $feedback->{'question_' . $x . '_answer'} }}
                                         @endif
                                     </span>
                                 @endif
@@ -180,7 +182,7 @@
                         <div class="bn-review-footer">
                             @for($x=0; $x<=12; $x++)
                                 @if(str_starts_with(trim($feedback->{'question_' . $x}), 'Tell us what'))
-                                    <span>{{ $feedback->{'question_' . $x . '_answer'} }}</span>
+                                    <span>{{ ' ' . $feedback->{'question_' . $x . '_answer'} }}</span>
                                 @endif
                             @endfor
                         </div>

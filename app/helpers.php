@@ -569,13 +569,20 @@ function item($code)
     });
 }
 
-
 function shop($codeName)
 {
     $codeName = strtoupper($codeName);
     return once(function () use ($codeName) {
         $shops = config('shops');
-        if (!isset($shops[$codeName])) return null;
+        if (!isset($shops[$codeName])) {
+            foreach($shops as $shop) {
+                if (isset($shop['takeout_id']) && $shop['takeout_id'] == $codeName) {
+                    return (object)$shop;
+                }
+            }
+
+            return null;
+        };
 
         return (object)$shops[$codeName];
     });

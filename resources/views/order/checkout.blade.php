@@ -115,6 +115,8 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
+        var LastDeliveryFee = 0;
+
         var datePicker = function (minDate, minTime) {
             $('[name=date]').pickadate({
                 //weekdaysShort: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
@@ -155,69 +157,82 @@
                 }
             }).done(function (data) {
                 hideLoader();
-                $('#content').html(data.html);
-                datePicker(data.minDate, data.minTime);
-                loadCookieData();
-
-                @if (!isLiveServer())
-                $('#shipping_address').typeahead({
-                        hint: true,
-                        highlight: true,
-                        minLength: 1
-                    },
-                    {
-                        limit: 12,
-                        async: true,
-                        //displayKey: 'tekst',
-                        display: 'forslagstekst',
-                        templates: {
-                            empty: [
-                                '<div class="empty-message">',
-                                'no suggessions',
-                                '</div>'
-                            ].join('\n'),
-                            suggestion: function (data) {
-                                return '<div class="address">' + data.tekst + '</div>';
-                            }
-                        },
-                        source: function (query, processSync, processAsync) {
-                            //processSync(['It will load, Please wait...']);
-                            return $.ajax({
-                                url: "{{ route('checkout.address') }}",
-                                type: 'GET',
-                                data: {query: query},
-                                dataType: 'json',
-                                success: function (json) {
-                                    // in this example, json is simply an array of strings
-                                    return processAsync(json);
-                                }
-                            });
-                        }
-                    })
-                    .on('typeahead:selected', function (evt, item) {
-                        if (item.data.postnr) {
-                            $('#postal_code').val(item.data.postnr);
-                            if (item.data.postnrnavn) {
-                                $('#shipping_city').val(item.data.postnrnavn);
-                            } else if (item.data.supplerendebynavn) {
-                                $('#shipping_city').val(item.data.supplerendebynavn);
-                            }
-                        } else {
-                            $('#shipping_address').trigger('blur');
-                            setTimeout(function () {
-                                $('#shipping_address').trigger('focus');
-                            }, 100);
-                        }
-                    })
-                    .on('typeahead:asyncrequest', function () {
-                        $(this).addClass('loading');
-                    })
-                    .on('typeahead:asynccancel typeahead:asyncreceive', function () {
-                        $(this).removeClass('loading');
-                    })
-                ;
-                @endif
+                initObjects(data);
             });
+        }
+
+        var initObjects = function (data) {
+            if (!data.html) return;
+            $('#content').html(data.html);
+            datePicker(data.minDate, data.minTime);
+            loadCookieData();
+
+            $('#shipping_address').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                },
+                {
+                    limit: 12,
+                    async: true,
+                    //displayKey: 'tekst',
+                    display: 'forslagstekst',
+                    templates: {
+                        empty: [
+                            '<div class="empty-message">',
+                            'no suggessions',
+                            '</div>'
+                        ].join('\n'),
+                        suggestion: function (data) {
+                            return '<div class="address">' + data.tekst + '</div>';
+                        }
+                    },
+                    source: function (query, processSync, processAsync) {
+                        //processSync(['It will load, Please wait...']);
+                        return $.ajax({
+                            url: "{{ route('checkout.address') }}",
+                            type: 'GET',
+                            data: {query: query},
+                            dataType: 'json',
+                            success: function (json) {
+                                // in this example, json is simply an array of strings
+                                return processAsync(json);
+                            }
+                        });
+                    }
+                })
+                .on('typeahead:selected', function (evt, item) {
+                    if (item.data.postnr) {
+                        $('#postal_code').val(item.data.postnr);
+                        if (item.data.postnrnavn) {
+                            $('#shipping_city').val(item.data.postnrnavn);
+                        } else if (item.data.supplerendebynavn) {
+                            $('#shipping_city').val(item.data.supplerendebynavn);
+                        }
+                        var Form = $('#checkoutForm');
+                        Form.find('[name=action]').val('updateSessionCart');
+                        Form.trigger('submit');
+                    } else {
+                        $('#shipping_address').trigger('blur');
+                        setTimeout(function () {
+                            $('#shipping_address').trigger('focus');
+                        }, 100);
+                        $('#checkoutButton').prop('disabled', true);
+                    }
+                })
+                .on('typeahead:asyncrequest', function () {
+                    $(this).addClass('loading');
+                })
+                .on('typeahead:asynccancel typeahead:asyncreceive', function () {
+                    $(this).removeClass('loading');
+                })
+            ;
+
+            if (data.isDelivery && $.trim(data.delivery_fee) != '' && data.delivery_fee !== LastDeliveryFee) {
+                LastDeliveryFee = data.delivery_fee;
+                alert (LastDeliveryFee);
+                //alert('The delivery fee for this order is ' + LastDeliveryFee);
+            }
         }
 
         var loadCookieData = function () {
@@ -296,9 +311,18 @@
                                     $('[name=time]').val(data.new_time);
                                 }
 
+                                initObjects(data);
+
                                 if (Action === 'updateSessionCart') {
                                     hideLoader();
-                                    $('#html').html(data.html);
+                                    if (data.is_delivery && $.trim(data.delivery_fee) === '' && data.post.shipping_postal_code && data.post.shipping_address) {
+                                        setTimeout(function () {
+                                            alert('Bindia can not deliver on this address');
+                                        }, 2000);
+                                        //$('#shipping_address').val('');
+                                        return false;
+                                    }
+
                                     loadItems();
                                 } else if (Action === 'makeOrder') {
                                     if (data.substr(0, 4) === 'GOTO') {
@@ -351,7 +375,6 @@
                                 hideLoader();
                             }
                         }).done(function (data) {
-                            console.error(data);
                             hideLoader();
                             if (data.substr(0, 2) === 'OK') {
                                 var D = JSON.parse(data.substr(2));
@@ -374,9 +397,12 @@
                     }
                 })
                 .on('input', '#shipping_address', function () {
+                    if ($.trim($(this).val()) === '') {
+                        $('#checkoutButton').prop('disabled', true);
+                    }
                     //console.error($(this).val())
                 })
-                .on('click', '#calculateDelivery', function (e) {
+                .on('click2', '#calculateDelivery', function (e) {
                     e.preventDefault();
                     showLoader();
 
@@ -393,7 +419,7 @@
                             hideLoader();
                         }
                     }).done(function (data) {
-                        console.error(data);
+                        $('#deliveryResult').html(data);
                         hideLoader();
                     });
                 })
