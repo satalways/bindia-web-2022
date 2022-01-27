@@ -50,6 +50,8 @@ class Takeout
 
         //$test = env('TAKEOUT_TEST', $e->test_mode);
 
+        if ( !shop($shop) ) return 'Shop information is not available';
+
         $Data = [
             'Website' => $e->Website,
             'CompanyID' => $e->PartnerID,
@@ -67,9 +69,6 @@ class Takeout
                 'RecipientZip' => $args['zip']
             ]
         ];
-//        echo '<pre>';
-//        print_r($Data);
-//        exit;
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $e->api_url);

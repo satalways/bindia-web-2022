@@ -64,7 +64,7 @@ class CateringOrders
 
         $data['pickup_time'] = $pickupTime;
         $data['shop'] = $args['shop'];
-        $data['order_ip'] = request()->ip();
+        $data['order_ip'] = getIP();
         if ($args['delivery']) {
             $data['customer_address'] = $args['customer']['address'];
             $data['customer_postal_code'] = $args['customer']['postal_code'];

@@ -30,23 +30,31 @@ class TestController extends Controller
 {
     public function index()
     {
-        $order = Orders::query()->find(151023);
-        dd( $order->createTakeoutOrder() );
-        dd($order);
+
+        $address = "Aage Berntsens Alle";
+        dd(filter_var($address, FILTER_SANITIZE_STRING));
+        $address = "123 My Street, My Area, My City, AA11 1AA";
+        $splitter = "!(.*)(?=,),(?<=,)\s*(.*)!";
+        preg_match_all($splitter,$address,$matches);
+
+        debug($matches);
+
+//        $short_addr = $matches[1][0];
+//        $postal_code = $matches[2][0];
+
+
+dd('asd');
+        dd(isPKIp());
 
         $O = new Order();
         dd($O->getSessionCartData());
 
-        dd( \request()->session()->get('delivery')->Data );
+        dd(\request()->session()->get('delivery')->Data);
 
 
         $T = new Takeout();
         $address = 'Bagagevej 3, 2770 Kastrup';
 
-        dd( $T->getDeliveryInfo([
-            'address' => $address,
-            'zip' => 2770
-        ]) );
         //$shops = $T->getShopsDistanceByAddress('Skudehavnsvej 2A, 2150 Nordhavn');
 
         die;

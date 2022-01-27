@@ -105,7 +105,7 @@ class Job
         //return $details;
         $data['datetime'] = Carbon::now();
         $data['job_title'] = $args['job_title'];
-        $data['ip'] = request()->ip();
+        $data['ip'] = getIP();
 
         try {
             $job = new JobsModel();

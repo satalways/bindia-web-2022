@@ -21,7 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+//        if (isPKIp()) {
+//            config(['app.debug' => true]);
+//        }
     }
 
     /**
@@ -47,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('*', function ($view) {
-            if (! $this->app->runningInConsole()) {
+            if (!$this->app->runningInConsole()) {
                 if (Route::getCurrentRoute()) {
                     view()->share('routeName', Route::getCurrentRoute()->getName());
                     view()->share('O', new Order());

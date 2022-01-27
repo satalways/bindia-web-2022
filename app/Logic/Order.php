@@ -209,6 +209,7 @@ class Order
                 'zip' => $checkoutData['shipping_postal_code'],
                 'deliveryTime' => $checkoutData['date'] . ' ' . $checkoutData['time']
             ]);
+            debug($deliveryData);
 
             if (isset($deliveryData->Status) && $deliveryData->Status) {
                 $Data['delivery_fee'] = $deliveryData->Data->DeliveryFee ?? 0;
@@ -439,7 +440,7 @@ class Order
             if (!empty($data['shipping_address'])) {
                 $guest->customer_address = $data['shipping_address'];
             }
-            $guest->ip = request()->ip();
+            $guest->ip = getIP();
             if (!$guest->exists()) {
                 $guest->datetime = Carbon::now();
             }
@@ -464,7 +465,7 @@ class Order
          */
         unset($data['action'], $data['term_accept']);
         $data['order_time'] = Carbon::now();
-        $data['order_ip'] = request()->ip();
+        $data['order_ip'] = getIP();
         $customer = explode(' ', $data['customer_name']);
         $data['shipping_first_name'] = $customer[0];
         $data['shipping_last_name'] = $customer[1] ?? '';
@@ -553,8 +554,9 @@ class Order
             if (!isset($items['DeliveryData']['RestaurantID'])) {
                 return __('No delivery data found.');
             }
+
             if (!shop($items['DeliveryData']['RestaurantID'])) {
-                return __('No Bindia shop is available for delivery on this address');
+                return __('checkout.no_bindia_shop');
             }
             $items['DeliveryData']['PickupDate'] = Carbon::create($items['DeliveryData']['PickupDate']);
             $items['DeliveryData']['DeliveryDate'] = Carbon::create($items['DeliveryData']['DeliveryDate']);
@@ -835,7 +837,7 @@ class Order
         try {
             $order->paid = true;
             $order->paid_time = now();
-            $order->paid_ip = request()->ip();
+            $order->paid_ip = getIP();
             $order->save();
         } catch (\Exception $exception) {
             Log::debug('Order was not paid marked: ' . $exception->getMessage());
@@ -875,7 +877,7 @@ class Order
 
 
         foreach ($orders as $order) {
-            if ($order->id === 147649) continue;
+            if ($order->id === 151832) continue;
             $r = $order->createTakeoutOrder();
             if ($r !== 'OK') {
                 $content = print_r($r, true);

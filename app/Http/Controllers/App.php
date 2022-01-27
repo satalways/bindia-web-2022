@@ -83,7 +83,7 @@ class App extends Controller
                     'phone' => formatize_phone_number($request->phone),
                     'datetime' => Carbon::now(),
                     'comments' => $request->comments,
-                    'ip' => $request->ip(),
+                    'ip' => getIP(),
                     'subject' => 'Contact Form'
                 ]);
 
@@ -186,14 +186,14 @@ class App extends Controller
 
     public function areaPage($area)
     {
-        $fixAreas = TakeoutZonesModel::query()
-            ->whereNull('area_slug')
-            ->get();
-
-        foreach ($fixAreas as $row) {
-            $row->area_slug = \Str::slug($row->area);
-            $row->save();
-        }
+//        $fixAreas = TakeoutZonesModel::query()
+//            ->whereNull('area_slug')
+//            ->get();
+//
+//        foreach ($fixAreas as $row) {
+//            $row->area_slug = \Str::slug($row->area);
+//            $row->save();
+//        }
 
         $row = TakeoutZonesModel::query()->where('area_slug', $area)->firstOrFail();
         $rows = TakeoutZonesModel::query()->select(['area_slug'])->distinct('area_slug')->get();

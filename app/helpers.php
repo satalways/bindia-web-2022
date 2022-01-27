@@ -269,7 +269,7 @@ function send_mail($to, string $subject, string $htmlContent, array $fields = []
             'subject' => $subject,
             'message' => $htmlContent,
             'time' => \Carbon\Carbon::now(),
-            'ip' => request()->ip(),
+            'ip' => getIP(),
             'user_id' => 0,
         ]);
     } catch (Exception $exception) {
@@ -571,11 +571,12 @@ function item($code)
 
 function shop($codeName)
 {
+    if (is_array($codeName) || is_object($codeName)) return null;
     $codeName = strtoupper($codeName);
     return once(function () use ($codeName) {
         $shops = config('shops');
         if (!isset($shops[$codeName])) {
-            foreach($shops as $shop) {
+            foreach ($shops as $shop) {
                 if (isset($shop['takeout_id']) && $shop['takeout_id'] == $codeName) {
                     return (object)$shop;
                 }
@@ -621,9 +622,10 @@ function seo($page)
 
 function isPKIp()
 {
-    return in_array(request()->ip(), [
+    return in_array(getIP(), [
         '72.255.21.22',
         '119.63.139.53',
+        '2400:adc5:1b2:f500:7da0:5f8a:1206:8bf8'
     ]);
 }
 
@@ -663,4 +665,25 @@ function debug_my($val)
 {
     if (is_bool($val)) $val = $val ? 'TRUE' : 'FALSE';
     \Log::info($val);
+}
+
+function getIP()
+{
+    return once(function () {
+        if (getenv('HTTP_CLIENT_IP')) {
+            $ip = getenv('HTTP_CLIENT_IP');
+        } else if (getenv('HTTP_X_FORWARDED_FOR')) {
+            $ip = getenv('HTTP_X_FORWARDED_FOR');
+        } else if (getenv('HTTP_X_FORWARDED')) {
+            $ip = getenv('HTTP_X_FORWARDED');
+        } else if (getenv('HTTP_FORWARDED_FOR')) {
+            $ip = getenv('HTTP_FORWARDED_FOR');
+        } else if (getenv('HTTP_FORWARDED')) {
+            $ip = getenv('HTTP_FORWARDED');
+        } else {
+            $ip = @$_SERVER['REMOTE_ADDR'];
+        }
+
+        return $ip;
+    });
 }

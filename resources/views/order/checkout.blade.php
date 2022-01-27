@@ -213,6 +213,7 @@
                         Form.find('[name=action]').val('updateSessionCart');
                         Form.trigger('submit');
                     } else {
+                        $('#postal_code').val('');
                         $('#shipping_address').trigger('blur');
                         setTimeout(function () {
                             $('#shipping_address').trigger('focus');
@@ -230,7 +231,7 @@
 
             if (data.isDelivery && $.trim(data.delivery_fee) != '' && data.delivery_fee !== LastDeliveryFee) {
                 LastDeliveryFee = data.delivery_fee;
-                alert (LastDeliveryFee);
+                alert(LastDeliveryFee);
                 //alert('The delivery fee for this order is ' + LastDeliveryFee);
             }
         }
@@ -295,6 +296,8 @@
 
                     if (Action !== 'updateSessionCart2') {
                         showLoader();
+
+                        console.error($('#postal_code').val());
                     }
                     $('#checkoutForm').ajaxSubmit({
                         error: function (e1, e2, e3) {
@@ -361,68 +364,31 @@
                 .on('change', '.cookie', function (e) {
                     Cookies.set($(this).attr('name'), $(this).val(), {expires: 365});
                 })
-                .on('change', '[name=shipping_postal_code]', function (e) {
-                    e.preventDefault();
-                    if ($.trim($(this).val()) === '') {
-                        $('.update2').trigger('change');
-                    } else {
-                        showLoader("{{ __('checkout.calculating_delivery_fee') }}");
-                        $.ajax({
-                            url: '{{ route('checkout.post') }}',
-                            method: 'post',
-                            data: {action: 'checkingPostalCode', 'postal_code': $(this).val()},
-                            error: function (e1, e2, e3) {
-                                hideLoader();
-                            }
-                        }).done(function (data) {
-                            hideLoader();
-                            if (data.substr(0, 2) === 'OK') {
-                                var D = JSON.parse(data.substr(2));
-
-                                $('#shipping_city').val(D.city);
-                                alert(D.message);
-                                $('#choose-delivery').trigger('click');
-
-                                // if (confirm(D.message)) {
-                                //
-                                // } else {
-                                //     $('[name=shipping_postal_code]').val('');
-                                //     $('#choose-pickup').trigger('click');
-                                //     //$('.update2').trigger('change');
-                                // }
-                            } else {
-                                alert(data);
-                            }
-                        });
-                    }
-                })
                 .on('input', '#shipping_address', function () {
                     if ($.trim($(this).val()) === '') {
                         $('#checkoutButton').prop('disabled', true);
+                        $('#postal_code').val('');
+                        return;
                     }
-                    //console.error($(this).val())
-                })
-                .on('click2', '#calculateDelivery', function (e) {
-                    e.preventDefault();
-                    showLoader();
 
-                    $.ajax({
-                        url: '{{ route('checkout.post') }}',
-                        method: 'post',
-                        data: {
-                            action: 'calculateDelivery',
-                            address: $('#shipping_address').val(),
-                            zip: $('#postal_code').val(),
-                            deliveryTime: $('#date').val() + ' ' + $('#time').val()
-                        },
-                        error: function (e1, e2, e3) {
-                            hideLoader();
-                        }
-                    }).done(function (data) {
-                        $('#deliveryResult').html(data);
-                        hideLoader();
-                    });
+                    var r = /\d+/g;
+                    var s = $.trim($(this).val());
+                    var result = s.match(r);
+
+                    if (!result) {
+                        $('#postal_code').val('');
+                        $('#checkoutButton').prop('disabled', true);
+                        return;
+                    }
+
+                    var isPostalCode = false;
+                    $.each(result, function (i, val) {
+                        if (val.length === 4) isPostalCode = true;
+                    })
+
+                    $('#checkoutButton').prop('disabled', !isPostalCode);
                 })
+
         });
     </script>
 @endsection

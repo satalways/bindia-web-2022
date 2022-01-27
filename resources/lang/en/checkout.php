@@ -46,4 +46,5 @@ return [
     'thankyou' => 'Thank you for your order!',
     'view_receipt' => 'View Receipt',
     'delivery_order_not_allowed_on_date' => 'Delivery orders are not available on :date',
+    'no_bindia_shop' => 'No Bindia shop is available for delivery on this address',
 ];

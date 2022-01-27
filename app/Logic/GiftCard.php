@@ -70,11 +70,11 @@ class GiftCard
             $giftCard->staff_instructions = 'This card is purchased by customer from web site.';
             $giftCard->sent = false;
             $giftCard->generated_time = Carbon::now();
-            $giftCard->generated_ip = request()->ip();
+            $giftCard->generated_ip = getIP();
             $giftCard->issued = true;
             $giftCard->issued_comments = 'This card is purchased by customer from web site.';
             $giftCard->issued_time = now();
-            $giftCard->issued_ip = request()->ip();
+            $giftCard->issued_ip = getIP();
             $giftCard->issued_by = -1;
 
             $giftCard->paid_by_customer = false;
@@ -179,7 +179,7 @@ class GiftCard
         try {
             $giftCard->paid = true;
             $giftCard->paid_by_customer = true;
-            $giftCard->paid_ip = request()->ip();
+            $giftCard->paid_ip = getIP();
             $giftCard->paid_time = now();
             $giftCard->save();
         } catch (\Exception $exception) {

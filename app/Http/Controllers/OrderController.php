@@ -209,33 +209,6 @@ class OrderController extends Controller
                 ];
             case 'makeOrder':
                 return $O->makeOrder($request->except('date_submit'));
-            case 'checkingPostalCode':
-                $row = TakeoutZonesModel::query()
-                    ->whereRaw('(? between post_number and post_number2)', [$request->post('postal_code')])
-                    ->select(['price', 'area'])
-                    ->orderByDesc('id')
-                    ->first();
-                if (!$row) return __('checkout.invalid_postal_code');
-
-                /**
-                 * Ask customer for consent about delivery price.
-                 */
-                return 'OK' . json_encode([
-                        'price' => $row->price,
-                        'city' => $row->area,
-                        'message' => __('checkout.customer_price_consent', ['price' => $row->price])
-                    ]);
-                break;
-            case 'calculateDelivery':
-                $T = new Takeout();
-                $data = $T->getDeliveryInfo([
-                    'address' => $request->post('address'),
-                    'zip' => $request->post('zip'),
-                    'deliveryTime' => $request->post('deliveryTime')
-                ]);
-
-                $O->setSessionDeliveryInfo($data);
-                return '<pre>' . print_r($data, true) . '</pre>';
                 break;
             default:
                 abort(404);
@@ -461,7 +434,7 @@ class OrderController extends Controller
 
     public function areaPage($area)
     {
-        $fixAreas = TakeoutZonesModel::query()
+        $fixAreas =  TakeoutZonesModel::query()
             ->whereNull('area_slug')
             ->get();
 

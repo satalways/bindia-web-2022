@@ -274,7 +274,7 @@ class Orders extends Model
         }
         $keys["Data"]["OrderPrice"] = $this->getTotalAmountAttribute() - $this->delivery_fee;
         //$keys["Data"]["PickupDate"] = date("Y-m-d", strtotime($delivery_time_et)) . "T" . date("H:i:s", strtotime($delivery_time_et));  //"2015-07-30T21:30:00";
-        $keys["Data"]["PickupDate"] = $this->etakeaway_pickup_time->toAtomString();
+        $keys["Data"]["PickupDate"] = $this->etakeaway_pickup_time ? $this->etakeaway_pickup_time->toAtomString() : '';
 
         $keys["Data"]["RecipientName"] = trim($name);
         $keys["Data"]["RecipientAddress"] = $address;

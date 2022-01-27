@@ -17,7 +17,7 @@ class Feedback
         $args = set_args($args, $default);
 
         $data['time'] = Carbon::now();
-        $data['ip'] = request()->ip();
+        $data['ip'] = getIP();
 
         if (blank($args['type'])) return 'Feedback type missing.';
         $data['type'] = $args['type'];

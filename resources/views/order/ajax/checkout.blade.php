@@ -298,7 +298,7 @@
 
                         </div>
                         <div class="col-md-3 col-4 bn-pr-mobile">
-                            <input type="hidden" class="form-control" placeholder="{{ __('global.postal_code') }}"
+                            <input type="hidden" class="form-control update2" placeholder="{{ __('global.postal_code') }}"
                                    name="shipping_postal_code" readonly="readonly"
                                    value="{{ $items['checkout']['shipping_postal_code'] ?? '' }}" id="postal_code">
                             <label class="bn-date-time">{{ __('global.select_date') }}</label>
