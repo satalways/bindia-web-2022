@@ -15,6 +15,18 @@
             cursor: pointer;
         }
 
+        input.i:invalid, select.i:invalid {
+            border: 1px solid #cc0000 !important;
+        }
+
+        input.error {
+            border: 1px solid #cc0000 !important;
+        }
+
+        input.i:valid, input.success, select.i:valid {
+            border: 1px solid #2f8f2f !important;
+        }
+
         .dropdown-menu,
         span.twitter-typeahead .tt-menu {
             position: absolute;
@@ -118,7 +130,7 @@
         var LastDeliveryFee = 0;
 
         var datePicker = function (minDate, minTime) {
-            $('[name=date]').pickadate({
+            $('#date').pickadate({
                 //weekdaysShort: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
                 showMonthsShort: true,
                 format: 'dd-mm-yyyy',
@@ -148,17 +160,33 @@
 
         var loadItems = function (loadDiv = true) {
             if (loadDiv) showLoader();
-            $.ajax({
-                url: '{{ route('checkout.post') }}',
-                method: 'post',
-                data: {action: 'loadCart'},
-                error: function (e1, e2, e3) {
+
+            var Form = $('#checkoutForm');
+
+            if (Form.length === 0) {
+                $.ajax({
+                    url: '{{ route('checkout.post') }}',
+                    method: 'post',
+                    data: {action: 'updateSessionCart'},
+                    error: function (e1, e2, e3) {
+                        hideLoader();
+                    }
+                }).done(function (data) {
                     hideLoader();
-                }
-            }).done(function (data) {
-                hideLoader();
-                initObjects(data);
-            });
+                    initObjects(data);
+                });
+            } else {
+                Form.find('[name=action]').val('updateSessionCart');
+                Form.ajaxSubmit({
+                    error: function (e1, e2, e3) {
+                        console.error(e3);
+                    },
+                    success: function (data) {
+                        hideLoader();
+                        initObjects(data);
+                    }
+                });
+            }
         }
 
         var initObjects = function (data) {
@@ -210,11 +238,12 @@
                             $('#shipping_city').val(item.data.supplerendebynavn);
                         }
                         var Form = $('#checkoutForm');
+                        $('#shipping_address').trigger('blur').removeClass('error');
                         Form.find('[name=action]').val('updateSessionCart');
                         Form.trigger('submit');
                     } else {
                         $('#postal_code').val('');
-                        $('#shipping_address').trigger('blur');
+                        $('#shipping_address').trigger('blur').addClass('error');
                         setTimeout(function () {
                             $('#shipping_address').trigger('focus');
                         }, 100);
@@ -229,7 +258,9 @@
                 })
             ;
 
-            if (data.isDelivery && $.trim(data.delivery_fee) != '' && data.delivery_fee !== LastDeliveryFee) {
+            $('#shipping_address, #time').trigger('input');
+
+            if (data.isDelivery && $.trim(data.delivery_fee) !== '' && data.delivery_fee !== LastDeliveryFee) {
                 LastDeliveryFee = data.delivery_fee;
                 alert(LastDeliveryFee);
                 //alert('The delivery fee for this order is ' + LastDeliveryFee);
@@ -297,7 +328,7 @@
                     if (Action !== 'updateSessionCart2') {
                         showLoader();
 
-                        console.error($('#postal_code').val());
+                        //console.error($('#postal_code').val());
                     }
                     $('#checkoutForm').ajaxSubmit({
                         error: function (e1, e2, e3) {
@@ -314,19 +345,18 @@
                                     $('[name=time]').val(data.new_time);
                                 }
 
-                                initObjects(data);
-
                                 if (Action === 'updateSessionCart') {
                                     hideLoader();
                                     if (data.is_delivery && $.trim(data.delivery_fee) === '' && data.post.shipping_postal_code && data.post.shipping_address) {
-                                        setTimeout(function () {
-                                            alert('Bindia can not deliver on this address');
-                                        }, 2000);
+                                        alert('Bindia can not deliver on this address');
+                                        $('#checkoutButton').prop('disabled', true);
+                                        $('#shipping_address').addClass('error')
+                                        $('#postal_code').val('');
                                         //$('#shipping_address').val('');
                                         return false;
                                     }
 
-                                    loadItems();
+                                    initObjects(data);
                                 } else if (Action === 'makeOrder') {
                                     if (data.substr(0, 4) === 'GOTO') {
                                         window.location.href = data.substr(4);
@@ -367,6 +397,8 @@
                 .on('input', '#shipping_address', function () {
                     if ($.trim($(this).val()) === '') {
                         $('#checkoutButton').prop('disabled', true);
+                        $('#shipping_address').addClass('error');
+                        $('#shipping_address').removeClass('success');
                         $('#postal_code').val('');
                         return;
                     }
@@ -377,6 +409,8 @@
 
                     if (!result) {
                         $('#postal_code').val('');
+                        $('#shipping_address').addClass('error');
+                        $('#shipping_address').removeClass('success');
                         $('#checkoutButton').prop('disabled', true);
                         return;
                     }
@@ -384,11 +418,29 @@
                     var isPostalCode = false;
                     $.each(result, function (i, val) {
                         if (val.length === 4) isPostalCode = true;
-                    })
+                    });
 
-                    $('#checkoutButton').prop('disabled', !isPostalCode);
+                    if (!isPostalCode) {
+                        $('#postal_code').val('');
+                        $('#shipping_address').addClass('error');
+                        $('#shipping_address').removeClass('success');
+                        $('#checkoutButton').prop('disabled', true);
+                        return;
+                    }
+
+                    $('#shipping_address').removeClass('error');
+                    $('#shipping_address').addClass('success');
+                    $('#checkoutButton').prop('disabled', false);
                 })
-
+                .on('input', '#time', function () {
+                    if ($(this).val() === '') {
+                        $(this).addClass('error');
+                        $(this).removeClass('success');
+                    } else {
+                        $(this).addClass('success');
+                        $(this).removeClass('error');
+                    }
+                })
         });
     </script>
 @endsection

@@ -112,10 +112,13 @@ class OrderController extends Controller
             case 'updateSessionCart':
             case 'updateSessionCart2':
                 $post = $request->post();
-                if (isset($post['delivery']) && $post['delivery'] === 'By Taxi') {
-                    $post['payment_type'] = 'card';
+
+                if (isset($post['delivery'])) {
+                    if ($post['delivery'] === 'By Taxi') {
+                        $post['payment_type'] = 'card';
+                    }
+                    session()->put('checkout', $post);
                 }
-                session()->put('checkout', $post);
 
                 if ($request->post('action') === 'updateSessionCart2') {
                     //break;
@@ -150,12 +153,14 @@ class OrderController extends Controller
                     $minDate = 0;
                 }
 
-                if ($now->isToday()) {
+                $date = Carbon::create($items['checkout']['date']);
+
+                if ($date->isToday()) {
                     if (($now->hour * 60 + $now->minute) < (16 * 60 + config('order.order_prep_time'))) {
-                        # If current time is less then 16:00
+                        # If current time is less than 16:00
                         $minTime = '16:' . config('order.order_prep_time');
                     } else if (($now->hour * 60 + $now->minute) > (19 * 60 - config('order.order_prep_time'))) {
-                        # If current time is later then 18:40 then select next date and next day's time
+                        # If current time is later than 18:40 then select next date and next day's time
                         $minTime = '16:' . config('order.order_prep_time');
                         $minDate = 1;
                     } else {
@@ -196,7 +201,6 @@ class OrderController extends Controller
                     'isDelivery' => $items['isDelivery'],
                     'isOrange' => $items['isOrange'],
                     'DeliveryData' => $items['DeliveryData'],
-                    //'items' => $items,
                     'html' => view('order.ajax.checkout', [
                         'items' => $items,
                         'cartItems' => $O->getSessionCart(),
@@ -434,7 +438,7 @@ class OrderController extends Controller
 
     public function areaPage($area)
     {
-        $fixAreas =  TakeoutZonesModel::query()
+        $fixAreas = TakeoutZonesModel::query()
             ->whereNull('area_slug')
             ->get();
 

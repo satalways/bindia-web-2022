@@ -274,18 +274,19 @@
             <div class="bn-check-out-from">
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="email" class="form-control update2 cookie" placeholder="{{ __('global.email') }}"
+                        <input type="email" class="form-control i update2 cookie" placeholder="{{ __('global.email') }}"
                                name="shipping_email" value="{{ $items['checkout']['shipping_email'] ?? '' }}"
                                required="required">
                     </div>
                     <div class="col-md-3">
-                        <input type="tel" class="form-control update2 cookie" placeholder="{{ __('global.phone') }}"
-                               name="shipping_phone" value="{{ $items['checkout']['shipping_phone'] ?? '' }}">
+                        <input type="tel" class="form-control i update2 cookie" placeholder="{{ __('global.phone') }}"
+                               name="shipping_phone" value="{{ $items['checkout']['shipping_phone'] ?? '' }}"
+                               required="required">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control update2 cookie" placeholder="{{ __('global.name') }}"
+                        <input type="text" class="form-control i update2 cookie" placeholder="{{ __('global.name') }}"
                                name="customer_name"
-                               value="{{ $items['checkout']['customer_name'] ?? '' }}">
+                               value="{{ $items['checkout']['customer_name'] ?? '' }}" required="required">
                     </div>
                 </div>
                 @if( isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi' )
@@ -294,16 +295,17 @@
                             <input type="text" class="form-control update2" placeholder="{{ __('global.address') }}"
                                    id="shipping_address" name="shipping_address" autocomplete="off"
                                    value="{{ $items['checkout']['shipping_address'] ?? '' }}"
-                                   data-url="{{ route('checkout.address') }}">
+                                   data-url="{{ route('checkout.address') }}" required="required">
 
                         </div>
                         <div class="col-md-3 col-4 bn-pr-mobile">
-                            <input type="hidden" class="form-control update2" placeholder="{{ __('global.postal_code') }}"
+                            <input type="hidden" class="form-control update2"
+                                   placeholder="{{ __('global.postal_code') }}"
                                    name="shipping_postal_code" readonly="readonly"
                                    value="{{ $items['checkout']['shipping_postal_code'] ?? '' }}" id="postal_code">
                             <label class="bn-date-time">{{ __('global.select_date') }}</label>
-                            <input type="text" class="form-control update2" name="date" id="date"
-                                   value="{{ $items['checkout']['date'] ?? \Carbon\Carbon::today()->format(config('date_format')) }}"
+                            <input type="text" class="form-control i success" name="date" id="date" required="required"
+                                   value="{{ !empty($items['checkout']['date']) ? \Carbon\Carbon::create($items['checkout']['date'])->format(config('app.date_format')) : \Carbon\Carbon::today()->format(config('app.date_format')) }}"
                                    min="{{ \Carbon\Carbon::today()->toDateString() }}">
                         </div>
                         <div class="col-md-3 col-8">
@@ -312,7 +314,7 @@
                                    value="{{ $items['checkout']['shipping_city'] ?? '' }}"
                                    readonly="readonly">
                             <label class="bn-date-time">{{ __('global.select_time') }}</label>
-                            <input type="text" class="form-control update2" id="time"
+                            <input type="text" class="form-control update2" id="time" required="required" placeholder="Time"
                                    min="{{ $isDelivery ? '16:40' : '16:'.config('order.order_prep_time') }}"
                                    name="time"
                                    value="{{ $time }}">
@@ -321,7 +323,7 @@
                 @else
                     <div class="row">
                         <div class="col-md-6 col-12">
-                            <select class="form-select update2" required="required"
+                            <select class="form-select i update2" required="required"
                                     name="shop" {{ isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi'?'disabled':'' }}>
                                 <option value="">{{ __('checkout.pick_up_at') }}</option>
                                 @foreach(config('shops') as $shop => $array)
@@ -334,13 +336,13 @@
                         </div>
                         <div class="col-md-3 col-6 bn-col-pr-mobile bn-col-lr-mobile position-relative">
                             <label class="bn-date-time">{{ __('global.select_date') }}</label>
-                            <input type="text" class="form-control update2" name="date" id="date"
-                                   value="{{ $items['checkout']['date'] ?? \Carbon\Carbon::today()->format(config('date_format')) }}"
+                            <input type="text" class="form-control success" name="date" id="date"
+                                   value="{{ !empty($items['checkout']['date']) ? \Carbon\Carbon::create($items['checkout']['date'])->format(config('app.date_format')) : \Carbon\Carbon::today()->format(config('app.date_format')) }}"
                                    min="{{ \Carbon\Carbon::today()->toDateString() }}">
                         </div>
                         <div class="col-md-3 col-6 bn-col-lr-mobile position-relative">
                             <label class="bn-date-time">{{ __('global.select_time') }}</label>
-                            <input type="text" class="form-control update2" id="time"
+                            <input type="text" class="form-control update2" id="time" placeholder="Time"
                                    min="{{ '16:'.config('order.order_prep_time') }}"
                                    name="time"
                                    value="{{ $time }}">
@@ -370,8 +372,8 @@
                 <div class="col-md-9 col-8">
                     <div class="bn-radio-order bn-check-box-order">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="term_accept" id="policy-choose"
-                                   value="1" required>
+                            <input class="form-check-input i" type="checkbox" name="term_accept" id="policy-choose"
+                                   value="1" required="required">
                             <label class="form-check-label" for="policy-choose">
                                 {!! __('checkout.i_accept_checkout_terms', ['link' => route('terms_and_conditions')]) !!}
                             </label>

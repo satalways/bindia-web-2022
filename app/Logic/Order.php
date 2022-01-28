@@ -209,7 +209,6 @@ class Order
                 'zip' => $checkoutData['shipping_postal_code'],
                 'deliveryTime' => $checkoutData['date'] . ' ' . $checkoutData['time']
             ]);
-            debug($deliveryData);
 
             if (isset($deliveryData->Status) && $deliveryData->Status) {
                 $Data['delivery_fee'] = $deliveryData->Data->DeliveryFee ?? 0;
@@ -543,16 +542,16 @@ class Order
 
             $items = $this->getSessionCartData(true);
             if (!isset($items['DeliveryData'])) {
-                return __('No delivery data found.');
+                return __('Please type valid address for delivery.');
             }
             if (!isset($items['DeliveryData']['PickupDate'])) {
-                return __('No delivery data found.');
+                return __('Please type valid address for delivery.');
             }
             if (!isset($items['DeliveryData']['DeliveryDate'])) {
-                return __('No delivery data found.');
+                return __('Please type valid address for delivery.');
             }
             if (!isset($items['DeliveryData']['RestaurantID'])) {
-                return __('No delivery data found.');
+                return __('Please type valid address for delivery.');
             }
 
             if (!shop($items['DeliveryData']['RestaurantID'])) {
@@ -852,7 +851,7 @@ class Order
             /**
              * Send email to customer if this is not a delivery order.
              */
-            if (!$order->isDelivery()) $O->sendOrderEmailToCustomer($order->id);
+            $O->sendOrderEmailToCustomer($order->id);
 
             $O->sendOrderEmailToShop($order->id);
         }

@@ -30,6 +30,11 @@ class TestController extends Controller
 {
     public function index()
     {
+        die;
+
+
+        $O = new Order();
+        dd($O->sendOrderEmailToCustomer(151907));
 
         $address = "Aage Berntsens Alle";
         dd(filter_var($address, FILTER_SANITIZE_STRING));
