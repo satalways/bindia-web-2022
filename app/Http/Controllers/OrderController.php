@@ -199,7 +199,7 @@ class OrderController extends Controller
                     'time' => $time,
                     'delivery_fee' => !empty($items['delivery_fee']) ? __('checkout.customer_price_consent', ['price' => $items['delivery_fee'] ?? 0]) : '',
                     'isDelivery' => $items['isDelivery'],
-                    'isOrange' => $items['isOrange'],
+                    'isOrange' => $items['isOrange'] ?? false,
                     'DeliveryData' => $items['DeliveryData'],
                     'html' => view('order.ajax.checkout', [
                         'items' => $items,
@@ -207,7 +207,7 @@ class OrderController extends Controller
                         'spice' => $O->getSessionSpice(),
                         'spice2' => $O->getSessionSpiceCountArray(),
                         'time' => $time,
-                        'isOrange' => $items['isOrange'],
+                        'isOrange' => $items['isOrange'] ?? false,
                         'isDelivery' => $items['isDelivery'],
                     ])->render(),
                 ];

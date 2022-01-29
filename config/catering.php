@@ -6,7 +6,7 @@ return [
     'thermo_box_plu' => 987,
     'min_people' => 8,
     'menu1' => [
-        'price' => 200,
+        'price' => 250,
         'default1' => 501,
         'default2' => 541,
         'default3' => 532,
@@ -14,7 +14,7 @@ return [
         'points_per_person' => 5,
     ],
     'menu2' => [
-        'price' => 300,
+        'price' => 275,
         'default1' => 501,
         'default2' => 541,
         'default3' => 532,
@@ -22,7 +22,7 @@ return [
         'points_per_person' => 6,
     ],
     'menu3' => [
-        'price' => 400,
+        'price' => 340,
         'default1' => 501,
         'default2' => 541,
         'default3' => 532,
@@ -30,7 +30,7 @@ return [
         'points_per_person' => 7,
     ],
     'menu4' => [
-        'price' => 500,
+        'price' => 370,
         'default1' => 501,
         'default2' => 541,
         'default3' => 532,

@@ -14,7 +14,7 @@
             gtag('config', 'UA-58516958-1');
         </script>
     @endif
-
+    <meta name="ahrefs-site-verification" content="7f7540f4be12a33e5bc0c0f43d25e94552ca22a2b66bc8242653f148ace06102">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ isset($seo->title_en) ? $seo->getTitle() : ($title ?? 'Bindia Indisk Mad') }}</title>

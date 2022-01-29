@@ -149,9 +149,9 @@ class Order
             }
 
             $Data = $this->calculateItems($items);
-            //$Data['isOrange'] = $checkout && $checkoutData['payment_type'] === 'card' && $checkoutData['delivery'] === 'Pickup at Shop';
+            $Data['isOrange'] = $checkout && $checkoutData['payment_type'] === 'card' && $checkoutData['delivery'] === 'Pickup at Shop';
 
-            if ($Data['isOrange']) {
+            if  (isset($Data['isOrange']) && $Data['isOrange']) {
                 if ($Data['total_price_orange'] < $giftCardDiscount) {
                     $giftCardDiscount = $Data['total_price_orange'];
                     $Data['total_price_orange'] = 0;
