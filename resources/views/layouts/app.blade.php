@@ -52,6 +52,7 @@
     <meta name="og:phone_number" content="+45 30 25 88 38"/>
 
     <link href="{{ request()->url() }}" rel="canonical">
+    <meta name='dmca-site-verification' content='cnpuVEdmL1VUZjJHVnZlQ3RkYklHdz090' />
 
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <style>

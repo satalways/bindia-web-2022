@@ -30,19 +30,8 @@ class TestController extends Controller
 {
     public function index()
     {
-        die;
-
-
-        $O = new Order();
-        dd($O->sendOrderEmailToCustomer(151907));
-
-        $address = "Aage Berntsens Alle";
-        dd(filter_var($address, FILTER_SANITIZE_STRING));
-        $address = "123 My Street, My Area, My City, AA11 1AA";
-        $splitter = "!(.*)(?=,),(?<=,)\s*(.*)!";
-        preg_match_all($splitter,$address,$matches);
-
-        debug($matches);
+        //return Nets::getPaymentInfo('00d00000620eb7c5d96f0e893d79e58d');
+        dd(Order::checkOrdersIfNotMarkPaid());
 
 //        $short_addr = $matches[1][0];
 //        $postal_code = $matches[2][0];

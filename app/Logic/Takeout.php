@@ -2,6 +2,8 @@
 /**
  * https://dawadocs.dataforsyningen.dk/dok/adresser
  *
+ * https://tech.dibspayment.com/easy/api/paymentapi#getPayment
+ *
  * https://clientapi-takeoutdk.takeoutsystem.net/V1/Documentation/?p=F_GetDeliveryInfo
  * username = [blank]
  * pass = orderpartner

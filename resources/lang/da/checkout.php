@@ -48,4 +48,8 @@ return [
     'view_receipt' => 'Vis kvittering',
     'delivery_order_not_allowed_on_date' => 'Delivery orders are not available on :date',
     'no_bindia_shop' => 'No Bindia shop is available for delivery on this address',
+    'online_payment_disabled' => 'Pga. nedbrud hos Nets (vores betalingsløsning) har vi resten af dagen desværre IKKE mulighed for at tage imod betalinger i webshoppen. Du skal derfor vælge "Betaling i butikken" ved checkout.
+Vi kigger alle ordrer igennem i morgen (tirsdag 1. feb.), og udsteder gavekort til alle kunder, på forskellen mellem de orange priser (der af ovennævnte grunde ikke kan opnås i dag) og de almindelige priser, som vi er nødt til at henvise til i dag.
+Dvs. hvis du med de orange priser skulle have betalt 220 kr., men du med de almindelige priser betaler 275 kr, laver vi et gavekort på 275-220 = 55 kr.
+Vi beklager ulejligheden og håber på jeres forståelse!'
 ];

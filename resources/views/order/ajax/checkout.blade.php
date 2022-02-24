@@ -292,7 +292,7 @@
                 @if( isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi' )
                     <div class="row bn-from-bottom-space">
                         <div class="col-md-6 col-12">
-                            <input type="text" class="form-control update2" placeholder="{{ __('global.address') }}"
+                            <input type="text" class="form-control update2" placeholder="Address (Street Name, Postal Code, City)"
                                    id="shipping_address" name="shipping_address" autocomplete="off"
                                    value="{{ $items['checkout']['shipping_address'] ?? '' }}"
                                    data-url="{{ route('checkout.address') }}" required="required">

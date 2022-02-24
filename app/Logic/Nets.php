@@ -20,8 +20,9 @@ class Nets
         return self::Test() ? config('order.nets.test.js_file') : config('order.nets.live.js_file');
     }
 
-    public static function secretKey()
+    public static function secretKey($returnLive = false)
     {
+        if ($returnLive) return config('order.nets.live.secret_key');
         return self::Test() ? config('order.nets.test.secret_key') : config('order.nets.live.secret_key');
     }
 
@@ -30,8 +31,9 @@ class Nets
         return self::Test() ? config('order.nets.test.checkout_key') : config('order.nets.live.checkout_key');
     }
 
-    public static function endPointURL()
+    public static function endPointURL($returnLive = false)
     {
+        if ($returnLive) return config('order.nets.live.url');
         return self::Test() ? config('order.nets.test.url') : config('order.nets.live.url');
     }
 
@@ -253,12 +255,29 @@ class Nets
             if ($curl->error) {
                 return $curl->errorCode . ': ' . $curl->errorMessage;
             } else {
-                if (isset( $curl->response->paymentId )) return $curl->response->paymentId;
-                if (isset( $curl->response->paymentid )) return $curl->response->paymentid;
+                if (isset($curl->response->paymentId)) return $curl->response->paymentId;
+                if (isset($curl->response->paymentid)) return $curl->response->paymentid;
                 return null;
             }
         } catch (Exception $exception) {
             return $exception->getMessage();
+        }
+    }
+
+    public static function getPaymentInfo($paymentID)
+    {
+
+        $url = self::endPointURL(true) . '/payments/' . $paymentID;
+
+        $curl = new \Curl\Curl();
+        $curl->setHeader('Content-Type', 'application/x-www-form-urlencoded');
+        $curl->setHeader('Authorization', self::secretKey(true));
+        $curl->get($url);
+
+        if ($curl->error) {
+            return $curl->errorCode . ': ' . $curl->errorMessage . "\n";
+        } else {
+            return $curl->response;
         }
     }
 }

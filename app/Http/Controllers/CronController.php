@@ -17,7 +17,7 @@ class CronController extends Controller
 
     public function fiveMin()
     {
-
+        Order::checkOrdersIfNotMarkPaid();
     }
 
     public function oneDay()

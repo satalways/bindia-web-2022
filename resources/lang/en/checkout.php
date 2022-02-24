@@ -47,4 +47,8 @@ return [
     'view_receipt' => 'View Receipt',
     'delivery_order_not_allowed_on_date' => 'Delivery orders are not available on :date',
     'no_bindia_shop' => 'No Bindia shop is available for delivery on this address',
+    'online_payment_disabled' => "Due to a breakdown at Nets (our payment gateway) we are forced to disable payments in the web shop for the rest of today. You will therefore have to select \"Pay at the shop\" when checking out.
+Tomorrow (Tuesday Feb 1st) we'll look through all orders of today and issue gift cards to all customers for the value of the difference between the Orange Prices (that are not available for the rest of the day) and our regular prices.
+This means that if your order would have been 220 DKK with the Orange Prices, but you now have to pay 275 DKK, we will issue a gift card of 275-220 = 55 DKK.
+We're sorry for the inconvenience and hope for your understanding!"
 ];

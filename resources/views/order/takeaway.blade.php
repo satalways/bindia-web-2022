@@ -181,8 +181,9 @@
                                                  alt="">
                                         </div>
                                         <div class="col-md-5 bn-bg-product bn-border-right bn-orange-border-mobile">
-                                            <a href="{{ route('item', ['slug' => $item->slug]) }}"
-                                               style="text-decoration: none !important;" target="_blank">
+{{--                                            <a href="{{ route('item', ['slug' => $item->slug]) }}"--}}
+{{--                                               style="text-decoration: none !important;" target="_blank">--}}
+
                                                 {{--                                                @if(in_array($item->section,['bn-curries','bn-veg']))--}}
                                                 {{--                                                    <h2>--}}
                                                 {{--                                                        {{ $item->name }}--}}
@@ -194,7 +195,8 @@
                                                 {{--                                                @else--}}
                                                 <h2>{{ $item->name }}</h2>
                                                 {{--                                                @endif--}}
-                                            </a>
+
+{{--                                            </a>--}}
 
                                             <p>{{ getCurrentLang()=='da'?$item->description_dk:$item->description_en }}</p>
                                             <div class="bn-icon">

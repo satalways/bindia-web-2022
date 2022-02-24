@@ -55,7 +55,13 @@ class Feedback extends Model
 
     public function getComment()
     {
-        return !str_starts_with($this->question_5_answer, 'rating') ? trim($this->question_5_answer) : trim($this->question_6_answer);
+        $comment = trim($this->question_7_answer);
+
+        if (blank($comment)) {
+            $comment = !str_starts_with($this->question_5_answer, 'rating') ? trim($this->question_5_answer) : trim($this->question_6_answer);
+        }
+
+        return $comment;
     }
 
     public function limitedComment()

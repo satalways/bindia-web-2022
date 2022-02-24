@@ -481,10 +481,26 @@ class OrderController extends Controller
     {
         $item = OrderItems::query()->where('slug', $slug)->where('active', true)->firstOrFail();
 
+        $seo = seo($slug);
+        $content = null;
+        $title = null;
+        if ($seo && getCurrentLang() == 'en') {
+            $content = $seo->description_en ?? null;
+            $title = $seo->title_en;
+        } else if ($seo) {
+            $content = $seo->description ?? null;
+            $title = $seo->title;
+        }
+
+        if (!$title) {
+            $title = getCurrentLang() == 'en' ? $item->name . ' Copenhagen - Indian Food Take Away - Bindia.Dk' : $item->name . ' København - Indisk Mad Takeaway - Bindia.Dk';
+        }
+
         return view('order.item', [
             'item' => $item,
-            'title' => getCurrentLang() == 'en' ? $item->name . ' Copenhagen - Indian Food Take Away - Bindia.Dk' : $item->name . ' København - Indisk Mad Takeaway - Bindia.Dk',
-            'description' => (getCurrentLang() == 'en' ? $item->name . ' Copenhagen - ' : $item->name . ' København - ') . $item->getDescription()
+            'title' => $title,
+            'description' => (getCurrentLang() == 'en' ? $item->name . ' Copenhagen - ' : $item->name . ' København - ') . $item->getDescription(),
+            'content' => $content
         ]);
     }
 }

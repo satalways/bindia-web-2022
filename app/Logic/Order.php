@@ -79,7 +79,7 @@ class Order
             $Data['bags_price'] = 0;
         }
 
-        if ($Data['isOrange']) {
+        if ($checkout && $Data['isOrange']) {
             $Data['total_price'] = $Data['total_price_orange'];
         }
 
@@ -151,7 +151,7 @@ class Order
             $Data = $this->calculateItems($items);
             $Data['isOrange'] = $checkout && $checkoutData['payment_type'] === 'card' && $checkoutData['delivery'] === 'Pickup at Shop';
 
-            if  (isset($Data['isOrange']) && $Data['isOrange']) {
+            if (isset($Data['isOrange']) && $Data['isOrange']) {
                 if ($Data['total_price_orange'] < $giftCardDiscount) {
                     $giftCardDiscount = $Data['total_price_orange'];
                     $Data['total_price_orange'] = 0;
@@ -258,7 +258,7 @@ class Order
             'delivery_fee' => $Data['delivery_fee'],
             'isOrange' => isset($Data['isOrange']) ? $Data['isOrange'] : true,
             'DeliveryData' => $Data['DeliveryData'] ?? [],
-            'isDelivery' => $Data['isDelivery']
+            'isDelivery' => $Data['isDelivery'] ?? false
         ];
     }
 
@@ -358,6 +358,11 @@ class Order
         if (!in_array($data['payment_type'], ['card', 'atshop'])) {
             return 'Invalid order payment type';
         }
+
+//        if ($data['payment_type'] == 'card') {
+//            return __('checkout.online_payment_disabled');
+//        }
+
         /**
          * Variable will detect if order is for online payment.
          */
@@ -541,6 +546,7 @@ class Order
 //            if (!$row) return __('checkout.invalid_postal_code');
 
             $items = $this->getSessionCartData(true);
+
             if (!isset($items['DeliveryData'])) {
                 return __('Please type valid address for delivery.');
             }
@@ -568,8 +574,7 @@ class Order
             $additional_minutes = (int)isset($online_order_settings[shop($items['DeliveryData']['RestaurantID'])->code]["additional"]) ? $online_order_settings[shop($items['DeliveryData']['RestaurantID'])->code]["additional"] : 0;
             if ($minTimeDifference < 20) $minTimeDifference = 20;
             if ($dateTime->dayName === 'Friday' || $dateTime->dayName === 'Saturday') $minTimeDifference = 30;
-            $minutes_difference = $additional_minutes + $minTimeDifference;
-
+            $minutes_difference = $additional_minutes + $minTimeDifference + $items['DeliveryData']['DeliveryTime'];
             $minTimeCarbon = Carbon::create($items['DeliveryData']['PickupDate']->toDateString() . ' 16:00:00')->addMinutes($minutes_difference);
             if ($minTimeCarbon->greaterThan($items['DeliveryData']['PickupDate'])) {
                 return 'Order can not place before ' . $minTimeCarbon->addMinutes($items['DeliveryData']['DeliveryTime'])->format(config('app.date_time_format'));
@@ -620,7 +625,8 @@ class Order
 
             $now = Carbon::now();
             if ($now->diffInMinutes($dateTime) < $minutes_difference) {
-                return __('checkout.need_preparation_time', ['minutes' => $minutes_difference]);
+                return 'You can not submit this order before ' . $now->addMinutes($minutes_difference)->format(config('app.date_time_format'));
+                //return __('checkout.need_preparation_time', ['minutes' => $minutes_difference]);
                 // We need :minutes at least to prepare food.
             }
 
@@ -876,7 +882,6 @@ class Order
 
 
         foreach ($orders as $order) {
-            if ($order->id === 151832) continue;
             $r = $order->createTakeoutOrder();
             if ($r !== 'OK') {
                 $content = print_r($r, true);
@@ -938,5 +943,26 @@ class Order
         return Storage::deleteDirectory('orders' . DIRECTORY_SEPARATOR . 'invoices');
     }
 
+    /**
+     * Check un-finished orders if chargeId found from Net's server.
+     */
+    public static function checkOrdersIfNotMarkPaid()
+    {
+        $orders = Orders::query()
+            ->whereDate('order_time', Carbon::today())
+            ->where('payment_type', 'card')
+            ->where('paid', false)
+            ->where('order_time', '<=', Carbon::now()->subMinutes(10))
+            ->where('order_time', '>=', Carbon::now()->subMinutes(30))
+            ->select(['id', 'payment_id'])
+            ->get();
 
+        $obj = new self();
+        foreach ($orders as $order) {
+            $response = Nets::getPaymentInfo($order->payment_id);
+            if (isset($response->payment->charges[0]->chargeId)) {
+                $obj->markOrderPaid($order->id);
+            }
+        }
+    }
 }
