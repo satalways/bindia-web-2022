@@ -71,14 +71,14 @@
             </div>
             <div class="row">
                 <div class="col-lg-6 col-12">
-                    <div class="bn-faq-text-item">
-                        <h2>{{ __('faq.question_7_i') }}</h2>
-                        <p>{{ __('faq.answer_7_i') }}</p>
-                    </div>
-                    <div class="bn-faq-text-item">
-                        <h2>{{ __('faq.question_7') }}</h2>
-                        <p>{{ __('faq.answer_7') }}</p>
-                    </div>
+{{--                    <div class="bn-faq-text-item">--}}
+{{--                        <h2>{{ __('faq.question_7_i') }}</h2>--}}
+{{--                        <p>{{ __('faq.answer_7_i') }}</p>--}}
+{{--                    </div>--}}
+{{--                    <div class="bn-faq-text-item">--}}
+{{--                        <h2>{{ __('faq.question_7') }}</h2>--}}
+{{--                        <p>{{ __('faq.answer_7') }}</p>--}}
+{{--                    </div>--}}
                     <div class="bn-faq-text-item">
                         <h2>{{ __('faq.question_8') }}</h2>
                         <p>{{ __('faq.answer_8') }}</p>

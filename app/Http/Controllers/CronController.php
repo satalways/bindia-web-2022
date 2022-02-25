@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Logic\Order;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CronController extends Controller
@@ -13,11 +14,14 @@ class CronController extends Controller
         $O->sendOrdersToTakeOut();
 
         //send_mail('shakeel@shakeel.pk', 'Testing 1 min cron', 'Is it delivered?');
+        if (Carbon::now()->minute % 5 == 0) {
+            Order::checkOrdersIfNotMarkPaid();
+        }
     }
 
     public function fiveMin()
     {
-        Order::checkOrdersIfNotMarkPaid();
+
     }
 
     public function oneDay()
