@@ -19,10 +19,11 @@ class App extends Controller
     {
         $feedbacks = Feedback::query()
             ->orderByDesc('id')
-            ->where('user_rating', 5)
+            //->where('user_rating', 5)
             ->where('time', '>=', Carbon::now()->subMonths(3))
             ->where('published', true)
             ->where('deleted', false)
+            ->orderByDesc('id')
 //            ->where(function ($query) {
 //                $query->where(function ($query) {
 //                    $query->where('type', 'weborder')

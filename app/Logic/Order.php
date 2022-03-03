@@ -952,7 +952,7 @@ class Order
             ->whereDate('order_time', Carbon::today())
             ->where('payment_type', 'card')
             ->where('paid', false)
-            ->where('order_time', '<=', Carbon::now()->subMinutes(5))
+            ->where('order_time', '<=', Carbon::now()->subMinutes(2))
             ->where('order_time', '>=', Carbon::now()->subMinutes(30))
             ->select(['id', 'payment_id'])
             ->get();

@@ -14,7 +14,7 @@ class CronController extends Controller
         $O->sendOrdersToTakeOut();
 
         //send_mail('shakeel@shakeel.pk', 'Testing 1 min cron', 'Is it delivered?');
-        if (Carbon::now()->minute % 5 == 0) {
+        if (Carbon::now()->minute % 10 == 0) {
             Order::checkOrdersIfNotMarkPaid();
         }
     }
