@@ -189,7 +189,7 @@ class Nets
         } catch (\Exception $exception) {
             return $exception->getMessage();
         }
-        if (!$giftCard) return 'Gift card not found in database.';
+        if (!$giftCard) return __('gc.not_found');
 
         $orderUniqueID = 'GC' . $giftCard->id;
 

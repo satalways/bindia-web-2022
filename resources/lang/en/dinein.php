@@ -10,7 +10,7 @@ return [
         <div class="col-xl-5 col-lg-6 col-md-6 col-sm-6 col-12">
             <div class="bn-content-menu">
                 <p>At Bindia you are welcome to enjoy your meal in all of our shops, for the same great price as take away.</p>
-                <p>Some of our shops have significantly better dine-in facilities (more space and seating) than others. Therefore, we recommend that you use the links to the right to see the shops from the inside. This way you can figure out which shop suits your purpose the best.</p>
+                <p>Some of our shops have significantly better dine-in facilities (more space and seating) than others. Therefore, we recommend that you use the shop links to see the shops from the inside. This way you can figure out which shop suits your purpose the best.</p>
             </div>
         </div>
         <div class="col-xl-3 col-lg-2 col-md-2 col-sm-2 col-12"></div>

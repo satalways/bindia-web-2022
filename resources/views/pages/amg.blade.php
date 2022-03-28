@@ -22,17 +22,36 @@
                         <small><strong>{{ __('global.closed') }}</strong> {{ __('global.closing_dates') }}.</small>
                         <small><strong>{{ __('shop.all') }}</strong> {{ __('shop.other_days') }}</small>
                     </div>
-                    <div class="float-end">
-                        {{--                        <a href="https://www.findsmiley.dk/903529" target="_blank">--}}
-                        <img src="{{ asset('asstes/image/shop/smile.svg') }}" alt=""
-                             onclick="window.open('https://www.findsmiley.dk/903529')" style="cursor: pointer">
-                        {{--                        </a>--}}
-                        <img src="{{ asset('asstes/image/shop/map-holder.svg') }}" alt=""
-                             onclick="window.open('{{ shop('amg')->map_link }}')" style="cursor: pointer">
-                    </div>
+{{--                    <div class="float-end">--}}
+{{--                        --}}{{--                        <a href="https://www.findsmiley.dk/903529" target="_blank">--}}
+{{--                        <img src="{{ asset('asstes/image/shop/smile.svg') }}" alt=""--}}
+{{--                             onclick="window.open('https://www.findsmiley.dk/903529')" style="cursor: pointer">--}}
+{{--                        --}}{{--                        </a>--}}
+{{--                        <img src="{{ asset('asstes/image/shop/map-holder.svg') }}" alt=""--}}
+{{--                             onclick="window.open('{{ shop('amg')->map_link }}')" style="cursor: pointer">--}}
+{{--                    </div>--}}
                     <div class="clearfix"></div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="bn-shop-review-box">
+        <div class="container">
+            <a target="_blank" href="https://www.findsmiley.dk/903529"><img src="{{ asset('asstes/image/shop/smile.svg') }}" alt=""></a>
+            <img class="bn-line-width" src="{{ asset('asstes/image/shop/line-line.svg') }}" alt="">
+            <div style="display: inline-block; margin-bottom: -50px;">
+                <div class="review-widget_net" data-uuid="c768ac37-3833-4b53-ad0a-7c3216da819f" data-template="10" data-filter="" data-lang="en" data-theme="light"><center><a href="https://www.review-widget.net/" target="_blank" rel="noopener"><img src="https://grwapi.net/assets/spinner/spin.svg" title="Google Review Widget" alt="Review Widget"></a></center></div><script async type="text/javascript" src="https://grwapi.net/widget.min.js"></script>
+            </div>
+            <img class="bn-line-width" src="{{ asset('asstes/image/shop/line-line.svg') }}" alt="">
+            <div class="bn-text-shop">
+                <a href="{{ shop('amg')->inside_link }}" target="_blank">
+                    Look inside
+                </a>
+            </div>
+            <a href="{{ route('takeaway') }}" class="btn bg-dark btn-lg bn-image-button text-white">
+                {{ __('global.order_now') }}
+            </a>
         </div>
     </div>
 
@@ -50,24 +69,16 @@
 
     <!--Shop Details box-->
 
-    <div class="bn-details-box">
+    <div class="bn-details-box" style="padding-top: 50px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-9 col-12">
                     <div class="bn-details-content">
-                        <div class="text-center mb-5">
-                            <div style="margin-bottom: 15px;">
-                                <div class="review-widget_net" data-uuid="c768ac37-3833-4b53-ad0a-7c3216da819f" data-template="10" data-filter="" data-lang="en" data-theme="light"><center><a href="https://www.review-widget.net/" target="_blank" rel="noopener"><img src="https://grwapi.net/assets/spinner/spin.svg" title="Google Review Widget" alt="Review Widget"></a></center></div><script async type="text/javascript" src="https://grwapi.net/widget.min.js"></script>
-                            </div>
-
-                            <a href="{{ route('takeaway') }}" class="btn btn-lg btn-dark">{{ __('global.order_now') }}</a>
-                            <a href="{{ shop('amg')->rating_link }}" target="_blank" style="text-decoration: none">
-                                <img src="{{ asset('images/google-review.png') }}" alt="" style="height: 50px; width: auto">
-                            </a>
-                            <a href="{{ shop('amg')->inside_link }}" target="_blank" class="btn btn-lg btn-danger">
-                                Inside Our Shop
-                            </a>
-                        </div>
+{{--                        <div class="text-center mb-5">--}}
+{{--                            <a href="{{ shop('amg')->rating_link }}" target="_blank" style="text-decoration: none">--}}
+{{--                                <img src="{{ asset('images/google-review.png') }}" alt="" style="height: 50px; width: auto">--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
 
                         {!! __('amg.seo_text', [
                             'dine_link' => route('dinein'),

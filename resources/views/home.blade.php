@@ -41,26 +41,42 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-center" data-bs-toggle="modal"
-                     data-bs-target="#bn-review-box">
-                    @if(!$feedbacks->isEmpty())
-                        <div class="bn-star-box">
-                            <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-                                class="fas fa-star"></i> <i class="fas fa-star"></i>
-                            <small>{{ $feedbacks->first()->shortName() }}
-                                , {{ $feedbacks->first()->time->format(config('app.date_format')) }}</small>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-center bn-review-box-slider-home"
+                     data-bs-toggle="modal" data-bs-target="#bn-review-box" style="cursor: pointer">
+                    @foreach($feedbacks as $feedback)
+                        <div>
+                            <div class="bn-star-box">
+                                <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
+                                    class="fas fa-star"></i> <i class="fas fa-star"></i> <small>{{ $feedback->shortName() }},
+                                    {{ $feedback->time->format(config('app.date_format')) }}</small>
+                            </div>
+                            <div class="bn-text-review">
+                                <i> <span>&#10075;</span><span>&#10075;</span>{{ $feedback->limitedComment() }}<span>&#10076;</span><span>&#10076;</span> </i>
+                            </div>
                         </div>
-                        <div class="bn-text-review">
-                            <i>
-                                <span>&#10075;</span><span>&#10075;</span>
-                                {{ $feedbacks->first()->limitedComment() }}
-                                <span>&#10076;</span><span>&#10076;</span>
-                            </i>
-                        </div>
-                    @else
-                        <h1>Empty</h1>
-                    @endif
+                    @endforeach
                 </div>
+                {{--                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-center" data-bs-toggle="modal"--}}
+                {{--                     data-bs-target="#bn-review-box">--}}
+                {{--                    @if(!$feedbacks->isEmpty())--}}
+                {{--                        <div class="bn-star-box">--}}
+                {{--                            <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i--}}
+                {{--                                class="fas fa-star"></i> <i class="fas fa-star"></i>--}}
+                {{--                            <small>{{ $feedbacks->first()->shortName() }}--}}
+                {{--                                , {{ $feedbacks->first()->time->format(config('app.date_format')) }}</small>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="bn-text-review">--}}
+                {{--                            <i>--}}
+                {{--                                <span>&#10075;</span><span>&#10075;</span>--}}
+                {{--                                {{ $feedbacks->first()->limitedComment() }}--}}
+                {{--                                <span>&#10076;</span><span>&#10076;</span>--}}
+                {{--                            </i>--}}
+                {{--                        </div>--}}
+                {{--                    @else--}}
+                {{--                        <h1>Empty</h1>--}}
+                {{--                    @endif--}}
+                {{--                </div>--}}
+
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                     <div class="bn-review-box-img bn-trust-img-box">
                         <a href="https://www.trustpilot.com/review/www.bindia.dk" target="_blank">
@@ -96,18 +112,24 @@
                     </div>
                 </div>
                 <div class="col-lg-12" data-aos="fade-up" data-aos-duration="3000">
-                    <img src="{{ asset('asstes/image/item2.png') }}"
-                         data-src="{{ asset('asstes/image/home-one-banner.png') }}" class="lazy" alt="">
+                    <img src="{{ asset('asstes/image/home-one-banner.png') }}" alt="">
+                    <div class="bn-portfolio-section-img-text">
+                        <h3>{{ $randomItem->first()->name }}</h3>
+                        <p>{{ $randomItem->first()->getDescription() }}</p>
+                    </div>
                 </div>
                 <div class="col-lg-6 col-sm-6" data-aos="fade-up" data-aos-duration="3000">
-                    <img src="{{ asset('asstes/image/item2.png') }}"
-                         data-src="{{ asset('asstes/image/home-two-banner.png') }}" alt="" class="lazy">
+                    <img src="{{ asset('asstes/image/home-two-banner.png') }}" alt="">
+                    <div class="bn-portfolio-section-img-text">
+                        <h3>{{ __('global.giftcard') }}</h3>
+                        <p>{{ __('home.give_giftcard') }}</p>
+                    </div>
                 </div>
                 <div class="col-lg-6 col-sm-6" data-aos="fade-up" data-aos-duration="3000">
                     <div class="bn-link-image-box">
-                        <img src="{{ asset('asstes/image/item2.png') }}"
-                             data-src="{{ asset('asstes/image/home-three-banner.png') }}" alt="" class="lazy">
+                        <img src="{{ __('asstes/image/home-three-banner.png') }}" alt="">
                         <div class="bn-menu-b-box">
+                            <h3>{{ __('home.see_our_shops') }}</h3>
                             <ul class="list-unstyled">
                                 @foreach(config('shops') as $shop=>$array)
                                     <li><a class="text-white"
@@ -118,8 +140,11 @@
                     </div>
                 </div>
                 <div class="col-lg-12" data-aos="fade-up" data-aos-duration="3000">
-                    <img src="{{ asset('asstes/image/item2.png') }}"
-                         data-src="{{ asset('asstes/image/home-four-banner.png') }}" alt="" class="lazy">
+                    <img src="{{ asset('asstes/image/home-four-banner.png') }}" alt="">
+                    <div class="bn-portfolio-section-img-text">
+                        <h3>Butter Chicken</h3>
+                        <p>Prov vores fantastiske Butter Chicken</p>
+                    </div>
                 </div>
             </div>
         </div>

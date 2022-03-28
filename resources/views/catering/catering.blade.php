@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+
+@endsection
+
 @section('content')
     <!---->
     <div class="bn-buffet-item bn-buffet-menu-box bn-main-story">
@@ -121,61 +125,69 @@
                                 </div>
                                 <div id="bn-check-last-order1">
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[1][1]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][1] ?? config('catering.menu1.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][1] ?? config('catering.menu1.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][1] ?? config('catering.menu1.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][1] ?? config('catering.menu1.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[1][2]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][2] ?? config('catering.menu1.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][2] ?? config('catering.menu1.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][2] ?? config('catering.menu1.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][2] ?? config('catering.menu1.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[1][3]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][3] ?? config('catering.menu1.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][3] ?? config('catering.menu1.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][3] ?? config('catering.menu1.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][3] ?? config('catering.menu1.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[1][4]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][4] ?? config('catering.menu1.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][4] ?? config('catering.menu1.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][4] ?? config('catering.menu1.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][4] ?? config('catering.menu1.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -257,61 +269,69 @@
                                 </div>
                                 <div id="bn-check-last-order2">
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[2][1]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][1] ?? config('catering.menu2.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][1] ?? config('catering.menu2.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][1] ?? config('catering.menu2.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][1] ?? config('catering.menu2.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[2][2]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][2] ?? config('catering.menu2.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][2] ?? config('catering.menu2.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][2] ?? config('catering.menu2.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][2] ?? config('catering.menu2.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[2][3]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][3] ?? config('catering.menu2.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][3] ?? config('catering.menu2.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][3] ?? config('catering.menu2.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][3] ?? config('catering.menu2.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[2][4]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][4] ?? config('catering.menu2.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][4] ?? config('catering.menu2.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][4] ?? config('catering.menu2.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][4] ?? config('catering.menu2.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -393,61 +413,69 @@
                                 </div>
                                 <div id="bn-check-last-order3">
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[3][1]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][1] ?? config('catering.menu3.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][1] ?? config('catering.menu3.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][1] ?? config('catering.menu3.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][1] ?? config('catering.menu3.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[3][2]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][2] ?? config('catering.menu3.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][2] ?? config('catering.menu3.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][2] ?? config('catering.menu3.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][2] ?? config('catering.menu3.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[3][3]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][3] ?? config('catering.menu3.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][3] ?? config('catering.menu3.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][3] ?? config('catering.menu3.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][3] ?? config('catering.menu3.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[3][4]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][4] ?? config('catering.menu3.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][4] ?? config('catering.menu3.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][4] ?? config('catering.menu3.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][4] ?? config('catering.menu3.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -531,61 +559,71 @@
                                 </div>
                                 <div id="bn-check-last-order4">
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[4][1]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][1] ?? config('catering.menu4.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][1] ?? config('catering.menu4.default1')) ? 'selected': '' }}>
+                                                            {{ $item->name }}
+                                                    </option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][1] ?? config('catering.menu4.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][1] ?? config('catering.menu4.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[4][2]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][2] ?? config('catering.menu4.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][2] ?? config('catering.menu4.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][2] ?? config('catering.menu4.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][2] ?? config('catering.menu4.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[4][3]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][3] ?? config('catering.menu4.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][3] ?? config('catering.menu4.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][3] ?? config('catering.menu4.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][3] ?? config('catering.menu4.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
                                     <div class="bn-radio-order">
-                                        <select class="form-select" aria-label="Default select example"
+                                        <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[4][4]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][4] ?? config('catering.menu4.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][4] ?? config('catering.menu4.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="CURRIES">
                                                 @foreach($curries as $item)
-                                                    <option value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][4] ?? config('catering.menu4.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    <option
+                                                        value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][4] ?? config('catering.menu4.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
                                                 @endforeach
                                             </optgroup>
                                         </select>

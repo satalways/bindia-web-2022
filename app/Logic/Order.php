@@ -7,7 +7,9 @@ use App\Models\OrderDetails;
 use App\Models\OrderItems;
 use App\Models\Orders;
 use App\Models\OrdersGuest;
+use App\Notifications\customerOrderEmail;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -398,7 +400,8 @@ class Order
         }
 
         if ($dateTime->lessThanOrEqualTo(Carbon::now()->addMinutes(config('order.order_prep_time')))) {
-            return __('checkout.min_time_required', ['minutes' => config('order.order_prep_time')]);
+            $dateTime = Carbon::now()->addMinutes(config('order.order_prep_time'));
+            //return __('checkout.min_time_required', ['minutes' => config('order.order_prep_time')]);
         }
 
         $minutesDiff = $this->timeToMinutes($dateTime->format('H:i')) - $this->timeToMinutes($now->format('H:i'));
@@ -724,6 +727,14 @@ class Order
     public function sendOrderEmailToCustomer($orderID)
     {
         $order = Orders::query()->find($orderID);
+
+//        if (localhost()) {
+//            //return Notification::send($order, new customerOrderEmail($orderID));
+//            //return $order->notify(new customerOrderEmail($orderID));
+//            Notification::route('mail', $order->shipping_email)
+//                ->notify(new customerOrderEmail($order));
+//        }
+
         if (!$order) return 'Order not found in database.';
 
         if (!$order->isDelivery() && !$order->isOnlinePayment()) {
@@ -901,7 +912,7 @@ class Order
             ->orderByDesc('id')
             ->first();
 
-        if (!$lastOrder) return 'No order found against this email.';
+        if (!$lastOrder) return __('global.no_previous_order_found');
 
         $this->clearSession();
         $spices = [];

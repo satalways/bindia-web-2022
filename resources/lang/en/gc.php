@@ -10,7 +10,7 @@ return [
     'h2_p' => 'Invoice and order confirmation will be sent to this email address',
     'confirm_and_pay' => 'Confirm and Pay',
     'terms_of_sales_and_delivery' => 'Terms of Sales and Delivery',
-    'not_found' => 'Gift card not found in database',
+    'not_found' => "Unfortunately we couldn't find any gift cards to match the data entered.",
     'rec_name' => 'Recipient\'s Name',
     'rec_phone' => 'Recipient\'s Phone',
     'rec_email' => 'Recipient\'s Email',

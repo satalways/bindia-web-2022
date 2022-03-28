@@ -1,28 +1,36 @@
 @extends('layouts.app')
 
 @section('styles')
-    <style>
-        .bn-image-content-values .row .bn-content-text-header p a {
-            font-size: 22px !important;
-        }
-    </style>
+    @if (!isMobile())
+        <style>
+            .bn-image-content-values .row .bn-content-text-header p a {
+                font-size: 22px !important;
+            }
+        </style>
+    @endif
 @endsection
 
 @section('content')
     <!--Main Breadcrumbs-->
     <div class="bn-breadcrumb-our-values bn-main-story">
-        <img src="{{ asset('asstes/image/our-values/our-values-banner.jpg') }}" data-src="{{ asset('asstes/image/our-values/our-values-banner.png') }}" alt="" class="d-sm-block d-none lazy">
-        <img src="{{ asset('asstes/image/our-values/our-vaues-mobile-banner.jpg') }}" data-src="{{ asset('asstes/image/our-values/our-vaues-mobile-banner.png') }}" alt="" class="d-sm-none d-block lazy">
+        <img src="{{ asset('asstes/image/our-values/our-values-banner.jpg') }}"
+             data-src="{{ asset('asstes/image/our-values/our-values-banner.png') }}" alt=""
+             class="d-sm-block d-none lazy">
+        <img src="{{ asset('asstes/image/our-values/our-vaues-mobile-banner.jpg') }}"
+             data-src="{{ asset('asstes/image/our-values/our-vaues-mobile-banner.png') }}" alt=""
+             class="d-sm-none d-block lazy">
     </div>
     <!--Main end Breadcrumbs-->
     <!-- Profile box-->
     <div class="bn-profile-values bn-main-story">
         <div class="container">
             <div class="bn-profile-item">
-                <img src="{{ asset('asstes/image/our-values/porfile-image.jpg') }}" data-src="{{ asset('asstes/image/our-values/porfile-image.png') }}" class="lazy" alt="">
+                <img src="{{ asset('asstes/image/our-values/porfile-image.jpg') }}"
+                     data-src="{{ asset('asstes/image/our-values/porfile-image.png') }}" class="lazy" alt="">
                 <h1>{{ __('values.heading') }}
-                <br>
-                    <small style="font-size: 25px !important; font-weight: normal !important;">{{ __('values.heading_sub') }}</small>
+                    <br>
+                    <small
+                        style="font-size: 25px !important; font-weight: normal !important;">{{ __('values.heading_sub') }}</small>
                 </h1>
             </div>
         </div>
@@ -123,7 +131,8 @@
                 <div class="col-md-1 d-sm-block d-none"></div>
                 <div class="col-6 position-relative text-center">
                     <img class="bn-image-v2 position-absolute top-50 start-50 translate-middle lazy "
-                         src="{{ asset('asstes/image/our-values/image-v2.jpg') }}" data-src="{{ asset('asstes/image/our-values/image-v2.png') }}" alt="">
+                         src="{{ asset('asstes/image/our-values/image-v2.jpg') }}"
+                         data-src="{{ asset('asstes/image/our-values/image-v2.png') }}" alt="">
                 </div>
             </div>
             <div class="row align-middle">

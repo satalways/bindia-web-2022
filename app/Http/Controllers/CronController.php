@@ -10,6 +10,7 @@ class CronController extends Controller
 {
     public function min()
     {
+        die;
         $O = new Order();
         $O->sendOrdersToTakeOut();
 
@@ -26,6 +27,7 @@ class CronController extends Controller
 
     public function oneDay()
     {
+        die;
         $O = new Order();
 
         $O->deleteTempPDFFiles();

@@ -22,7 +22,8 @@
             <div class="col-xl-2 col-lg-2 col-md-4 col-4">
                 <div class="bn-price-item">
                     <span
-                        class="bh-current-price">{{ number_format2($item->price * $cartItems[$item->id],0) }} /</span> <span
+                        class="bh-current-price">{{ number_format2($item->price * $cartItems[$item->id],0) }} /</span>
+                    <span
                         class="bn-discount-price">{{ number_format2($item->price_orange * $cartItems[$item->id],0) }}</span>
                 </div>
             </div>
@@ -99,7 +100,9 @@
     </div>
     <div class="row bn-last-order-footer align-middle">
         <div class="col-md-9 col-6">
-            <p class="float-end">{{ __('checkout.did_you_order_sides') }}</p>
+            @if (showSideOrders())
+                <p class="float-end">{{ __('checkout.did_you_order_sides') }}</p>
+            @endif
             <div class="clearfix"></div>
         </div>
         <div class="col-md-3 col-6">

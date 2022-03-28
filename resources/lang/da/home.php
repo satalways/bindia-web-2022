@@ -42,5 +42,7 @@ return [
         <p><br>Læs mere om vores filosofi og værdier <a href=":link">her</a>.</p>
     ',
     'more' => 'Læs mere',
-    'less' => 'Vis mindre'
+    'less' => 'Vis mindre',
+    'see_our_shops' => 'Se vores butikker',
+    'give_giftcard' => 'Giv et gavekort til en du holder af',
 ];

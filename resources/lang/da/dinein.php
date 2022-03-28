@@ -5,7 +5,7 @@ return [
         <div class="col-xl-5 col-lg-6 col-md-6 col-sm-6 col-12">
             <div class="bn-content-menu">
                 <p>Hos Bindia er du er altid velkommen til at nyde dit måltid i alle vores butikker til samme gode pris som take-away.</p>
-                <p>Nogle af vores butikker har betydeligt bedre dine-in-faciliteter (større lokaler og flere siddepladser) end andre. Derfor opfordrer vi dig til at bruge linkene ude til højre for at se butikker indefra og få et bedre indtryk af hvilket sted, der passer til dine behov.</p>
+                <p>Nogle af vores butikker har betydeligt bedre dine-in-faciliteter (større lokaler og flere siddepladser) end andre. Derfor opfordrer vi dig til at bruge butiks-linkene for at se butikkerne indefra og få et bedre indtryk af hvilket sted, der passer til dine behov.</p>
             </div>
         </div>
         <div class="col-xl-3 col-lg-2 col-md-2 col-sm-2 col-12"></div>
@@ -26,7 +26,7 @@ return [
                 <p>Alt fra din ordre, betaling og afhentning ordnes ved disken. Du kan sætte dig hvor du vil (bordreservation er ikke muligt).</p>
             </div>
             <div class="bn-content-menu">
-                <p>Du er velkommen til at benytte dig af vores Orange Prices ved dine-in. Du skal blot bestille og betale på bindia.dk, og skrive i kommentarfeltet, at du ønsker dine-in.</p>
+                <p>Du er velkommen til at benytte dig af vores Orange Prices ved dine-in. Du skal blot bestille og betale på bindia.dk, og skrive i kommentar i feltet at du ønsker dine-in.</p>
             </div>
             <div class="bn-menu-list">
                 Se vores menu <a href=":takeaway_link">her</a>.

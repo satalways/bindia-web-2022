@@ -6,6 +6,7 @@ use App\Logic\Order;
 use App\Models\Contact;
 use App\Models\Feedback;
 use App\Models\JobsModel;
+use App\Models\OrderItems;
 use Carbon\Carbon;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
@@ -38,10 +39,17 @@ class App extends Controller
 //            })
             ->limit(20)
             ->get();
-        //dd(getLastQuery());
+
+        $randomItem = OrderItems::query()
+            ->orderByRaw('RAND()')
+            ->where('active', true)
+            ->limit(1)
+            ->get();
+
         return view('home', [
             'feedbacks' => $feedbacks,
-            'seo' => seo('home')
+            'seo' => seo('home'),
+            'randomItem' => $randomItem
         ]);
     }
 

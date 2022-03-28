@@ -34,7 +34,6 @@ jQuery(document).ready(function () {
     });
 
 
-
     // Side bar scrolling add Active color take away page
     jQuery(window).scroll(function () {
 
@@ -51,17 +50,16 @@ jQuery(document).ready(function () {
     });
 
 
-
     jQuery(".bn-take-away-item .bn-left-side-bar ul li").click(function () {
         jQuery(document).find(".bn-toggle-content").css("padding-top", "71px");
     });
-    jQuery(window).on('mousewheel keyup', function(e) {
+    jQuery(window).on('mousewheel keyup', function (e) {
         jQuery(document).find(".bn-toggle-content").css("padding-top", "0");
     });
 
 
-    $(document).ready(function() {
-        $.stickysidebarscroll(".bn-left-side-bar",{offset: {top: 73, bottom: 600}});
+    $(document).ready(function () {
+        $.stickysidebarscroll(".bn-left-side-bar", {offset: {top: 73, bottom: 600}});
     });
 
 
@@ -75,15 +73,14 @@ jQuery(document).ready(function () {
             if ('div[data-' + sel + '="no"]') {
                 $('div[data-' + sel + '="no"]').show();
             }
-        }
-        else {
+        } else {
             $('.bn-take-away-item .bn-toggle-content .row').show();
         }
 
         jQuery(this).addClass("active").siblings().removeClass("active");
     });
 
-    $("#bn-menu-banner img").attr('src', "asstes/image/catering-menu/nav-menu-four.png");
+    $("#bn-menu-banner img").attr('src', "/asstes/image/catering-menu/nav-menu-four.png");
     $('div#nav-tab .nav-link').click(function (e) {
         e.preventDefault();
         var img_name = $(this).val();
@@ -170,12 +167,12 @@ jQuery(document).ready(function () {
             jQuery(this).addClass('bn-checked-color-chnaged');
             jQuery('input[name="choose-payment"]').addClass('bn-checked-color-chnaged');
             jQuery(document).find('.bn-selected-price .bn-price-item').addClass('bn-orange-color');
-            jQuery(document).find('.bn-orange-container').css('display','block');
-        }else{
+            jQuery(document).find('.bn-orange-container').css('display', 'block');
+        } else {
             jQuery(this).removeClass('bn-checked-color-chnaged');
             jQuery('input[name="choose-payment"]').removeClass('bn-checked-color-chnaged');
             jQuery(document).find('.bn-selected-price .bn-price-item').removeClass('bn-orange-color');
-            jQuery(document).find('.bn-orange-container').css('display','none');
+            jQuery(document).find('.bn-orange-container').css('display', 'none');
         }
     }))) ;
     if ((jQuery('input[name="choose-payment"]').click(function () {
@@ -183,12 +180,12 @@ jQuery(document).ready(function () {
             jQuery('input[name="choose-point"]').addClass('bn-checked-color-chnaged');
             jQuery(this).addClass('bn-checked-color-chnaged');
             jQuery(document).find('.bn-selected-price .bn-price-item').addClass('bn-orange-color');
-            jQuery(document).find('.bn-orange-container').css('display','block');
-        }else{
+            jQuery(document).find('.bn-orange-container').css('display', 'block');
+        } else {
             jQuery('input[name="choose-point"]').removeClass('bn-checked-color-chnaged');
             jQuery(this).removeClass('bn-checked-color-chnaged');
             jQuery(document).find('.bn-selected-price .bn-price-item').removeClass('bn-orange-color');
-            jQuery(document).find('.bn-orange-container').css('display','none');
+            jQuery(document).find('.bn-orange-container').css('display', 'none');
         }
     }))) ;
 
@@ -201,7 +198,7 @@ jQuery(document).ready(function () {
 
     //~~ Pre Check Out Append html radio button
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         var pre_chk_opt = ' <div class="bn-radio-order">' +
             '                            <div class="form-check">' +
             '                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>' +
@@ -222,11 +219,11 @@ jQuery(document).ready(function () {
             '                                </label>' +
             '                            </div>' +
             '                        </div>';
-        $('.bn-add-radio-html').on('click', function() {
+        $('.bn-add-radio-html').on('click', function () {
             $(".bn-body-radio-box").append(pre_chk_opt);
         });
 
-        $('.bn-remove-radio-html').on('click', function() {
+        $('.bn-remove-radio-html').on('click', function () {
             $('.bn-radio-order:last').remove();
         });
 
@@ -239,8 +236,7 @@ jQuery(document).ready(function () {
         var filename = $("#bn-file-attachment").val();
         if (/^\s*$/.test(filename)) {
             $("#bn-file-attachment-label").text("Attach File...");
-        }
-        else {
+        } else {
             $("#bn-file-attachment-label").text(filename.replace("C:\\fakepath\\", ""));
         }
     });
@@ -249,8 +245,7 @@ jQuery(document).ready(function () {
         var filename = $("#bn-file-attach-one").val();
         if (/^\s*$/.test(filename)) {
             $("#bn-job-file-attach-one").text("Attach File...");
-        }
-        else {
+        } else {
             $("#bn-job-file-attach-one").text(filename.replace("C:\\fakepath\\", ""));
         }
     });
@@ -261,10 +256,102 @@ jQuery(document).ready(function () {
         var filename = $("#bn-file-attach-two").val();
         if (/^\s*$/.test(filename)) {
             $("#bn-job-file-attach-two").text("Attach File...");
-        }
-        else {
+        } else {
             $("#bn-job-file-attach-two").text(filename.replace("C:\\fakepath\\", ""));
         }
+    });
+
+
+    // $("input.form-control, select.form-select").keyup(function () {
+    //     var input_val_text = $(this).val();
+    //    $(this).prev(".bn_input_text_file").text(input_val_text);
+    // });
+    //
+    //
+    //
+    // $('select.form-select').change(function() {
+    //     var val = $("select.form-select option:selected").text();
+    //     $(this).prev(".bn_input_text_file").text(val);
+    // });
+    //
+    // $("input.form-control, select.form-select").each(function () {
+    //    var input_val_add_text =  $(this).attr("placeholder");
+    //     if( !$(this).val().length > 0 ) {
+    //         $(this).prev(".bn_input_text_file").text(input_val_add_text);
+    //     }
+    // });
+    // $('input.form-control, select.form-select').focus(function(){
+    //     if( !$(this).val().length > 0 ) {
+    //         $(this).prev(".bn_input_text_file").text("");
+    //     }
+    // });
+    // $('input.form-control, select.form-select').blur(function(){
+    //     var input_val_add_blur =  $(this).attr("placeholder");
+    //     if( !$(this).val().length > 0 ) {
+    //         $(this).prev(".bn_input_text_file").text(input_val_add_blur);
+    //     }
+    // });
+
+
+    // This use only mac safari browser
+    if (window.matchMedia('(min-width: 1024px)').matches) {
+        var platform = window.navigator.platform;
+        var macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'];
+
+        //var isSafari =  /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+        if (macosPlatforms.indexOf(platform) !== -1) {
+            jQuery('input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="search"]').css("padding-top", "12px");
+            jQuery('input[type="number"]').css("padding-top", "20px");
+            jQuery('select.form-select').css("padding-top", "12px");
+            jQuery('.bn-search-tag button').css("padding-top", "12px");
+            jQuery('button.btn').css("padding-top", "12px");
+            jQuery('button.bnt.btn-dark.d-block.w-100').css("padding-top", "5px");
+            jQuery('a.btn.bg-dark.bn-btn-one.w-100.text-white').css("padding-top", "5px");
+            jQuery('a.btn.bg-dark.bn-btn-two.w-100.text-white').css("padding-top", "5px");
+
+            jQuery('input[type="text"], input[type="tel"], input[type="email"], input[type="password"]').focus(function () {
+                jQuery(this).css("padding-top", "9px");
+            });
+            jQuery('input[type="number"]').focus(function () {
+                jQuery(this).css("padding-top", "18px");
+            })
+        }
+    }
+
+    if (window.matchMedia('(max-width: 600px), (min-height: 300px)').matches) {
+        var platform = window.navigator.platform;
+        var iosPlatforms = ['iPhone', 'iPad', 'iPod'];
+        //var isSafari =  /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+        if (iosPlatforms.indexOf(platform) !== -1) {
+            jQuery('input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="search"]').css("padding-top", "12px");
+            jQuery('input[type="number"]').css("padding-top", "20px");
+            jQuery('select.form-select').css("padding-top", "12px");
+            jQuery('.bn-search-tag button').css("padding-top", "12px");
+            jQuery('button.btn').css("padding-top", "12px");
+            jQuery('button.bnt.btn-dark.d-block.w-100').css("padding-top", "5px");
+            jQuery('a.btn.bg-dark.bn-btn-one.w-100.text-white').css("padding-top", "5px");
+            jQuery('a.btn.bg-dark.bn-btn-two.w-100.text-white').css("padding-top", "5px");
+
+            jQuery('input[type="text"], input[type="tel"], input[type="email"], input[type="password"]').focus(function () {
+                jQuery(this).css("padding-top", "9px");
+            });
+            jQuery('input[type="number"]').focus(function () {
+                jQuery(this).css("padding-top", "18px");
+            })
+        }
+    }
+
+
+    // This use only Slick Slider
+    $('.bn-review-box-slider-home').slick({
+        dots: false,
+        infinite: true,
+        speed: 1000,
+        arrows: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 4000,
     });
 
 });

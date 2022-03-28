@@ -46,9 +46,9 @@ class OrderController extends Controller
                 $O->setSessionCartSpice($request->post('spice') ?? []);
                 break;
             case 'copyLastOrder':
-                if (!is_email($request->post('email'))) return 'Invalid email address';
+                if (!is_email($request->post('email'))) return __('global.invalid_email');
                 if (Orders::query()->where('shipping_email', $request->post('email'))->count() === 0) {
-                    return 'No order available for this email';
+                    return __('global.no_previous_order_found');
                 }
 
                 return $O->copyLastOrder($request->post('email'));

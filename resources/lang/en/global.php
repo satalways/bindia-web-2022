@@ -48,4 +48,15 @@ return [
     'want_to_join' => 'Want to join the team? Apply <a href=":link">here</a>',
     'main_office' => 'Main office',
     'order_now' => 'Order now',
+    'team_working' => 'Our team is working on this page, it will be available soon.',
+    'coming_soon' => 'Coming soon',
+    'catering_temp_text' => '<p>In the meantime you can check out our <a target="_blank" href=":link">catering menus here</a>.</p>
+<p>Please contact us at <a href="mailto:office@bindia.dk">office@bindia.dk</a> or <a href="tel:+4530258838">(+45) 30 25 88 38</a> to place an order</p>
+<p>We’re looking forward to hearing from you!</p>',
+    'no_previous_order_found' => "Unfortunately we couldn't find any previous order for this email address. Please go ahead and order manually.",
+    'invalid_email' => 'Invalid email address.',
+    'coming_soon_gc_text' => '<p>Our team is working on this page, it will be available soon.</p>
+<p>Please contact us at <a href="mailto:office@bindia.dk">office@bindia.dk</a> or <a href="tel:+4530258838">(+45) 30 25 88 38</a> to buy a gift card.</p>
+<p>We’re looking forward to hearing from you!</p>'
 ];
+

@@ -106,19 +106,19 @@
                 <div class="row bn-orange-img-take-away">
                     <div class="col-12">
                         @if(getCurrentLang() === 'da')
-                            <img src="{{ asset('asstes/image/item2.png') }}"
-                                 data-src="{{ asset('asstes/image/take-away/orange-price-order-dk.png') }}" alt=""
-                                 style="margin-bottom: 10px;" class="d-sm-block d-none lazy">
-                            <img src="{{ asset('asstes/image/item2.png') }}"
-                                 data-src="{{ asset('asstes/image/take-away/orange-mobile-pirce-dk.png') }}" alt=""
-                                 style="margin-bottom: 10px;" class="d-sm-none d-block lazy">
+                            <img
+                                src="{{ asset('asstes/image/take-away/orange-price-order-dk.png') }}" alt=""
+                                style="margin-bottom: 10px;" class="d-sm-block d-none">
+                            <img
+                                src="{{ asset('asstes/image/take-away/orange-mobile-pirce-dk.png') }}" alt=""
+                                style="margin-bottom: 10px;" class="d-sm-none d-block">
                         @else
-                            <img src="{{ asset('asstes/image/item2.png') }}"
-                                 data-src="{{ asset('asstes/image/take-away/orange-price-order.png') }}" alt=""
-                                 style="margin-bottom: 10px" class="d-sm-block d-none lazy">
-                            <img src="{{ asset('asstes/image/item2.png') }}"
-                                 data-src="{{ asset('asstes/image/take-away/orange-mobile-pirce.png') }}" alt=""
-                                 class="d-sm-none d-block lazy" style="margin-bottom: 10px">
+                            <img
+                                src="{{ asset('asstes/image/take-away/orange-price-order.png') }}" alt=""
+                                style="margin-bottom: 10px" class="d-sm-block d-none">
+                            <img
+                                src="{{ asset('asstes/image/take-away/orange-mobile-pirce.png') }}" alt=""
+                                class="d-sm-none d-block" style="margin-bottom: 10px">
                         @endif
                     </div>
                 </div>
@@ -175,76 +175,80 @@
                                         @endif
                                     >
                                         <div class="col-md-4">
-                                            <img class="bn-thumbnail-img lazy"
-                                                 src="{{ asset('asstes/image/food_loader.gif') }}?v=1"
+                                            <img class="bn-thumbnail-img" src="{{ $item->image }}?v=2"
                                                  data-src="{{ $item->image }}?v=5"
                                                  alt="">
                                         </div>
                                         <div class="col-md-5 bn-bg-product bn-border-right bn-orange-border-mobile">
-{{--                                            <a href="{{ route('item', ['slug' => $item->slug]) }}"--}}
-{{--                                               style="text-decoration: none !important;" target="_blank">--}}
+                                            {{--                                            <a href="{{ route('item', ['slug' => $item->slug]) }}"--}}
+                                            {{--                                               style="text-decoration: none !important;" target="_blank">--}}
 
-                                                {{--                                                @if(in_array($item->section,['bn-curries','bn-veg']))--}}
-                                                {{--                                                    <h2>--}}
-                                                {{--                                                        {{ $item->name }}--}}
-                                                {{--                                                        <small class="d-sm-inline-block"--}}
-                                                {{--                                                               style="font-weight: normal !important; font-size: 65%">--}}
-                                                {{--                                                            (no Sides)--}}
-                                                {{--                                                        </small>--}}
-                                                {{--                                                    </h2>--}}
-                                                {{--                                                @else--}}
-                                                <h2>{{ $item->name }}</h2>
-                                                {{--                                                @endif--}}
+                                            {{--                                                @if(in_array($item->section,['bn-curries','bn-veg']))--}}
+                                            {{--                                                    <h2>--}}
+                                            {{--                                                        {{ $item->name }}--}}
+                                            {{--                                                        <small class="d-sm-inline-block"--}}
+                                            {{--                                                               style="font-weight: normal !important; font-size: 65%">--}}
+                                            {{--                                                            (no Sides)--}}
+                                            {{--                                                        </small>--}}
+                                            {{--                                                    </h2>--}}
+                                            {{--                                                @else--}}
+                                            <h2>{{ $item->name }}</h2>
+                                            {{--                                                @endif--}}
 
-{{--                                            </a>--}}
+                                            {{--                                            </a>--}}
 
                                             <p>{{ getCurrentLang()=='da'?$item->description_dk:$item->description_en }}</p>
                                             <div class="bn-icon">
                                                 @if($item->dairy)
                                                     <span>
                                                         <img src="{{ asset('asstes/image/take-away/milk.png') }}?3"
-                                                             alt="">
+                                                             alt="{{ getMilkToolTip() }}"
+                                                             title="{{ getMilkToolTip() }}">
                                                     </span>
                                                 @endif
                                                 @if($item->nuts)
                                                     <span>
                                                         <img src="{{ asset('asstes/image/take-away/nut.png') }}?3"
-                                                             alt="">
+                                                             alt="{{ getNutsToolTip() }}"
+                                                             title="{{ getNutsToolTip() }}">
                                                     </span>
                                                 @endif
                                                 @if($item->gluten)
                                                     <span>
                                                         <img src="{{ asset('asstes/image/take-away/wheat.png') }}?3"
-                                                             alt="">
+                                                             alt="{{ getWheatToolTip() }}"
+                                                             title="{{ getWheatToolTip() }}">
                                                     </span>
                                                 @endif
                                                 @if($item->chili)
                                                     <span>
                                                         <img src="{{ asset('asstes/image/take-away/chili.png') }}?3"
-                                                             alt="">
+                                                             alt="{{ getChiliToolTip() }}"
+                                                             title="{{ getChiliToolTip() }}">
                                                     </span>
                                                 @endif
                                                 @if($item->double_chili)
                                                     <span>
                                                         <img
                                                             src="{{ asset('asstes/image/take-away/dubble-chili.png') }}?3"
-                                                            alt="">
+                                                            alt="{{ getDoubleChiliToolTip() }}" title="{{ getDoubleChiliToolTip() }}">
                                                     </span>
                                                 @endif
                                                 @if($item->vegan)
                                                     <span>
                                                         <img src="{{ asset('asstes/image/take-away/vegan.png') }}?3"
-                                                             alt="">
+                                                             alt="{{ getVeganToolTip() }}"
+                                                             title="{{ getVeganToolTip() }}">
                                                     </span>
                                                 @endif
                                                 @if($item->veg)
                                                     <span>
                                                         <img src="{{ asset('asstes/image/take-away/veg.png') }}?3"
-                                                             alt="">
+                                                             alt="{{ getVegToolTip() }}" title="{{ getVegToolTip() }}">
                                                     </span>
                                                 @endif
                                                 <span class="bn-text-icon">
-                                                    <img
+                                                    <img alt="{{ getWeightToolTip() }}" title="{{ getWeightToolTip() }}"
                                                         src="{{ asset('asstes/image/take-away/' .  $item->portion_slug . '.png') }}?3">
                                                 </span>
                                                 @if(in_array($item->section,['bn-curries','bn-veg']))
@@ -276,8 +280,8 @@
                                         </div>
                                         <div class="col-lg-12 bn-product-big-image">
                                             <div class="bn-broduct-big-img">
-                                                <img src="{{ asset('asstes/image/item2.png') }}"
-                                                     data-src="{{ $item->image }}?v=5" alt="" class="lazy">
+                                                <img src="{{ $item->image }}"
+                                                     data-src="{{ $item->image }}?v=5" alt="" class="lazy2">
                                             </div>
                                         </div>
                                     </div>

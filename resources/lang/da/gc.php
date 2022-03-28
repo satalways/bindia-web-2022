@@ -9,7 +9,7 @@ return [
     'h1_p1' => 'Opret et gavekort og send det direkte til modtageren.<br>Gavekortet kan bruges over flere transaktioner og gælder i 3 år.',
     'h2_p' => 'Faktura og ordrebekræftelse vil blive sendt til denne email-adresse',
     'terms_of_sales_and_delivery' => 'Handelsbetingelserne',
-    'not_found' => 'Gift card not found in database',
+    'not_found' => 'Vi fandt desværre ingen gavekort der matcher det indtastede.',
     'rec_name' => 'Modtagerens Navn',
     'rec_phone' => 'Modtagerens tlf.',
     'rec_email' => 'Modtagerens Email',

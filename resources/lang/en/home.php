@@ -36,5 +36,7 @@ return [
 
     ',
     'more' => 'Read More',
-    'less' => 'Show Less'
+    'less' => 'Show Less',
+    'see_our_shops' => 'See our shops',
+    'give_giftcard' => 'Give a gift card to someone you care about',
 ];

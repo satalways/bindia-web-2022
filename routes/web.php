@@ -35,7 +35,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     if (testServer() || localhost()) {
         Route::get('/indian-food-catering.html', [\App\Http\Controllers\CateringController::class, 'cateringBuffet'])->name('catering');
     } else {
-        Route::get('/indian-food-catering.html', [\App\Http\Controllers\TestController::class, 'comingSoon'])->name('catering');
+        Route::get('/indian-food-catering.html', [\App\Http\Controllers\TestController::class, 'comingSoonCatering'])->name('catering');
     }
 
     Route::get('/catering-drinks.html', [\App\Http\Controllers\CateringController::class, 'cateringDrinks'])->name('catering.drinks');
@@ -98,7 +98,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::get('/gift-card.html', [\App\Http\Controllers\GiftCard::class, 'index'])->name('giftcard');
         Route::post('/gift-card.html', [\App\Http\Controllers\GiftCard::class, 'ajax'])->name('giftcard.post');
     } else {
-        Route::get('/gift-card.html', [\App\Http\Controllers\TestController::class, 'comingSoon'])->name('giftcard');
+        Route::get('/gift-card.html', [\App\Http\Controllers\TestController::class, 'comingSoonGiftCard'])->name('giftcard');
         Route::post('/gift-card.html', [\App\Http\Controllers\GiftCard::class, 'ajax'])->name('giftcard.post');
     }
     Route::get('/gift-card-payment.html', [\App\Http\Controllers\GiftCard::class, 'paymentPage'])->name('giftcard.payment');

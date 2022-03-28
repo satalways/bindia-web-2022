@@ -25,15 +25,19 @@
     <!--    <link rel="stylesheet" href="asstes/css/bootstrap.min.css">-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--Slick slider css File-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
     <!--FontAwesome File-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!--animations css file-->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css?2" rel="stylesheet">
+      <!--animation file-->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js?2"></script>
     <!--Parallax css file-->
-    <link href="{{ asset('asstes/css/parallax.css') }}" rel="stylesheet">
+    <link href="{{ asset('asstes/css/parallax.css') }}?v=2" rel="stylesheet">
 
     <!--Costume Style css file-->
-    <link rel="stylesheet" href="{{ asset('asstes/css/style2.css') }}?v=14">
+    <link rel="stylesheet" href="{{ asset('asstes/css/style.css') }}?v=16.2">
 
     <meta property="og:description"
           content="{{ isset($seo->description_en) ? $seo->getDesc() : ($description ?? '') }}"/>
@@ -52,7 +56,7 @@
     <meta name="og:phone_number" content="+45 30 25 88 38"/>
 
     <link href="{{ request()->url() }}" rel="canonical">
-    <meta name='dmca-site-verification' content='cnpuVEdmL1VUZjJHVnZlQ3RkYklHdz090' />
+    <meta name='dmca-site-verification' content='cnpuVEdmL1VUZjJHVnZlQ3RkYklHdz090'/>
 
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <style>
@@ -365,8 +369,8 @@
             <div class="col-lg-2 col-3">
                 <div class="mt-5" style="margin-top: 102px !important;">&nbsp;</div>
                 <ul class="list-unstyled">
-                    <li><a target="_blank" href="https://staff.bindia.dk/attendance">Attendance</a></li>
-                    <li><a target="_blank" href="https://staff.bindia.dk/">Admin</a></li>
+{{--                    <li><a target="_blank" href="https://staff.bindia.dk/attendance">Attendance</a></li>--}}
+{{--                    <li><a target="_blank" href="https://staff.bindia.dk/">Admin</a></li>--}}
                 </ul>
             </div>
         </div>
@@ -415,15 +419,15 @@
 <script src="//cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <!--Bootstrab min js file-->
 <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-<!--animation file-->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!--slick slider min js file-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
 <script src="{{ asset('asstes/js/sticky-sidebar-scroll.min.js') }}"></script>
 
 <script src="{{ asset('asstes/js/rellax.min.js') }}"></script>
 
 <!--Custom js file-->
-<script src="{{ asset('asstes/js/script.js') }}?4"></script>
+<script src="{{ asset('asstes/js/script.js') }}?9"></script>
 {!! js('lazyload') !!}
 <script>
     $.ajaxSetup({
@@ -550,19 +554,22 @@
     {{--    </script>--}}
     {{--    <!--End of Tawk.to Script-->--}}
 
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        (function () {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/5c813d3e101df77a8be16ae6/default';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
-    </script>
-    <!--End of Tawk.to Script-->
+    @if( !(isMobile() && (getRouteName() === 'takeaway' || getRouteName() === 'checkout')) )
+        <!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+            var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+            (function () {
+                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                s1.async = true;
+                s1.src = 'https://embed.tawk.to/5c813d3e101df77a8be16ae6/default';
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin', '*');
+                s0.parentNode.insertBefore(s1, s0);
+            })();
+        </script>
+        <!--End of Tawk.to Script-->
+    @endif
 @endif
+
 </body>
 </html>

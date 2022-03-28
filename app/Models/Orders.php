@@ -8,11 +8,13 @@ use Carbon\Carbon;
 use Firebase\JWT\JWT;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 
 class Orders extends Model
 {
     use HasFactory;
+    use Notifiable;
 
     protected $table = 'orders';
     public $timestamps = false;

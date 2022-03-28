@@ -36,14 +36,13 @@ class Feedback extends Model
         }
     }
 
-
     public function getAvgAttribute()
     {
         $sum = $count = 0;
         for ($x = 0; $x <= 12; $x++) {
             $field = 'question_' . $x . '_answer';
             if (str_starts_with($this->{$field}, 'rating_')) {
-                if ( substr($this->{$field}, 7) == 0 ) continue;
+                if (substr($this->{$field}, 7) == 0) continue;
                 $count++;
                 $sum += substr($this->{$field}, 7);
             }
@@ -57,8 +56,8 @@ class Feedback extends Model
     {
         $comment = trim($this->question_7_answer);
 
-        if (blank($comment)) {
-            $comment = !str_starts_with($this->question_5_answer, 'rating') ? trim($this->question_5_answer) : trim($this->question_6_answer);
+        if (blank($comment) || trim(strtoupper($comment)) === 'YES') {
+            $comment = ! str_starts_with($this->question_5_answer, 'rating') ? trim($this->question_5_answer) : trim($this->question_6_answer);
         }
 
         return $comment;
@@ -77,7 +76,7 @@ class Feedback extends Model
 
         $comments = trim($this->getComment());
         if (strlen($comments) > 100) {
-            return substr($comments,0,100) . '...';
+            return substr($comments, 0, 100) . '...';
         } else {
             return $comments;
         }
@@ -89,9 +88,11 @@ class Feedback extends Model
         $names = explode(' ', $name);
         $name = $names[0];
         if (count($names) > 1) {
-            if (!blank(last($names)))
+            if (! blank(last($names))) {
                 $name .= ' ' . substr(last($names), 0, 1) . '.';
+            }
         }
+
         return $name;
     }
 }

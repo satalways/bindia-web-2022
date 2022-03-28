@@ -30,54 +30,11 @@ class TestController extends Controller
 {
     public function index()
     {
-        //return Nets::getPaymentInfo('00d00000620eb7c5d96f0e893d79e58d');
-        dd(Order::checkOrdersIfNotMarkPaid());
 
-//        $short_addr = $matches[1][0];
-//        $postal_code = $matches[2][0];
+        $feedback = Feedback::query()->find('6576');
+        return $feedback->limitedComment();
 
-
-dd('asd');
-        dd(isPKIp());
-
-        $O = new Order();
-        dd($O->getSessionCartData());
-
-        dd(\request()->session()->get('delivery')->Data);
-
-
-        $T = new Takeout();
-        $address = 'Bagagevej 3, 2770 Kastrup';
-
-        //$shops = $T->getShopsDistanceByAddress('Skudehavnsvej 2A, 2150 Nordhavn');
-
-        die;
-        $G = new \App\Logic\GiftCard();
-        dd($G->redeemGiftCardByOrder(139990));
-
-
-        $O = new Order();
-        $O->sendOrdersToTakeOut();
-
-
-        die;
-        dd(resource_path('order_files/Loyalty-Programme.pdf'));
-
-        $order = Orders::query()->find(136597);
-
-
-        $O = new Order();
-        //dd(session()->get('checkout'));
-        return $O->getSessionCartData(true);
-
-
-        $htmlContent = view('layouts.email', ['content' => 'My Content'])->render();
-
-        $cssPath = resource_path('css/email.css');
-        $cssToInlineStyles = new CssToInlineStyles();
-        $htmlContent = $cssToInlineStyles->convert($htmlContent, file_get_contents($cssPath));
-
-        return $htmlContent;
+        return view('test');
     }
 
     public function index2()
@@ -88,5 +45,15 @@ dd('asd');
     public function comingSoon()
     {
         return view('coming_soon');
+    }
+
+    public function comingSoonCatering()
+    {
+        return view('coming_soon_catering');
+    }
+
+    public function comingSoonGiftCard()
+    {
+        return view('coming_soon_gc');
     }
 }

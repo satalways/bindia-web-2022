@@ -173,7 +173,7 @@ class GiftCard
     public function markDonePayment($id)
     {
         $giftCard = \App\Models\GiftCard::query()->find($id);
-        if (!$giftCard) return 'Gift card not found in database.';
+        if (!$giftCard) return __('gc.not_found');
         if ($giftCard->paid_by_customer) return 'Gift card is already paid by customer';
 
         try {

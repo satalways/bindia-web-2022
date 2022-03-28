@@ -68,7 +68,7 @@ return [
     */
 
     //'timezone' => 'UTC',
-    'timezone' => 'Europe/Copenhagen',
+    'timezone' => env('TIMEZONE', 'Europe/Copenhagen'),
 
     /*
     |--------------------------------------------------------------------------

@@ -264,7 +264,9 @@
                         </div>
                         <div class="row bn-last-order-footer align-middle">
                             <div class="col-md-12 col-12">
-                                <p class="float-end">{{ __('checkout.did_you_order_sides') }}</p>
+                                @if (showSideOrders())
+                                    <p class="float-end">{{ __('checkout.did_you_order_sides') }}</p>
+                                @endif
                                 <div class="clearfix"></div>
                             </div>
                         </div>
@@ -292,7 +294,8 @@
                 @if( isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi' )
                     <div class="row bn-from-bottom-space">
                         <div class="col-md-6 col-12">
-                            <input type="text" class="form-control update2" placeholder="Address (Street Name, Postal Code, City)"
+                            <input type="text" class="form-control update2"
+                                   placeholder="Address (Street Name, Postal Code, City)"
                                    id="shipping_address" name="shipping_address" autocomplete="off"
                                    value="{{ $items['checkout']['shipping_address'] ?? '' }}"
                                    data-url="{{ route('checkout.address') }}" required="required">
@@ -314,7 +317,8 @@
                                    value="{{ $items['checkout']['shipping_city'] ?? '' }}"
                                    readonly="readonly">
                             <label class="bn-date-time">{{ __('global.select_time') }}</label>
-                            <input type="text" class="form-control update2" id="time" required="required" placeholder="Time"
+                            <input type="text" class="form-control update2" id="time" required="required"
+                                   placeholder="Time"
                                    min="{{ $isDelivery ? '16:40' : '16:'.config('order.order_prep_time') }}"
                                    name="time"
                                    value="{{ $time }}">
