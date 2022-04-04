@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@section('styles')
+    <style>
+        .grw-net-widget-four {
+            border: none !important;
+        }
+    </style>
+@endsection
+
+
 @section('content')
     <!--Shop Breadcrumbs-->
     <div class="bn-shops-banner">

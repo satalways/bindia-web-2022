@@ -111,21 +111,21 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-12" data-aos="fade-up" data-aos-duration="3000">
+                <div class="col-lg-12 slideanim position-relative">
                     <img src="{{ asset('asstes/image/home-one-banner.png') }}" alt="">
                     <div class="bn-portfolio-section-img-text">
                         <h3>{{ $randomItem->first()->name }}</h3>
                         <p>{{ $randomItem->first()->getDescription() }}</p>
                     </div>
                 </div>
-                <div class="col-lg-6 col-sm-6" data-aos="fade-up" data-aos-duration="3000">
+                <div class="col-lg-6 col-sm-6 slideanim position-relative">
                     <img src="{{ asset('asstes/image/home-two-banner.png') }}" alt="">
                     <div class="bn-portfolio-section-img-text">
                         <h3>{{ __('global.giftcard') }}</h3>
                         <p>{{ __('home.give_giftcard') }}</p>
                     </div>
                 </div>
-                <div class="col-lg-6 col-sm-6" data-aos="fade-up" data-aos-duration="3000">
+                <div class="col-lg-6 col-sm-6 slideanim position-relative">
                     <div class="bn-link-image-box">
                         <img src="{{ __('asstes/image/home-three-banner.png') }}" alt="">
                         <div class="bn-menu-b-box">
@@ -139,7 +139,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12" data-aos="fade-up" data-aos-duration="3000">
+                <div class="col-lg-12 slideanim position-relative">
                     <img src="{{ asset('asstes/image/home-four-banner.png') }}" alt="">
                     <div class="bn-portfolio-section-img-text">
                         <h3>Butter Chicken</h3>

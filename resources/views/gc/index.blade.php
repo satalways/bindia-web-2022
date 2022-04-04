@@ -44,7 +44,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <textarea class="form-control" name="to_message"
+                            <textarea class="form-control" name="to_message" maxlength="150"
                                       placeholder="{{ __('gc.rec_greetings') }}"></textarea>
                         </div>
                     </div>

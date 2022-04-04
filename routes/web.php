@@ -84,6 +84,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::get('/requested-feedback.html', [\App\Http\Controllers\FeedbackController::class, 'feedback'])->name('order.feedback');
     Route::get('/requested-feedback-thanks.html', [\App\Http\Controllers\FeedbackController::class, 'success'])->name('order.feedback.success');
     Route::post('/requested-feedback.html', [\App\Http\Controllers\FeedbackController::class, 'feedbackPost'])->name('order.feedback.post');
+    Route::get('/feedback.html', [\App\Http\Controllers\FeedbackController::class, 'customFeedback'])->name('custom.feedback');
 
     Route::get('/order-success.html', [\App\Http\Controllers\OrderController::class, 'success'])->name('order.success');
     Route::get('/order-failed.html', [\App\Http\Controllers\OrderController::class, 'failed'])->name('order.failed');

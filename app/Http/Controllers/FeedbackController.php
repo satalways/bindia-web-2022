@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
+    public function customFeedback(Request $request)
+    {
+        if (!$request->query('token')) abort(404);
+
+        return $string = decodeString($request->query('token'), false, 'mqg"i]Ii$2C^:>IQ9}.~G<jbdH{u');
+    }
+
     public function feedback(Request $request)
     {
         $token = base64_decode($request->get('token'));
@@ -40,7 +47,7 @@ class FeedbackController extends Controller
         switch ($request->post('action')) {
             case 'saveRating':
                 $Feedback = new Feedback();
-                return $Feedback->saveFeedback($request->except('action'), $request->file('file') );
+                return $Feedback->saveFeedback($request->except('action'), $request->file('file'));
             default:
                 abort(404);
         }

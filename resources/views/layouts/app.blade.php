@@ -30,14 +30,41 @@
     <!--FontAwesome File-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!--animations css file-->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css?2" rel="stylesheet">
-      <!--animation file-->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js?2"></script>
-    <!--Parallax css file-->
-    <link href="{{ asset('asstes/css/parallax.css') }}?v=2" rel="stylesheet">
-
+{{--    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">--}}
+<!--Parallax css file-->
+    <link href="{{ asset('asstes/css/parallax.css') }}?v=3" rel="stylesheet">
     <!--Costume Style css file-->
-    <link rel="stylesheet" href="{{ asset('asstes/css/style.css') }}?v=16.2">
+    <link rel="stylesheet" href="{{ asset('asstes/css/style.css') }}?v=16.3">
+    <style>
+        .slideanim {
+            visibility:hidden;
+            visibility:visible\9;/*For old IE browsers IE6-8 */
+        }
+        .slideanim.slide {
+            visibility: visible;
+            animation: slide 3s;
+        }
+        .slideanim::after {
+        / useful when its child elements are float:left; /
+        content: "";
+            display: table;
+            clear: both;
+        }
+        @keyframes slide {
+            0% {
+                opacity: 0;
+                transform: translateY(50%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <!--animation file-->
+{{--    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>--}}
+    <script src="{{ asset('asstes/js/float-panel.js') }}"></script>
 
     <meta property="og:description"
           content="{{ isset($seo->description_en) ? $seo->getDesc() : ($description ?? '') }}"/>
@@ -138,9 +165,34 @@
         }
     </style>
 
-    @yield('styles')
+@yield('styles')
+
+<!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-55HW7TK');
+    </script>
+    <!-- End Google Tag Manager -->
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-55HW7TK" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 @if (!request()->cookie('CookieConsent'))
     <div id="cookiePopup">
@@ -369,8 +421,8 @@
             <div class="col-lg-2 col-3">
                 <div class="mt-5" style="margin-top: 102px !important;">&nbsp;</div>
                 <ul class="list-unstyled">
-{{--                    <li><a target="_blank" href="https://staff.bindia.dk/attendance">Attendance</a></li>--}}
-{{--                    <li><a target="_blank" href="https://staff.bindia.dk/">Admin</a></li>--}}
+                    {{--                    <li><a target="_blank" href="https://staff.bindia.dk/attendance">Attendance</a></li>--}}
+                    {{--                    <li><a target="_blank" href="https://staff.bindia.dk/">Admin</a></li>--}}
                 </ul>
             </div>
         </div>
@@ -411,23 +463,20 @@
 
 <!--jQuery file-->
 <script src="{{ asset('asstes/js/jQuery.3.6.0.js') }}"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-loading-overlay/2.1.7/loadingoverlay.min.js"
-        integrity="sha512-hktawXAt9BdIaDoaO9DlLp6LYhbHMi5A36LcXQeHgVKUH6kJMOQsAtIw2kmQ9RERDpnSTlafajo6USh9JUXckw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!--Bootstrab popper file-->
 <script src="//cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <!--Bootstrab min js file-->
 <script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 <!--slick slider min js file-->
 <script src="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
 <script src="{{ asset('asstes/js/sticky-sidebar-scroll.min.js') }}"></script>
-
 <script src="{{ asset('asstes/js/rellax.min.js') }}"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-loading-overlay/2.1.7/loadingoverlay.min.js"
+        integrity="sha512-hktawXAt9BdIaDoaO9DlLp6LYhbHMi5A36LcXQeHgVKUH6kJMOQsAtIw2kmQ9RERDpnSTlafajo6USh9JUXckw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!--Custom js file-->
-<script src="{{ asset('asstes/js/script.js') }}?9"></script>
+<script src="{{ asset('asstes/js/script.js') }}?16.2"></script>
 {!! js('lazyload') !!}
 <script>
     $.ajaxSetup({

@@ -50,7 +50,7 @@ class App extends Controller
             'feedbacks' => $feedbacks,
             'seo' => seo('home'),
             'randomItem' => $randomItem
-        ]);
+        ])->render();
     }
 
     public function contact()
