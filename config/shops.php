@@ -20,7 +20,8 @@ return [
         'inside_link' => 'https://www.google.com/maps/place/Bindia+Indisk+Mad+Take+Away+Amager/@55.656458,12.6090827,3a,75y,206.5h,85.23t/data=!3m6!1e1!3m4!1sAF1QipPf_aJ1u1cbEgN0FkpVvzXML-Pdn8nE6U75hyr_!2e10!7i7356!8i3678!4m5!3m4!1s0x465253f94e06b5d3:0x25d44c203fa7e60c!8m2!3d55.6563886!4d12.6091011',
         'rating_link' => 'https://g.page/r/CQzmpz8gTNQlEAg/review',
         'lat' => '55.6563886',
-        'lng' => '12.6091011'
+        'lng' => '12.6091011',
+        'smily_link' => 'https://www.findsmiley.dk/903529'
     ],
     'GKV' => [
         'code' => 'GKV',
@@ -42,6 +43,7 @@ return [
         'rating_link' => 'https://g.page/r/CS6lOuBW3c1jEAg/review',
         'lat' => '55.6768623',
         'lng' => '12.5394355',
+        'smily_link' => 'https://www.findsmiley.dk/966201'
     ],
     'LHG' => [
         'code' => 'LHG',

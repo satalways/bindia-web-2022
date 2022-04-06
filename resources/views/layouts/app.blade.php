@@ -34,7 +34,7 @@
 <!--Parallax css file-->
     <link href="{{ asset('asstes/css/parallax.css') }}?v=3" rel="stylesheet">
     <!--Costume Style css file-->
-    <link rel="stylesheet" href="{{ asset('asstes/css/style.css') }}?v=16.3">
+    <link rel="stylesheet" href="{{ asset('asstes/css/style.css') }}?v=16.5">
     <style>
         .slideanim {
             visibility:hidden;

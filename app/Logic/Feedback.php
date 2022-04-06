@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 class Feedback
 {
-    public function saveFeedback(array $args = [], $file)
+    public function saveFeedback(array $args = [], $file = null)
     {
         $default = [
             'type' => '',
@@ -21,14 +21,22 @@ class Feedback
 
         if (blank($args['type'])) return 'Feedback type missing.';
         $data['type'] = $args['type'];
-        if (empty($args['data_id'])) return 'Order ID missing.';
+
+        if ($args['type'] !== 'customized' && empty($args['data_id'])) return 'Order ID missing.';
+
         $data['data_id'] = $args['data_id'];
         $order = Orders::query()->find($args['data_id']);
-        if (!$order) return 'Order for this feedback not found in system';
+        if (!$order && $args['type'] !== 'customized') return 'Order for this feedback not found in system';
 
-        $data['name'] = $order->full_name;
-        $data['email'] = $order->email;
-        $data['phone'] = $order->shipping_phone;
+        if ($data['type'] === 'customized') {
+            $data['name'] = $args['name'];
+            $data['email'] = $args['email'];
+            $data['phone'] = $args['phone'];
+        } else {
+            $data['name'] = $order->full_name;
+            $data['email'] = $order->email;
+            $data['phone'] = $order->shipping_phone;
+        }
         $data['email_sent_to_staff'] = false;
         $data['c21_id'] = 0;
 
@@ -68,7 +76,10 @@ class Feedback
 
         }
 
-        $Files[] = $order->pdf();
+        $Files = [];
+        if ($order) {
+            $Files[] = $order->pdf();
+        }
         if (is_file($filePath)) {
             $Files[] = $filePath;
         }
@@ -89,9 +100,9 @@ class Feedback
             $subject_data['link'] = get_admin_link('rfeedback.php?id=' . $feedback->id);
 
             $subject_data['table'] = view('order.feedback.feedback_table', [
-                'name' => $order->full_name,
-                'email' => $order->email,
-                'phone' => $order->phone,
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'phone' => $data['phone'],
                 'feedback' => $feedback,
                 'id' => $feedback->id,
 

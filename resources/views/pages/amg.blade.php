@@ -47,7 +47,7 @@
 
     <div class="bn-shop-review-box">
         <div class="container">
-            <a target="_blank" href="https://www.findsmiley.dk/903529"><img src="{{ asset('asstes/image/shop/smile.svg') }}" alt=""></a>
+            <a target="_blank" href="{{ shop('amg')->smily_link }}"><img src="{{ asset('asstes/image/shop/smile.svg') }}" alt=""></a>
             <img class="bn-line-width" src="{{ asset('asstes/image/shop/line-line.svg') }}" alt="">
             <div style="display: inline-block; margin-bottom: -50px;">
                 <div class="review-widget_net" data-uuid="c768ac37-3833-4b53-ad0a-7c3216da819f" data-template="10" data-filter="" data-lang="en" data-theme="light"><center><a href="https://www.review-widget.net/" target="_blank" rel="noopener"><img src="https://grwapi.net/assets/spinner/spin.svg" title="Google Review Widget" alt="Review Widget"></a></center></div><script async type="text/javascript" src="https://grwapi.net/widget.min.js"></script>

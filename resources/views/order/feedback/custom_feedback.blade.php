@@ -2,22 +2,35 @@
 
 @section('content')
     <div class="bn-feedback-banner">
-        <img src="{{ asset('asstes/image/feedback/requst-feedback-banner.png') }}" alt="">
+        <img src="{{ asset('asstes/image/feedback/feedback-banner.png') }}" alt="">
     </div>
 
     <div class="bn-check-out bn-feedback-main">
         <form action="{{ route('order.feedback.post') }}" method="post" id="form1" enctype="multipart/form-data">
             <input type="hidden" name="action" value="saveRating">
-            <input type="hidden" name="data_id" value="{{ $order->id }}">
-            <input type="hidden" name="type"
-                   value="{{ $order->isDelivery()?'weborder2':'weborder' }}">
+            <input type="hidden" name="data_id" value="{{ $string->order_id ?? 0 }}">
+            <input type="hidden" name="type" value="customized">
 
             <div class="container">
                 <div class="bn-heading-feedback">
                     <h2>Feedback</h2>
                 </div>
-
                 <div class="bn-check-out-from" id="bn-check-out-order">
+                    <div class="row bn-space-bottom-feedback d-sm-flex d-none">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Name" value="{{ $object->name ?? '' }}"
+                                   readonly="readonly" name="name">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" class="form-control" placeholder="Email" value="{{ $object->to ?? '' }}"
+                                   readonly="readonly" name="email">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="tel" class="form-control" placeholder="Phone" name="phone"
+                                   value="{{ $object->phone ?? '' }}" readonly="readonly">
+                        </div>
+                    </div>
+
                     @foreach($rows as $row)
                         @if('Rating' === $row->question_type_name)
                             <div class="bn-review-box-feedback">
@@ -95,11 +108,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </form>
     </div>
 @endsection
+
 
 @section('js')
     {!! js('form') !!}

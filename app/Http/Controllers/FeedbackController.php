@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Logic\Feedback;
 use App\Models\FeedbackDB;
 use App\Models\Orders;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
@@ -13,7 +14,32 @@ class FeedbackController extends Controller
     {
         if (!$request->query('token')) abort(404);
 
-        return $string = decodeString($request->query('token'), false, 'mqg"i]Ii$2C^:>IQ9}.~G<jbdH{u');
+        $string = decodeString($request->query('token'), false, 'mqg"i]Ii$2C^:>IQ9}.~G<jbdH{u');
+
+        $order = Orders::query()->find($string->order_id ?? 0);
+
+        $rows = FeedbackDB::query()
+            ->where('active', true)
+            ->where('type', 'customized')
+//            ->when($order && $order->isDelivery(), function ($query) {
+//                $query->where('type', 'customized');
+//            })
+//            ->when($order && !$order->isDelivery(), function ($query) {
+//                $query->where('type', 'weborder');
+//            })
+            ->orderBy('sort')->get();
+
+        if (!is_object($string)) abort(404);
+        if (!isset($string->to)) abort(404);
+
+        return view('order.feedback.custom_feedback', [
+            'object' => $string,
+            'order' => $order,
+            'rows' => $rows,
+            'title' => 'Requested Feedback | Bidia.dk',
+            'seo' => seo('Feedback'),
+            'isDelivery' => ($order && $order->isDelivery()) ? 'weborder2' : 'weborder'
+        ]);
     }
 
     public function feedback(Request $request)
