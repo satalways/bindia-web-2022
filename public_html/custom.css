@@ -1,0 +1,86 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmEU9vAw.ttf) format('truetype');
+}
+.slideanim {
+  visibility: hidden;
+  visibility: visible \9;
+  /*For old IE browsers IE6-8 */
+}
+.slideanim.slide {
+  visibility: visible;
+  animation: slide 3s;
+}
+.slideanim::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.googleReviewOuter {
+  margin-top: -20px;
+  display: inline-block;
+  position: relative;
+  top: 25px;
+}
+div.googleReview {
+  all: initial;
+  display: inline-block;
+  color: #5f6369;
+  width: 228px !important;
+  cursor: pointer;
+}
+div.googleReview a {
+  text-decoration: none !important;
+}
+div.googleReview table {
+  color: #838383;
+}
+div.googleReview table td.td1 {
+  color: #5f6369;
+  width: 76px;
+  height: 58px;
+  font-family: 'Roboto', sans-serif !important;
+}
+div.googleReview table td.td2 {
+  width: 150px;
+  color: #5f6369;
+}
+div.googleReview table td.td2 .title {
+  color: #5f6369;
+  font-weight: 500;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif !important;
+}
+div.googleReview table td.td2 .rating {
+  color: #5f6369;
+  font-size: 26px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif !important;
+}
+div.googleReview table td.td2 .rating .stars {
+  float: right;
+  font-size: 15px;
+}
+div.googleReview table td.td2 .rating .stars i {
+  color: #c0c0c0 !important;
+}
+div.googleReview table td.td2 .rating .stars i.font-yellow {
+  color: #f9bc15 !important;
+}
+div.googleReview table td.td2 .rating .stars .rev {
+  font-weight: normal !important;
+}
+/*# sourceMappingURL=custom.css.map */

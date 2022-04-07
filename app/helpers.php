@@ -780,3 +780,12 @@ function showSideOrders()
             return $item->section == 'bn-veg' || $item->section == 'bn-curries';
         })->count() > 0;
 }
+
+function makeGoogleReview($link, $numberOfReviews, $rating)
+{
+    return view('googleReview', [
+        'link' => $link,
+        'numberOfReviews' => $numberOfReviews,
+        'rating' => $rating
+    ])->render();
+}

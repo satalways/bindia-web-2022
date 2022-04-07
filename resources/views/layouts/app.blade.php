@@ -35,33 +35,7 @@
     <link href="{{ asset('asstes/css/parallax.css') }}?v=3" rel="stylesheet">
     <!--Costume Style css file-->
     <link rel="stylesheet" href="{{ asset('asstes/css/style.css') }}?v=16.5">
-    <style>
-        .slideanim {
-            visibility:hidden;
-            visibility:visible\9;/*For old IE browsers IE6-8 */
-        }
-        .slideanim.slide {
-            visibility: visible;
-            animation: slide 3s;
-        }
-        .slideanim::after {
-        / useful when its child elements are float:left; /
-        content: "";
-            display: table;
-            clear: both;
-        }
-        @keyframes slide {
-            0% {
-                opacity: 0;
-                transform: translateY(50%);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
-
+    <link rel="stylesheet" href="{{ asset('custom.css') }}?v=16.7">
     <!--animation file-->
 {{--    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>--}}
     <script src="{{ asset('asstes/js/float-panel.js') }}"></script>

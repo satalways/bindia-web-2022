@@ -21,15 +21,31 @@
                         <small><strong>{{ __('global.closed') }}</strong> {{ __('global.closing_dates') }}.</small>
                         <small><strong>{{ __('shop.all') }}</strong> {{ __('shop.other_days') }}</small>
                     </div>
-                    <div class="float-end">
-{{--                        <a href="https://www.findsmiley.dk/966205" target="_blank">--}}
-                            <img src="{{ asset('asstes/image/shop/smile.svg') }}" alt="" onclick="window.open('https://www.findsmiley.dk/966205')" style="cursor: pointer">
-{{--                        </a>--}}
-                        <img src="{{ asset('asstes/image/shop/map-holder.svg') }}" alt="" onclick="window.open('{{ shop('elm')->map_link }}')" style="cursor: pointer">
-                    </div>
                     <div class="clearfix"></div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="bn-shop-review-box">
+        <div class="container">
+            <a target="_blank" href="{{ shop('elm')->smily_link }}"><img src="{{ asset('asstes/image/shop/smile.svg') }}" alt=""></a>
+            <img class="bn-line-width" src="{{ asset('asstes/image/shop/line-line.svg') }}" alt="">
+            {{--            <div style="display: inline-block; margin-bottom: -50px;">--}}
+            {{--                <div class="review-widget_net" data-uuid="c768ac37-3833-4b53-ad0a-7c3216da819f" data-template="10" data-filter="" data-lang="en" data-theme="light"><center><a href="https://www.review-widget.net/" target="_blank" rel="noopener"><img src="https://grwapi.net/assets/spinner/spin.svg" title="Google Review Widget" alt="Review Widget"></a></center></div><script async type="text/javascript" src="https://grwapi.net/widget.min.js"></script>--}}
+            {{--            </div>--}}
+            <div style="display: inline-block; margin-bottom: -50px;">
+                {!! makeGoogleReview(shop('elm')->rating_link, 78, 4.0) !!}
+            </div>
+            <img class="bn-line-width" src="{{ asset('asstes/image/shop/line-line.svg') }}" alt="">
+            <div class="bn-text-shop">
+                <a href="{{ shop('elm')->inside_link }}" target="_blank">
+                    Look inside
+                </a>
+            </div>
+            <a href="{{ route('takeaway') }}" class="btn bg-dark btn-lg bn-image-button text-white">
+                {{ __('global.order_now') }}
+            </a>
         </div>
     </div>
 

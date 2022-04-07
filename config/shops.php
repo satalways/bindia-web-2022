@@ -65,6 +65,7 @@ return [
         'rating_link' => 'https://g.page/r/CUja3kKnPH5wEAg/review',
         'lat' => '55.769504',
         'lng' => '12.504548',
+        'smily_link' => 'https://www.findsmiley.dk/504020'
     ],
     'ELM' => [
         'code' => 'ELM',
@@ -85,7 +86,8 @@ return [
         'inside_link' => 'https://www.google.dk/maps/place/Bindia+Indisk+Mad+Take+Away+N%C3%B8rrebro/@55.689584,12.5582577,3a,75y,112.26h,87.37t/data=!3m7!1e1!3m5!1sAF1QipNKfSiAF4_KlFlCMqzH5b-tA_u5KY6wVoUEIcHc!2e10!3e13!7i13312!8i6656!4m5!3m4!1s0x0:0xb25e1cd3cd1b2ab2!8m2!3d55.6895539!4d12.5582421',
         'rating_link' => 'https://g.page/r/CbIqG83THF6yEAg/review',
         'lat' => '55.6895874',
-        'lng' => '12.5582023'
+        'lng' => '12.5582023',
+        'smily_link' => 'https://www.findsmiley.dk/966205'
     ],
     'SHG' => [
         'code' => 'SHG',
@@ -106,7 +108,8 @@ return [
         'inside_link' => 'https://www.google.com/maps/place/Bindia/@55.7328089,12.5167656,3a,75y,305.55h,95.45t/data=!3m6!1e1!3m4!1sAF1QipN_nZq-HrpPMKBIT-nrcVcd1V2efZIBlgwjvc2T!2e10!7i7344!8i3672!4m5!3m4!1s0x465253085ee9eaed:0xfb8a56a28c883e1c!8m2!3d55.7325892!4d12.5165864?hl=en',
         'rating_link' => 'https://g.page/r/CRw-iIyiVor7EAg/review',
         'lat' => '55.7325892',
-        'lng' => '12.5165864'
+        'lng' => '12.5165864',
+        'smily_link' => 'https://www.findsmiley.dk/947692',
     ],
     'BDV' => [
         'code' => 'BDV',
@@ -127,6 +130,7 @@ return [
         'inside_link' => 'https://www.google.dk/maps/place/Bindia+Indisk+Mad+Take+Away+%C3%98sterbro/@55.6986633,12.5761668,3a,52.5y,143.87h,89.94t/data=!3m7!1e1!3m5!1sl3f_0qIGLOgPfRraR3XAtg!2e0!3e2!7i13312!8i6656!4m5!3m4!1s0x465252fb7efe9a8f:0xc647f7a1bedbb34e!8m2!3d55.6986565!4d12.5761243',
         'rating_link' => 'https://g.page/r/CU6z276h90fGEAg/review',
         'lat' => '55.698618',
-        'lng' => '12.576083'
+        'lng' => '12.576083',
+        'smily_link' => 'https://www.findsmiley.dk/115275'
     ]
 ];
