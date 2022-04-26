@@ -11,19 +11,19 @@
 
             <div class="row">
                 <div class="col-md-3 col-4">
-                    <img src="{{ asset('asstes/image/our-team/amer.jpg') }}" data-src="{{ asset('asstes/image/our-team/amer.png') }}" class="lazy" alt="">
+                    <img src="{{ asset('asstes/image/our-team/amer.jpg') }}" alt="">
                     <div class="bn-team-title">
                         <p>Amer Suleman</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-4">
-                    <img src="{{ asset('asstes/image/our-team/jacob.jpg') }}" data-src="{{ asset('asstes/image/our-team/jacob.png') }}" class="lazy" alt="">
+                    <img src="{{ asset('asstes/image/our-team/jacob.jpg') }}" alt="">
                     <div class="bn-team-title">
                         <p>Jacob Langhorn</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-4">
-                    <img src="{{ asset('asstes/image/our-team/rasmus.jpg') }}" data-src="{{ asset('asstes/image/our-team/rasmus.png') }}" class="lazy" alt="">
+                    <img src="{{ asset('asstes/image/our-team/rasmus.jpg') }}" alt="">
                     <div class="bn-team-title">
                         <p>Rasmus Langhorn</p>
                     </div>
@@ -31,19 +31,19 @@
             </div>
             <div class="row">
                 <div class="col-md-3 col-4">
-                    <img src="{{ asset('asstes/image/our-team/white-pager-image.png') }}" alt="">
+                    <img src="{{ asset('asstes/image/our-team/white-pager-image.jpg') }}" alt="">
                     <div class="bn-team-title">
                         <p>Julia Gusieva</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-4">
-                    <img src="{{ asset('asstes/image/our-team/white-pager-image.png') }}" alt="">
+                    <img src="{{ asset('asstes/image/our-team/white-pager-image.jpg') }}" alt="">
                     <div class="bn-team-title">
                         <p>Peter Andersen</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-4">
-                    <img src="{{ asset('asstes/image/our-team/white-pager-image.png') }}" alt="">
+                    <img src="{{ asset('asstes/image/our-team/white-pager-image.jpg') }}" alt="">
                     <div class="bn-team-title">
                         <p>Kasper Emil Petersen</p>
                     </div>
@@ -57,19 +57,19 @@
 
             <div class="row">
                 <div class="col-md-3 col-4">
-                    <img src="{{ asset('asstes/image/our-team/sukhwinder.jpg') }}" data-src="{{ asset('asstes/image/our-team/sukhwinder.png') }}" class="lazy" alt="">
+                    <img src="{{ asset('asstes/image/our-team/sukhwinder.jpg') }}" alt="">
                     <div class="bn-team-title">
                         <p>Sukhwinder Singh</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-4">
-                    <img src="{{ asset('asstes/image/our-team/puran.jpg') }}" data-src="{{ asset('asstes/image/our-team/puran.png') }}" class="lazy" alt="">
+                    <img src="{{ asset('asstes/image/our-team/puran.jpg') }}" alt="">
                     <div class="bn-team-title">
                         <p>Puran Singh Panwar</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-4">
-                    <img src="{{ asset('asstes/image/our-team/dinesh.jpg') }}" data-src="{{ asset('asstes/image/our-team/dinesh.png') }}" class="lazy" alt="">
+                    <img src="{{ asset('asstes/image/our-team/dinesh.jpg') }}" alt="">
                     <div class="bn-team-title">
                         <p>Dinesh Singh</p>
                     </div>
@@ -77,17 +77,11 @@
             </div>
             <div class="row">
                 <div class="col-md-3 col-4">
-                    <img src="{{ asset('asstes/image/our-team/maninder.jpg') }}" data-src="{{ asset('asstes/image/our-team/maninder.png') }}" class="lazy" alt="">
+                    <img src="{{ asset('asstes/image/our-team/maninder.jpg') }}" alt="">
                     <div class="bn-team-title">
                         <p>Maninder Singh</p>
                     </div>
                 </div>
-{{--                <div class="col-md-3 col-4">--}}
-{{--                    <img src="{{ asset('asstes/image/our-team/virendra.jpg') }}" data-src="{{ asset('asstes/image/our-team/virendra.png') }}" class="lazy" alt="">--}}
-{{--                    <div class="bn-team-title">--}}
-{{--                        <p>Virendra Singh</p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
             </div>
 
             <div class="bn-join-team">

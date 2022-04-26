@@ -27,8 +27,7 @@
             <div class="row">
                 <div class="col-md-5 col-6">
                     <div class="bn-image-chef-box">
-                        <img src="{{ asset('asstes/image/our-story/chef-sulman.jpg') }}"
-                             data-src="{{ asset('asstes/image/our-story/chef-sulman.png') }}" class="lazy" alt="">
+                        <img src="{{ asset('asstes/image/our-story/chef-sulman.jpg') }}" alt="">
                         <div class="bn-image-title">
                             <p>Amer Sulman<br>{{ __('story.chef') }}</p>
                         </div>
@@ -57,8 +56,7 @@
     <!--banner image-->
     <div>
         <div>
-            <img src="{{ asset('asstes/image/our-story/restaurant-story.jpg') }}"
-                 data-src="{{ asset('asstes/image/our-story/restaurant-story.png') }}" class="lazy" alt="">
+            <img src="{{ asset('asstes/image/our-story/restaurant-story.jpg') }}" alt="">
         </div>
     </div>
     <!--Binda History-->

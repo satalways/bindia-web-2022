@@ -6,11 +6,11 @@
         <div class="container">
             <div class="d-none d-sm-block">
                 <img src="{{ asset('asstes/image/item2.png') }}"
-                     data-src="{{ asset('asstes/image/catering-menu/nav-menu-four.png') }}" class="lazy" alt="">
+                     data-src="{{ asset('asstes/image/catering-menu/nav-menu-four.jpg') }}" class="lazy" alt="">
             </div>
         </div>
         <div class="d-block d-sm-none pt-5">
-            <img src="{{ asset('asstes/image/dine-in/breadcrumbs-mobile.jpg') }}" data-src="{{ asset('asstes/image/dine-in/breadcrumbs-mobile.png') }}" class="lazy" alt="">
+            <img src="{{ asset('asstes/image/dine-in/breadcrumbs-mobile.jpg') }}" class="" alt="">
         </div>
     </div>
     <!--End Main Banner-->

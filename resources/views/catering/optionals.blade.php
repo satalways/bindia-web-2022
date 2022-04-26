@@ -4,7 +4,7 @@
     <!--Main Breadcrumbs-->
     <div class="bn-breadcrumb-catering d-none d-sm-block">
         <div>
-            <img src="{{ asset('asstes/image/catering-menu/catering-menu-op.jpg') }}" data-src="{{ asset('asstes/image/catering-menu/catering-menu-op.png') }}" alt="" class="lazy">
+            <img src="{{ asset('asstes/image/catering-menu/catering-menu-op.jpg') }}" alt="" class="">
 
         </div>
     </div>

@@ -3,10 +3,8 @@
 @section('content')
     <!--Main Breadcrumbs-->
     <div class="bn-breadcrumb-faq bn-main-story">
-        <img src="{{ asset('asstes/image/faq/faq-banner.jpg') }}"
-             data-src="{{ asset('asstes/image/faq/faq-banner.png') }}" alt="" class="d-sm-block d-none lazy">
-        <img src="{{ asset('asstes/image/faq/faq-banner-mibile.jpg') }}"
-             data-src="{{ asset('asstes/image/faq/faq-banner-mibile.png') }}" alt="" class="d-sm-none d-block lazy">
+        <img src="{{ asset('asstes/image/faq/faq-banner.jpg') }}" alt="" class="d-sm-block d-none">
+        <img src="{{ asset('asstes/image/faq/faq-banner-mibile.jpg') }}" alt="" class="d-sm-none d-block">
     </div>
     <!--Main end Breadcrumbs-->
     <!--faq content-->

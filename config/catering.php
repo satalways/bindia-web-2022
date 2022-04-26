@@ -39,5 +39,6 @@ return [
     ],
     'portion' => [
         'price' => 105
-    ]
+    ],
+    'select_separator' => ['Butter Paneer', 'Paneer Korma', 'Paneer Tikka Masala', 'Paneer Spinach', 'Paneer Madras', 'Paneer Jeera Masala']
 ];

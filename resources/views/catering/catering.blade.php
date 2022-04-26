@@ -118,15 +118,54 @@
                     <div class="tab-pane fade {{ isset($session['menu']) && $session['menu']==1 ? 'show active' : '' }}"
                          id="nav-menu-one" role="tabpanel"
                          aria-labelledby="nav-menu-one">
+                        <div class="row pb-0">
+                            <div class="col-3">
+                                <div class="bn-right-menu-bar bn-light-black-color">
+                                    <div class="bn-menu-header">
+                                        {{ __('catering.drinks') }}
+                                    </div>
+                                    <span>Mango Lassi</span>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="bn-right-menu-bar bn-light-black-color">
+                                    <div class="bn-menu-header">
+                                        {{ __('catering.starters') }}
+                                    </div>
+                                    <span>Tandoori Chicken</span>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="bn-right-menu-bar bn-light-black-color">
+                                    <div class="bn-menu-header">
+                                        {{ __('catering.appetizers') }}
+                                    </div>
+                                    <span>Papadums</span>
+                                    <span>Chutneys</span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
+                            <div class="col-md-3 col-3">
+                                <div class="bn-right-menu-bar">
+                                    <div class="bn-menu-header">
+                                        {{ __('catering.sides') }}
+                                    </div>
+                                    <span>Pilaoo Rice</span>
+                                    <span>Nan</span>
+                                    <span>Paratha</span>
+                                    <span>Raita</span>
+                                    <span>Mango Chutney</span>
+                                    <span>Chopped Salad</span>
+                                </div>
+                            </div>
                             <div class="col-md-8 col-9">
                                 <div class="bn-menu-header">
                                     {{ __('catering.main_dishes') }}
                                 </div>
-                                <div id="bn-check-last-order1">
+                                <div class="bn-check-out-last-order-box">
                                     <div class="bn-radio-order">
-                                        <select class="form-select s1" aria-label="Select item"
-                                                name="menu_items[1][1]">
+                                        <select class="form-select s1" aria-label="e" name="menu_items[1][1]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
                                                     <option
@@ -137,13 +176,17 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][1] ?? config('catering.menu1.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
+
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
                                     </div>
                                     <div class="bn-radio-order">
-                                        <select class="form-select s1" aria-label="Select item"
-                                                name="menu_items[1][2]">
+                                        <select class="form-select s1" aria-label="Select item" name="menu_items[1][2]">
                                             <optgroup label="VEG. & VEGAN">
                                                 @foreach($vegs as $item)
                                                     <option
@@ -154,6 +197,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][2] ?? config('catering.menu1.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -171,6 +218,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][3] ?? config('catering.menu1.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -188,6 +239,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][1][4] ?? config('catering.menu1.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -195,56 +250,9 @@
                                 </div>
                             </div>
                             <div class="col-md-2 d-md-block d-none"></div>
-                            <div class="col-md-2 col-3">
-                                <div class="bn-right-menu-bar bn-light-black-color">
-                                    <div class="bn-menu-header">
-                                        {{ __('catering.drinks') }}
-                                    </div>
-                                    <span>
-                                    Mango Lassi
-                                </span>
-                                </div>
-                                <div class="bn-right-menu-bar bn-light-black-color">
-                                    <div class="bn-menu-header">
-                                        {{ __('catering.starters') }}
-                                    </div>
-                                    <span>
-                                    Tandoori Chicken
-                                </span>
-                                </div>
-                                <div class="bn-right-menu-bar bn-light-black-color">
-                                    <div class="bn-menu-header">
-                                        {{ __('catering.appetizers') }}
-                                    </div>
-                                    <span>
-                                   Papadums
-                                </span>
-                                    <span>Chutneys</span>
-                                </div>
-                                <div class="bn-right-menu-bar">
-                                    <div class="bn-menu-header">
-                                        {{ __('catering.sides') }}
-                                    </div>
-                                    <span>
-                                  Pilaoo Rice
-                                </span>
-                                    <span>Nan</span>
-                                    <span>Paratha</span>
-                                    <span>Raita</span>
-                                    <span>Mango Chutney</span>
-                                    <span>Chopped Salad</span>
-                                </div>
-                            </div>
                         </div>
                         <div class="row pt-0">
                             <div class="col-md-8 col-9">
-                                <div class="bn-number-people">
-                                    <input type="number"
-                                           value="{{ $session['persons'] ?? config('catering.min_people') }}"
-                                           id="persons1"
-                                           min="{{ config('catering.min_people') }}">
-                                    <span>{{ __('catering.people') }}</span>
-                                </div>
                             </div>
                             <div class="col-md-2 d-md-block d-none"></div>
                             <div class="col-md-2 col-3">
@@ -254,20 +262,69 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="bn-button-menu">
-                            <button type="button" class="btn continueBtn" data-menu="1">
-                                {{ __('global.continue') }}
+                        <div class="bn-button-menu d-flex">
+                            <div class="bn-number-people float-end">
+                                <span>{{ __('catering.people') }}</span> <input type="number"
+                                                                  value="{{ $session['persons'] ?? config('catering.min_people') }}"
+                                                                  id="persons1"
+                                                                  min="{{ config('catering.min_people') }}">
+                            </div>
+                            <button type="button" class="btn float-end">
+                                {{ __('catering.people') }}
                             </button>
+                            <span class="clearfix"></span>
                         </div>
                     </div>
+
+
                     <div class="tab-pane fade {{ isset($session['menu']) && $session['menu']==2 ? 'show active' : '' }}"
                          id="nav-menu-two" role="tabpanel" aria-labelledby="nav-menu-two">
+                        <div class="row pb-0">
+                            <div class="col-3">
+                                <div class="bn-right-menu-bar bn-light-black-color">
+                                    <div class="bn-menu-header">
+                                        {{ __('catering.drinks') }}
+                                    </div>
+                                    <span>Mango Lassi</span>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="bn-right-menu-bar bn-light-black-color">
+                                    <div class="bn-menu-header">
+                                        {{ __('catering.starters') }}
+                                    </div>
+                                    <span>Tandoori Chicken</span>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="bn-right-menu-bar">
+                                    <div class="bn-menu-header">
+                                        {{ __('catering.appetizers') }}
+                                    </div>
+                                    <span>Papadums</span>
+                                    <span>Chutneys</span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
-                            <div class="col-md-8 col-9">
+                            <div class="col-md-3 col-3">
+                                <div class="bn-right-menu-bar">
+                                    <div class="bn-menu-header">
+                                        {{ __('catering.sides') }}
+                                    </div>
+                                    <span>Pilaoo Rice</span>
+                                    <span>Nan</span>
+                                    <span>Paratha</span>
+                                    <span>Raita</span>
+                                    <span>Mango Chutney</span>
+                                    <span>Chopped Salad</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-9">
                                 <div class="bn-menu-header">
                                     {{ __('catering.main_dishes') }}
                                 </div>
-                                <div id="bn-check-last-order2">
+                                <div class="bn-check-out-last-order-box">
                                     <div class="bn-radio-order">
                                         <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[2][1]">
@@ -281,6 +338,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][1] ?? config('catering.menu2.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -298,6 +359,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][2] ?? config('catering.menu2.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -315,6 +380,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][3] ?? config('catering.menu2.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -332,6 +401,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][2][4] ?? config('catering.menu2.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -339,39 +412,74 @@
                                 </div>
                             </div>
                             <div class="col-md-2 d-md-block d-none"></div>
+                        </div>
+                        <div class="row pt-0">
+                            <div class="col-md-8 col-9">
+                                <!--                            <div class="bn-number-people">-->
+                                <!--                                <input type="number" value="1">-->
+                                <!--                                <span>No. of people</span>-->
+                                <!--                            </div>-->
+                            </div>
+                            <div class="col-md-2 d-md-block d-none"></div>
                             <div class="col-md-2 col-3">
+                                <div class="bn-number-price">
+                                    <h3>{{ config('catering.menu2.price') }},-</h3>
+                                    <span>{{ __('catering.people') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bn-button-menu d-flex">
+                            <div class="bn-number-people float-end">
+                                <span>{{ __('catering.people') }}</span>
+                                <input type="number"
+                                       value="{{ $session['persons'] ?? config('catering.min_people') }}"
+                                       id="persons2"
+                                       min="{{ config('catering.min_people') }}">
+                            </div>
+                            <button type="button" class="btn float-end">
+                                {{ __('global.continue') }}
+                            </button>
+                            <span class="clearfix"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane fade {{ isset($session['menu']) && $session['menu']==3 ? 'show active' : '' }}"
+                         id="nav-menu-three" role="tabpanel" aria-labelledby="nav-menu-three">
+                        <div class="row pb-0">
+                            <div class="col-3">
                                 <div class="bn-right-menu-bar bn-light-black-color">
                                     <div class="bn-menu-header">
                                         {{ __('catering.drinks') }}
                                     </div>
-                                    <span>
-                                    Mango Lassi
-                                </span>
+                                    <span>Mango Lassi</span>
                                 </div>
-                                <div class="bn-right-menu-bar bn-light-black-color">
+                            </div>
+                            <div class="col-3">
+                                <div class="bn-right-menu-bar">
                                     <div class="bn-menu-header">
                                         {{ __('catering.starters') }}
                                     </div>
-                                    <span>
-                                    Tandoori Chicken
-                                </span>
+                                    <span>Tandoori Chicken</span>
                                 </div>
+                            </div>
+                            <div class="col-3">
                                 <div class="bn-right-menu-bar">
                                     <div class="bn-menu-header">
                                         {{ __('catering.appetizers') }}
                                     </div>
-                                    <span>
-                                   Papadums
-                                </span>
+                                    <span>Papadums</span>
                                     <span>Chutneys</span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-3">
                                 <div class="bn-right-menu-bar">
                                     <div class="bn-menu-header">
-                                        Sides
+                                        {{ __('catering.sides') }}
                                     </div>
-                                    <span>
-                                  Pilaoo Rice
-                                </span>
+                                    <span>Pilaoo Rice</span>
                                     <span>Nan</span>
                                     <span>Paratha</span>
                                     <span>Raita</span>
@@ -379,39 +487,11 @@
                                     <span>Chopped Salad</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row pt-0">
-                            <div class="col-md-8 col-9">
-                                <div class="bn-number-people">
-                                    <input type="number"
-                                           value="{{ $session['persons'] ?? config('catering.min_people') }}"
-                                           id="persons2"
-                                           min="{{ config('catering.min_people') }}">
-                                    <span>{{ __('catering.people') }}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-2 d-md-block d-none"></div>
-                            <div class="col-md-2 col-3">
-                                <div class="bn-number-price">
-                                    <h3>{{ config('catering.menu2.price') }},-</h3>
-                                    <span>{{ __('catering.per_person') }}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bn-button-menu">
-                            <button type="button" class="btn continueBtn" data-menu="2">
-                                {{ __('global.continue') }}
-                            </button>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade {{ isset($session['menu']) && $session['menu']==3 ? 'show active' : '' }}"
-                         id="nav-menu-three" role="tabpanel" aria-labelledby="nav-menu-three">
-                        <div class="row">
-                            <div class="col-md-8 col-9">
+                            <div class="col-md-6 col-9">
                                 <div class="bn-menu-header">
                                     {{ __('catering.main_dishes') }}
                                 </div>
-                                <div id="bn-check-last-order3">
+                                <div class="bn-check-out-last-order-box">
                                     <div class="bn-radio-order">
                                         <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[3][1]">
@@ -425,6 +505,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][1] ?? config('catering.menu3.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -442,6 +526,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][2] ?? config('catering.menu3.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -459,6 +547,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][3] ?? config('catering.menu3.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -476,6 +568,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][3][4] ?? config('catering.menu3.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -483,39 +579,77 @@
                                 </div>
                             </div>
                             <div class="col-md-2 d-md-block d-none"></div>
+                        </div>
+                        <div class="row pt-0">
+                            <div class="col-md-8 col-9">
+                                <!--                            <div class="bn-number-people">-->
+                                <!--                                <input type="number" value="1">-->
+                                <!--                                <span>No. of people</span>-->
+                                <!--                            </div>-->
+                            </div>
+                            <div class="col-md-2 d-md-block d-none"></div>
                             <div class="col-md-2 col-3">
-                                <div class="bn-right-menu-bar bn-light-black-color">
+                                <div class="bn-number-price">
+                                    <h3>{{ config('catering.menu3.price') }},-</h3>
+                                    <span>{{ __('catering.people') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bn-button-menu d-flex">
+                            <div class="bn-number-people float-end">
+                                <span>{{ __('catering.people') }}</span>
+                                <input type="number"
+                                       value="{{ $session['persons'] ?? config('catering.min_people') }}"
+                                       id="persons3"
+                                       min="{{ config('catering.min_people') }}">
+                            </div>
+                            <button type="button" class="btn float-end">
+                                {{ __('global.continue') }}
+                            </button>
+                            <span class="clearfix"></span>
+                        </div>
+                    </div>
+
+
+                    <div
+                        class="tab-pane fade {{ !isset($session['menu']) || (isset($session['menu']) && $session['menu']==4) ? 'show active' : '' }}"
+                        id="nav-menu-four" role="tabpanel"
+                        aria-labelledby="nav-menu-four">
+
+                        <div class="row pb-0">
+                            <div class="col-3">
+                                <div class="bn-right-menu-bar">
                                     <div class="bn-menu-header">
                                         {{ __('catering.drinks') }}
                                     </div>
-                                    <span>
-                                    Mango Lassi
-                                </span>
+                                    <span>Mango Lassi</span>
                                 </div>
+                            </div>
+                            <div class="col-3">
                                 <div class="bn-right-menu-bar">
                                     <div class="bn-menu-header">
                                         {{ __('catering.starters') }}
                                     </div>
-                                    <span>
-                                    Tandoori Chicken
-                                </span>
+                                    <span>Tandoori Chicken</span>
                                 </div>
+                            </div>
+                            <div class="col-3">
                                 <div class="bn-right-menu-bar">
                                     <div class="bn-menu-header">
                                         {{ __('catering.appetizers') }}
                                     </div>
-                                    <span>
-                                   Papadums
-                                </span>
+                                    <span>Papadums</span>
                                     <span>Chutneys</span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-3">
                                 <div class="bn-right-menu-bar">
                                     <div class="bn-menu-header">
                                         {{ __('catering.sides') }}
                                     </div>
-                                    <span>
-                                  Pilaoo Rice
-                                </span>
+                                    <span>Pilaoo Rice</span>
                                     <span>Nan</span>
                                     <span>Paratha</span>
                                     <span>Raita</span>
@@ -523,41 +657,11 @@
                                     <span>Chopped Salad</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row pt-0">
-                            <div class="col-md-8 col-9">
-                                <div class="bn-number-people">
-                                    <input type="number"
-                                           value="{{ $session['persons'] ?? config('catering.min_people') }}"
-                                           id="persons3"
-                                           min="{{ config('catering.min_people') }}">
-                                    <span>{{ __('catering.people') }}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-2 d-md-block d-none"></div>
-                            <div class="col-md-2 col-3">
-                                <div class="bn-number-price">
-                                    <h3>{{ config('catering.menu3.price') }},-</h3>
-                                    <span>{{ __('catering.per_person') }}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bn-button-menu">
-                            <button type="button" class="btn continueBtn" data-menu="3">
-                                {{ __('global.continue') }}
-                            </button>
-                        </div>
-                    </div>
-                    <div
-                        class="tab-pane fade {{ !isset($session['menu']) || (isset($session['menu']) && $session['menu']==4) ? 'show active' : '' }}"
-                        id="nav-menu-four" role="tabpanel"
-                        aria-labelledby="nav-menu-four">
-                        <div class="row">
-                            <div class="col-md-8 col-9">
+                            <div class="col-md-6 col-9">
                                 <div class="bn-menu-header">
                                     {{ __('catering.main_dishes') }}
                                 </div>
-                                <div id="bn-check-last-order4">
+                                <div class="bn-check-out-last-order-box">
                                     <div class="bn-radio-order">
                                         <select class="form-select s1" aria-label="Select item"
                                                 name="menu_items[4][1]">
@@ -565,7 +669,7 @@
                                                 @foreach($vegs as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][1] ?? config('catering.menu4.default1')) ? 'selected': '' }}>
-                                                            {{ $item->name }}
+                                                        {{ $item->name }}
                                                     </option>
                                                 @endforeach
                                             </optgroup>
@@ -573,6 +677,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][1] ?? config('catering.menu4.default1')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -590,6 +698,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][2] ?? config('catering.menu4.default2')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -607,6 +719,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][3] ?? config('catering.menu4.default3')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -624,6 +740,10 @@
                                                 @foreach($curries as $item)
                                                     <option
                                                         value="{{ $item->code }}" {{ $item->code == ($session['menu_items'][4][4] ?? config('catering.menu4.default4')) ? 'selected': '' }}>{{ $item->name }}</option>
+                                                    @if( in_array($item->name, config('catering.select_separator')))
+                                                        </optgroup>
+                                                        <optgroup label="">
+                                                    @endif
                                                 @endforeach
                                             </optgroup>
                                         </select>
@@ -631,56 +751,13 @@
                                 </div>
                             </div>
                             <div class="col-md-2 d-md-block d-none"></div>
-                            <div class="col-md-2 col-3">
-                                <div class="bn-right-menu-bar">
-                                    <div class="bn-menu-header">
-                                        {{ __('catering.drinks') }}
-                                    </div>
-                                    <span>
-                                    Mango Lassi
-                                </span>
-                                </div>
-                                <div class="bn-right-menu-bar">
-                                    <div class="bn-menu-header">
-                                        {{ __('catering.starters') }}
-                                    </div>
-                                    <span>
-                                    Tandoori Chicken
-                                </span>
-                                </div>
-                                <div class="bn-right-menu-bar">
-                                    <div class="bn-menu-header">
-                                        {{ __('catering.appetizers') }}
-                                    </div>
-                                    <span>
-                                   Papadums
-                                </span>
-                                    <span>Chutneys</span>
-                                </div>
-                                <div class="bn-right-menu-bar">
-                                    <div class="bn-menu-header">
-                                        {{ __('catering.sides') }}
-                                    </div>
-                                    <span>
-                                  Pilaoo Rice
-                                </span>
-                                    <span>Nan</span>
-                                    <span>Paratha</span>
-                                    <span>Raita</span>
-                                    <span>Mango Chutney</span>
-                                    <span>Chopped Salad</span>
-                                </div>
-                            </div>
                         </div>
                         <div class="row pt-0">
                             <div class="col-md-8 col-9">
-                                <div class="bn-number-people">
-                                    <input type="number"
-                                           value="{{ $session['persons'] ?? config('catering.min_people') }}"
-                                           id="persons4"
-                                           min="{{ config('catering.min_people') }}">
-                                    <span>{{ __('catering.people') }}</span>
-                                </div>
+                                <!--                                <div class="bn-number-people">-->
+                                <!--                                    <input type="number" value="1">-->
+                                <!--                                    <span>No. of people</span>-->
+                                <!--                                </div>-->
                             </div>
                             <div class="col-md-2 d-md-block d-none"></div>
                             <div class="col-md-2 col-3">
@@ -690,10 +767,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="bn-button-menu">
-                            <button type="button" class="btn continueBtn" data-menu="4">
+                        <div class="bn-button-menu d-sm-block d-flex">
+                            <div class="bn-number-people float-end d-block d-sm-none">
+                                <span>{{ __('catering.people') }}</span> <input type="number"
+                                                                  value="{{ $session['persons'] ?? config('catering.min_people') }}"
+                                                                  id="persons4"
+                                                                  min="{{ config('catering.min_people') }}">
+                            </div>
+                            <button type="submit" class="btn float-end">
                                 {{ __('global.continue') }}
                             </button>
+                            <div class="bn-number-people float-end d-none d-sm-block">
+                                <span>{{ __('catering.people') }}</span> <input type="number"
+                                                                  value="{{ $session['persons'] ?? config('catering.min_people') }}"
+                                                                  id="persons4"
+                                                                  min="{{ config('catering.min_people') }}">
+                            </div>
+                            <span class="clearfix"></span>
                         </div>
                     </div>
                 </div>
@@ -707,6 +797,14 @@
     {!! js('form') !!}
     <script>
         $(function () {
+            $("#bn-menu-banner img").attr('src', asset("asstes/image/catering-menu/nav-menu-four.jpg"));
+            $('div#nav-tab .nav-link').click(function (e) {
+                e.preventDefault();
+                var img_name = $(this).val();
+                $("#bn-menu-banner img").attr('src', asset("asstes/image/catering-menu/" + img_name + '.jpg'));
+            });
+
+
             $(document)
                 .on('submit', '#form1', function (e) {
                     e.preventDefault();

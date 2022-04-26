@@ -29,6 +29,36 @@ return [
         'gluten' => 'No Gluten'
     ],
 
+    'sub_sections' => [
+        'Single Meals' => [
+            'Tandoori Chicken'
+        ],
+        'Veg. & Vegan' => [
+            'Dal',
+            'Aloo Gobi'
+        ],
+        'Curries' => [
+            'Butter',
+            'Korma',
+            'Tikka Masala',
+            'Spinach',
+            'Madras',
+            'Jeera Masala',
+            'Coconut Tamarind'
+        ],
+        'Sides' => [
+            'Nan',
+            'Paratha',
+            'Raita',
+            'Papadums',
+        ],
+        'Drinks' => [
+            'Mango Lassi',
+            'Lemonade',
+            'Kingfisher',
+        ]
+    ],
+
     /**
      * Add 1 bag after these bag points
      */

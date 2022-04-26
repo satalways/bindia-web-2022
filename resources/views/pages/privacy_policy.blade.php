@@ -3,11 +3,8 @@
 @section('content')
     <!--Main Breadcrumbs-->
     <div class="bn-breadcrumb-policy bn-main-story">
-        <img src="{{ asset('asstes/image/faq/privacy-polaicy-banner.jpg') }}"
-             data-src="{{ asset('asstes/image/faq/privacy-polaicy-banner.png') }}" alt=""
-             class="d-sm-block d-none lazy">
-        <img src="{{ asset('asstes/image/faq/privacy-banner-mobile.jpg') }}"
-             data-src="{{ asset('asstes/image/faq/privacy-banner-mobile.png') }}" alt="" class="d-sm-none d-block lazy">
+        <img src="{{ asset('asstes/image/faq/privacy-polaicy-banner.jpg') }}" alt="" class="d-sm-block d-none">
+        <img src="{{ asset('asstes/image/faq/privacy-banner-mobile.jpg') }}" alt="" class="d-sm-none d-block">
     </div>
     <!--Main end Breadcrumbs-->
     <!--faq content-->

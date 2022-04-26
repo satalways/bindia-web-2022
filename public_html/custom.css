@@ -29,58 +29,58 @@
     transform: translateY(0);
   }
 }
-.googleReviewOuter {
+.googleReviewOuter2 {
   margin-top: -20px;
   display: inline-block;
   position: relative;
   top: 25px;
 }
-div.googleReview {
+div.googleReview2 {
   all: initial;
   display: inline-block;
   color: #5f6369;
   width: 228px !important;
   cursor: pointer;
 }
-div.googleReview a {
+div.googleReview2 a {
   text-decoration: none !important;
 }
-div.googleReview table {
+div.googleReview2 table {
   color: #838383;
 }
-div.googleReview table td.td1 {
+div.googleReview2 table td.td1 {
   color: #5f6369;
   width: 76px;
   height: 58px;
   font-family: 'Roboto', sans-serif !important;
 }
-div.googleReview table td.td2 {
+div.googleReview2 table td.td2 {
   width: 150px;
   color: #5f6369;
 }
-div.googleReview table td.td2 .title {
+div.googleReview2 table td.td2 .title {
   color: #5f6369;
   font-weight: 500;
   font-size: 18px;
   font-family: 'Roboto', sans-serif !important;
 }
-div.googleReview table td.td2 .rating {
+div.googleReview2 table td.td2 .rating {
   color: #5f6369;
   font-size: 26px;
   font-weight: 600;
   font-family: 'Roboto', sans-serif !important;
 }
-div.googleReview table td.td2 .rating .stars {
+div.googleReview2 table td.td2 .rating .stars {
   float: right;
   font-size: 15px;
 }
-div.googleReview table td.td2 .rating .stars i {
+div.googleReview2 table td.td2 .rating .stars i {
   color: #c0c0c0 !important;
 }
-div.googleReview table td.td2 .rating .stars i.font-yellow {
+div.googleReview2 table td.td2 .rating .stars i.font-yellow {
   color: #f9bc15 !important;
 }
-div.googleReview table td.td2 .rating .stars .rev {
+div.googleReview2 table td.td2 .rating .stars .rev {
   font-weight: normal !important;
 }
 /*# sourceMappingURL=custom.css.map */

@@ -23,7 +23,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <img class="bn-thumbnail-img"
-                                         src="{{ $item->image_thumbnail }}" alt="">
+                                         src="{{ $item->image }}" alt="">
                                 </div>
                                 <div class="col-md-5 bn-bg-product bn-border-right">
                                     <h2>{{ $item->name }}</h2>

@@ -881,6 +881,7 @@ class Order
         $orders = Orders::query()
             ->where('paid', true)
             ->where('delivery', 'By Taxi')
+            ->where('is_custom_order', false)
             ->where(function ($query) {
                 $query->where('etakeaway_id', 0)
                     ->orWhereNull('etakeaway_id');

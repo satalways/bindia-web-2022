@@ -1,0 +1,7 @@
+<svg id="Component_94_8" data-name="Component 94 – 8" xmlns="http://www.w3.org/2000/svg" width="265" height="66" viewBox="0 0 265 66">
+  <g id="Path_10987" data-name="Path 10987" fill="#2c2c2c">
+    <path d="M 264.5 65.5 L 0.5 65.5 L 0.5 0.5 L 264.5 0.5 L 264.5 65.5 Z" stroke="none"/>
+    <path d="M 1 1 L 1 65 L 264 65 L 264 1 L 1 1 M 0 0 L 265 0 L 265 66 L 0 66 L 0 0 Z" stroke="none" fill="#fff"/>
+  </g>
+  <text id="Bestil_her" data-name="Bestil her" transform="translate(27 18)" fill="#fff" font-size="25" font-family="HelveticaNeue-CondensedBold, Helvetica Neue" font-weight="700"><tspan x="58" y="24">Bestil her</tspan></text>
+</svg>

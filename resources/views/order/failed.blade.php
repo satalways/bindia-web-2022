@@ -4,7 +4,7 @@
     <div class="bn-breadcrumbs-take-away  d-sm-block">
         <div>
             <img src="{{ asset('asstes/image/take-away/mask-group-2.jpg') }}"
-                 data-src="{{ asset('asstes/image/take-away/mask-group-2.png') }}" class="lazy" alt="">
+                 data-src="{{ asset('asstes/image/take-away/mask-group-2.jpg') }}" class="lazy" alt="">
         </div>
     </div>
 

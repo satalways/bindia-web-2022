@@ -41,7 +41,7 @@
     <!--Main Breadcrumbs-->
     <div class="bn-breadcrumbs-take-away d-none d-sm-block position-relative">
         <div>
-            <img src="{{ asset('asstes/image/take-away/mask-group-2.png') }}" alt="">
+            <img src="{{ asset('asstes/image/take-away/mask-group-2.jpg') }}" alt="">
             <span id="bn-take-away-price"></span>
         </div>
     </div>
@@ -51,26 +51,25 @@
 
     <!--Email send box-->
     <form action="#">
-        <div class="bn-email-item">
+        <div class="bn-email-item bn-main-story">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-sm-3 col-2">
+                    <div class="col-lg-6 col-sm-3 col-12">
                         <p data-bs-toggle="modal" style="cursor: pointer" data-bs-target="#copy-order-modal">
                             {{ __('checkout.copy_my_last_order') }}?
                         </p>
                     </div>
-                    <div class="col-lg-4 col-sm-6 col-6">
+                    <div class="col-lg-4 col-sm-6 col-8">
                         <input type="email" class="form-control" placeholder="{{ __('global.email') }}" id="copy_email">
                     </div>
-                    <div class="col-lg-2 col-sm-3 col-2">
+                    <div class="col-lg-2 col-sm-3 col-4">
                         <button type="button" class="bnt btn-dark d-block w-100" id="copyLastOrderButton">
                             {{ __('global.go') }}
                         </button>
                     </div>
-                    <div class="col-2 d-sm-none d-block text-center">
-                        <img src="{{ asset('asstes/image/take-away/close.svg') }}" alt="">
-                    </div>
-
+{{--                    <div class="col-2 d-sm-none d-block text-center">--}}
+{{--                        <img src="{{ asset('asstes/image/take-away/close.svg') }}" alt="">--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </div>
@@ -107,17 +106,17 @@
                     <div class="col-12">
                         @if(getCurrentLang() === 'da')
                             <img
-                                src="{{ asset('asstes/image/take-away/orange-price-order-dk.png') }}" alt=""
+                                src="{{ asset('asstes/image/take-away/orange-price-order-dk.jpg') }}" alt=""
                                 style="margin-bottom: 10px;" class="d-sm-block d-none">
                             <img
-                                src="{{ asset('asstes/image/take-away/orange-mobile-pirce-dk.png') }}" alt=""
+                                src="{{ asset('asstes/image/take-away/orange-mobile-pirce-dk.jpg') }}" alt=""
                                 style="margin-bottom: 10px;" class="d-sm-none d-block">
                         @else
                             <img
-                                src="{{ asset('asstes/image/take-away/orange-price-order.png') }}" alt=""
+                                src="{{ asset('asstes/image/take-away/orange-price-order.jpg') }}" alt=""
                                 style="margin-bottom: 10px" class="d-sm-block d-none">
                             <img
-                                src="{{ asset('asstes/image/take-away/orange-mobile-pirce.png') }}" alt=""
+                                src="{{ asset('asstes/image/take-away/orange-mobile-pirce.jpg') }}" alt=""
                                 class="d-sm-none d-block" style="margin-bottom: 10px">
                         @endif
                     </div>
@@ -149,80 +148,231 @@
                                 @foreach($itemsArray as $item)
                                     <div class="row"
                                          @if($sectionSlug === 'bn-drinks')
-                                         data-veg="yes"
+                                             data-veg="yes"
                                          @if($item->code!=='700')
-                                         data-vegan="yes"
+                                             data-vegan="yes"
                                          @endif
                                          @endif
                                          @if(!$item->dairy)
-                                         data-dairy="no"
+                                             data-dairy="no"
                                          @endif
                                          @if($item->veg)
-                                         data-veg="yes"
+                                             data-veg="yes"
                                          @endif
-                                         {{--                                         @if (!$item->gluten)--}}
-                                         {{--                                         data-attr="no-gluten"--}}
-                                         {{--                                         @endif--}}
 
                                          data-gluten="{{ $item->gluten?'Yes':'no' }}"
 
                                          @if($item->vegan)
-                                         data-veg="yes"
+                                             data-veg="yes"
                                          data-vegan="yes"
                                          @endif
                                          @if(!$item->nuts)
-                                         data-nuts="no"
+                                             data-nuts="no"
                                         @endif
                                     >
                                         <div class="col-md-4">
-                                            <img class="bn-thumbnail-img" src="{{ $item->image }}?v=2"
-                                                 data-src="{{ $item->image }}?v=5"
-                                                 alt="">
+                                            <img class="bn-thumbnail-img" src="{{ $item->image }}" alt="">
+                                            <div class="bn-product-text-list">
+                                                <div class="bn-product-head">
+                                                    <h4>Næringsindhold
+                                                        <small>pr. 100g</small>
+                                                    </h4>
+                                                </div>
+                                                <hr>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        Energi:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        1247 kJ / 298 kcal
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        Fedt:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        9,9 g
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        heraf mættede fedtsyrer:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        1,1 g
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        Kulhydrat:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        41 g
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        heraf sukkerarter:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        1,6 g
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        Kostfibre:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        5,8 g
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        Protein:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        8,5 g
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        Salt:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        1,25 g
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <hr>
+                                            </div>
                                         </div>
                                         <div class="col-md-5 bn-bg-product bn-border-right bn-orange-border-mobile">
-                                            {{--                                            <a href="{{ route('item', ['slug' => $item->slug]) }}"--}}
-                                            {{--                                               style="text-decoration: none !important;" target="_blank">--}}
-
-                                            {{--                                                @if(in_array($item->section,['bn-curries','bn-veg']))--}}
-                                            {{--                                                    <h2>--}}
-                                            {{--                                                        {{ $item->name }}--}}
-                                            {{--                                                        <small class="d-sm-inline-block"--}}
-                                            {{--                                                               style="font-weight: normal !important; font-size: 65%">--}}
-                                            {{--                                                            (no Sides)--}}
-                                            {{--                                                        </small>--}}
-                                            {{--                                                    </h2>--}}
-                                            {{--                                                @else--}}
-                                            <h2>{{ $item->name }}</h2>
-                                            {{--                                                @endif--}}
-
-                                            {{--                                            </a>--}}
-
+                                            <h2 class="float-start">{{ $item->name }}</h2>
+                                            <div class="bn-price-item float-end d-sm-none d-block">
+                                                @if($sectionSlug==='bn-single-meals' && $loop->index === 0)
+                                                    <img src="{{ asset('asstes/image/take-away/discount-arrow.svg') }}"
+                                                         alt="">
+                                                @endif
+                                                <span
+                                                    class="bh-current-price">{{ $item->price }} /</span> <span
+                                                    class="bn-discount-price">{{ $item->price_orange }}</span>
+                                            </div>
+                                            <span class="clearfix"></span>
                                             <p>{{ getCurrentLang()=='da'?$item->description_dk:$item->description_en }}</p>
+                                            <div class="bn-product-text-list bn-list-mobile-take-away">
+                                                <div class="bn-product-head">
+                                                    <h4>Næringsindhold
+                                                        <small>pr. 100g</small>
+                                                    </h4>
+                                                </div>
+                                                <hr>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        Energi:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        1247 kJ / 298 kcal
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        Fedt:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        9,9 g
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        heraf mættede fedtsyrer:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        1,1 g
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        Kulhydrat:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        41 g
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        heraf sukkerarter:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        1,6 g
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        Kostfibre:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        5,8 g
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        Protein:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        8,5 g
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <div class="bn-list-text">
+                                                    <div class="float-start">
+                                                        Salt:
+                                                    </div>
+                                                    <div class="float-end">
+                                                        1,25 g
+                                                    </div>
+                                                    <span class="clearfix"></span>
+                                                </div>
+                                                <hr>
+                                            </div>
                                             <div class="bn-icon">
                                                 @if($item->dairy)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/milk.png') }}?3"
+                                                        <img src="{{ asset('asstes/image/take-away/milk.svg') }}"
                                                              alt="{{ getMilkToolTip() }}"
                                                              title="{{ getMilkToolTip() }}">
                                                     </span>
                                                 @endif
                                                 @if($item->nuts)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/nut.png') }}?3"
+                                                        <img src="{{ asset('asstes/image/take-away/nut.png') }}"
                                                              alt="{{ getNutsToolTip() }}"
                                                              title="{{ getNutsToolTip() }}">
                                                     </span>
                                                 @endif
                                                 @if($item->gluten)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/wheat.png') }}?3"
+                                                        <img src="{{ asset('asstes/image/take-away/wheat.png') }}"
                                                              alt="{{ getWheatToolTip() }}"
                                                              title="{{ getWheatToolTip() }}">
                                                     </span>
                                                 @endif
                                                 @if($item->chili)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/chili.png') }}?3"
+                                                        <img src="{{ asset('asstes/image/take-away/chili.png') }}"
                                                              alt="{{ getChiliToolTip() }}"
                                                              title="{{ getChiliToolTip() }}">
                                                     </span>
@@ -230,26 +380,27 @@
                                                 @if($item->double_chili)
                                                     <span>
                                                         <img
-                                                            src="{{ asset('asstes/image/take-away/dubble-chili.png') }}?3"
-                                                            alt="{{ getDoubleChiliToolTip() }}" title="{{ getDoubleChiliToolTip() }}">
+                                                            src="{{ asset('asstes/image/take-away/dubble-chili.png') }}"
+                                                            alt="{{ getDoubleChiliToolTip() }}"
+                                                            title="{{ getDoubleChiliToolTip() }}">
                                                     </span>
                                                 @endif
                                                 @if($item->vegan)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/vegan.png') }}?3"
+                                                        <img src="{{ asset('asstes/image/take-away/vegan.png') }}"
                                                              alt="{{ getVeganToolTip() }}"
                                                              title="{{ getVeganToolTip() }}">
                                                     </span>
                                                 @endif
                                                 @if($item->veg)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/veg.png') }}?3"
+                                                        <img src="{{ asset('asstes/image/take-away/veg.png') }}"
                                                              alt="{{ getVegToolTip() }}" title="{{ getVegToolTip() }}">
                                                     </span>
                                                 @endif
                                                 <span class="bn-text-icon">
                                                     <img alt="{{ getWeightToolTip() }}" title="{{ getWeightToolTip() }}"
-                                                        src="{{ asset('asstes/image/take-away/' .  $item->portion_slug . '.png') }}?3">
+                                                         src="{{ asset('asstes/image/take-away/' .  $item->portion_slug . '.png') }}">
                                                 </span>
                                                 @if(in_array($item->section,['bn-curries','bn-veg']))
                                                     <span>
@@ -259,31 +410,31 @@
                                                     </span>
                                                 @endif
 
-                                                <img src="{{ asset('asstes/image/take-away/info-icon.png') }}?3"
-                                                     alt=""
-                                                     class="bn-info-product-icon">
-
+                                                <img src="{{ asset('asstes/image/take-away/info-icon.png') }}"
+                                                     alt="" class="bn-info-product-icon">
                                             </div>
                                         </div>
                                         <div class="col-md-3 bn-bg-product bn-bg-orange-product">
-                                            <div class="bn-price-item">
-                                                @if($sectionSlug==='bn-single-meals' && $loop->index === 0)
-                                                    <img src="{{ asset('asstes/image/take-away/discount-arrow.svg') }}"
-                                                         alt="">
-                                                @endif
-                                                <span class="bh-current-price">{{ $item->price }} /</span> <span
-                                                    class="bn-discount-price">{{ $item->price_orange }}</span>
+                                            <div class="bn-price-item d-sm-block d-none"><span class="bh-current-price">{{ $item->price }} /</span>
+                                                <span class="bn-discount-price">{{ $item->price_orange }}</span>
                                             </div>
                                             <div class="bn-number-product" data-single="{{ $item->id }}">
                                                 @include('order.ajax.takeaway_single_item', ['item' => $item])
                                             </div>
+                                            {{--                                            <div class="bn-number-product" data-single="{{ $item->id }}">--}}
+                                            {{--                                                @include('order.ajax.takeaway_single_item', ['item' => $item])--}}
+                                            {{--                                            </div>--}}
                                         </div>
                                         <div class="col-lg-12 bn-product-big-image">
                                             <div class="bn-broduct-big-img">
-                                                <img src="{{ $item->image }}"
-                                                     data-src="{{ $item->image }}?v=5" alt="" class="lazy2">
+                                                <img src="{{ $item->image }}" alt="" class="">
                                             </div>
                                         </div>
+                                        {{--                                        <div class="col-lg-12 bn-product-big-image">--}}
+                                        {{--                                            <div class="bn-broduct-big-img">--}}
+                                        {{--                                                <img src="{{ $item->image }}" alt="" class="lazy2">--}}
+                                        {{--                                            </div>--}}
+                                        {{--                                        </div>--}}
                                     </div>
                                 @endforeach
                             </div>

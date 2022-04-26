@@ -4,7 +4,7 @@
     <!--Main Breadcrumbs-->
     <div class="bn-banner-catering d-none d-sm-block">
         <div>
-            <img src="{{ asset('asstes/image/catering-menu/catering-menu-drink.jpg') }}" data-src="{{ asset('asstes/image/catering-menu/catering-menu-drink.png') }}" alt="" class="lazy">
+            <img src="{{ asset('asstes/image/catering-menu/catering-menu-drink.jpg') }}" alt="" class="">
         </div>
     </div>
     <!--End Main Banner-->

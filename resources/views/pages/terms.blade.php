@@ -3,8 +3,8 @@
 @section('content')
     <!--Main Breadcrumbs-->
     <div class="bn-breadcrumb-terms bn-main-story">
-        <img src="{{ asset('asstes/image/faq/terms-banner.png') }}" alt="" class="d-sm-block d-none">
-        <img src="{{ asset('asstes/image/faq/trems-mobile.png') }}" alt="" class="d-sm-none d-block">
+        <img src="{{ asset('asstes/image/faq/terms-banner.jpg') }}" alt="" class="d-sm-block d-none">
+        <img src="{{ asset('asstes/image/faq/trems-mobile.jpg') }}" alt="" class="d-sm-none d-block">
     </div>
     <!--Main end Breadcrumbs-->
     <!--faq content-->

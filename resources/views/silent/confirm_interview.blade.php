@@ -5,11 +5,11 @@
     <div class="bn-breadcrumbs-dine">
         <div class="container">
             <div class="d-none d-sm-block">
-                <img src="{{ asset('asstes/image/dine-in/breadcumbs-banner.jpg') }}" data-src="{{ asset('asstes/image/dine-in/breadcumbs-banner.png') }}" alt="" class="lazy">
+                <img src="{{ asset('asstes/image/dine-in/breadcumbs-banner.jpg') }}" alt="" class="">
             </div>
         </div>
         <div class="d-block d-sm-none pt-5">
-            <img src="{{ asset('asstes/image/dine-in/breadcrumbs-mobile.jpg') }}" data-src="{{ asset('asstes/image/dine-in/breadcrumbs-mobile.png') }}" class="lazy" alt="">
+            <img src="{{ asset('asstes/image/dine-in/breadcrumbs-mobile.jpg') }}" class="" alt="">
         </div>
     </div>
     <!--End Main Banner-->

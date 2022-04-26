@@ -13,20 +13,15 @@
 @section('content')
     <!--Main Breadcrumbs-->
     <div class="bn-breadcrumb-our-values bn-main-story">
-        <img src="{{ asset('asstes/image/our-values/our-values-banner.jpg') }}"
-             data-src="{{ asset('asstes/image/our-values/our-values-banner.png') }}" alt=""
-             class="d-sm-block d-none lazy">
-        <img src="{{ asset('asstes/image/our-values/our-vaues-mobile-banner.jpg') }}"
-             data-src="{{ asset('asstes/image/our-values/our-vaues-mobile-banner.png') }}" alt=""
-             class="d-sm-none d-block lazy">
+        <img src="{{ asset('asstes/image/our-values/our-values-banner.jpg') }}" alt="" class="d-sm-block d-none">
+        <img src="{{ asset('asstes/image/our-values/our-vaues-mobile-banner.jpg') }}" alt="" class="d-sm-none d-block">
     </div>
     <!--Main end Breadcrumbs-->
     <!-- Profile box-->
     <div class="bn-profile-values bn-main-story">
         <div class="container">
             <div class="bn-profile-item">
-                <img src="{{ asset('asstes/image/our-values/porfile-image.jpg') }}"
-                     data-src="{{ asset('asstes/image/our-values/porfile-image.png') }}" class="lazy" alt="">
+                <img src="{{ asset('asstes/image/our-values/porfile-image.png') }}" class="" alt="">
                 <h1>{{ __('values.heading') }}
                     <br>
                     <small

@@ -32,7 +32,7 @@ class CateringController extends Controller
             'vegs' => $vegs,
             'session' => $sessionData,
             'seo' => seo('Catering Buffet'),
-            'social_image' => 'https://www.bindia.dk/asstes/image/catering-menu/nav-menu-four.png'
+            'social_image' => 'https://www.bindia.dk/asstes/image/catering-menu/nav-menu-four.jpg'
         ]);
     }
 
@@ -52,7 +52,7 @@ class CateringController extends Controller
             'items' => $items,
             'session' => $session,
             'back_link' => $back_link,
-            'social_image' => 'https://www.bindia.dk/asstes/image/catering-menu/nav-menu-four.png',
+            'social_image' => 'https://www.bindia.dk/asstes/image/catering-menu/nav-menu-four.jpg',
         ]);
     }
 

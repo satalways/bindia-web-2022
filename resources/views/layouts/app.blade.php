@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="{{ getCurrentLang() }}">
-<head>    <!-- Global site tag (gtag.js) - Google Analytics -->
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
     @if(isLiveServer())
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58516958-1"></script>
         <script>
@@ -30,14 +31,14 @@
     <!--FontAwesome File-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!--animations css file-->
-{{--    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">--}}
-<!--Parallax css file-->
+    {{--    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">--}}
+    <!--Parallax css file-->
     <link href="{{ asset('asstes/css/parallax.css') }}?v=3" rel="stylesheet">
     <!--Costume Style css file-->
-    <link rel="stylesheet" href="{{ asset('asstes/css/style.css') }}?v=16.5">
-    <link rel="stylesheet" href="{{ asset('custom.css') }}?v=16.7">
+    <link rel="stylesheet" href="{{ asset('asstes/css/style.css') }}?v=16.7">
+    <link rel="stylesheet" href="{{ asset('custom.css') }}?v=16.8">
     <!--animation file-->
-{{--    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>--}}
+    {{--    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>--}}
     <script src="{{ asset('asstes/js/float-panel.js') }}"></script>
 
     <meta property="og:description"
@@ -139,9 +140,9 @@
         }
     </style>
 
-@yield('styles')
+    @yield('styles')
 
-<!-- Google Tag Manager -->
+    <!-- Google Tag Manager -->
     <script>
         (function (w, d, s, l, i) {
             w[l] = w[l] || [];
@@ -158,6 +159,14 @@
         })(window, document, 'script', 'dataLayer', 'GTM-55HW7TK');
     </script>
     <!-- End Google Tag Manager -->
+
+
+    @routes
+    <script>
+        function asset(path) {
+            return "{{ asset("") }}" + path;
+        }
+    </script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -248,17 +257,23 @@
                         {{ __('footer.locations') }}
                     </a>
                     <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item text-white" href="{{ route('amg') }}">{{ shop('amg')->name }}</a>
+                        <li>
+                            <a class="dropdown-item text-white" href="{{ route('amg') }}">{{ shop('amg')->name }}</a>
                         </li>
-                        <li><a class="dropdown-item text-white" href="{{ route('gkv') }}">{{ shop('gkv')->name }}</a>
+                        <li>
+                            <a class="dropdown-item text-white" href="{{ route('gkv') }}">{{ shop('gkv')->name }}</a>
                         </li>
-                        <li><a class="dropdown-item text-white" href="{{ route('lhg') }}">{{ shop('lhg')->name }}</a>
+                        <li>
+                            <a class="dropdown-item text-white" href="{{ route('lhg') }}">{{ shop('lhg')->name }}</a>
                         </li>
-                        <li><a class="dropdown-item text-white" href="{{ route('elm') }}">{{ shop('elm')->name }}</a>
+                        <li>
+                            <a class="dropdown-item text-white" href="{{ route('elm') }}">{{ shop('elm')->name }}</a>
                         </li>
-                        <li><a class="dropdown-item text-white" href="{{ route('shg') }}">{{ shop('shg')->name }}</a>
+                        <li>
+                            <a class="dropdown-item text-white" href="{{ route('shg') }}">{{ shop('shg')->name }}</a>
                         </li>
-                        <li><a class="dropdown-item text-white" href="{{ route('bdv') }}">{{ shop('bdv')->name }}</a>
+                        <li>
+                            <a class="dropdown-item text-white" href="{{ route('bdv') }}">{{ shop('bdv')->name }}</a>
                         </li>
                     </ul>
                 </li>

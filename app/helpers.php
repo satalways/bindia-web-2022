@@ -789,3 +789,12 @@ function makeGoogleReview($link, $numberOfReviews, $rating)
         'rating' => $rating
     ])->render();
 }
+
+function isLongFeedbackQuestion($question, $answer): bool
+{
+    if (str_starts_with($answer, 'rating_')) return false;
+    if (strlen($question) > 50) return true;
+    if (strlen($answer) > 20) return true;
+
+    return false;
+}

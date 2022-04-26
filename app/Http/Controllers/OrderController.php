@@ -79,7 +79,7 @@ class OrderController extends Controller
             'items' => $items,
             'cartItems' => $O->getSessionCart(),
             'seo' => seo('Takeaway'),
-            'social_image' => asset('asstes/image/take-away/mask-group-2.png')
+            'social_image' => asset('asstes/image/take-away/mask-group-2.jpg')
         ])->render();
         //});
     }
@@ -109,6 +109,23 @@ class OrderController extends Controller
         if (!$request->ajax()) abort(404);
         $O = new Order();
         switch ($request->post('action')) {
+            case 'checkTime':
+                //debug($request->post());
+                if (!Carbon::create($request->post('date'))->isToday()) {
+                    return null;
+                }
+                $now = \now();
+                //debug($now->diffInMinutes(Carbon::create($request->post('date').' '.$request->post('time'))));
+                if ($now->diffInMinutes(Carbon::create($request->post('date') . ' ' . $request->post('time')), false) < config('order.order_prep_time')) {
+                    $now->addMinutes(config('order.order_prep_time'));
+                    while ($now->minute % 5 !== 0) {
+                        $now->addMinute();
+                    }
+                    return $now->format('H:i');
+                }
+
+                return null;
+                break;
             case 'updateSessionCart':
             case 'updateSessionCart2':
                 $post = $request->post();

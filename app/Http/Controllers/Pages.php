@@ -10,7 +10,7 @@ class Pages extends Controller
     {
         return view('pages.dinein', [
             'seo' => seo('dinein'),
-            'social_image' => 'https://www.bindia.dk/asstes/image/dine-in/breadcumbs-banner.png'
+            'social_image' => 'https://www.bindia.dk/asstes/image/dine-in/breadcumbs-banner.jpgs'
         ]);
     }
 
@@ -18,45 +18,45 @@ class Pages extends Controller
     {
         return view('pages.amg', [
             'seo' => seo('AMG'),
-            'social_image' => 'https://www.bindia.dk/asstes/image/shop/amagerbrogade.png'
+            'social_image' => 'https://www.bindia.dk/asstes/image/shop/amagerbrogade.jpg'
         ]);
     }
 
     public function bdv()
     {
-        return view('pages.bdv',[
+        return view('pages.bdv', [
             'seo' => seo('BDV'),
-            'social_image' => 'https://www.bindia.dk/asstes/image/shop/triandlen.png'
+            'social_image' => 'https://www.bindia.dk/asstes/image/shop/triandlen.jpg'
         ]);
     }
 
     public function elm()
     {
-        return view('pages.elm',[
+        return view('pages.elm', [
             'seo' => seo('ELM'),
-            'social_image' => 'https://www.bindia.dk/asstes/image/shop/elmegade.png'
+            'social_image' => 'https://www.bindia.dk/asstes/image/shop/elmegade.jpg'
         ]);
     }
 
     public function gkv()
     {
-        return view('pages.gkv',[
+        return view('pages.gkv', [
             'seo' => seo('GKV'),
-            'social_image' => 'https://www.bindia.dk/asstes/image/shop/gi-kongevej.png'
+            'social_image' => 'https://www.bindia.dk/asstes/image/shop/gi-kongevej.jpg'
         ]);
     }
 
     public function lhg()
     {
-        return view('pages.lhg',[
+        return view('pages.lhg', [
             'seo' => seo('LHG'),
-            'social_image' => 'https://www.bindia.dk/asstes/image/shop/lyngby.png'
+            'social_image' => 'https://www.bindia.dk/asstes/image/shop/lyngby.jpg'
         ]);
     }
 
     public function shg()
     {
-        return view('pages.shg',[
+        return view('pages.shg', [
             'seo' => seo('SHG'),
             'social_image' => 'https://www.bindia.dk/asstes/image/shop/soborg.png'
         ]);
@@ -92,7 +92,7 @@ class Pages extends Controller
 
     public function glossary()
     {
-        return view('pages.glossary',[
+        return view('pages.glossary', [
             'seo' => seo('Glossary')
         ]);
     }
@@ -107,7 +107,7 @@ class Pages extends Controller
     public function terms()
     {
         return view('pages.terms', [
-            'seo' =>  seo('Terms Conditions')
+            'seo' => seo('Terms Conditions')
         ]);
     }
 }

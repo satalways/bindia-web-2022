@@ -39,9 +39,13 @@ class Kernel extends ConsoleKernel
             $Order->sendOrdersToTakeOut();
         })->everyMinute();
 
+        /**
+         * Send a request to nets server and check if order is paid as marked or not, if not then our system will
+         * mark as paid.
+         */
         $schedule->call(function () {
             Order::checkOrdersIfNotMarkPaid();
-        })->everyTenMinutes();
+        })->everyTwoMinutes();
     }
 
     /**

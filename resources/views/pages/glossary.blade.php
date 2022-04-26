@@ -3,8 +3,8 @@
 @section('content')
     <!--Main Breadcrumbs-->
     <div class="bn-breadcrumb-glossary bn-main-story">
-        <img src="{{ asset('asstes/image/glossary/glossary-banner.jpg') }}" data-src="{{ asset('asstes/image/glossary/glossary-banner.png') }}" alt="" class="d-sm-block d-none lazy">
-        <img src="{{ asset('asstes/image/glossary/glossary-banner-mobile.jpg') }}" data-src="{{ asset('asstes/image/glossary/glossary-banner-mobile.png') }}" alt="" class="d-sm-none d-block lazy">
+        <img src="{{ asset('asstes/image/glossary/glossary-banner.jpg') }}" alt="" class="d-sm-block d-none">
+        <img src="{{ asset('asstes/image/glossary/glossary-banner-mobile.jpg') }}" alt="" class="d-sm-none d-block">
     </div>
     <!--Main end Breadcrumbs-->
     <div class="bn-glossary-content bn-main-story position-relative">

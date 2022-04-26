@@ -1,16 +1,25 @@
 jQuery(document).ready(function () {
 
-    // Take Away show hidde img
-    jQuery(".bn-toggle-content img.bn-thumbnail-img").click(function () {
-        jQuery(this).parent().parent().toggleClass("bn-img-active").siblings().removeClass("bn-img-active");
-        jQuery(this).closest('.bn-toggle-content').siblings().children().removeClass("bn-img-active");
-    });
-    // Take Away show hide mobile paragraph
-    jQuery(".bn-toggle-content .row div:first-child, .bn-toggle-content .bn-border-right").click(function () {
-        jQuery(this).parent().toggleClass("bn-text-active").siblings().removeClass("bn-text-active");
-        jQuery(".bn-info-product-icon").toggle();
-        jQuery(this).closest('.bn-toggle-content').siblings().children().removeClass("bn-text-active");
-    });
+
+    if (window.matchMedia('(min-width: 650px)').matches) {
+        // Take Away show hidde img
+        jQuery(".bn-toggle-content img.bn-thumbnail-img, .bn-toggle-content .bn-product-text-list").click(function () {
+            jQuery(this).parent().parent().toggleClass("bn-img-active").siblings().removeClass("bn-img-active");
+            jQuery(this).closest('.bn-toggle-content').siblings().children().removeClass("bn-img-active");
+        });
+        jQuery(".bn-toggle-content .bn-border-right, .bn-toggle-content .bn-product-big-image").click(function () {
+            jQuery(this).parent().toggleClass("bn-img-active").siblings().removeClass("bn-img-active");
+            jQuery(this).closest('.bn-toggle-content').siblings().children().removeClass("bn-img-active");
+        });
+    }
+    if (window.matchMedia('(max-width: 600px)').matches) {
+        // Take Away show hide mobile paragraph
+        jQuery(".bn-toggle-content .bn-border-right").click(function () {
+            jQuery(this).parent().toggleClass("bn-text-active").siblings().removeClass("bn-text-active");
+            jQuery(this).closest('.bn-toggle-content').siblings().children().removeClass("bn-text-active");
+            jQuery('.bn-product-text-list.bn-list-mobile-take-away').css('transform', 'scaleY(1)');
+        });
+    }
 
     // Take Away mobile Email section hide
     jQuery(".bn-email-item img").click(function () {
@@ -25,6 +34,17 @@ jQuery(document).ready(function () {
     });
 
 
+    if(window.location.hash) {
+        var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
+
+
+        if (hash !== 'bn-take-away-price' ){
+            jQuery(document).find(".bn-toggle-content").css("padding-top", "71px");
+        }
+        // hash found
+    }
+
+
     jQuery("#bn-search-item").on("keyup", function () {
         var value = jQuery(this).val().toLowerCase();
         $(".bn-take-away-item .bn-toggle-content .row").filter(function () {
@@ -32,6 +52,7 @@ jQuery(document).ready(function () {
         });
         jQuery(document).find('i.fa-search').hide();
     });
+
 
 
     // Side bar scrolling add Active color take away page
@@ -50,16 +71,17 @@ jQuery(document).ready(function () {
     });
 
 
+
     jQuery(".bn-take-away-item .bn-left-side-bar ul li").click(function () {
         jQuery(document).find(".bn-toggle-content").css("padding-top", "71px");
     });
-    jQuery(window).on('mousewheel keyup', function (e) {
+    jQuery(window).on('mousewheel keyup', function(e) {
         jQuery(document).find(".bn-toggle-content").css("padding-top", "0");
     });
 
 
-    $(document).ready(function () {
-        $.stickysidebarscroll(".bn-left-side-bar", {offset: {top: 73, bottom: 600}});
+    $(document).ready(function() {
+        $.stickysidebarscroll(".bn-left-side-bar",{offset: {top: 73, bottom: 600}});
     });
 
 
@@ -73,18 +95,19 @@ jQuery(document).ready(function () {
             if ('div[data-' + sel + '="no"]') {
                 $('div[data-' + sel + '="no"]').show();
             }
-        } else {
+        }
+        else {
             $('.bn-take-away-item .bn-toggle-content .row').show();
         }
 
         jQuery(this).addClass("active").siblings().removeClass("active");
     });
 
-    $("#bn-menu-banner img").attr('src', "/asstes/image/catering-menu/nav-menu-four.png");
+    $("#bn-menu-banner img").attr('src', "asstes/image/catering-menu/nav-menu-four.jpg");
     $('div#nav-tab .nav-link').click(function (e) {
         e.preventDefault();
         var img_name = $(this).val();
-        $("#bn-menu-banner img").attr('src', "asstes/image/catering-menu/" + img_name + '.png');
+        $("#bn-menu-banner img").attr('src', "asstes/image/catering-menu/" + img_name + '.jpg');
     });
 
 
@@ -113,7 +136,7 @@ jQuery(document).ready(function () {
             });
         });
     }
-    //AOS.init();
+
 
 
 //     function setWindowWH() {
@@ -167,12 +190,12 @@ jQuery(document).ready(function () {
             jQuery(this).addClass('bn-checked-color-chnaged');
             jQuery('input[name="choose-payment"]').addClass('bn-checked-color-chnaged');
             jQuery(document).find('.bn-selected-price .bn-price-item').addClass('bn-orange-color');
-            jQuery(document).find('.bn-orange-container').css('display', 'block');
-        } else {
+            jQuery(document).find('.bn-orange-container').css('display','block');
+        }else{
             jQuery(this).removeClass('bn-checked-color-chnaged');
             jQuery('input[name="choose-payment"]').removeClass('bn-checked-color-chnaged');
             jQuery(document).find('.bn-selected-price .bn-price-item').removeClass('bn-orange-color');
-            jQuery(document).find('.bn-orange-container').css('display', 'none');
+            jQuery(document).find('.bn-orange-container').css('display','none');
         }
     }))) ;
     if ((jQuery('input[name="choose-payment"]').click(function () {
@@ -180,12 +203,12 @@ jQuery(document).ready(function () {
             jQuery('input[name="choose-point"]').addClass('bn-checked-color-chnaged');
             jQuery(this).addClass('bn-checked-color-chnaged');
             jQuery(document).find('.bn-selected-price .bn-price-item').addClass('bn-orange-color');
-            jQuery(document).find('.bn-orange-container').css('display', 'block');
-        } else {
+            jQuery(document).find('.bn-orange-container').css('display','block');
+        }else{
             jQuery('input[name="choose-point"]').removeClass('bn-checked-color-chnaged');
             jQuery(this).removeClass('bn-checked-color-chnaged');
             jQuery(document).find('.bn-selected-price .bn-price-item').removeClass('bn-orange-color');
-            jQuery(document).find('.bn-orange-container').css('display', 'none');
+            jQuery(document).find('.bn-orange-container').css('display','none');
         }
     }))) ;
 
@@ -198,7 +221,7 @@ jQuery(document).ready(function () {
 
     //~~ Pre Check Out Append html radio button
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         var pre_chk_opt = ' <div class="bn-radio-order">' +
             '                            <div class="form-check">' +
             '                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>' +
@@ -219,11 +242,11 @@ jQuery(document).ready(function () {
             '                                </label>' +
             '                            </div>' +
             '                        </div>';
-        $('.bn-add-radio-html').on('click', function () {
+        $('.bn-add-radio-html').on('click', function() {
             $(".bn-body-radio-box").append(pre_chk_opt);
         });
 
-        $('.bn-remove-radio-html').on('click', function () {
+        $('.bn-remove-radio-html').on('click', function() {
             $('.bn-radio-order:last').remove();
         });
 
@@ -236,7 +259,8 @@ jQuery(document).ready(function () {
         var filename = $("#bn-file-attachment").val();
         if (/^\s*$/.test(filename)) {
             $("#bn-file-attachment-label").text("Attach File...");
-        } else {
+        }
+        else {
             $("#bn-file-attachment-label").text(filename.replace("C:\\fakepath\\", ""));
         }
     });
@@ -245,7 +269,8 @@ jQuery(document).ready(function () {
         var filename = $("#bn-file-attach-one").val();
         if (/^\s*$/.test(filename)) {
             $("#bn-job-file-attach-one").text("Attach File...");
-        } else {
+        }
+        else {
             $("#bn-job-file-attach-one").text(filename.replace("C:\\fakepath\\", ""));
         }
     });
@@ -256,7 +281,8 @@ jQuery(document).ready(function () {
         var filename = $("#bn-file-attach-two").val();
         if (/^\s*$/.test(filename)) {
             $("#bn-job-file-attach-two").text("Attach File...");
-        } else {
+        }
+        else {
             $("#bn-job-file-attach-two").text(filename.replace("C:\\fakepath\\", ""));
         }
     });
@@ -293,36 +319,43 @@ jQuery(document).ready(function () {
     // });
 
 
-    // This use only mac safari browser
-    if (window.matchMedia('(min-width: 1024px)').matches) {
-        var platform = window.navigator.platform;
-        var macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'];
+        // This use only mac safari browser
+        if (window.matchMedia('(min-width: 1024px)').matches) {
+            var platform = window.navigator.platform;
+            var  macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'];
 
-        //var isSafari =  /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
-        if (macosPlatforms.indexOf(platform) !== -1) {
-            jQuery('input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="search"]').css("padding-top", "12px");
-            jQuery('input[type="number"]').css("padding-top", "20px");
-            jQuery('select.form-select').css("padding-top", "12px");
-            jQuery('.bn-search-tag button').css("padding-top", "12px");
-            jQuery('button.btn').css("padding-top", "12px");
-            jQuery('button.bnt.btn-dark.d-block.w-100').css("padding-top", "5px");
-            jQuery('a.btn.bg-dark.bn-btn-one.w-100.text-white').css("padding-top", "5px");
-            jQuery('a.btn.bg-dark.bn-btn-two.w-100.text-white').css("padding-top", "5px");
+            //var isSafari =  /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+            if (macosPlatforms.indexOf(platform) !== -1) {
+                jQuery('input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="search"]').css("padding-top", "12px");
+                jQuery('input[type="number"]').css("padding-top", "20px");
+                jQuery('.bn-catering-menu-all .bn-number-people input').css("padding-top", "10px");
+                jQuery('select.form-select').css("padding-top", "12px");
+                jQuery('.bn-search-tag button').css("padding-top", "12px");
+                jQuery('button.btn').css("padding-top", "12px");
+                jQuery('button.bnt.btn-dark.d-block.w-100').css("padding-top", "5px");
+                jQuery('a.btn.bg-dark.bn-btn-one.w-100.text-white').css("padding-top", "5px");
+                jQuery('a.btn.bg-dark.bn-btn-two.w-100.text-white').css("padding-top", "5px");
+                jQuery('.bn-product-button-order a.btn.bg-dark.bn-btn-one.w-100.text-white.pl-3').css("padding-top", "23px");
 
-            jQuery('input[type="text"], input[type="tel"], input[type="email"], input[type="password"]').focus(function () {
-                jQuery(this).css("padding-top", "9px");
-            });
-            jQuery('input[type="number"]').focus(function () {
-                jQuery(this).css("padding-top", "18px");
-            })
+                jQuery('input[type="text"], input[type="tel"], input[type="email"], input[type="password"]').focus(function () {
+                    jQuery(this).css("padding-top", "9px");
+                });
+                jQuery('input[type="number"]').focus(function () {
+                    jQuery(this).css("padding-top", "18px");
+                });
+                jQuery('.bn-catering-menu-all .bn-number-people input').focus(function () {
+                    jQuery(this).css("padding-top", "10px");
+                });
+
+
+            }
         }
-    }
 
     if (window.matchMedia('(max-width: 600px), (min-height: 300px)').matches) {
         var platform = window.navigator.platform;
-        var iosPlatforms = ['iPhone', 'iPad', 'iPod'];
+        var  iosPlatforms = ['iPhone', 'iPad', 'iPod'];
         //var isSafari =  /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
-        if (iosPlatforms.indexOf(platform) !== -1) {
+        if ( iosPlatforms.indexOf(platform) !== -1) {
             jQuery('input[type="text"], input[type="tel"], input[type="email"], input[type="password"], input[type="search"]').css("padding-top", "12px");
             jQuery('input[type="number"]').css("padding-top", "20px");
             jQuery('select.form-select').css("padding-top", "12px");
@@ -331,6 +364,10 @@ jQuery(document).ready(function () {
             jQuery('button.bnt.btn-dark.d-block.w-100').css("padding-top", "5px");
             jQuery('a.btn.bg-dark.bn-btn-one.w-100.text-white').css("padding-top", "5px");
             jQuery('a.btn.bg-dark.bn-btn-two.w-100.text-white').css("padding-top", "5px");
+            jQuery('.bn-product-button-order a.btn.bg-dark.bn-btn-one.w-100.text-white.pl-3').css("padding-top", "23px");
+            jQuery('.bn-catering-menu-all .bn-button-menu button').css("padding-top", "5px");
+            jQuery('.bn-catering-menu-all .bn-check-out-last-order-box select').css("padding-top", "10px");
+            jQuery('.bn-catering-menu-all .bn-number-people input').css("padding-top", "10px");
 
             jQuery('input[type="text"], input[type="tel"], input[type="email"], input[type="password"]').focus(function () {
                 jQuery(this).css("padding-top", "9px");
@@ -353,5 +390,6 @@ jQuery(document).ready(function () {
         autoplay: true,
         autoplaySpeed: 4000,
     });
+
 
 });

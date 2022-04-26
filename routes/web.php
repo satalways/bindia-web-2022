@@ -128,6 +128,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
     Route::get('/take-away-{area}.html', [\App\Http\Controllers\OrderController::class, 'areaPage'])->name('area.page');
 
+    Route::get('/detailed.html', [\App\Http\Controllers\ExtraController::class, 'detailed'])->name('detailed');
+    Route::get('/detailed/{section}.html', [\App\Http\Controllers\ExtraController::class, 'detailedSection'])->name('detailed.section');
+    Route::get('/detailed/{section}/{sub_section}.html', [\App\Http\Controllers\ExtraController::class, 'detailedSubSection'])->name('detailed.sub.section');
+
     Route::get('/{slug}', [\App\Http\Controllers\OrderController::class, 'itemPage'])->name('item');
 });
 

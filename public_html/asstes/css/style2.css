@@ -1096,7 +1096,7 @@ span#bn-take-away-price {
     Our Story page css
 ============================== */
 .bn-breadcrumb-our-story {
-    background: url("../image/our-story/breadcrums-story.png");
+    background: url("../image/our-story/breadcrums-story.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     padding: 397px 0;
@@ -3819,7 +3819,7 @@ button.btn.bn-receipt-btn {
         line-height: 17px;
     }
     .bn-breadcrumb-our-story {
-        background: url("../image/our-story/breadcrumbs-mobile.png");
+        background: url("../image/our-story/breadcrumbs-mobile.jpg");
         background-repeat: no-repeat;
         padding: 86px 0;
         margin-top: 62px;

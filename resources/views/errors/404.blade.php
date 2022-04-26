@@ -3,7 +3,7 @@
 @section('content')
     <div class="bn-breadcrumbs-take-away d-none d-sm-block">
         <div>
-            <img src="{{ asset('asstes/image/take-away/mask-group-2.jpg') }}" data-src="{{ asset('asstes/image/take-away/mask-group-2.png') }}" alt="" class="lazy">
+            <img src="{{ asset('asstes/image/take-away/mask-group-2.jpg') }}" data-src="{{ asset('asstes/image/take-away/mask-group-2.jpg') }}" alt="" class="lazy">
         </div>
     </div>
 

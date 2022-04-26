@@ -5,8 +5,7 @@
         <input type="hidden" name="action" value="sendCustomerGiftCard">
 
         <div class="bn-breadcrumb-gift">
-            <img src="{{ asset('asstes/image/gift-card/gift-banner.jpg') }}"
-                 data-src="{{ asset('asstes/image/gift-card/gift-banner.png') }}" alt="" class="d-md-block d-none lazy">
+            <img src="{{ asset('asstes/image/gift-card/gift-banner.jpg') }}" alt="" class="d-md-block d-none">
         </div>
         <!--check out box-->
         <div class="bn-check-out bn-main-story bn-gift-card-main">

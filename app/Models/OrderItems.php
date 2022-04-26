@@ -26,7 +26,8 @@ class OrderItems extends Model
 
     public function getImageAttribute()
     {
-        $path = 'asstes/image/items/' . $this->slug . '.png';
+        $path = 'asstes/image/take-away/' . $this->slug . '.jpg';
+        if (!is_file(public_path($path))) $path = 'asstes/image/items/' . $this->slug . '.png';
         if (!is_file(public_path($path))) $path = 'asstes/image/items/' . $this->slug . '.jpg';
         if (is_file(public_path($path))) {
             return asset($path);
@@ -37,7 +38,8 @@ class OrderItems extends Model
 
     public function getImageThumbnailAttribute()
     {
-        $path = public_path('asstes/image/items/' . $this->slug . '.png');
+        $path = 'asstes/image/take-away/' . $this->slug . '.jpg';
+        if (!is_file($path)) $path = public_path('asstes/image/items/' . $this->slug . '.png');
         if (!is_file($path)) $path = public_path('asstes/image/items/' . $this->slug . '.jpg');
         if (!is_file($path)) return asset('asstes/image/items/default-thumb.png');
 

@@ -3,7 +3,7 @@
 @section('content')
     <!--Main Breadcrumbs-->
     <div class="bn-breadcrumb-policy bn-main-story">
-        <img src="{{ asset('asstes/image/contact-us/contactus-banner.jpg') }}" data-src="{{ asset('asstes/image/contact-us/contactus-banner.png') }}" alt="" class="lazy">
+        <img src="{{ asset('asstes/image/contact-us/contactus-banner.jpg') }}" alt="" class="">
     </div>
 
     <!--Main end Breadcrumbs-->

@@ -32,9 +32,6 @@
                 <iframe width="420" height="315" src="https://www.youtube.com/embed/7Lvg3Q9pJaU?autoplay=1"
                         frameborder="0" allowfullscreen></iframe>
             </div>
-
-            {{--                <img src="{{ asset('asstes/image/gift-card/jobs.jpg') }}"--}}
-            {{--                     data-src="{{ asset('asstes/image/gift-card/jobs.png') }}" class="lazy" alt="">--}}
         </div>
 
         <form action="{{ route('jobs.post') }}" id="form1" method="post">

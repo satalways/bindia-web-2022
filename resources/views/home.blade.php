@@ -5,11 +5,11 @@
     <div class="bn-slider bg-transparent bn-animation-banner">
         <div class="d-sm-block d-none bn-slider-ds-img">
             <img class="bn-image-index bn-image-desktop lazy" src="{{ asset('asstes/image/item2.png') }}"
-                 data-src="{{ asset('asstes/image/slider-image.png') }}" alt="">
+                 data-src="{{ asset('asstes/image/slider-image.jpg') }}" alt="">
         </div>
         <div class="d-sm-none d-block bn-slider-ds-img">
             <img class="bn-image-index lazy" src="{{ asset('asstes/image/item2.png') }}"
-                 data-src="{{asset('asstes/image/slider-mobile.png')}}" alt="">
+                 data-src="{{asset('asstes/image/slider-mobile.jpg')}}" alt="">
         </div>
         <div class="bn-button-box">
             <div class="container">
@@ -47,11 +47,13 @@
                         <div>
                             <div class="bn-star-box">
                                 <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-                                    class="fas fa-star"></i> <i class="fas fa-star"></i> <small>{{ $feedback->shortName() }},
+                                    class="fas fa-star"></i> <i class="fas fa-star"></i>
+                                <small>{{ $feedback->shortName() }},
                                     {{ $feedback->time->format(config('app.date_format')) }}</small>
                             </div>
                             <div class="bn-text-review">
-                                <i> <span>&#10075;</span><span>&#10075;</span>{{ $feedback->limitedComment() }}<span>&#10076;</span><span>&#10076;</span> </i>
+                                <i> <span>&#10075;</span><span>&#10075;</span>{{ $feedback->limitedComment() }}<span>&#10076;</span><span>&#10076;</span>
+                                </i>
                             </div>
                         </div>
                     @endforeach
@@ -98,28 +100,28 @@
                     <div class="bn-image-orange-price-d">
                         <a href="{{ route('takeaway') }}#bn-take-away-price">
                             @if(getCurrentLang() === 'da')
-                                <img src="{{ asset('asstes/image/orader-orange-price-dk.png') }}" alt=""
+                                <img src="{{ asset('asstes/image/orader-orange-price-dk.jpg') }}" alt=""
                                      class="d-sm-block d-none">
-                                <img src="{{ asset('asstes/image/orange-pirce-mobile-dk.png') }}" alt=""
+                                <img src="{{ asset('asstes/image/orange-pirce-mobile-dk.jpg') }}" alt=""
                                      class="d-sm-none d-block">
                             @else
-                                <img src="{{ asset('asstes/image/order-orange-price.png') }}" alt=""
+                                <img src="{{ asset('asstes/image/order-orange-price.jpg') }}" alt=""
                                      class="d-sm-block d-none">
-                                <img src="{{ asset('asstes/image/orange-pirce-mobile.png') }}" alt=""
+                                <img src="{{ asset('asstes/image/orange-pirce-mobile.jpg') }}" alt=""
                                      class="d-sm-none d-block">
                             @endif
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-12 slideanim position-relative">
-                    <img src="{{ asset('asstes/image/home-one-banner.png') }}" alt="">
+                    <img src="{{ asset('asstes/image/home-one-banner.jpg') }}" alt="">
                     <div class="bn-portfolio-section-img-text">
                         <h3>{{ $randomItem->first()->name }}</h3>
                         <p>{{ $randomItem->first()->getDescription() }}</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-6 slideanim position-relative">
-                    <img src="{{ asset('asstes/image/home-two-banner.png') }}" alt="">
+                    <img src="{{ asset('asstes/image/home-two-banner.jpg') }}" alt="">
                     <div class="bn-portfolio-section-img-text">
                         <h3>{{ __('global.giftcard') }}</h3>
                         <p>{{ __('home.give_giftcard') }}</p>
@@ -127,7 +129,7 @@
                 </div>
                 <div class="col-lg-6 col-sm-6 slideanim position-relative">
                     <div class="bn-link-image-box">
-                        <img src="{{ __('asstes/image/home-three-banner.png') }}" alt="">
+                        <img src="{{ __('asstes/image/home-three-banner.jpg') }}" alt="">
                         <div class="bn-menu-b-box">
                             <h3>{{ __('home.see_our_shops') }}</h3>
                             <ul class="list-unstyled">
@@ -140,7 +142,7 @@
                     </div>
                 </div>
                 <div class="col-lg-12 slideanim position-relative">
-                    <img src="{{ asset('asstes/image/home-four-banner.png') }}" alt="">
+                    <img src="{{ asset('asstes/image/home-four-banner.jpg') }}" alt="">
                     <div class="bn-portfolio-section-img-text">
                         <h3>Butter Chicken</h3>
                         <p>Prov vores fantastiske Butter Chicken</p>
@@ -177,37 +179,40 @@
                     <div class="container">
                         <div class="bn-left-review-box float-start">
                             @for($x=0; $x<=12; $x++)
-                                @if(!blank($feedback->{'question_' . $x}) && !str_starts_with(trim($feedback->{'question_' . $x}), 'Tell us what') && !str_starts_with(trim($feedback->{'question_' . $x}), 'May we use'))
-                                    <span
-                                        style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width:100%">{{ $feedback->{'question_' . $x} }}</span>
+                                @if( !blank($feedback->{'question_' . $x}) && !isLongFeedbackQuestion($feedback->{'question_' . $x}, $feedback->{'question_' . $x . '_answer'}))
+                                    <span>{{ $feedback->{'question_' . $x} }}</span>
                                 @endif
                             @endfor
                         </div>
                         <div class="bn-right-review-box float-end">
                             @for($x=0; $x<=12; $x++)
-                                @if(!blank($feedback->{'question_' . $x}) && !str_starts_with(trim($feedback->{'question_' . $x}), 'Tell us what') && !str_starts_with(trim($feedback->{'question_' . $x}), 'May we use'))
-                                    <span
-                                        style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width:100%">
-                                        @if($feedback->{'question_' . $x . '_answer'} === '-1')
-                                            N/A
-                                        @elseif($feedback->{'question_' . $x . '_answer'} === 'rating_5')
+                                @if( !blank($feedback->{'question_' . $x}) && !isLongFeedbackQuestion($feedback->{'question_' . $x}, $feedback->{'question_' . $x . '_answer'}))
+                                    @if($feedback->{'question_' . $x . '_answer'} === '-1')
+                                        <span>N/A</span>
+                                    @elseif($feedback->{'question_' . $x . '_answer'} === 'rating_5')
+                                        <span>
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
-                                        @else
-                                            &nbsp;{{ $feedback->{'question_' . $x . '_answer'} }}
-                                        @endif
-                                    </span>
+                                        </span>
+                                    @else
+                                        <span>
+                                            {{ $feedback->{'question_' . $x . '_answer'} }}&nbsp;
+                                        </span>
+                                    @endif
                                 @endif
                             @endfor
                         </div>
                         <div class="clearfix"></div>
                         <div class="bn-review-footer">
                             @for($x=0; $x<=12; $x++)
-                                @if(str_starts_with(trim($feedback->{'question_' . $x}), 'Tell us what'))
-                                    <span>{{ ' ' . $feedback->{'question_' . $x . '_answer'} }}</span>
+                                @if( isLongFeedbackQuestion($feedback->{'question_' . $x}, $feedback->{'question_' . $x . '_answer'}))
+                                    <span>
+                                        <b class="d-block">{{ ' ' . $feedback->{'question_' . $x} }}</b>
+                                        {{ ' ' . $feedback->{'question_' . $x . '_answer'} }}
+                                    </span>
                                 @endif
                             @endfor
                         </div>
