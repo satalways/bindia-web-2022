@@ -2,6 +2,9 @@
 
 @section('content')
     <style>
+        .bn-list-text .float-start, .bn-list-text .float-end {
+            color: #f7f7f7 !important;
+        }
         @media only screen and (max-width: 600px) {
             .bn-take-away-item .bn-right-side-bar-product .bn-bg-product.bn-border-right {
                 border-bottom: none;

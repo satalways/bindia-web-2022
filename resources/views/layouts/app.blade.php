@@ -35,8 +35,8 @@
     <!--Parallax css file-->
     <link href="{{ asset('asstes/css/parallax.css') }}?v=3" rel="stylesheet">
     <!--Costume Style css file-->
-    <link rel="stylesheet" href="{{ asset('asstes/css/style.css') }}?v=16.7">
-    <link rel="stylesheet" href="{{ asset('custom.css') }}?v=16.8">
+    <link rel="stylesheet" href="{{ asset('asstes/css/style.css') }}?v=16.8">
+    <link rel="stylesheet" href="{{ asset('custom.css') }}?v=16.8.1">
     <!--animation file-->
     {{--    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>--}}
     <script src="{{ asset('asstes/js/float-panel.js') }}"></script>
@@ -465,7 +465,7 @@
         integrity="sha512-hktawXAt9BdIaDoaO9DlLp6LYhbHMi5A36LcXQeHgVKUH6kJMOQsAtIw2kmQ9RERDpnSTlafajo6USh9JUXckw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!--Custom js file-->
-<script src="{{ asset('asstes/js/script.js') }}?16.2"></script>
+<script src="{{ asset('asstes/js/script.js') }}?16.3"></script>
 {!! js('lazyload') !!}
 <script>
     $.ajaxSetup({
