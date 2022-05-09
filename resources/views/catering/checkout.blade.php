@@ -12,7 +12,7 @@
         $(function () {
             $(document)
                 .on('click', '.addPersons', function () {
-                    var Add = $(this).attr('data-add');
+                    const Add = $(this).attr('data-add');
 
                     if (Add === '-1' && $(this).next().text() === "x{{ config('catering.min_people') }}") {
                         return;
@@ -33,9 +33,9 @@
                     });
                 })
                 .on('click', '.addDrink', function () {
-                    var Code = $(this).attr('data-code');
-                    var Add = $(this).attr('data-add');
-                    var Item = $(this).attr('data-item');
+                    const Code = $(this).attr('data-code');
+                    const Add = $(this).attr('data-add');
+                    const Item = $(this).attr('data-item');
 
                     showLoader();
                     $.ajax({
@@ -48,15 +48,15 @@
                         }
                     }).done(function (data) {
                         hideLoader();
-                        if (data.substr(0, 2) === 'OK') {
-                            $('#html').html(data.substr(2));
+                        if (data.substring(0, 2) === 'OK') {
+                            $('#html').html(data.substring(2));
                         } else {
                             alert(data);
                         }
                     });
                 })
                 .on('change', '#thermo', function () {
-                    var thermo = $(this).is(':checked') ? 1 : 0;
+                    const thermo = $(this).is(':checked') ? 1 : 0;
 
                     showLoader();
                     $.ajax({
@@ -94,7 +94,7 @@
                 .on('submit', '#form1', function (e) {
                     e.preventDefault();
 
-                    var Form = $('#form1');
+                    const Form = $('#form1');
                     Form.find('[name=action]').val('saveOrder');
                     showLoader();
                     Form.ajaxSubmit({
@@ -123,8 +123,8 @@
                         }
                     }).done(function (data) {
                         hideLoader();
-                        if (data.substr(0,2) === 'OK') {
-                            $('#html').html(data.substr(2));
+                        if (data.substring(0,2) === 'OK') {
+                            $('#html').html(data.substring(2));
                         } else {
                             $('#postal_code').val('');
                             alert (data);

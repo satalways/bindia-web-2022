@@ -134,6 +134,7 @@ class OrderController extends Controller
                     if ($post['delivery'] === 'By Taxi') {
                         $post['payment_type'] = 'card';
                     }
+                    debug($post);
                     session()->put('checkout', $post);
                 }
 

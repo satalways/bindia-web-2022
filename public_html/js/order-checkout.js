@@ -183,7 +183,8 @@ $(function () {
             }
         })
         .on('change', '.update2', function () {
-            var Form = $('#checkoutForm');
+            console.error('ehere');
+            const Form = $('#checkoutForm');
             Form.find('[name=action]').val('updateSessionCart2');
             Form.trigger('submit');
         })
@@ -328,6 +329,7 @@ setInterval(function () {
             console.error(e3);
         }
     }).done(function (data) {
+        console.error(data);
         if (data) {
             //console.error(data);
             var $input = $('[name=time]').pickatime();

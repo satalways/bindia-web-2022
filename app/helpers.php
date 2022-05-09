@@ -30,15 +30,15 @@ function template($id)
 {
     try {
         $obj = Template::query()
-            ->where('id', $id)
-            ->orWhere('TemplateNo', $id)
-            ->first();
+                       ->where('id', $id)
+                       ->orWhere('TemplateNo', $id)
+                       ->first();
     } catch (Exception $e) {
         $obj = null;
     }
 
     if (empty($obj)) {
-        return new class {
+        return new class{
             public $TemplateNo = '';
 
             public $id = 0;
@@ -167,7 +167,7 @@ function localhost()
     $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_HOST'] ?? '';
     $_SERVER['REMOTE_ADDR'] = $_SERVER['REMOTE_ADDR'] ?? '';
 
-    if (!isset($_SERVER["HTTP_HOST"])) {
+    if (! isset($_SERVER["HTTP_HOST"])) {
         return false;
     }
 
@@ -196,11 +196,11 @@ function send_mail($to, string $subject, string $htmlContent, array $fields = []
         ];
 //        }
     } else if (localhost()) {
-        $to = env('EMAILS_SEND_TO', $to);
+        $to = env('EMAILS_SEND_TO', 'shakeel@shakeel.pk');
     }
 
     $fields = array_combine(
-        array_map(function ($key) {
+        array_map(function($key) {
             return '{' . $key . '}';
         }, array_keys($fields)),
         $fields
@@ -217,7 +217,7 @@ function send_mail($to, string $subject, string $htmlContent, array $fields = []
     $htmlContent = $cssToInlineStyles->convert($htmlContent, file_get_contents($cssPath));
     $subject = strtr($subject, $fields);
 
-    if (!empty($attachedFiles)) {
+    if (! empty($attachedFiles)) {
         $attachedFiles = make_array($attachedFiles);
     }
     $dsn = 'smtp://' . env('MAIL_USERNAME') . ':' . env('MAIL_PASSWORD') . '@' . env('MAIL_HOST') . ':' . env('MAIL_PORT') . '?verify_peer=0';
@@ -234,12 +234,12 @@ function send_mail($to, string $subject, string $htmlContent, array $fields = []
             $email->addTo($e);
         }
         $email->subject($subject)
-            ->text(strip_tags($htmlContent))
-            ->html($htmlContent);
+              ->text(strip_tags($htmlContent))
+              ->html($htmlContent);
 
         if (is_array($attachedFiles)) {
             foreach ($attachedFiles as $file) {
-                if (!is_string($file)) continue;
+                if (! is_string($file)) continue;
                 if (is_file($file)) $email->attachFromPath($file);
             }
         }
@@ -379,7 +379,7 @@ function queries()
  */
 function set_args($args, $default): array
 {
-    if (!is_array($args)) {
+    if (! is_array($args)) {
         $args = str_replace(" = ", "=", $args);
         $args = str_replace(" =", "=", $args);
         $args = str_replace(" =", "=", $args);
@@ -387,15 +387,15 @@ function set_args($args, $default): array
         $args = stripslashes($args);
         parse_str($args, $args);
     }
-    if (!is_array($args)) {
+    if (! is_array($args)) {
         return [];
     }
     $default = make_array($default);
-    if (!is_array($default)) {
+    if (! is_array($default)) {
         return $default;
     }
     foreach ($default as $k => $v) {
-        if (!isset($args[$k])) {
+        if (! isset($args[$k])) {
             $args[$k] = $v;
         }
     }
@@ -417,9 +417,25 @@ function getOption(string $keyName, mixed $defaultValue = null)
 {
     $value = \App\Models\Options::query()->where('field_name', $keyName)->value('field_value');
 
-    if (!$value) return $defaultValue;
+    if (! $value) return $defaultValue;
 
     return unserialize($value);
+}
+
+function setOption(string $keyName, mixed $value)
+{
+    $row = \App\Models\Options::query()->where('field_name', $keyName)->firstOrNew();
+
+    try {
+        $row->field_name = $keyName;
+        $row->field_value = serialize($value);
+        $row->update_time = \Carbon\Carbon::now();
+        $row->save();
+    } catch (Exception) {
+        return false;
+    }
+
+    return true;
 }
 
 function number_format2($value, $decimals = 2)
@@ -441,7 +457,7 @@ function number_format2($value, $decimals = 2)
 function is_base64($s)
 {
     // Check if there are valid base64 characters
-    if (!preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $s)) {
+    if (! preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $s)) {
         return false;
     }
 
@@ -485,19 +501,19 @@ function decodeString($token, $needTokenInStringForm = false, $encodeKey = null)
                 $de_token = JWT::decode(urldecode($token), config('app.encode_key'), ['HS256']);
             }
         } catch (\Exception $e) {
-            $needTokenInStringForm = (bool)$needTokenInStringForm;
+            $needTokenInStringForm = (bool) $needTokenInStringForm;
             if ($needTokenInStringForm) {
                 return '';
             } else {
-                return (object)[];
+                return (object) [];
             }
         }
     }
 
-    $needTokenInStringForm = (bool)$needTokenInStringForm;
+    $needTokenInStringForm = (bool) $needTokenInStringForm;
 
     if ($needTokenInStringForm) {
-        $de_token = (array)$de_token;
+        $de_token = (array) $de_token;
 
         return isset ($de_token['id']) ? $de_token['id'] : 0;
     } else {
@@ -549,9 +565,9 @@ function getQueryByObject($builder)
  */
 function item($code)
 {
-    return \once(function () use ($code) {
+    return \once(function() use ($code) {
         if ($code == config('catering.thermo_box_plu')) {
-            return (object)[
+            return (object) [
                 'id' => 0,
                 'name' => config('catering.thermo_box_name'),
                 'slug' => \Str::slug(config('catering.thermo_box_name')),
@@ -572,9 +588,9 @@ function item($code)
         }
 
         return \App\Models\OrderItems::query()
-            ->where('code', $code)
-            ->orWhere('id', $code)
-            ->first();
+                                     ->where('code', $code)
+                                     ->orWhere('id', $code)
+                                     ->first();
     });
 }
 
@@ -583,19 +599,19 @@ function shop($codeName)
     if (is_array($codeName) || is_object($codeName)) return null;
     $codeName = strtoupper($codeName);
 
-    return once(function () use ($codeName) {
+    return once(function() use ($codeName) {
         $shops = config('shops');
-        if (!isset($shops[$codeName])) {
+        if (! isset($shops[$codeName])) {
             foreach ($shops as $shop) {
                 if (isset($shop['takeout_id']) && $shop['takeout_id'] == $codeName) {
-                    return (object)$shop;
+                    return (object) $shop;
                 }
             }
 
             return null;
         };
 
-        return (object)$shops[$codeName];
+        return (object) $shops[$codeName];
     });
 }
 
@@ -682,7 +698,7 @@ function debug_my($val)
 
 function getIP()
 {
-    return once(function () {
+    return once(function() {
         if (getenv('HTTP_CLIENT_IP')) {
             $ip = getenv('HTTP_CLIENT_IP');
         } else if (getenv('HTTP_X_FORWARDED_FOR')) {
@@ -712,56 +728,56 @@ function getRouteName()
 
 function getMilkToolTip()
 {
-    return once(function () {
+    return once(function() {
         return getCurrentLang() === 'en' ? 'Contains lactose' : 'Indeholder laktose';
     });
 }
 
 function getNutsToolTip()
 {
-    return once(function () {
+    return once(function() {
         return getCurrentLang() === 'en' ? 'Contains nuts' : 'Indeholder nødder';
     });
 }
 
 function getWheatToolTip()
 {
-    return once(function () {
+    return once(function() {
         return getCurrentLang() === 'en' ? 'Contains gluten' : 'Indeholder gluten';
     });
 }
 
 function getChiliToolTip()
 {
-    return once(function () {
+    return once(function() {
         return getCurrentLang() === 'en' ? 'Spicy' : 'Stærk';
     });
 }
 
 function getDoubleChiliToolTip()
 {
-    return once(function () {
+    return once(function() {
         return getCurrentLang() === 'en' ? 'Very spicy' : 'Meget stærk';
     });
 }
 
 function getVegToolTip()
 {
-    return once(function () {
+    return once(function() {
         return getCurrentLang() === 'en' ? 'Vegetarian' : 'Vegetarisk';
     });
 }
 
 function getVeganToolTip()
 {
-    return once(function () {
+    return once(function() {
         return getCurrentLang() === 'en' ? 'Vegan' : 'Vegansk';
     });
 }
 
 function getWeightToolTip()
 {
-    return once(function () {
+    return once(function() {
         return getCurrentLang() === 'en' ? 'approx. net weight' : 'omtrentlig nettovægt';
     });
 }
@@ -770,13 +786,13 @@ function showSideOrders()
 {
     $items = (new \App\Logic\Order())->getSessionCartData();
 
-    if (!isset($items['items'])) {
+    if (! isset($items['items'])) {
         return false;
     }
 
     $items = $items['items'];
 
-    return $items->filter(function ($item) {
+    return $items->filter(function($item) {
             return $item->section == 'bn-veg' || $item->section == 'bn-curries';
         })->count() > 0;
 }
@@ -786,7 +802,7 @@ function makeGoogleReview($link, $numberOfReviews, $rating)
     return view('googleReview', [
         'link' => $link,
         'numberOfReviews' => $numberOfReviews,
-        'rating' => $rating
+        'rating' => $rating,
     ])->render();
 }
 

@@ -48,7 +48,7 @@
             <a target="_blank" href="{{ shop('amg')->smily_link }}"><img
                     src="{{ asset('asstes/image/shop/smile.svg') }}" alt=""></a>
             <img class="bn-line-width" src="{{ asset('asstes/image/shop/line-line.svg') }}" alt="">
-            {!! makeGoogleReview(shop('amg')->rating_link, 61, 3.8) !!}
+            {!! makeGoogleReview(shop('amg')->rating_link, 62, 3.8) !!}
             <img class="bn-line-width" src="{{ asset('asstes/image/shop/line-line.svg') }}" alt="">
             <div class="bn-text-shop">
                 <a href="{{ shop('amg')->inside_link }}" target="_blank">

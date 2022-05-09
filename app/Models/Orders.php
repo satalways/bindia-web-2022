@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Orders\Spice;
 
 class Orders extends Model
 {
@@ -17,18 +18,26 @@ class Orders extends Model
     use Notifiable;
 
     protected $table = 'orders';
+
     public $timestamps = false;
 
     protected $fillable = [
-        'delivery'
+        'delivery',
     ];
 
     protected $dates = [
-        'order_time', 'pickup_datetime', 'delivery_datetime', 'paid_time', 'etakeaway_pickup_time', 'unfinished_notification_sent_at'
+        'order_time',
+        'pickup_datetime',
+        'delivery_datetime',
+        'paid_time',
+        'etakeaway_pickup_time',
+        'unfinished_notification_sent_at',
     ];
 
     protected $appends = [
-        'full_name', 'customer_email', 'pickup_time'
+        'full_name',
+        'customer_email',
+        'pickup_time',
     ];
 
     protected $casts = [
@@ -65,57 +74,70 @@ class Orders extends Model
 
     public function isUnfinished()
     {
-        if (!$this->isOnlinePayment()) return false;
+        if (! $this->isOnlinePayment()) return false;
 
-        return !$this->isPaid();
+        return ! $this->isPaid();
     }
 
     public function shopNameLong()
     {
         $shops = config('shops');
+
         return $shops[$this->shop]['long_name'] ?? '';
     }
 
     public function shopAddress()
     {
         $shops = config('shops');
+
         return $shops[$this->shop]['address2'] ?? '';
     }
 
     public function shopCompany()
     {
         $shops = config('shops');
+
         return $shops[$this->shop]['company'] ?? '';
     }
 
     public function shopPhone()
     {
         $shops = config('shops');
+
         return $shops[$this->shop]['phone'] ?? '';
     }
 
     public function getShopTakeoutID()
     {
         $shops = config('shops');
+
         return $shops[$this->shop]['takeout_id'] ?? 0;
     }
 
     public function getShopCVR()
     {
         $shops = config('shops');
+
         return $shops[$this->shop]['cvr'] ?? '';
     }
 
     public function getShopIban()
     {
         $shops = config('shops');
+
         return $shops[$this->shop]['iban'] ?? '';
     }
 
     public function getShopAccountNumber()
     {
         $shops = config('shops');
+
         return $shops[$this->shop]['account_number'] ?? '';
+    }
+
+    public function adminLink()
+    {
+        return 'https://admin.bindia.dk/orders.html?order_time=all&search=' . $this->id;
     }
 
     public function paymentLink()
@@ -146,10 +168,11 @@ class Orders extends Model
 
     public function customer()
     {
-        if ($this->guest_id > 0)
+        if ($this->guest_id > 0) {
             return $this->belongsTo(OrdersGuest::class, 'guest_id');
-        else
+        } else {
             return $this->belongsTo(OrdersGuest::class, 'user_id');
+        }
     }
 
     public function items()
@@ -241,8 +264,8 @@ class Orders extends Model
 
     public function createTakeoutOrder()
     {
-        if (!$this->isDelivery()) return 'Order is not deliverable';
-        if (!$this->isPaid()) return 'This order is not paid and can not send to takeout';
+        if (! $this->isDelivery()) return 'Order is not deliverable';
+        if (! $this->isPaid()) return 'This order is not paid and can not send to takeout';
         if ($this->etakeaway_id > 0) return 'Order is already created in takeout system.';
         if ($this->attributes['delivery_datetime'] === '0000-00-00 00:00:00' || blank($this->attributes['delivery_datetime'])) return 'Invalid delivery time.';
 
@@ -256,7 +279,7 @@ class Orders extends Model
             $details .= $cart->item_code . " " . $cart->item_title . " ({$cart->price}) x " . $cart->qty . " = " . ($cart->price * $cart->qty) . "\r\n";
         }
 
-        $e = (object)config('takeout');
+        $e = (object) config('takeout');
 
         $keys["Website"] = $e->Website;
         $keys["ClientCode"] = $e->ClientCode;
@@ -329,7 +352,7 @@ class Orders extends Model
 
         }
 
-        if (!is_json($result)) {
+        if (! is_json($result)) {
             return $result;
         }
 
@@ -355,7 +378,7 @@ class Orders extends Model
             return 'OK';
         }
 
-        if (isset($result['ErrorMessage']) && !blank($result['ErrorMessage'])) {
+        if (isset($result['ErrorMessage']) && ! blank($result['ErrorMessage'])) {
             return $result['ErrorMessage'];
         }
 
@@ -374,7 +397,7 @@ class Orders extends Model
                 'email' => $this->shipping_email,
                 'type' => 'weborder',
                 'data_id' => $this->id,
-                'phone' => $this->shipping_phone
+                'phone' => $this->shipping_phone,
             ]));
     }
 
@@ -394,6 +417,88 @@ class Orders extends Model
 
     public function getEtakeawayPickupTimeAttribute()
     {
-        if (!$this->attributes['etakeaway_pickup_time']) return $this->pickup_datetime;
+        if (! $this->attributes['etakeaway_pickup_time']) return $this->pickup_datetime;
+    }
+
+    /**
+     * @param $keyName
+     * @return mixed
+     *
+     * Get additional data against any order.
+     */
+    public function getData($keyName)
+    {
+        $data = getOption('Order' . $this->id);
+
+        return $data->{$keyName} ?? null;
+    }
+
+    /**
+     * @param $keyName
+     * @param $value
+     * @return bool
+     *
+     * Set order new option data.
+     */
+    public function setData($keyName, $value)
+    {
+        $data = getOption('Order' . $this->id);
+
+        if (! $data) {
+            $data = (object) [];
+        }
+        $data->{$keyName} = $value;
+
+        return setOption('Order' . $this->id, $data);
+    }
+
+    /**
+     * Get Item cart table by providing it details.
+     */
+    public function get_item_cart_table()
+    {
+
+        $total = 0;
+        $cart_table = "
+			<table style='border-collapse: collapse;border:1px solid #C9C9C9;width:100%'>
+            <tr style='font-weight:bold;background-color:#C9C9C9'>
+                <td style='padding:5px;border:1px solid #C9C9C9'>Qty x Item Name</td>
+            </tr>";
+
+        foreach ($this->items as $item) {
+            $cart_table .= "<tr><td style='padding:5px;border:1px solid #C9C9C9'>
+                {$item->qty} x {$item->item_title} - ({$item->code})
+                </td></tr>";
+        }
+
+        $cart_table .= "</table>";
+
+        return $cart_table;
+    }
+
+    public function sendLargeOrderNotification()
+    {
+        if ($this->is_custom_order) return;
+        if ($this->getTotalAmountAttribute() < 1000) return;
+        if ( !$this->isPaid() && $this->isOnlinePayment() ) return;
+
+        $temp = template('12.5.5');
+
+        $Fields = [
+            '{order_id}' => $this->id,
+            '{customer_name}' => $this->getFullNameAttribute(),
+            '{customer_email}' => $this->getCustomerEmailAttribute(),
+            '{customer_phone}' => $this->getCustomerPhoneAttribute(),
+            '{order_details}' => $this->get_item_cart_table(),
+            '{link}' => "<a class='btn' href='" . $this->adminLink() . "'>View Order</a>",
+            '{total_amount}' => $this->getTotalAmountAttribute(),
+            '{shop_name}' => $this->shop,
+            '{order_time}' => $this->order_time->format(config('app.date_time_format')),
+        ];
+
+        $subject = str_ireplace(array_keys($Fields), array_values($Fields), $temp->subject);
+        $content = str_ireplace(array_keys($Fields), array_values($Fields), $temp->content);
+
+        send_mail('office@bindia.dk', $subject, $content);
     }
 }

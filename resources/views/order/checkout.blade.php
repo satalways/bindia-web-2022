@@ -131,5 +131,5 @@
     <script>
         var gc_email_sent = "{{ __('checkout.gc_email_sent') }}";
     </script>
-    <script src="{{ asset('js/order-checkout.min.js') }}"></script>
+    <script src="{{ asset('js/order-checkout.min.js') }}?v=2"></script>
 @endsection

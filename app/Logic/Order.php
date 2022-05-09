@@ -20,15 +20,15 @@ class Order
         $ids = array_keys($items);
 
         $itemsSend = OrderItems::query()
-            ->where('active', true)
-            ->whereIn('id', $ids)
-            ->orderBy('code')
-            ->get();
+                               ->where('active', true)
+                               ->whereIn('id', $ids)
+                               ->orderBy('code')
+                               ->get();
 
         $bagPoints = 0;
 
         $nanAvailable = false;
-        $itemsSend = $itemsSend->each(function ($item, $key) use ($items, &$bagPoints, &$nanAvailable) {
+        $itemsSend = $itemsSend->each(function($item, $key) use ($items, &$bagPoints, &$nanAvailable) {
             $item->qty = $items[$item->id];
             $item->amount = $items[$item->id] * $item->price;
             $item->amount_orange = $items[$item->id] * $item->price_orange;
@@ -48,7 +48,7 @@ class Order
             'bags_price' => $bags_price,
             'bags' => $bags,
             'itemsSend' => $itemsSend,
-            'nan_available' => $nanAvailable
+            'nan_available' => $nanAvailable,
         ];
     }
 
@@ -67,14 +67,14 @@ class Order
             $checkoutData = [];
         }
 
-        if (!isset($checkoutData['payment_type'])) $checkoutData['payment_type'] = 'card';
-        if (!isset($checkoutData['delivery'])) $checkoutData['delivery'] = 'Pickup at Shop';
+        if (! isset($checkoutData['payment_type'])) $checkoutData['payment_type'] = 'card';
+        if (! isset($checkoutData['delivery'])) $checkoutData['delivery'] = 'Pickup at Shop';
 
         $Data = $this->calculateItems($items);
         $Data['isOrange'] = strtolower($checkoutData['payment_type']) === 'card' && strtolower(trim($checkoutData['delivery'])) === 'pickup at shop';
         $Data['isDelivery'] = strtolower($checkoutData['payment_type']) === 'card' && strtolower(trim($checkoutData['delivery'])) === 'by taxi';
 
-        if (!$checkout) {
+        if (! $checkout) {
             $Data['total_price'] -= $Data['bags_price'];
             $Data['total_price_orange'] -= $Data['bags_price'];
             $Data['bagPoints'] = 0;
@@ -91,19 +91,19 @@ class Order
         $giftCardDiscount = 0;
         $discount = 0;
 
-        if ($checkout && isset($checkoutData['payment_type']) && $checkoutData['payment_type'] === 'card' && !empty($checkoutData['giftcard'])) {
+        if ($checkout && isset($checkoutData['payment_type']) && $checkoutData['payment_type'] === 'card' && ! empty($checkoutData['giftcard'])) {
             $giftCard = GiftCard::query()
-                ->where('deleted', false)
-                ->where('valid_date', '>=', Carbon::today())
-                ->where('status', '<', \App\Logic\GiftCard::Redeemed)
-                ->where(function ($query) {
-                    $query->where('customer_card', false)
-                        ->orWhere(function ($query) {
-                            $query->where('customer_card', true)
-                                ->where('paid_by_customer', true);
-                        });
-                })
-                ->where('card_number', $checkoutData['giftcard'])->first();
+                                ->where('deleted', false)
+                                ->where('valid_date', '>=', Carbon::today())
+                                ->where('status', '<', \App\Logic\GiftCard::Redeemed)
+                                ->where(function($query) {
+                                    $query->where('customer_card', false)
+                                          ->orWhere(function($query) {
+                                              $query->where('customer_card', true)
+                                                    ->where('paid_by_customer', true);
+                                          });
+                                })
+                                ->where('card_number', $checkoutData['giftcard'])->first();
 
             if ($giftCard) {
                 if ($Data['isOrange']) {
@@ -124,24 +124,24 @@ class Order
                     }
                 }
 
-                if (!empty($giftCard->selected_items)) {
+                if (! empty($giftCard->selected_items)) {
                     $GCItems = [];
                     foreach ($giftCard->selected_items as $code => $qty) {
                         $I = OrderItems::query()
-                            ->where('code', $code)
-                            ->first();
+                                       ->where('code', $code)
+                                       ->first();
 
                         if ($I) {
                             $GCItems[$I->id] = [
                                 'qty' => $qty,
                                 'id' => $I->id,
-                                'item' => $I
+                                'item' => $I,
                             ];
                         }
                     }
 
                     foreach ($GCItems as $id => $GCItem) {
-                        if (!isset($items[$id])) {
+                        if (! isset($items[$id])) {
                             $items[$id] = $GCItem['qty'];
                         } else if ($items[$id] < $GCItem['qty']) {
                             $items[$id] = $GCItem['qty'];
@@ -199,27 +199,26 @@ class Order
             && $checkoutData['payment_type'] === 'card'
             && isset($checkoutData['delivery'])
             && $checkoutData['delivery'] === 'By Taxi'
-            && !empty($checkoutData['shipping_postal_code'])
-            && !empty($checkoutData['shipping_postal_code'])
-            && !empty($checkoutData['shipping_address'])
-            && !empty($checkoutData['shipping_postal_code'])
-            && !blank($checkoutData['date'] . ' ' . $checkoutData['time'])
+            && ! empty($checkoutData['shipping_postal_code'])
+            && ! empty($checkoutData['shipping_postal_code'])
+            && ! empty($checkoutData['shipping_address'])
+            && ! empty($checkoutData['shipping_postal_code'])
+            && ! blank($checkoutData['date'] . ' ' . $checkoutData['time'])
         ) {
             $T = new Takeout();
             $deliveryData = $T->getDeliveryInfo([
                 'address' => $checkoutData['shipping_address'],
                 'zip' => $checkoutData['shipping_postal_code'],
-                'deliveryTime' => $checkoutData['date'] . ' ' . $checkoutData['time']
+                'deliveryTime' => $checkoutData['date'] . ' ' . $checkoutData['time'],
             ]);
 
             if (isset($deliveryData->Status) && $deliveryData->Status) {
                 $Data['delivery_fee'] = $deliveryData->Data->DeliveryFee ?? 0;
                 $Data['total_price'] += $deliveryData->Data->DeliveryFee ?? 0;
                 $Data['total_price_orange'] += $deliveryData->Data->DeliveryFee ?? 0;
-                $Data['DeliveryData'] = (array)$deliveryData->Data;
+                $Data['DeliveryData'] = (array) $deliveryData->Data;
             }
         }
-
 
 //        if ($checkout && isset($checkoutData['payment_type']) && $checkoutData['payment_type'] === 'card' && isset($checkoutData['delivery']) && $checkoutData['delivery'] === 'By Taxi' && !empty($checkoutData['shipping_postal_code'])) {
 //            $takeOut = TakeoutZonesModel::query()
@@ -260,7 +259,7 @@ class Order
             'delivery_fee' => $Data['delivery_fee'],
             'isOrange' => isset($Data['isOrange']) ? $Data['isOrange'] : true,
             'DeliveryData' => $Data['DeliveryData'] ?? [],
-            'isDelivery' => $Data['isDelivery'] ?? false
+            'isDelivery' => $Data['isDelivery'] ?? false,
         ];
     }
 
@@ -311,8 +310,8 @@ class Order
     public function setSessionCartItem($id, $what = 1, $qty = 1)
     {
         $items = $this->getSessionCart();
-        $what = (int)$what;
-        if (!isset($items[$id])) $items[$id] = 0;
+        $what = (int) $what;
+        if (! isset($items[$id])) $items[$id] = 0;
         if ($what === 1) {
             $items[$id] += $qty;
         } else if ($what === -1) {
@@ -343,13 +342,13 @@ class Order
             'shop' => '',
             'date' => '',
             'time' => '',
-            'customer_address' => ''
+            'customer_address' => '',
         ];
         $data = set_args($data, $default);
 
         if (empty($data['term_accept'])) return __('checkout.term_accept_missing');
         //if (blank($data['delivery'])) return 'Order delivery type missing.';
-        if (!in_array($data['delivery'], ['By Taxi', 'Pickup at Shop'])) {
+        if (! in_array($data['delivery'], ['By Taxi', 'Pickup at Shop'])) {
             return 'Invalid order delivery type';
         }
         /**
@@ -357,7 +356,7 @@ class Order
          */
         $isDelivery = $data['delivery'] === 'By Taxi';
 
-        if (!in_array($data['payment_type'], ['card', 'atshop'])) {
+        if (! in_array($data['payment_type'], ['card', 'atshop'])) {
             return 'Invalid order payment type';
         }
 
@@ -370,16 +369,16 @@ class Order
          */
         $isOnlinePayment = $data['payment_type'] === 'card';
 
-        if (!is_email($data['shipping_email'])) {
+        if (! is_email($data['shipping_email'])) {
             return __('checkout.invalid_email');
         }
-        if (!is_phone($data['shipping_phone'])) {
+        if (! is_phone($data['shipping_phone'])) {
             return __('checkout.invalid_phone');
         }
         if (blank($data['customer_name'])) {
             return __('checkout.customer_name_missing');
         }
-        if ($data['delivery'] === 'Pickup at Shop' && !in_array($data['shop'], array_keys(config('shops')))) {
+        if ($data['delivery'] === 'Pickup at Shop' && ! in_array($data['shop'], array_keys(config('shops')))) {
             return __('checkout.invalid_shop');
         }
         if (empty($data['date'])) return __('checkout.date_missing');
@@ -409,10 +408,11 @@ class Order
         if ($dateTime->isToday() && $minutesDiff > 1 && $minutesDiff < config('order.order_prep_time')) {
             return [
                 'message' => __('checkout.min_time_required', ['minutes' => config('order.order_prep_time')]),
-                'new_time' => Carbon::now()->addMinutes(config('order.order_prep_time') + 7)->format('H:i')
+                'new_time' => Carbon::now()->addMinutes(config('order.order_prep_time') + 7)->format('H:i'),
             ];
         } else if ($dateTime->isToday() && $minutesDiff < config('order.order_prep_time')) {
             $time = Carbon::now()->addMinutes(config('order.order_prep_time') + 5)->format('H:i');
+
             return __('checkout.select_at_least', ['time' => $time]);
         }
 
@@ -432,23 +432,26 @@ class Order
         if (in_array($data['shop'], array_keys(config('order.closing_shop_dates')))) {
             foreach (config('order.closing_shop_dates') as $shop => $closingDate) {
                 if ($shop === $data['shop'] && Carbon::create($closingDate . '-' . date('Y'))->toDateString() === $dateTime->toDateString()) {
-                    return __('checkout.specific_shop_closed', ['shop' => $shop, 'date' => $closingDate->format(config('app.date_format'))]);
+                    return __('checkout.specific_shop_closed', [
+                        'shop' => $shop,
+                        'date' => $closingDate->format(config('app.date_format')),
+                    ]);
                 }
             }
         }
 
         try {
             $guest = OrdersGuest::query()
-                ->where('customer_email', $data['shipping_email'])
-                ->firstOrNew();
+                                ->where('customer_email', $data['shipping_email'])
+                                ->firstOrNew();
             $guest->customer_name = $data['customer_name'];
             $guest->customer_email = $data['shipping_email'];
             $guest->customer_phone = formatize_phone_number($data['shipping_phone']);
-            if (!empty($data['shipping_address'])) {
+            if (! empty($data['shipping_address'])) {
                 $guest->customer_address = $data['shipping_address'];
             }
             $guest->ip = getIP();
-            if (!$guest->exists()) {
+            if (! $guest->exists()) {
                 $guest->datetime = Carbon::now();
             }
             $guest->save();
@@ -459,7 +462,7 @@ class Order
         $data['guest_id'] = $guest->id;
 
         $checkoutData = $this->getSessionCartData(true);
-        if (!$isOnlinePayment && $checkoutData['total_price'] >= 1000) {
+        if (! $isOnlinePayment && $checkoutData['total_price'] >= 1000) {
             return __('checkout.large_order');
         }
 
@@ -492,7 +495,7 @@ class Order
 
         $successUrl = $paymentUrl = false;
 
-        if (!$isDelivery && !$isOnlinePayment) {
+        if (! $isDelivery && ! $isOnlinePayment) {
             if ($dateTime->hour * 60 + $dateTime->minute > 1260) {
                 return __('checkout.invalid_closing_time');
             }
@@ -501,7 +504,7 @@ class Order
             $data['pickup_datetime'] = $dateTime;
             $successUrl = true;
             $shopName = $data['shop'];
-        } else if (!$isDelivery && $isOnlinePayment) {
+        } else if (! $isDelivery && $isOnlinePayment) {
             if ($dateTime->hour * 60 + $dateTime->minute > 1260) {
                 return __('checkout.invalid_closing_time');
             }
@@ -513,7 +516,7 @@ class Order
             $shopName = $data['shop'];
         } else if ($isDelivery) {
             unset($data['customer_address']);
-            if (!$isOnlinePayment) {
+            if (! $isOnlinePayment) {
                 return __('checkout.only_online_payment_allowed');
             }
             /**
@@ -550,20 +553,20 @@ class Order
 
             $items = $this->getSessionCartData(true);
 
-            if (!isset($items['DeliveryData'])) {
+            if (! isset($items['DeliveryData'])) {
                 return __('Please type valid address for delivery.');
             }
-            if (!isset($items['DeliveryData']['PickupDate'])) {
+            if (! isset($items['DeliveryData']['PickupDate'])) {
                 return __('Please type valid address for delivery.');
             }
-            if (!isset($items['DeliveryData']['DeliveryDate'])) {
+            if (! isset($items['DeliveryData']['DeliveryDate'])) {
                 return __('Please type valid address for delivery.');
             }
-            if (!isset($items['DeliveryData']['RestaurantID'])) {
+            if (! isset($items['DeliveryData']['RestaurantID'])) {
                 return __('Please type valid address for delivery.');
             }
 
-            if (!shop($items['DeliveryData']['RestaurantID'])) {
+            if (! shop($items['DeliveryData']['RestaurantID'])) {
                 return __('checkout.no_bindia_shop');
             }
             $items['DeliveryData']['PickupDate'] = Carbon::create($items['DeliveryData']['PickupDate']);
@@ -573,8 +576,8 @@ class Order
             //$minutesRequired = config('order.order_prep_time') + $row->deliveryMinutes();
 
             $online_order_settings = getOption('online_order_settings');
-            $minTimeDifference = (int)empty($online_order_settings["time_difference"]) ? 20 : $online_order_settings["time_difference"];
-            $additional_minutes = (int)isset($online_order_settings[shop($items['DeliveryData']['RestaurantID'])->code]["additional"]) ? $online_order_settings[shop($items['DeliveryData']['RestaurantID'])->code]["additional"] : 0;
+            $minTimeDifference = (int) empty($online_order_settings["time_difference"]) ? 20 : $online_order_settings["time_difference"];
+            $additional_minutes = (int) isset($online_order_settings[shop($items['DeliveryData']['RestaurantID'])->code]["additional"]) ? $online_order_settings[shop($items['DeliveryData']['RestaurantID'])->code]["additional"] : 0;
             if ($minTimeDifference < 20) $minTimeDifference = 20;
             if ($dateTime->dayName === 'Friday' || $dateTime->dayName === 'Saturday') $minTimeDifference = 30;
             $minutes_difference = $additional_minutes + $minTimeDifference + $items['DeliveryData']['DeliveryTime'];
@@ -646,14 +649,14 @@ class Order
 
             $shopName = shop($items['DeliveryData']['RestaurantID'])->code;
         }
-        if ($checkoutData['nan_available'] && $dateTime->isToday() && !getOption($shopName . "_nan", false)) {
+        if ($checkoutData['nan_available'] && $dateTime->isToday() && ! getOption($shopName . "_nan", false)) {
             return __('checkout.nan_not_available', ['shop' => $data['shop']]);
         }
 
         /**
          * Calculate gift card discount if available.
          */
-        if (!empty($checkoutData['giftCardDiscount'])) {
+        if (! empty($checkoutData['giftCardDiscount'])) {
             $data['gift_card_numbers'] = $checkoutData['gift_card_numbers'];
             $data['gift_card_discount'] = $checkoutData['giftCardDiscount'];
             //$data['total_price'] -= $checkoutData['giftCardDiscount'];
@@ -669,6 +672,10 @@ class Order
             $order = Orders::query()->find($id);
         } catch (\Exception $exception) {
             return $exception->getMessage();
+        }
+
+        if (isset($items['DeliveryData']['DistanceKm'])) {
+            $order->setData('distance', $items['DeliveryData']['DistanceKm']);
         }
 
         foreach ($checkoutData['items'] as $item) {
@@ -702,7 +709,7 @@ class Order
                 'price' => config('order.bag_price'),
                 'item_title' => 'Bag with handle',
                 'code' => config('order.bag_code'),
-                'spice' => ''
+                'spice' => '',
             ]);
         }
 
@@ -710,11 +717,13 @@ class Order
             $this->sendOrderEmailToCustomer($order->id);
             $this->sendOrderEmailToShop($order->id);
             $this->clearSession();
+
             return 'GOTO' . route('order.success') . '?token=' . $order->orderToken();
-        } elseif ($paymentUrl) {
+        } else if ($paymentUrl) {
             if ($order->total_price == 0) {
                 $this->markOrderPaid($order->id);
                 $this->clearSession();
+
                 return 'GOTO' . route('order.success') . '?token=' . $order->orderToken();
             } else {
                 return 'GOTO' . $order->paymentLink();
@@ -735,9 +744,9 @@ class Order
 //                ->notify(new customerOrderEmail($order));
 //        }
 
-        if (!$order) return 'Order not found in database.';
+        if (! $order) return 'Order not found in database.';
 
-        if (!$order->isDelivery() && !$order->isOnlinePayment()) {
+        if (! $order->isDelivery() && ! $order->isOnlinePayment()) {
             $templateNumber = '12.2.1';
         } else if ($order->isDelivery()) {
             $templateNumber = '12.2.5';
@@ -774,9 +783,9 @@ class Order
     public function sendOrderEmailToShop($orderID)
     {
         $order = Orders::query()->find($orderID);
-        if (!$order) return 'Order not found in database.';
+        if (! $order) return 'Order not found in database.';
 
-        if (!$order->isDelivery() && !$order->isOnlinePayment()) {
+        if (! $order->isDelivery() && ! $order->isOnlinePayment()) {
             $templateNumber = '12.2.4';
         } else {
             $templateNumber = '12.2.4';
@@ -784,7 +793,7 @@ class Order
 
         $array = $order->toArray();
         $array['cart_table'] = view('order.emails.cart_table', [
-            'order' => $order
+            'order' => $order,
         ])->render();
         $array['order_id'] = $order->id;
         $array['customer_guest_id'] = $order->guest_id;
@@ -807,6 +816,7 @@ class Order
     {
         $hours = floor($minutes / 60);
         $minutes = ($minutes % 60);
+
         return sprintf('%02d:%02d', $hours, $minutes);
     }
 
@@ -817,27 +827,28 @@ class Order
         $Minutes = 0;
         if (is_numeric($times[0])) $Minutes = $times[0] * 60;
         if (isset($times[1]) && is_numeric($times[1])) $Minutes += $times[1];
-        return (int)$Minutes;
+
+        return (int) $Minutes;
     }
 
     public function markOrderPaid($id)
     {
         $order = Orders::query()->find($id);
-        if (!$order) return 'Order not found in database.';
+        if (! $order) return 'Order not found in database.';
         if ($order->paid) return 'Order is already paid.';
 
         $order_time_difference = $order->order_time->diffInMinutes();
-        if ($order->isDelivery() && !$order->is_custom_order) {
+        if ($order->isDelivery() && ! $order->is_custom_order) {
             $time_difference_minutes = $order->delivery_datetime->diffInMinutes();
-        } elseif (!$order->isDelivery()) {
+        } else if (! $order->isDelivery()) {
             $time_difference_minutes = $order->pickup_datetime->diffInMinutes();
         }
 
         // If order generate time is more 10 minutes and time left for pickup is less then half hour
-        if (!$order->is_custom_order && $order_time_difference >= 10 && $time_difference_minutes <= 30) {
+        if (! $order->is_custom_order && $order_time_difference >= 10 && $time_difference_minutes <= 30) {
             $is_change = true;
 
-            if (!$order->pickup_datetime) {
+            if (! $order->pickup_datetime) {
                 $order->pickup_datetime = Carbon::now();
             }
 
@@ -860,7 +871,7 @@ class Order
             abort(404);
         }
 
-        if (!$order->is_custom_order) {
+        if (! $order->is_custom_order) {
             $G = new \App\Logic\GiftCard();
             $G->redeemGiftCardByOrder($order->id);
 
@@ -872,6 +883,7 @@ class Order
 
             $O->sendOrderEmailToShop($order->id);
         }
+
         //Log::channel('mail')->info('New order mark paid');
         return 'OK';
     }
@@ -879,25 +891,28 @@ class Order
     public function sendOrdersToTakeOut()
     {
         $orders = Orders::query()
-            ->where('paid', true)
-            ->where('delivery', 'By Taxi')
-            ->where('is_custom_order', false)
-            ->where(function ($query) {
-                $query->where('etakeaway_id', 0)
-                    ->orWhereNull('etakeaway_id');
-            })
+                        ->where('paid', true)
+                        ->where('delivery', 'By Taxi')
+                        ->where('is_custom_order', false)
+                        ->where(function($query) {
+                            $query->where('etakeaway_id', 0)
+                                  ->orWhereNull('etakeaway_id');
+                        })
             //->where('delivery_datetime', '>', \Carbon\Carbon::now()->subMinutes(20))
-            ->whereDate('order_time', Carbon::today())
-            ->limit(10)
-            ->orderBy('id', 'desc')
-            ->get();
-
+                        ->whereDate('order_time', Carbon::today())
+                        ->limit(10)
+                        ->orderBy('id', 'desc')
+                        ->get();
 
         foreach ($orders as $order) {
             $r = $order->createTakeoutOrder();
             if ($r !== 'OK') {
                 $content = print_r($r, true);
-                send_mail(['shakeel@shakeel.pk', 'arslan@bindia.dk', 'office@bindia.dk'], 'Delivery order# ' . $order->id . ' not submitted via takeout API', $content);
+                send_mail([
+                    'shakeel@shakeel.pk',
+                    'arslan@bindia.dk',
+                    'office@bindia.dk',
+                ], 'Delivery order# ' . $order->id . ' not submitted via takeout API', $content);
             } else {
                 $this->sendOrderEmailToCustomer($order->id);
             }
@@ -907,13 +922,13 @@ class Order
     public function copyLastOrder($email)
     {
         $lastOrder = Orders::query()
-            ->where('shipping_email', $email)
-            ->where('copy_order', true)
-            ->where('order_time', '>', Carbon::now()->subMonths(3))
-            ->orderByDesc('id')
-            ->first();
+                           ->where('shipping_email', $email)
+                           ->where('copy_order', true)
+                           ->where('order_time', '>', Carbon::now()->subMonths(3))
+                           ->orderByDesc('id')
+                           ->first();
 
-        if (!$lastOrder) return __('global.no_previous_order_found');
+        if (! $lastOrder) return __('global.no_previous_order_found');
 
         $this->clearSession();
         $spices = [];
@@ -921,16 +936,16 @@ class Order
             if ($item->item_id > 0) {
                 $this->setSessionCartItem($item->item_id, 1, $item->qty);
             }
-            if (!blank($item->spice)) $spices[item($item->code)->id] = $item->spice;
+            if (! blank($item->spice)) $spices[item($item->code)->id] = $item->spice;
         }
 
-        if (!blank($spices)) {
+        if (! blank($spices)) {
             $newSpicesArray = [];
             foreach ($spices as $id => $row) {
                 $spiceRow = make_array($row);
                 $spiceSingleArray = [];
                 foreach ($spiceRow as $spice) {
-                    list($qty, $spiceName) = explode('-', $spice);
+                    [$qty, $spiceName] = explode('-', $spice);
                     for ($x = 1; $x <= $qty; $x++) {
                         $spiceSingleArray[] = $spiceName;
                     }
@@ -961,13 +976,13 @@ class Order
     public static function checkOrdersIfNotMarkPaid()
     {
         $orders = Orders::query()
-            ->whereDate('order_time', Carbon::today())
-            ->where('payment_type', 'card')
-            ->where('paid', false)
-            ->where('order_time', '<=', Carbon::now()->subMinutes(2))
-            ->where('order_time', '>=', Carbon::now()->subMinutes(30))
-            ->select(['id', 'payment_id'])
-            ->get();
+                        ->whereDate('order_time', Carbon::today())
+                        ->where('payment_type', 'card')
+                        ->where('paid', false)
+                        ->where('order_time', '<=', Carbon::now()->subMinutes(2))
+                        ->where('order_time', '>=', Carbon::now()->subMinutes(30))
+                        ->select(['id', 'payment_id'])
+                        ->get();
 
         $obj = new self();
         foreach ($orders as $order) {

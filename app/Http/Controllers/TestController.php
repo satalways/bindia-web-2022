@@ -30,6 +30,12 @@ class TestController extends Controller
 {
     public function index()
     {
+        $orders = Orders::query()->where('order_time', '>', Carbon::now()->subMinutes(15))->get();
+        foreach ($orders as $order) {
+            $order->sendLargeOrderNotification();
+        }
+
+        return;
 
         $feedback = Feedback::query()->find('6576');
         return $feedback->limitedComment();
