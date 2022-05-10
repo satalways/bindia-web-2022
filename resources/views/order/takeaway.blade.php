@@ -5,6 +5,7 @@
         .bn-list-text .float-start, .bn-list-text .float-end {
             color: #f7f7f7 !important;
         }
+
         @media only screen and (max-width: 600px) {
             .bn-take-away-item .bn-right-side-bar-product .bn-bg-product.bn-border-right {
                 border-bottom: none;
@@ -70,9 +71,9 @@
                             {{ __('global.go') }}
                         </button>
                     </div>
-{{--                    <div class="col-2 d-sm-none d-block text-center">--}}
-{{--                        <img src="{{ asset('asstes/image/take-away/close.svg') }}" alt="">--}}
-{{--                    </div>--}}
+                    {{--                    <div class="col-2 d-sm-none d-block text-center">--}}
+                    {{--                        <img src="{{ asset('asstes/image/take-away/close.svg') }}" alt="">--}}
+                    {{--                    </div>--}}
                 </div>
             </div>
         </div>
@@ -450,8 +451,17 @@
 @endsection
 
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/urljs/2.6.2/url.min.js"></script>
     <script>
         $(function () {
+
+            if (Url.queryString("buy")) {
+                setTimeout(function () {
+                    $('img.addItem[data-id="' + Url.queryString("buy") + '"]').trigger('click');
+                    Url.updateSearchParam("buy");
+                }, 500);
+            }
+
             getCart();
 
             if (window.location.hash === '#bn-check-last-order') {

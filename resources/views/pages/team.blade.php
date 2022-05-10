@@ -36,12 +36,12 @@
                         <p>Julia Gusieva</p>
                     </div>
                 </div>
-                <div class="col-md-3 col-4">
-                    <img src="{{ asset('asstes/image/our-team/white-pager-image.jpg') }}" alt="">
-                    <div class="bn-team-title">
-                        <p>Peter Andersen</p>
-                    </div>
-                </div>
+{{--                <div class="col-md-3 col-4">--}}
+{{--                    <img src="{{ asset('asstes/image/our-team/white-pager-image.jpg') }}" alt="">--}}
+{{--                    <div class="bn-team-title">--}}
+{{--                        <p>Peter Andersen</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <div class="col-md-3 col-4">
                     <img src="{{ asset('asstes/image/our-team/white-pager-image.jpg') }}" alt="">
                     <div class="bn-team-title">
@@ -75,14 +75,14 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3 col-4">
-                    <img src="{{ asset('asstes/image/our-team/maninder.jpg') }}" alt="">
-                    <div class="bn-team-title">
-                        <p>Maninder Singh</p>
-                    </div>
-                </div>
-            </div>
+{{--            <div class="row">--}}
+{{--                <div class="col-md-3 col-4">--}}
+{{--                    <img src="{{ asset('asstes/image/our-team/maninder.jpg') }}" alt="">--}}
+{{--                    <div class="bn-team-title">--}}
+{{--                        <p>Maninder Singh</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <div class="bn-join-team">
                 {!! __('global.want_to_join', ['link' => route('jobs')]) !!}

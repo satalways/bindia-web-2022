@@ -17,7 +17,7 @@ class OrderController extends Controller
 {
     public function takeawayPost(Request $request)
     {
-        if (!$request->ajax()) abort(404);
+        if (! $request->ajax()) abort(404);
 
         $O = new Order();
         switch ($request->post('action')) {
@@ -27,18 +27,19 @@ class OrderController extends Controller
                 //\Log::info($O->getSessionCartData());
                 $items = $O->getSessionCartData();
                 $cartItems = $O->getSessionCart();
+
                 return [
                     'html' => view('order.ajax.takeaway_cart', [
                         'items' => $O->getSessionCartData(),
                         'cartItems' => $cartItems,
-                        'spice' => $O->getSessionSpice()
+                        'spice' => $O->getSessionSpice(),
                     ])->render(),
                     'single_html' => view('order.ajax.takeaway_single_item',
                         [
                             'item' => $items['items']->where('id', $request->post('id'))->first(),
                             'cartItems' => $cartItems,
-                            'id' => $request->post('id') ?? 0
-                        ])->render()
+                            'id' => $request->post('id') ?? 0,
+                        ])->render(),
                 ];
                 break;
             case 'updateSpice':
@@ -46,7 +47,7 @@ class OrderController extends Controller
                 $O->setSessionCartSpice($request->post('spice') ?? []);
                 break;
             case 'copyLastOrder':
-                if (!is_email($request->post('email'))) return __('global.invalid_email');
+                if (! is_email($request->post('email'))) return __('global.invalid_email');
                 if (Orders::query()->where('shipping_email', $request->post('email'))->count() === 0) {
                     return __('global.no_previous_order_found');
                 }
@@ -65,10 +66,10 @@ class OrderController extends Controller
         $items = [];
         foreach ($sections as $slug => $array) {
             $items[$slug] = OrderItems::query()
-                ->where('active', true)
-                ->where('section', $slug)
-                ->orderBy('code')
-                ->get();
+                                      ->where('active', true)
+                                      ->where('section', $slug)
+                                      ->orderBy('code')
+                                      ->get();
         }
         $O = new Order();
 
@@ -79,7 +80,7 @@ class OrderController extends Controller
             'items' => $items,
             'cartItems' => $O->getSessionCart(),
             'seo' => seo('Takeaway'),
-            'social_image' => asset('asstes/image/take-away/mask-group-2.jpg')
+            'social_image' => asset('asstes/image/take-away/mask-group-2.jpg'),
         ])->render();
         //});
     }
@@ -97,6 +98,7 @@ class OrderController extends Controller
     public function address()
     {
         $T = new Takeout();
+
         return response()->json($T->autocompleteAddress(\request()->query('query')));
 //        return response()->json([
 //            ['value' => 'Andorra', 'data' => 'AD'],
@@ -106,12 +108,12 @@ class OrderController extends Controller
 
     public function checkoutPost(Request $request)
     {
-        if (!$request->ajax()) abort(404);
+        if (! $request->ajax()) abort(404);
         $O = new Order();
         switch ($request->post('action')) {
             case 'checkTime':
                 //debug($request->post());
-                if (!Carbon::create($request->post('date'))->isToday()) {
+                if (! Carbon::create($request->post('date'))->isToday()) {
                     return null;
                 }
                 $now = \now();
@@ -121,6 +123,7 @@ class OrderController extends Controller
                     while ($now->minute % 5 !== 0) {
                         $now->addMinute();
                     }
+
                     return $now->format('H:i');
                 }
 
@@ -149,8 +152,9 @@ class OrderController extends Controller
                     $currentTime = ($now->hour * 60 + $now->minute);
                     if ($currentTime > 16 * 60 + config('order.order_prep_time')) {
                         $currentTime += config('order.order_prep_time');
-                        if ($currentTime % 5 === 0) $currentTime += 5;
-                        else $currentTime += 5 - ($currentTime % 5);
+                        if ($currentTime % 5 === 0) {
+                            $currentTime += 5;
+                        } else $currentTime += 5 - ($currentTime % 5);
                         $time = sprintf('%02d:%02d', floor($currentTime / 60), ($currentTime % 60));
                     } else {
                         $time = $items['checkout']['time'] ?? '16:' . config('order.order_prep_time');
@@ -215,7 +219,7 @@ class OrderController extends Controller
                     'minDate' => $minDate,
                     'minTime' => $minTime,
                     'time' => $time,
-                    'delivery_fee' => !empty($items['delivery_fee']) ? __('checkout.customer_price_consent', ['price' => $items['delivery_fee'] ?? 0]) : '',
+                    'delivery_fee' => ! empty($items['delivery_fee']) ? __('checkout.customer_price_consent', ['price' => $items['delivery_fee'] ?? 0]) : '',
                     'isDelivery' => $items['isDelivery'],
                     'isOrange' => $items['isOrange'] ?? false,
                     'DeliveryData' => $items['DeliveryData'],
@@ -240,13 +244,13 @@ class OrderController extends Controller
     public function pdfFile(Request $request)
     {
         $token = $request->get('token');
-        if (!$token) abort(404);
+        if (! $token) abort(404);
 
         $data = decodeString($token, false);
-        if (!isset($data->id)) abort(404);
+        if (! isset($data->id)) abort(404);
 
         $order = Orders::query()->find($data->id);
-        if (!$order) abort(404);
+        if (! $order) abort(404);
 
         return $order->pdf(true);
     }
@@ -259,30 +263,30 @@ class OrderController extends Controller
     public function success(Request $request)
     {
         $token = $request->get('token');
-        if (!$token) abort(404);
+        if (! $token) abort(404);
 
         $data = decodeString($token, false);
-        if (!isset($data->id)) abort(404);
+        if (! isset($data->id)) abort(404);
 
         $order = Orders::query()->find($data->id);
-        if (!$order) abort(404);
+        if (! $order) abort(404);
 
         return view('order.success', [
-            'order' => $order
+            'order' => $order,
         ]);
     }
 
     public function payment(Request $request)
     {
         $token = $request->get('token');
-        if (!$token) abort(404);
+        if (! $token) abort(404);
 
         $data = decodeString($token, false);
-        if (!isset($data->id)) abort(404);
+        if (! isset($data->id)) abort(404);
 
         $order = Orders::query()->find($data->id);
-        if (!$order) abort(404);
-        if (!$order->isUnfinished()) abort(404);
+        if (! $order) abort(404);
+        if (! $order->isUnfinished()) abort(404);
         if ($order->paid) abort(404);
 
         $paymentId = Nets::getPaymentID($order->id);
@@ -301,7 +305,7 @@ class OrderController extends Controller
             'order' => $order,
             'jsFile' => Nets::JsFile(),
             'checkoutKey' => Nets::checkoutKey(),
-            'merchantID' => Nets::merchantID()
+            'merchantID' => Nets::merchantID(),
         ]);
     }
 
@@ -313,22 +317,22 @@ class OrderController extends Controller
         $ID = null;
         if (isset($token->id)) $ID = $token->id;
 
-        if (!$ID && !$paymentID) {
+        if (! $ID && ! $paymentID) {
             return response()->redirectToRoute('order.failed');
         } else {
             if ($ID) {
                 $order = Orders::query()
-                    ->where('id', $ID)
-                    ->orderByDesc('id')
-                    ->first();
+                               ->where('id', $ID)
+                               ->orderByDesc('id')
+                               ->first();
             } else {
                 $order = Orders::query()
-                    ->where('payment_id', $paymentID)
-                    ->orderByDesc('id')
-                    ->first();
+                               ->where('payment_id', $paymentID)
+                               ->orderByDesc('id')
+                               ->first();
             }
 
-            if (!$order) {
+            if (! $order) {
                 return response()->redirectToRoute('order.failed');
             }
 
@@ -389,10 +393,11 @@ class OrderController extends Controller
 
             $O = new Order();
             $response = $O->markOrderPaid($data->id);
-            if (!$response === 'OK') {
+            if (! $response === 'OK') {
                 return send_mail('shakeel@shakeel.pk', 'Web Hook > Failed to Mark Done Order', $response);
             }
             $O->clearSession();
+
             return 'OK';
         } else {
             return send_mail('shakeel@shakeel.pk', 'Web Hook > Nops!', $content);
@@ -410,6 +415,7 @@ class OrderController extends Controller
             if (str_starts_with($data->id, 'GC')) $data->id = substr($data->id, 2);
 
             $Gc = new \App\Logic\GiftCard();
+
             return $Gc->markDonePayment($data->id);
         }
     }
@@ -430,11 +436,11 @@ class OrderController extends Controller
             $path = resource_path('order_files/CopyMyLastOrder-Terms.pdf');
         }
 
-        if (!is_file($path)) abort(404);
+        if (! is_file($path)) abort(404);
 
         return response()->make(file_get_contents($path), 200, [
             'Content-Type' => 'application/pdf',
-            'Content-Desposition' => 'inline; file.pdf'
+            'Content-Desposition' => 'inline; file.pdf',
         ]);
     }
 
@@ -446,19 +452,19 @@ class OrderController extends Controller
             $path = resource_path('order_files/how-to-reheat-your-food-from-bindia.pdf');
         }
 
-        if (!is_file($path)) abort(404);
+        if (! is_file($path)) abort(404);
 
         return response()->make(file_get_contents($path), 200, [
             'Content-Type' => 'application/pdf',
-            'Content-Desposition' => 'inline; file.pdf'
+            'Content-Desposition' => 'inline; file.pdf',
         ]);
     }
 
     public function areaPage($area)
     {
         $fixAreas = TakeoutZonesModel::query()
-            ->whereNull('area_slug')
-            ->get();
+                                     ->whereNull('area_slug')
+                                     ->get();
 
         foreach ($fixAreas as $row) {
             $row->area_slug = \Str::slug($row->area);
@@ -466,11 +472,11 @@ class OrderController extends Controller
         }
 
         $row = TakeoutZonesModel::query()->where('area_slug', $area)
-            ->whereNotIn('area', ['Lyngby', 'Søborg', 'Frederiksberg'])->firstOrFail();
+                                ->whereNotIn('area', ['Lyngby', 'Søborg', 'Frederiksberg'])->firstOrFail();
         $rows = TakeoutZonesModel::query()
-            ->select(['area_slug', 'area'])
-            ->whereNotIn('area', ['Lyngby', 'Søborg', 'Frederiksberg'])
-            ->distinct('area_slug')->orderBy('area')->get();
+                                 ->select(['area_slug', 'area'])
+                                 ->whereNotIn('area', ['Lyngby', 'Søborg', 'Frederiksberg'])
+                                 ->distinct('area_slug')->orderBy('area')->get();
 
         if (getCurrentLang() === 'en') {
             $title = 'Take Away ' . $row->area . ' - Indian Food Restaurant ' . $row->area . ' - Bindia.dk';
@@ -491,7 +497,7 @@ class OrderController extends Controller
             'description' => $description,
             'heading' => $heading,
             'cols' => isMobile() ? 3 : 5,
-            'items' => $items
+            'items' => $items,
         ]);
     }
 
@@ -510,15 +516,40 @@ class OrderController extends Controller
             $title = $seo->title;
         }
 
-        if (!$title) {
+        if (! $title) {
             $title = getCurrentLang() == 'en' ? $item->name . ' Copenhagen - Indian Food Take Away - Bindia.Dk' : $item->name . ' København - Indisk Mad Takeaway - Bindia.Dk';
         }
 
-        return view('order.item', [
+        $optionKey = 'product.pages.' . getCurrentLang() . '.' . $item->id . '.';
+        $col1 = getOption($optionKey . 'col1');
+        $col2 = getOption($optionKey . 'col2');
+        $nuts = getOption($optionKey . 'nut');
+        $all = getOption($optionKey . 'all');
+
+
+        return view('order.product3', [
             'item' => $item,
             'title' => $title,
             'description' => (getCurrentLang() == 'en' ? $item->name . ' Copenhagen - ' : $item->name . ' København - ') . $item->getDescription(),
-            'content' => $content
+            'content' => $content,
+            'col1' => $col1,
+            'col2' => $col2,
+            'nuts' => $nuts,
+            'all' => $all,
+        ]);
+    }
+
+    public function itemPage2()
+    {
+        return view('order.product2', [
+            'title' => 'Butter Chicken'
+        ]);
+    }
+
+    public function itemPage3()
+    {
+        return view('order.product3', [
+            'title' => 'Butter Chicken'
         ]);
     }
 }
