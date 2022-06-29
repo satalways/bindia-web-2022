@@ -12,7 +12,7 @@
     <div class="bn-slider bg-transparent bn-animation-banner">
         <div class="d-sm-block d-none bn-slider-ds-img">
             <img class="bn-image-index bn-image-desktop lazy" src="{{ asset('asstes/image/item2.png') }}"
-                 data-src="{{ asset('asstes/image/slider-image.png') }}" alt="">
+                 data-src="{{ asset('asstes/image/slider-image.jpg') }}" alt="">
         </div>
         <div class="d-sm-none d-block bn-slider-ds-img">
             <img class="bn-image-index lazy" src="{{ asset('asstes/image/item2.png') }}"
@@ -58,7 +58,9 @@
                                          alt="">
                                     <h4>
                                         <span class="float-end">{{ $item->price_orange }}/-</span>
-                                        {{ $item->name }}
+                                        <a href="{{ route('item', ['slug' => $item->slug]) }}">
+                                            {{ $item->name }}
+                                        </a>
                                     </h4>
                                 </div>
                             @endforeach
@@ -68,11 +70,16 @@
                             <tr>
                                 @foreach($items as $item)
                                     @if( $loop->index % $cols === 0 )
-                            </tr><tr>
+                            </tr>
+                            <tr>
                                 @endif
                                 <td class="text-center">
-                                    <img src="{{ asset('asstes/image/item2.png') }}" data-src="{{ $item->image }}" class="lazy img" alt="">
-                                    <br>{{ $item->name }}
+                                    <img src="{{ asset('asstes/image/item2.png') }}" data-src="{{ $item->image }}"
+                                         class="lazy img" alt="">
+                                    <br>
+                                    <a href="{{ route('item', ['slug' => $item->slug]) }}">
+                                        {{ $item->name }}
+                                    </a>
                                 </td>
                                 @endforeach
                             </tr>
@@ -82,11 +89,12 @@
                             <tr>
                                 @foreach($rows as $area)
                                     @if( $loop->index % $cols === 0 )
-                                        </tr><tr>
-                                    @endif
-                                    <td>
-                                        <a href="{{ route('area.page', ['area' => $area->area_slug]) }}">{{ $area->area }}</a>
-                                    </td>
+                            </tr>
+                            <tr>
+                                @endif
+                                <td>
+                                    <a href="{{ route('area.page', ['area' => $area->area_slug]) }}">{{ $area->area }}</a>
+                                </td>
                                 @endforeach
                             </tr>
                         </table>

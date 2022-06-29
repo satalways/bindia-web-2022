@@ -124,12 +124,14 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://unpkg.com/@tarekraafat/autocomplete.js@9.1.1/dist/css/autoComplete.css">
+    <script src="{{ route('translations') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.jquery.min.js"
             integrity="sha512-AnBkpfpJIa1dhcAiiNTK3JzC3yrbox4pRdrpw+HAI3+rIcfNGFbVXWNJI0Oo7kGPb8/FG+CMSG8oADnfIbYLHw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         var gc_email_sent = "{{ __('checkout.gc_email_sent') }}";
+        var isWolt = {{ \App\Logic\Wolt::isWoltEnabled()?'true':'false' }};
     </script>
-    <script src="{{ asset('js/order-checkout.min.js') }}?v=2"></script>
+    <script src="{{ asset('js/order-checkout.js') }}?v={{ md5_file(public_path('js/order-checkout.js')) }}"></script>
 @endsection

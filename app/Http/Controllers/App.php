@@ -7,10 +7,12 @@ use App\Models\Contact;
 use App\Models\Feedback;
 use App\Models\JobsModel;
 use App\Models\OrderItems;
+use App\Models\Orders;
 use Carbon\Carbon;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use Monolog\Handler\SwiftMailerHandler;
 
@@ -18,13 +20,17 @@ class App extends Controller
 {
     public function home()
     {
-        $feedbacks = Feedback::query()
-            ->orderByDesc('id')
-            //->where('user_rating', 5)
-            ->where('time', '>=', Carbon::now()->subMonths(3))
-            ->where('published', true)
-            ->where('deleted', false)
-            ->orderByDesc('id')
+        $key = 'homepage' . getCurrentLang();
+        if (\cache()->has($key)) {
+            return \cache()->get($key);
+        } else {
+            $feedbacks = Feedback::query()
+                                 ->orderByDesc('id')
+                //->where('user_rating', 5)
+                                 ->where('time', '>=', Carbon::now()->subMonths(3))
+                                 ->where('published', true)
+                                 ->where('deleted', false)
+                                 ->orderByDesc('id')
 //            ->where(function ($query) {
 //                $query->where(function ($query) {
 //                    $query->where('type', 'weborder')
@@ -37,27 +43,32 @@ class App extends Controller
 //                            ->where('question_6_answer', 'Yes');
 //                    });
 //            })
-            ->limit(20)
-            ->get();
+                                 ->limit(20)
+                                 ->get();
 
-        $randomItem = OrderItems::query()
-            ->orderByRaw('RAND()')
-            ->where('active', true)
-            ->limit(1)
-            ->get();
+            $randomItem = OrderItems::query()
+                                    ->orderByRaw('RAND()')
+                                    ->where('active', true)
+                                    ->limit(1)
+                                    ->get();
 
-        return view('home', [
-            'feedbacks' => $feedbacks,
-            'seo' => seo('home'),
-            'randomItem' => $randomItem
-        ])->render();
+            $html = view('home', [
+                'feedbacks' => $feedbacks,
+                'seo' => seo('home'),
+                'randomItem' => $randomItem,
+            ])->render();
+
+            cache()->put($key, $html, now()->addDay());
+
+            return $html;
+        }
     }
 
     public function contact()
     {
         return view('contact', [
             'title' => __('contact.title'),
-            'seo' => seo('Contact')
+            'seo' => seo('Contact'),
         ]);
     }
 
@@ -73,28 +84,28 @@ class App extends Controller
              * This is for Spam check, Do not remove this.
              */
             'birthday' => '',
-//            'captcha' => 'required|captcha'
+            //            'captcha' => 'required|captcha'
         ]);
 
         /**
          * if birthday field is selected by any bot then it will not serve.
          * This option is to stop bots
          */
-        if (!blank($request->birthday)) {
+        if (! blank($request->birthday)) {
             abort('403');
         }
 
         try {
             $id = Contact::query()
-                ->insertGetId([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'phone' => formatize_phone_number($request->phone),
-                    'datetime' => Carbon::now(),
-                    'comments' => $request->comments,
-                    'ip' => getIP(),
-                    'subject' => 'Contact Form'
-                ]);
+                         ->insertGetId([
+                             'name' => $request->name,
+                             'email' => $request->email,
+                             'phone' => formatize_phone_number($request->phone),
+                             'datetime' => Carbon::now(),
+                             'comments' => $request->comments,
+                             'ip' => getIP(),
+                             'subject' => 'Contact Form',
+                         ]);
 
             $attachedFile = '';
             if ($request->hasFile('file') && $request->file('file')->isValid()) {
@@ -119,7 +130,7 @@ class App extends Controller
 
     public function appAjax(Request $request)
     {
-        if (!$request->ajax()) abort(404);
+        if (! $request->ajax()) abort(404);
 
         switch ($request->post('action')) {
             case 'getCart':
@@ -132,10 +143,14 @@ class App extends Controller
                     $discount_amount += item($id)->price_orange * $qty;
                     $qty1 += $qty;
                 }
+
                 return response([
+                    'is_side' => $O->hasSessionSides() ? 1 : 0,
+                    'is_rice' => $O->hasSessionRice() ? 1 : 0,
+                    'is_curry_or_veg' => $O->hasSessionCurryOrVeg() ? 1 : 0,
                     'qty' => $qty1,
                     'amount' => $amount,
-                    'discount_amount' => $discount_amount
+                    'discount_amount' => $discount_amount,
                 ])->header('Content-Type', 'text/json');
                 break;
             default:
@@ -145,10 +160,10 @@ class App extends Controller
 
     public function confirmInterview(Request $request)
     {
-        if (!$request->get('id')) abort(404);
+        if (! $request->get('id')) abort(404);
         $id = base64_decode($request->get('id'));
         $job = JobsModel::query()->whereRaw('md5(id)=?', [$id])->first();
-        if (!$job) abort(404);
+        if (! $job) abort(404);
         if ($job->interview_confirmed) abort(404);
         $job->interview_confirmed = true;
         $job->status = 'Interview Confirmed';
@@ -170,21 +185,24 @@ class App extends Controller
         $token = request()->get('token');
         $data = JWT::decode($token, 'shakeelAhmedSiddiqi', ['HS256']);
 
-        if (!$data->id) {
+        if (! $data->id) {
             return 'Invalid token!';
         }
 
-        $O = new Order();
-        return $O->markOrderPaid($data->id);
+        $order = Orders::query()->find($data->id);
+        if (! $order) return 'Order not found in database.';
+
+        return $order->markPaid();
     }
 
     public function generalPost(Request $request)
     {
-        if (!$request->ajax()) abort(404);
+        if (! $request->ajax()) abort(404);
 
         switch ($request->post('action')) {
             case 'saveCookieConsent':
                 $cookie = cookie('CookieConsent', 1, 9999999);
+
                 return response('OK')->cookie($cookie);
 
                 break;
@@ -209,7 +227,14 @@ class App extends Controller
 
         return view('seo_pages.take-away', [
             'row' => $row,
-            'rows' => $rows
+            'rows' => $rows,
+        ]);
+    }
+
+    public function video1()
+    {
+        return view('video1', [
+            'title' => 'Bindia and its logistics',
         ]);
     }
 }

@@ -48,7 +48,7 @@ class GiftCard extends Model
         'customer_card' => 'boolean',
         'converted' => 'boolean',
         'selected_items' => 'array',
-        'redeemed_orders' => 'array'
+        'redeemed_orders' => 'array',
     ];
 
     protected $fillable = ['id'];
@@ -83,8 +83,8 @@ class GiftCard extends Model
         foreach ($items as $code => $qty) {
             try {
                 $name = \App\Models\OrderItems::query()
-                    ->where('code', $code)
-                    ->value('name');
+                                              ->where('code', $code)
+                                              ->value('name');
 
                 if ($name) {
                     $names[$name] = $qty;
@@ -119,7 +119,8 @@ class GiftCard extends Model
     public function isExpired(): bool
     {
         $date = $this->valid_date;
-        return once(function () use ($date) {
+
+        return once(function() use ($date) {
             return Carbon::now()->greaterThan($date);
         });
     }
@@ -132,6 +133,7 @@ class GiftCard extends Model
     public function getStatusName(): string
     {
         $array = config('gc.status');
+
         return $array[$this->status] ?? 'Unknown';
     }
 
@@ -155,11 +157,11 @@ class GiftCard extends Model
     {
         if (is_array($this->selected_items)) {
             $items = \App\Models\OrderItems::query()
-                ->where('active', true)
-                ->whereIn('code', array_keys($this->selected_items))
-                ->select(['code', 'price_orange'])
-                ->orderBy('code')
-                ->get();
+                                           ->where('active', true)
+                                           ->whereIn('code', array_keys($this->selected_items))
+                                           ->select(['code', 'price_orange'])
+                                           ->orderBy('code')
+                                           ->get();
 
             $qtyArray = $this->selected_items;
 
@@ -180,11 +182,11 @@ class GiftCard extends Model
     {
         if (is_array($this->selected_items)) {
             $items = \App\Models\OrderItems::query()
-                ->where('active', true)
-                ->whereIn('code', array_keys($this->selected_items))
-                ->select(['code', 'price'])
-                ->orderBy('code')
-                ->get();
+                                           ->where('active', true)
+                                           ->whereIn('code', array_keys($this->selected_items))
+                                           ->select(['code', 'price'])
+                                           ->orderBy('code')
+                                           ->get();
 
             $qtyArray = $this->selected_items;
 
@@ -214,5 +216,76 @@ class GiftCard extends Model
     public function orderToken()
     {
         return encodeData(['id' => $this->id]);
+    }
+
+    /**
+     * @return string
+     *
+     * Checking this gift card if this orange card is valid for redeem.
+     */
+    public function validateOrangeCard()
+    {
+        if (! $this->orange) return 'This is not ornage gift card';
+        if (Carbon::today()->greaterThan($this->valid_date)) return 'Validation date for this gift card is passed.';
+        if ($this->occurrence_time <= 0) return 'Gift card redeem limit is finished.';
+        if ($this->deleted) return 'Gift card is deleted.';
+
+        return 'OK';
+    }
+
+    public function redeemOrangeGiftCard($totalPrice, $isOrange = false)
+    {
+        $validate = $this->validateOrangeCard();
+        if ($validate !== 'OK') return $validate;
+
+        switch ($this->amount_type) {
+            case 'percent';
+                return $totalPrice * ($this->amount / 100);
+                break;
+            case 'fixed':
+                return $this->amount > $totalPrice ? $totalPrice : $this->amount;
+                break;
+            case 'items':
+                $amount = 0;
+
+                if (! empty($this->selected_items)) {
+                    $GCItems = [];
+                    foreach ($this->selected_items as $code => $qty) {
+                        $I = \App\Models\OrderItems::query()
+                                                   ->where('code', $code)
+                                                   ->first();
+
+                        if ($I) {
+                            $GCItems[$I->id] = [
+                                'qty' => $qty,
+                                'id' => $I->id,
+                                'item' => $I,
+                            ];
+                            if ($isOrange) {
+                                $amount += ($I->price_orange * $qty);
+                            } else {
+                                $amount += ($I->price * $qty);
+                            }
+                        }
+                    }
+
+                    return ['amount' => $amount, 'items' => $GCItems];
+                }
+
+                return $amount;
+                break;
+            case 'amount_discount':
+                if ($totalPrice >= $this->min_order_amount) {
+                    return $this->amount;
+                }
+
+                return 0;
+                break;
+            case 'time_discount':
+                return $this->min_order_amount > $totalPrice ? $totalPrice : $this->min_order_amount;
+                break;
+            default:
+                return 'Invalid gift card';
+        }
     }
 }

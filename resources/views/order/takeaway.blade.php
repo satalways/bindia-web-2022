@@ -131,7 +131,7 @@
                             <ul class="list-unstyled">
                                 @foreach($sections as $slug => $array)
                                     <li class="{{ $loop->first ? 'active' : '' }}">
-                                        <a href="#{{ $slug }}">
+                                        <a href="#{{ $slug }}" id="{{ str_replace('-','', $slug) }}Link">
                                             {{ __('takeaway.' .\Str::slug($array['name'])) }}
                                             @if(isset($array['small']))
                                                 <small class="d-none d-sm-inline-block">{{ $array['small'] }}</small>
@@ -359,63 +359,78 @@
                                                              alt="{{ getMilkToolTip() }}"
                                                              title="{{ getMilkToolTip() }}">
                                                     </span>
+
                                                 @endif
                                                 @if($item->nuts)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/nut.png') }}"
-                                                             alt="{{ getNutsToolTip() }}"
-                                                             title="{{ getNutsToolTip() }}">
+{{--                                                        <img src="{{ asset('asstes/image/take-away/nut.png') }}"--}}
+{{--                                                             alt="{{ getNutsToolTip() }}"--}}
+{{--                                                             title="{{ getNutsToolTip() }}">--}}
+                                                        <i class="sprite bg-nut" title="{{ getNutsToolTip() }}"></i>
                                                     </span>
+                                                    {{--                                                    <img class="sprite nut">--}}
                                                 @endif
                                                 @if($item->gluten)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/wheat.png') }}"
-                                                             alt="{{ getWheatToolTip() }}"
-                                                             title="{{ getWheatToolTip() }}">
+{{--                                                        <img src="{{ asset('asstes/image/take-away/wheat.png') }}"--}}
+{{--                                                             alt="{{ getWheatToolTip() }}"--}}
+{{--                                                             title="{{ getWheatToolTip() }}">--}}
+                                                        <i class="sprite bg-veg"></i>
                                                     </span>
                                                 @endif
                                                 @if($item->chili)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/chili.png') }}"
-                                                             alt="{{ getChiliToolTip() }}"
-                                                             title="{{ getChiliToolTip() }}">
+{{--                                                        <img src="{{ asset('asstes/image/take-away/chili.png') }}"--}}
+{{--                                                             alt="{{ getChiliToolTip() }}"--}}
+{{--                                                             title="{{ getChiliToolTip() }}">--}}
+                                                        <i class="sprite bg-chili"></i>
                                                     </span>
                                                 @endif
                                                 @if($item->double_chili)
                                                     <span>
-                                                        <img
-                                                            src="{{ asset('asstes/image/take-away/dubble-chili.png') }}"
-                                                            alt="{{ getDoubleChiliToolTip() }}"
-                                                            title="{{ getDoubleChiliToolTip() }}">
+{{--                                                        <img--}}
+{{--                                                            src="{{ asset('asstes/image/take-away/dubble-chili.png') }}"--}}
+{{--                                                            alt="{{ getDoubleChiliToolTip() }}"--}}
+{{--                                                            title="{{ getDoubleChiliToolTip() }}">--}}
+                                                        <i class="sprite bg-dubble-chili"></i>
                                                     </span>
                                                 @endif
                                                 @if($item->vegan)
                                                     <span>
-                                                        <img src="{{ asset('asstes/image/take-away/vegan.png') }}"
-                                                             alt="{{ getVeganToolTip() }}"
-                                                             title="{{ getVeganToolTip() }}">
+{{--                                                        <img src="{{ asset('asstes/image/take-away/vegan.png') }}"--}}
+{{--                                                             alt="{{ getVeganToolTip() }}"--}}
+{{--                                                             title="{{ getVeganToolTip() }}">--}}
+                                                        <i class="sprite bg-vegan"></i>
                                                     </span>
                                                 @endif
                                                 @if($item->veg)
-                                                    <span>
-                                                        <img src="{{ asset('asstes/image/take-away/veg.png') }}"
-                                                             alt="{{ getVegToolTip() }}" title="{{ getVegToolTip() }}">
-                                                    </span>
+{{--                                                    <span>--}}
+{{--                                                        <img src="{{ asset('asstes/image/take-away/veg.png') }}"--}}
+{{--                                                             alt="{{ getVegToolTip() }}" title="{{ getVegToolTip() }}">--}}
+{{--                                                    </span>--}}
+                                                    <i class="sprite bg-veg"></i>
                                                 @endif
                                                 <span class="bn-text-icon">
-                                                    <img alt="{{ getWeightToolTip() }}" title="{{ getWeightToolTip() }}"
-                                                         src="{{ asset('asstes/image/take-away/' .  $item->portion_slug . '.png') }}">
+                                                    {{-- $item->portion_slug --}}
+
+                                                    <!--img alt="{{ getWeightToolTip() }}" title="{{ getWeightToolTip() }}"
+                                                         src="{{ asset('asstes/image/take-away/' .  $item->portion_slug . '.png') }}"-->
+
+                                                    <i title="{{ getWeightToolTip() }}" class="sprite bg-{{ $item->portion_slug }}"></i>
                                                 </span>
                                                 @if(in_array($item->section,['bn-curries','bn-veg']))
-                                                    <span>
-                                                        <img
-                                                            src="{{ asset('asstes/image/take-away/no-sides.png') }}?3"
-                                                            alt="">
-                                                    </span>
+{{--                                                    <span>--}}
+{{--                                                        <img--}}
+{{--                                                            src="{{ asset('asstes/image/take-away/no-sides.png') }}?3"--}}
+{{--                                                            alt="">--}}
+{{--                                                    </span>--}}
+                                                    <i class="sprite bg-no-sides"></i>
+
                                                 @endif
 
-                                                <img src="{{ asset('asstes/image/take-away/info-icon.png') }}"
-                                                     alt="" class="bn-info-product-icon">
+{{--                                                <img src="{{ asset('asstes/image/take-away/info-icon.png') }}"--}}
+{{--                                                     alt="" class="bn-info-product-icon">--}}
+                                                <i class="sprite bg-info-icon"></i>
                                             </div>
                                         </div>
                                         <div class="col-md-3 bn-bg-product bn-bg-orange-product">
@@ -452,9 +467,9 @@
 
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/urljs/2.6.2/url.min.js"></script>
+    <script src="{{ route('translations') }}"></script>
     <script>
         $(function () {
-
             if (Url.queryString("buy")) {
                 setTimeout(function () {
                     $('img.addItem[data-id="' + Url.queryString("buy") + '"]').trigger('click');
@@ -488,7 +503,7 @@
                         }
                     }).done(function (data) {
                         hideLoader();
-                        if (data.substr(0, 2) === 'OK') {
+                        if (data.substring(0, 2) === 'OK') {
                             updateTopCart();
                             getCart();
                             $('#bn-check-last-order').modal('show');
@@ -496,7 +511,7 @@
                             alert(data);
                         }
                     });
-                })
+                });
         });
 
         function getCart() {
@@ -509,8 +524,12 @@
                     console.error(e3);
                 }
             }).done(function (data) {
+                isRice = data.is_rice;
+                isSide = data.is_side;
+                isCurryVeg = data.is_curry_or_veg;
                 $('#bn-check-last-order .container').html(data.html)
             });
         }
+
     </script>
 @endsection

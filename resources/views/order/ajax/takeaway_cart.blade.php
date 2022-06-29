@@ -106,7 +106,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="col-md-3 col-6">
-            <button type="button" class="btn btn-dark w-100" onclick="window.location.href='{{ route('checkout') }}'">
+            <button type="button" class="btn btn-dark w-100" id="checkoutButton">
                 Checkout
             </button>
         </div>

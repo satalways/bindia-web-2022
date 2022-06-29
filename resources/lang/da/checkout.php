@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'no_side' => "Din bestilling indeholder ingen \"Sides\" (tilbehør), f.eks. ris eller nan-brød. Ønsker du at tilføje dette?",
+    'no_rice' => "Din bestilling indeholder ikke ris (\"Pilaoo Rice\"). Ønsker du at tilføje dette?",
     'do_have_gift_card' => 'Har du et gavekort?',
     'email_or_card' => 'Email eller gavekortnummer, fx Z792164',
     'go' => 'Fortsæt',
@@ -47,6 +49,7 @@ return [
     'thankyou' => 'Tak for din ordre!',
     'view_receipt' => 'Vis kvittering',
     'delivery_order_not_allowed_on_date' => 'Delivery orders are not available on :date',
+    'delivery_order_not_allowed_for_france_tour' => 'På grund af Tour de France har vores leveringspartner lukket for levering hhv. d. 29., 30. og 1.',
     'no_bindia_shop' => 'No Bindia shop is available for delivery on this address',
     'online_payment_disabled' => 'Pga. nedbrud hos Nets (vores betalingsløsning) har vi resten af dagen desværre IKKE mulighed for at tage imod betalinger i webshoppen. Du skal derfor vælge "Betaling i butikken" ved checkout.
 Vi kigger alle ordrer igennem i morgen (tirsdag 1. feb.), og udsteder gavekort til alle kunder, på forskellen mellem de orange priser (der af ovennævnte grunde ikke kan opnås i dag) og de almindelige priser, som vi er nødt til at henvise til i dag.

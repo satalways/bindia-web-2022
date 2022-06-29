@@ -53,8 +53,13 @@ var loadItems = function (loadDiv = true) {
                 console.error(e3);
             },
             success: function (data) {
+                console.error(data);
                 hideLoader();
-                initObjects(data);
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    initObjects(data);
+                }
             }
         });
     }
@@ -119,6 +124,7 @@ var initObjects = function (data) {
                     $('#shipping_address').trigger('focus');
                 }, 100);
                 $('#checkoutButton').prop('disabled', true);
+                $('#time').val('');
             }
         })
         .on('typeahead:asyncrequest', function () {
@@ -131,7 +137,11 @@ var initObjects = function (data) {
 
     $('#shipping_address, #time').trigger('input');
 
-    if (data.isDelivery && $.trim(data.delivery_fee) !== '' && data.delivery_fee !== LastDeliveryFee) {
+    if (data.isDelivery && isWolt && typeof data.DeliveryData.error !== 'undefined' && data.DeliveryData.error !== '') {
+        LastDeliveryFee = data.delivery_fee;
+        $('#checkoutButton').prop('disabled', true);
+        alert(data.DeliveryData.error);
+    } else if (data.isDelivery && $.trim(data.delivery_fee) !== '' && data.delivery_fee !== LastDeliveryFee) {
         LastDeliveryFee = data.delivery_fee;
         alert(LastDeliveryFee);
         //alert('The delivery fee for this order is ' + LastDeliveryFee);
@@ -166,9 +176,9 @@ $(function () {
                 }
             }).done(function (data) {
                 hideLoader();
-                if (data.substr(0, 6) === 'mailOK') {
+                if (data.substring(0, 6) === 'mailOK') {
                     alert(gc_email_sent);
-                } else if (data.substr(0, 2) === 'OK') {
+                } else if (data.substring(0, 2) === 'OK') {
                     loadItems();
                 } else {
                     alert(data);
@@ -183,7 +193,6 @@ $(function () {
             }
         })
         .on('change', '.update2', function () {
-            console.error('ehere');
             const Form = $('#checkoutForm');
             Form.find('[name=action]').val('updateSessionCart2');
             Form.trigger('submit');
@@ -211,7 +220,7 @@ $(function () {
                     if (typeof data === 'object') {
                         hideLoader();
                         if (data.message) {
-                            alert(data.message)
+                            alert(data.message);
                         }
                         if (data.new_time) {
                             $('[name=time]').val(data.new_time);
@@ -219,27 +228,43 @@ $(function () {
 
                         if (Action === 'updateSessionCart') {
                             hideLoader();
-                            if (data.is_delivery && $.trim(data.delivery_fee) === '' && data.post.shipping_postal_code && data.post.shipping_address) {
-                                alert('Bindia can not deliver on this address');
+                            if (data.DeliveryData.error) {
+                                $('#checkoutButton').prop('disabled', true);
+                                alert(data.DeliveryData.error);
+                                return false;
+                            } else if (isWolt && data.is_delivery && (data.post.shipping_postal_code === '' || data.post.shipping_address === '')) {
+                                $('#checkoutButton').prop('disabled', true);
+                                $('#shipping_address').addClass('error')
+                                $('#postal_code').val('');
+                                return false;
+                            } else if (!isWolt && data.is_delivery && $.trim(data.delivery_fee) === '' && data.post.shipping_postal_code && data.post.shipping_address) {
                                 $('#checkoutButton').prop('disabled', true);
                                 $('#shipping_address').addClass('error')
                                 $('#postal_code').val('');
                                 //$('#shipping_address').val('');
                                 return false;
                             }
-
                             initObjects(data);
                         } else if (Action === 'makeOrder') {
-                            if (data.substr(0, 4) === 'GOTO') {
-                                window.location.href = data.substr(4);
+                            if (data.error) {
+                                hideLoader();
+                                alert(data.error);
+                            } else if (data.details) {
+                                hideLoader();
+                                alert(data.details);
+                            } else if (data.reason) {
+                                hideLoader();
+                                alert(data.reason);
+                            } else if (data.substring(0, 4) === 'GOTO') {
+                                window.location.href = data.substring(4);
                             } else {
                                 hideLoader();
                                 alert(data);
                             }
                         }
                     } else if (Action === 'makeOrder') {
-                        if (data.substr(0, 4) === 'GOTO') {
-                            window.location.href = data.substr(4);
+                        if (data.substring(0, 4) === 'GOTO') {
+                            window.location.href = data.substring(4);
                         } else {
                             hideLoader();
                             alert(data);
@@ -277,9 +302,9 @@ $(function () {
                 $('#postal_code').val('');
                 return;
             }
-
             var r = /\d+/g;
-            var s = $.trim($(this).val());
+            //var s = $.trim($(this).val());
+            var s = sa.val();
             var result = s.match(r);
 
             if (!result) {
@@ -307,34 +332,36 @@ $(function () {
             sa.addClass('success');
             cb.prop('disabled', false);
         })
-        .on('input', '#time', function () {
+        .on('change', '#time', function () {
             if ($(this).val() === '') {
                 $(this).addClass('error');
                 $(this).removeClass('success');
             } else {
                 $(this).addClass('success');
                 $(this).removeClass('error');
+                $('#checkoutButton').prop('disabled', false);
             }
+
+            if ($('#shipping_address').hasClass('error')) $(this).val('');
         })
 });
 
 
-setInterval(function () {
-    var FormData = $('#checkoutForm').serialize() + '&action=checkTime';
-    $.ajax({
-        url: route('checkout.post'),
-        method: 'post',
-        data: FormData,
-        error: function (e1, e2, e3) {
-            console.error(e3);
-        }
-    }).done(function (data) {
-        console.error(data);
-        if (data) {
-            //console.error(data);
-            var $input = $('[name=time]').pickatime();
-            var picker = $input.pickatime('picker');
-            picker.set('select', data);
-        }
-    });
-}, 10000);
+// setInterval(function () {
+//     var FormData = $('#checkoutForm').serialize() + '&action=checkTime';
+//     $.ajax({
+//         url: route('checkout.post'),
+//         method: 'post',
+//         data: FormData,
+//         error: function (e1, e2, e3) {
+//             console.error(e3);
+//         }
+//     }).done(function (data) {
+//         if (data) {
+//             //console.error(data);
+//             var $input = $('[name=time]').pickatime();
+//             var picker = $input.pickatime('picker');
+//             picker.set('select', data);
+//         }
+//     });
+// }, 10000);

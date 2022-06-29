@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Logic\Order;
 use App\Models\Orders;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -58,6 +59,23 @@ class Kernel extends ConsoleKernel
                 $order->sendLargeOrderNotification();
             }
         })->everyFiveMinutes();
+
+        $schedule->call(function() {
+            $users = User::query()
+                         ->where('api_token', '')
+                         ->orWhereNull('api_token')
+                         ->limit(10)
+                         ->get();
+
+            foreach ($users as $user) {
+                $user->api_token = \Str::random(60);
+                try {
+                    $user->save();
+                } catch (\Exception) {
+                    
+                }
+            }
+        });
     }
 
     /**

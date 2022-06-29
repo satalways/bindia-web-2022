@@ -1,0 +1,30 @@
+#POST https://restaurant-api.development.dev.woltapi.com/v1/daas-api/v1/venues/62838008bb2c376d8934f352/shipment-promises
+#Content-Type: application/json
+#Accept: application/json
+
+###
+POST https://restaurant-api.development.dev.woltapi.com/v1/daas-api/venues/62838008bb2c376d8934f352/shipment-promises
+Authorization: Bearer 53749c2ca6b9d858b7d3cf9d91e26f04
+Content-Type: application/x-www-form-urlencoded
+
+min_preparation_time_minutes=20&post_code=2300&scheduled_dropoff_time=2022-05-20T20:15:22Z&street=Tomatvej+45,+2300+København+S
+#city=København+S&min_preparation_time_minutes=20&post_code=2300&scheduled_dropoff_time=2022-05-20T20:15:22Z&street=Tomatvej+45,+2300+København+S
+
+
+
+
+
+
+###
+POST https://admin.bindia.pk/a.php?n=Shakeel
+Content-Type: application/x-www-form-urlencoded
+
+name=Shakeel Ahmed
+
+###
+POST http://localhost:80/api/item
+Content-Type: application/x-www-form-urlencoded
+
+id=99&content=new-element
+
+###

@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmEU9vAw.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9vAw.ttf) format('truetype');
 }
 .slideanim {
   visibility: hidden;
@@ -82,5 +82,19 @@ div.googleReview2 table td.td2 .rating .stars i.font-yellow {
 }
 div.googleReview2 table td.td2 .rating .stars .rev {
   font-weight: normal !important;
+}
+img.sprite {
+  background: url('/images/bindia.png?6') no-repeat;
+  display: inline-block;
+}
+img.sprite.nut {
+  width: 30px !important;
+  height: 30px !important;
+  background-position: 0 0;
+}
+img.sprite.four50 {
+  width: 30px !important;
+  height: 30px !important;
+  background-position: 0 0;
 }
 /*# sourceMappingURL=custom.css.map */

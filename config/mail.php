@@ -36,11 +36,11 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'server.bindia.dk'),
+            'host' => env('MAIL_HOST', 's'),
             'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME', 'office@bindia.dk'),
-            'password' => env('MAIL_PASSWORD', 'WVBbNbFurP}J'),
+            'encryption' => env('MAIL_ENCRYPTION', ''),
+            'username' => env('MAIL_USERNAME', ''),
+            'password' => env('MAIL_PASSWORD', ''),
             'timeout' => null,
             'auth_mode' => null,
             'stream' => [

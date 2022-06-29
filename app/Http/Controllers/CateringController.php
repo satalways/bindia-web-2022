@@ -6,6 +6,7 @@ use App\Logic\Catering;
 use App\Logic\CateringOrders;
 use App\Models\OrderItems;
 use App\Models\TakeoutZonesModel;
+use HTMLMin\HTMLMin\Facades\HTMLMin;
 use Illuminate\Http\Request;
 
 class CateringController extends Controller
@@ -26,6 +27,7 @@ class CateringController extends Controller
             ->get();
 
         $sessionData = $Catering->getSession();
+
         return view('catering.catering', [
             //'items' => $items,
             'curries' => $curries,

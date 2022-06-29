@@ -28,9 +28,6 @@
         </div>
     </div>
     <!--check out box-->
-    {{--    <pre>--}}
-    {{--        {{ print_r($items, true) }}--}}
-    {{--    </pre>--}}
     <div class="bn-check-out bn-main-story">
         <div class="container">
             @include('order.popups.copy_order')
@@ -319,7 +316,9 @@
                             <label class="bn-date-time">{{ __('global.select_time') }}</label>
                             <input type="text" class="form-control update2" id="time" required="required"
                                    placeholder="Time"
-                                   min="{{ $isDelivery ? '16:40' : '16:'.config('order.order_prep_time') }}"
+                                   min="{{ $time }}"
+{{--                                   min="{{ $isDelivery ? $time : '16:'.config('order.order_prep_time') }}"--}}
+{{--                                   min="{{ $isDelivery ? '16:40' : '16:'.config('order.order_prep_time') }}"--}}
                                    name="time"
                                    value="{{ $time }}">
                         </div>
@@ -396,8 +395,9 @@
                     {{--                    @if(!isLiveServer() && isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi')--}}
                     {{--                        <button type="button" class="btn" id="calculateDelivery">Calculate Delivery</button>--}}
                     {{--                    @endif--}}
-
-                    @if (isset($items['checkout']['delivery']) && $items['checkout']['delivery']==='By Taxi' && empty($items['delivery_fee']) )
+                    @if( $items['isDelivery'] && \App\Logic\Wolt::isWoltEnabled() && !empty($items['DeliveryData']['error']) )
+                        <button type="button" class="btn" disabled="disabled" id="checkoutButton">Checkout</button>
+                    @elseif ($items['isDelivery'] && empty($items['delivery_fee']) )
                         <button type="button" class="btn" disabled="disabled" id="checkoutButton">Checkout</button>
                     @else
                         <button type="button" class="btn" id="checkoutButton">Checkout</button>

@@ -12,7 +12,7 @@ class Feedback
     {
         $default = [
             'type' => '',
-            'data_id'
+            'data_id',
         ];
         $args = set_args($args, $default);
 
@@ -26,7 +26,7 @@ class Feedback
 
         $data['data_id'] = $args['data_id'];
         $order = Orders::query()->find($args['data_id']);
-        if (!$order && $args['type'] !== 'customized') return 'Order for this feedback not found in system';
+        if (! $order && $args['type'] !== 'customized') return 'Order for this feedback not found in system';
 
         if ($data['type'] === 'customized') {
             $data['name'] = $args['name'];
@@ -45,10 +45,11 @@ class Feedback
             $question = FeedbackDB::query()->find($id);
             $data['question_' . $x] = $question->question;
             if ($question->question_type == 1) {
-                if (blank($answer))
+                if (blank($answer)) {
                     $data['question_' . $x . '_answer'] = '-1';
-                else
+                } else {
                     $data['question_' . $x . '_answer'] = 'rating_' . $answer;
+                }
             } else {
                 $data['question_' . $x . '_answer'] = $answer;
             }
@@ -73,7 +74,6 @@ class Feedback
             } catch (\Exception) {
 
             }
-
         }
 
         $Files = [];
@@ -86,7 +86,7 @@ class Feedback
 
         ## Send email to admin
         $template = template('15.5.13');
-        if (!$template) {
+        if (! $template) {
             send_mail(config('app.dev_emails'), "Template # 15.5.13 missing", "When customer submit requested feedback from web site.");
         } else {
             if ($feedback->avg <= 3) {
@@ -97,7 +97,7 @@ class Feedback
             $subject_data["type"] = "[" . ucwords($feedback->type) . "]";
             $subject_data["rating"] = $feedback->avg;
             $subject_data["shop"] = shop($feedback->shop)->long_name ?? '';
-            $subject_data['link'] = get_admin_link('rfeedback.php?id=' . $feedback->id);
+            $subject_data['link'] = get_admin_link('feedback.html?id=' . $feedback->id);
 
             $subject_data['table'] = view('order.feedback.feedback_table', [
                 'name' => $data['name'],
@@ -106,11 +106,11 @@ class Feedback
                 'feedback' => $feedback,
                 'id' => $feedback->id,
 
-//                'questions' => $questions,
-//                'params' => $params,
-//                'id' => $id,
-//                'fileurl' => $fileurl,
-//                'path' => $path,
+                //                'questions' => $questions,
+                //                'params' => $params,
+                //                'id' => $id,
+                //                'fileurl' => $fileurl,
+                //                'path' => $path,
             ])->render();
 
             return send_mail('office@bindia.dk', $template->subject, $template->content, $subject_data, $Files);
@@ -118,5 +118,4 @@ class Feedback
 
         return 'OK';
     }
-
 }

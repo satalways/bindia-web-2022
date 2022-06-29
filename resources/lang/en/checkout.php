@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'no_side' => "Your order doesn't include any \"Sides\" i.e Rice or Nan. Would you like to add?",
+    'no_rice' => "Your order doesn't include \"Rice\". Would you like to add?",
     'do_have_gift_card' => 'Do you have a Gift Card?',
     'email_or_card' => 'Email or Gift Card Number e.g. Z792164',
     'go' => 'GO',
@@ -46,6 +48,7 @@ return [
     'thankyou' => 'Thank you for your order!',
     'view_receipt' => 'View Receipt',
     'delivery_order_not_allowed_on_date' => 'Delivery orders are not available on :date',
+    'delivery_order_not_allowed_for_france_tour' => 'Due to the Tour de France event our delivery partner has disabled all deliveries for the 29th, 30th and 1st',
     'no_bindia_shop' => 'No Bindia shop is available for delivery on this address',
     'online_payment_disabled' => "Due to a breakdown at Nets (our payment gateway) we are forced to disable payments in the web shop for the rest of today. You will therefore have to select \"Pay at the shop\" when checking out.
 Tomorrow (Tuesday Feb 1st) we'll look through all orders of today and issue gift cards to all customers for the value of the difference between the Orange Prices (that are not available for the rest of the day) and our regular prices.

@@ -21,7 +21,8 @@ return [
         'rating_link' => 'https://g.page/r/CQzmpz8gTNQlEAg/review',
         'lat' => '55.6563886',
         'lng' => '12.6091011',
-        'smily_link' => 'https://www.findsmiley.dk/903529'
+        'smily_link' => 'https://www.findsmiley.dk/903529',
+        'wolt_id' => '62838008bb2c376d8934f352',
     ],
     'GKV' => [
         'code' => 'GKV',
@@ -43,7 +44,8 @@ return [
         'rating_link' => 'https://g.page/r/CS6lOuBW3c1jEAg/review',
         'lat' => '55.6768623',
         'lng' => '12.5394355',
-        'smily_link' => 'https://www.findsmiley.dk/966201'
+        'smily_link' => 'https://www.findsmiley.dk/966201',
+        'wolt_id' => '',
     ],
     'LHG' => [
         'code' => 'LHG',
@@ -65,7 +67,8 @@ return [
         'rating_link' => 'https://g.page/r/CUja3kKnPH5wEAg/review',
         'lat' => '55.769504',
         'lng' => '12.504548',
-        'smily_link' => 'https://www.findsmiley.dk/504020'
+        'smily_link' => 'https://www.findsmiley.dk/504020',
+        'wolt_id' => '',
     ],
     'ELM' => [
         'code' => 'ELM',
@@ -87,7 +90,8 @@ return [
         'rating_link' => 'https://g.page/r/CbIqG83THF6yEAg/review',
         'lat' => '55.6895874',
         'lng' => '12.5582023',
-        'smily_link' => 'https://www.findsmiley.dk/966205'
+        'smily_link' => 'https://www.findsmiley.dk/966205',
+        'wolt_id' => '628382824eef83351c92344d',
     ],
     'SHG' => [
         'code' => 'SHG',
@@ -110,6 +114,7 @@ return [
         'lat' => '55.7325892',
         'lng' => '12.5165864',
         'smily_link' => 'https://www.findsmiley.dk/947692',
+        'wolt_id' => '',
     ],
     'BDV' => [
         'code' => 'BDV',
@@ -131,6 +136,7 @@ return [
         'rating_link' => 'https://g.page/r/CU6z276h90fGEAg/review',
         'lat' => '55.698618',
         'lng' => '12.576083',
-        'smily_link' => 'https://www.findsmiley.dk/115275'
-    ]
+        'smily_link' => 'https://www.findsmiley.dk/115275',
+        'wolt_id' => '6283809e13a8d6a99a7cb6db',
+    ],
 ];

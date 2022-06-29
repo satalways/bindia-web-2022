@@ -33,34 +33,34 @@
     <!--animations css file-->
     {{--    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">--}}
     <!--Parallax css file-->
-    <link href="{{ asset('asstes/css/parallax.css') }}?v=3" rel="stylesheet">
+{{--    <link href="{{ asset('asstes/css/parallax.css') }}?v=3" rel="stylesheet">--}}
     <!--Costume Style css file-->
     <link rel="stylesheet" href="{{ asset('asstes/css/style.css') }}?v=16.8">
-    <link rel="stylesheet" href="{{ asset('custom.css') }}?v=16.8.1">
+    <link rel="stylesheet" href="{{ asset('custom.css') }}?v={{ hash_file('md5', public_path('custom.css')) }}">
     <!--animation file-->
     {{--    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>--}}
     <script src="{{ asset('asstes/js/float-panel.js') }}"></script>
 
     <meta property="og:description"
-          content="{{ isset($seo->description_en) ? $seo->getDesc() : ($description ?? '') }}"/>
+          content="{{ isset($seo->description_en) ? $seo->getDesc() : ($description ?? '') }}" />
     <meta property="og:title"
-          content="{{ isset($seo->title_en) ? $seo->getTitle() : ($title ?? 'Bindia Indisk Mad') }}"/>
-    <meta property="og:site_name" content="Bindia"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:locale" content="DK"/>
-    <meta property="og:url" content="{{ request()->url() }}"/>
+          content="{{ isset($seo->title_en) ? $seo->getTitle() : ($title ?? 'Bindia Indisk Mad') }}" />
+    <meta property="og:site_name" content="Bindia" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="DK" />
+    <meta property="og:url" content="{{ request()->url() }}" />
     <meta property="article:publisher"
-          content="https://www.facebook.com/Bindia-Indian-Restaurant-Take-Away-423997224656298"/>
-    <meta property="og:image" content="{{ $social_image ?? 'https://www.bindia.dk/asstes/image/slider-image.png' }}"/>
-    <meta property="og:image:width" content="806"/>
-    <meta property="og:image:height" content="575"/>
-    <meta name="og:email" content="office@bindia.dk"/>
-    <meta name="og:phone_number" content="+45 30 25 88 38"/>
+          content="https://www.facebook.com/Bindia-Indian-Restaurant-Take-Away-423997224656298" />
+    <meta property="og:image" content="{{ $social_image ?? 'https://www.bindia.dk/asstes/image/slider-image.png' }}" />
+    <meta property="og:image:width" content="806" />
+    <meta property="og:image:height" content="575" />
+    <meta name="og:email" content="office@bindia.dk" />
+    <meta name="og:phone_number" content="+45 30 25 88 38" />
 
     <link href="{{ request()->url() }}" rel="canonical">
-    <meta name='dmca-site-verification' content='cnpuVEdmL1VUZjJHVnZlQ3RkYklHdz090'/>
+    <meta name='dmca-site-verification' content='cnpuVEdmL1VUZjJHVnZlQ3RkYklHdz090' />
 
-    <meta name="csrf-token" content="{{ csrf_token() }}"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <style>
         @media only screen and (min-width: 1440px ) {
             .bn-shops-banner .bn-shop-contact {
@@ -138,27 +138,107 @@
             border-radius: 0;
             border: none;
         }
+
+        i.sprite {
+            display: inline-block;
+            position: relative;
+            vertical-align: middle;
+        }
+        .bg-300-g {
+            width: 54px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -196px -10px;
+        }
+        .bg-450-g {
+            width: 54px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -84px -110px;
+        }
+        .bg-400-g {
+            width: 54px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -10px -110px;
+        }
+        .bg-225-g {
+            width: 54px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -117px -60px;
+        }
+        .bg-2stk {
+            width: 54px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -158px -160px;
+        }
+        .bg-150-g {
+            width: 54px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -196px -60px;
+        }
+        .bg-set-med-4 {
+            width: 87px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -10px -10px;
+        }
+        .bg-no-sides {
+            width: 74px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -10px -60px;
+        }
+        .bg-veg {
+            width: 47px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -10px -210px;
+        }
+        .bg-vegan {
+            width: 59px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -117px -10px;
+        }
+        .bg-50-cl {
+            width: 54px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -196px -110px;
+        }
+        .bg-33-cl {
+            width: 54px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -10px -160px;
+        }
+        .bg-4stk {
+            width: 54px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -84px -160px;
+        }
+        .bg-dubble-chili {
+            width: 40px; height: 29px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -77px -210px;
+        }
+        .bg-info-icon {
+            width: 30px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -270px -10px;
+        }
+        .bg-wheat {
+            width: 30px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -270px -60px;
+        }
+        .bg-chili {
+            width: 30px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -270px -110px;
+        }
+        .bg-nut {
+            width: 30px; height: 30px;
+            background: url('{{ asset('images/takeaway-sprite.png') }}') -270px -160px;
+        }
     </style>
 
     @yield('styles')
 
-    <!-- Google Tag Manager -->
-    <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-55HW7TK');
-    </script>
-    <!-- End Google Tag Manager -->
+    @if(!localhost())
+        <!-- Google Tag Manager -->
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start': new Date().getTime(),
+                    event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-55HW7TK');
+        </script>
+        <!-- End Google Tag Manager -->
+    @endif
 
 
     @routes
@@ -167,6 +247,26 @@
             return "{{ asset("") }}" + path;
         }
     </script>
+
+    @if(!localhost())
+        <!-- Meta Pixel Code -->
+        <script>
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s)}(window, document,'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '559272445723585');
+            fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+                       src="https://www.facebook.com/tr?id=559272445723585&ev=PageView&noscript=1"
+            /></noscript>
+        <!-- End Meta Pixel Code -->
+    @endif
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -191,7 +291,7 @@
             When you visit our website, specific data are collected to optimize the user experience of the website.
             By using our website, you automatically consent to our <a
                 href="{{ LaravelLocalization::localizeUrl(route('privacy_policy', [], false), 'en') }}#cp">cookie
-                policy</a>.
+                                                                                                           policy</a>.
         </p>
         <br>
         <button type="button" class="btn btn-lg btn-black" id="acceptCookie2">OK</button>
@@ -208,15 +308,15 @@
             <div class="w-100 justify-content-center bn-top-menu d-lg-block d-none">
                 <ul class="navbar-nav justify-content-center me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-white {{ $routeName=='takeaway'?'active':'' }}" aria-current="page"
+                        <a class="nav-link text-white{{ $routeName=='takeaway'?' active':'' }}" aria-current="page"
                            href="{{ route('takeaway') }}#bn-take-away-price">{{ __('global.takeaway') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white {{ $routeName=='dinein'?'active':'' }}"
+                        <a class="nav-link text-white{{ $routeName=='dinein'?' active':'' }}"
                            href="{{ route('dinein') }}">{{ __('header.dinein') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white {{ in_array($routeName, ['catering', 'catering.drinks', 'catering.portion', 'catering.checkout'])?'active':'' }}"
+                        <a class="nav-link text-white{{ in_array($routeName, ['catering', 'catering.drinks', 'catering.portion', 'catering.checkout'])?' active':'' }}"
                            href="{{ route('catering') }}">{{ __('header.catering') }}</a>
                     </li>
                 </ul>
@@ -468,6 +568,18 @@
 <script src="{{ asset('asstes/js/script.js') }}?16.3"></script>
 {!! js('lazyload') !!}
 <script>
+    var isRice = false;
+    var isSide = false;
+    var isCurryVeg = false;
+    window.translate = function (string, args) {
+        let keys = string.split('.')
+        let Val = window.i18n;
+        $.each(keys, function (index, key) {
+            Val = Val[key]
+        });
+        return Val;
+    }
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -512,6 +624,36 @@
 
                 });
             })
+            @if( getRouteName() !== 'checkout' )
+            .on('click', '#checkoutButton', function (e) {
+                e.preventDefault();
+
+                {{--if (isCurryVeg && !isSide) {--}}
+                    {{--    if (!confirm(translate('checkout.no_side'))) {--}}
+                    {{--        window.location.href = "{{ route('checkout') }}";--}}
+                    {{--    } else {--}}
+                    {{--        $('#bn-check-last-order').modal('hide');--}}
+                    {{--        var scrollDiv = document.getElementById("bn-sides").offsetTop;--}}
+                    {{--        window.scrollTo({top: scrollDiv - 100, behavior: 'smooth'});--}}
+                    {{--    }--}}
+                    {{--    return;--}}
+                    {{--}--}}
+
+                    {{--if (isCurryVeg && !isRice) {--}}
+                    {{--    if (!confirm(translate('checkout.no_rice'))) {--}}
+                    {{--        window.location.href = "{{ route('checkout') }}";--}}
+                    {{--    } else {--}}
+                    {{--        $('#bn-check-last-order').modal('hide');--}}
+                    {{--        var scrollDiv = document.getElementById("bn-sides").offsetTop;--}}
+                    {{--        window.scrollTo({top: scrollDiv - 100, behavior: 'smooth'});--}}
+                    {{--    }--}}
+
+                    {{--    return;--}}
+                    {{--}--}}
+
+                    window.location.href = "{{ route('checkout') }}";
+            });
+        @endif
     });
 
     function showLoader(text = '') {
@@ -539,6 +681,9 @@
                 console.error(e3);
             }
         }).done(function (data) {
+            isRice = data.is_rice;
+            isSide = data.is_side;
+            isCurryVeg = data.is_curry_or_veg;
             if (data.qty > 0) {
                 $('div.bn-card-price span.bn-item-card').text(data.qty);
                 $('div.bn-card-price span.bh-current-price').text(data.amount + '/');
@@ -592,7 +737,7 @@
     {{--    </script>--}}
     {{--    <!--End of Tawk.to Script-->--}}
 
-    @if( !(isMobile() && (getRouteName() === 'takeaway' || getRouteName() === 'checkout')) )
+    @if( !(isMobile() && (getRouteName() === 'takeaway' || getRouteName() === 'checkout')) || in_array(getRouteName(), ['bindia.video1']) )
         <!--Start of Tawk.to Script-->
         <script type="text/javascript">
             var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
@@ -605,7 +750,7 @@
                 s0.parentNode.insertBefore(s1, s0);
             })();
         </script>
-        <!--End of Tawk.to Script-->
+<!--End of Tawk.to Script-->
     @endif
 @endif
 

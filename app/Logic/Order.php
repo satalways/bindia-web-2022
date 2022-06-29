@@ -106,40 +106,55 @@ class Order
                                 ->where('card_number', $checkoutData['giftcard'])->first();
 
             if ($giftCard) {
-                if ($Data['isOrange']) {
-                    if ($giftCard->orange_final_balance > 0) {
-                        if ($giftCard->amount_type === 'percent') {
-                            $giftCardDiscount = round($Data['total_price'] * $giftCard->balance / 100, 0);
-                        } else {
-                            $giftCardDiscount = $giftCard->orange_final_balance;
-                        }
+                $GCItems = null;
+                if ($giftCard->orange) {
+                    $giftCardDiscount = $giftCard->redeemOrangeGiftCard($Data['total_price'], $Data['isOrange']);
+                    if (is_numeric($giftCardDiscount)) {
+                        $giftCardDiscount = $giftCardDiscount;
+                    } else if (is_array($giftCardDiscount) && isset($giftCardDiscount['items'])) {
+                        $GCItems = $giftCardDiscount['items'];
+                        $giftCardDiscount = $giftCardDiscount['amount'] ?? 0;
+                    } else {
+                        $giftCardDiscount = 0;
                     }
                 } else {
-                    if ($giftCard->final_balance > 0) {
-                        if ($giftCard->amount_type === 'percent') {
-                            $giftCardDiscount = round($Data['total_price'] * $giftCard->balance / 100, 0);
-                        } else {
-                            $giftCardDiscount = $giftCard->final_balance;
+                    if ($Data['isOrange']) {
+                        if ($giftCard->orange_final_balance > 0) {
+                            if ($giftCard->amount_type === 'percent') {
+                                $giftCardDiscount = round($Data['total_price'] * $giftCard->balance / 100, 0);
+                            } else {
+                                $giftCardDiscount = $giftCard->orange_final_balance;
+                            }
+                        }
+                    } else {
+                        if ($giftCard->final_balance > 0) {
+                            if ($giftCard->amount_type === 'percent') {
+                                $giftCardDiscount = round($Data['total_price'] * $giftCard->balance / 100, 0);
+                            } else {
+                                $giftCardDiscount = $giftCard->final_balance;
+                            }
+                        }
+                    }
+
+                    if (! empty($giftCard->selected_items)) {
+                        $GCItems = [];
+                        foreach ($giftCard->selected_items as $code => $qty) {
+                            $I = OrderItems::query()
+                                           ->where('code', $code)
+                                           ->first();
+
+                            if ($I) {
+                                $GCItems[$I->id] = [
+                                    'qty' => $qty,
+                                    'id' => $I->id,
+                                    'item' => $I,
+                                ];
+                            }
                         }
                     }
                 }
 
-                if (! empty($giftCard->selected_items)) {
-                    $GCItems = [];
-                    foreach ($giftCard->selected_items as $code => $qty) {
-                        $I = OrderItems::query()
-                                       ->where('code', $code)
-                                       ->first();
-
-                        if ($I) {
-                            $GCItems[$I->id] = [
-                                'qty' => $qty,
-                                'id' => $I->id,
-                                'item' => $I,
-                            ];
-                        }
-                    }
-
+                if (is_array($GCItems)) {
                     foreach ($GCItems as $id => $GCItem) {
                         if (! isset($items[$id])) {
                             $items[$id] = $GCItem['qty'];
@@ -148,26 +163,26 @@ class Order
                         }
                     }
                 }
-            }
 
-            $Data = $this->calculateItems($items);
-            $Data['isOrange'] = $checkout && $checkoutData['payment_type'] === 'card' && $checkoutData['delivery'] === 'Pickup at Shop';
+                $Data = $this->calculateItems($items);
+                $Data['isOrange'] = $checkout && $checkoutData['payment_type'] === 'card' && $checkoutData['delivery'] === 'Pickup at Shop';
 
-            if (isset($Data['isOrange']) && $Data['isOrange']) {
-                if ($Data['total_price_orange'] < $giftCardDiscount) {
-                    $giftCardDiscount = $Data['total_price_orange'];
-                    $Data['total_price_orange'] = 0;
+                if (isset($Data['isOrange']) && $Data['isOrange']) {
+                    if ($Data['total_price_orange'] < $giftCardDiscount) {
+                        $giftCardDiscount = $Data['total_price_orange'];
+                        $Data['total_price_orange'] = 0;
+                    } else {
+                        $Data['total_price_orange'] -= $giftCardDiscount;
+                    }
+
+                    $Data['total_price'] = $Data['total_price_orange'];
                 } else {
-                    $Data['total_price_orange'] -= $giftCardDiscount;
-                }
-
-                $Data['total_price'] = $Data['total_price_orange'];
-            } else {
-                if ($Data['total_price'] < $giftCardDiscount) {
-                    $giftCardDiscount = $Data['total_price'];
-                    $Data['total_price'] = 0;
-                } else {
-                    $Data['total_price'] -= $giftCardDiscount;
+                    if ($Data['total_price'] < $giftCardDiscount) {
+                        $giftCardDiscount = $Data['total_price'];
+                        $Data['total_price'] = 0;
+                    } else {
+                        $Data['total_price'] -= $giftCardDiscount;
+                    }
                 }
             }
         }
@@ -195,28 +210,57 @@ class Order
          */
         $Data['delivery_fee'] = 0;
         //if ($checkout !empty($items['checkout']['delivery']) && $items['checkout']['delivery'] === 'By Taxi' && !blank($time) && !empty($items['checkout']['date']) && !empty($items['checkout']['shipping_postal_code']) && !empty($items['checkout']['shipping_address'])) {
+
         if ($checkout && isset($checkoutData['payment_type'])
             && $checkoutData['payment_type'] === 'card'
             && isset($checkoutData['delivery'])
             && $checkoutData['delivery'] === 'By Taxi'
-            && ! empty($checkoutData['shipping_postal_code'])
-            && ! empty($checkoutData['shipping_postal_code'])
             && ! empty($checkoutData['shipping_address'])
-            && ! empty($checkoutData['shipping_postal_code'])
             && ! blank($checkoutData['date'] . ' ' . $checkoutData['time'])
         ) {
-            $T = new Takeout();
-            $deliveryData = $T->getDeliveryInfo([
-                'address' => $checkoutData['shipping_address'],
-                'zip' => $checkoutData['shipping_postal_code'],
-                'deliveryTime' => $checkoutData['date'] . ' ' . $checkoutData['time'],
-            ]);
+            if (Wolt::isWoltEnabled()) {
+                $Wolt = new Wolt();
+                $deliveryData = $Wolt->getShipmentPromise([
+                    'address' => $checkoutData['shipping_address'],
+                    'zip' => $checkoutData['shipping_postal_code'],
+                    'deliveryTime' => $checkoutData['date'] . ' ' . $checkoutData['time'],
+                    'city' => $checkoutData['shipping_city'],
+                ]);
 
-            if (isset($deliveryData->Status) && $deliveryData->Status) {
-                $Data['delivery_fee'] = $deliveryData->Data->DeliveryFee ?? 0;
-                $Data['total_price'] += $deliveryData->Data->DeliveryFee ?? 0;
-                $Data['total_price_orange'] += $deliveryData->Data->DeliveryFee ?? 0;
-                $Data['DeliveryData'] = (array) $deliveryData->Data;
+                if (is_array($deliveryData) && isset($deliveryData['error_code'])) {
+                    //$Data['error'] = empty($deliveryData['details']) ? $deliveryData['reason'] : $deliveryData['details'];
+                    $Data['DeliveryData']['error'] = empty($deliveryData['details']) ? $deliveryData['reason'] : $deliveryData['details'];
+                } else if (is_array($deliveryData)) {
+                    if (localhost() && empty($deliveryData['price']['amount'])) {
+                        $deliveryData['price']['amount'] = 50;
+                    }
+                    $Data['delivery_fee'] = $deliveryData['price']['amount'] ?? 0;
+                    $Data['total_price'] += $deliveryData['price']['amount'] ?? 0;
+                    $Data['total_price_orange'] += $deliveryData['price']['amount'] ?? 0;
+                    if (! empty($deliveryData['dropoff']['options']['scheduled_time'])) {
+                        $deliveryData['dropOffDate'] = Carbon::create($deliveryData['dropoff']['options']['scheduled_time'])->setTimezone(env('TIMEZONE', 'Europe/Copenhagen'))->format('d-m-Y');
+                        $deliveryData['dropOffTime'] = Carbon::create($deliveryData['dropoff']['options']['scheduled_time'])->setTimezone(env('TIMEZONE', 'Europe/Copenhagen'))->format('H:i');
+                        //dd($Data);
+                        //dump($deliveryData['dropoff']['options']['scheduled_time']);
+                    }
+                    $Data['DeliveryData'] = $deliveryData;
+                } else {
+                    $Data['DeliveryData']['error'] = $deliveryData;
+                }
+            } else {
+                $T = new Takeout();
+                $deliveryData = $T->getDeliveryInfo([
+                    'address' => $checkoutData['shipping_address'],
+                    'zip' => $checkoutData['shipping_postal_code'],
+                    'deliveryTime' => $checkoutData['date'] . ' ' . $checkoutData['time'],
+                ]);
+
+                if (isset($deliveryData->Status) && $deliveryData->Status) {
+                    $Data['delivery_fee'] = $deliveryData->Data->DeliveryFee ?? 0;
+                    $Data['total_price'] += $deliveryData->Data->DeliveryFee ?? 0;
+                    $Data['total_price_orange'] += $deliveryData->Data->DeliveryFee ?? 0;
+                    $Data['DeliveryData'] = (array) $deliveryData->Data;
+                }
             }
         }
 
@@ -400,7 +444,8 @@ class Order
 
         if ($dateTime->lessThanOrEqualTo(Carbon::now()->addMinutes(config('order.order_prep_time')))) {
             $dateTime = Carbon::now()->addMinutes(config('order.order_prep_time'));
-            //return __('checkout.min_time_required', ['minutes' => config('order.order_prep_time')]);
+
+            return __('checkout.min_time_required', ['minutes' => config('order.order_prep_time')]);
         }
 
         $minutesDiff = $this->timeToMinutes($dateTime->format('H:i')) - $this->timeToMinutes($now->format('H:i'));
@@ -485,7 +530,7 @@ class Order
         $data['delivery_fee'] = 0;
         $data['is_mobile'] = isMobile();
         $data['user_agent'] = request()->userAgent();
-        $data['new_menu_item'] = 1;
+        //$data['new_menu_item'] = 1;
         $data['unfinished_notification_sent_at'] = null;
         $data['unfinished_notification_sent_by'] = null;
 
@@ -529,8 +574,10 @@ class Order
             /**
              * Check if delivery is off on specific dates
              */
-            foreach (config('order.stop_delivery_on_dates') as $stopDate) {
-                if (Carbon::create($stopDate . '-' . date('Y'))->toDateString() === $dateTime->toDateString()) {
+            if (in_array($dateTime->format('d-M'), config('order.stop_delivery_on_dates'))) {
+                if (in_array($dateTime->format('d-M'), ['29-Jun', '30-Jun', '01-Jul'])) {
+                    return __('checkout.delivery_order_not_allowed_for_france_tour');
+                } else {
                     return __('checkout.delivery_order_not_allowed_on_date', ['date' => $dateTime->format(config('app.date_format'))]);
                 }
             }
@@ -542,113 +589,83 @@ class Order
                 return __('checkout.delivery_address_missing');
             }
 
-            /**
-             * Getting row from database against provided postal code
-             */
-//            $row = TakeoutZonesModel::query()
-//                ->whereRaw('(? between post_number and post_number2)', [$data['shipping_postal_code']])
-//                ->orderByDesc('id')
-//                ->first();
-//            if (!$row) return __('checkout.invalid_postal_code');
-
             $items = $this->getSessionCartData(true);
 
-            if (! isset($items['DeliveryData'])) {
-                return __('Please type valid address for delivery.');
-            }
-            if (! isset($items['DeliveryData']['PickupDate'])) {
-                return __('Please type valid address for delivery.');
-            }
-            if (! isset($items['DeliveryData']['DeliveryDate'])) {
-                return __('Please type valid address for delivery.');
-            }
-            if (! isset($items['DeliveryData']['RestaurantID'])) {
-                return __('Please type valid address for delivery.');
+            if (empty($items['DeliveryData'])) {
+
             }
 
-            if (! shop($items['DeliveryData']['RestaurantID'])) {
-                return __('checkout.no_bindia_shop');
+            if (Wolt::isWoltEnabled()) {
+                if (! empty($items['DeliveryData']['error'])) return $items['DeliveryData']['error'];
+                if (empty($items['DeliveryData']['id'])) return 'Wolt delivery ID not generated!';
+                $data['delivery_fee'] = $items['DeliveryData']['price']['amount'] ?? 0;
+                $data['shop'] = (new Wolt())->getShopName($items['DeliveryData']['pickup']['venue_id']);
+                $shopName = shop($data['shop'])->code;
+                $data['delivery_datetime'] = Carbon::create($items['DeliveryData']['dropoff']['options']['scheduled_time'])->setTimezone(config('app.timezone'));
+            } else {
+                if (! isset($items['DeliveryData'])) {
+                    return __('Please type valid address for delivery.');
+                }
+                if (! isset($items['DeliveryData']['PickupDate'])) {
+                    return __('Please type valid address for delivery.');
+                }
+                if (! isset($items['DeliveryData']['DeliveryDate'])) {
+                    return __('Please type valid address for delivery.');
+                }
+                if (! isset($items['DeliveryData']['RestaurantID'])) {
+                    return __('Please type valid address for delivery.');
+                }
+                if (! shop($items['DeliveryData']['RestaurantID'])) {
+                    return __('checkout.no_bindia_shop');
+                }
+
+                $items['DeliveryData']['PickupDate'] = Carbon::create($items['DeliveryData']['PickupDate']);
+                $items['DeliveryData']['DeliveryDate'] = Carbon::create($items['DeliveryData']['DeliveryDate']);
+
+                //$minTime = (16 * 60) + config('order.order_prep_time') + $row->deliveryMinutes();
+                //$minutesRequired = config('order.order_prep_time') + $row->deliveryMinutes();
+
+                $online_order_settings = getOption('online_order_settings');
+                $minTimeDifference = (int) empty($online_order_settings["time_difference"]) ? 20 : $online_order_settings["time_difference"];
+                $additional_minutes = (int) isset($online_order_settings[shop($items['DeliveryData']['RestaurantID'])->code]["additional"]) ? $online_order_settings[shop($items['DeliveryData']['RestaurantID'])->code]["additional"] : 0;
+                if ($minTimeDifference < 20) $minTimeDifference = 20;
+                if ($dateTime->dayName === 'Friday' || $dateTime->dayName === 'Saturday') $minTimeDifference = 30;
+                $minutes_difference = $additional_minutes + $minTimeDifference + $items['DeliveryData']['DeliveryTime'];
+                //$minTimeCarbon = Carbon::create($items['DeliveryData']['PickupDate']->toDateString() . ' 16:00:00')->addMinutes($minutes_difference);
+                //if ($minTimeCarbon->greaterThan($items['DeliveryData']['PickupDate'])) {
+                //    return 'Order can not place before ' . $minTimeCarbon->addMinutes($items['DeliveryData']['DeliveryTime'])->format(config('app.date_time_format'));
+                //}
+
+                $data['shop'] = shop($items['DeliveryData']['RestaurantID'])->code;
+                $data['delivery_fee'] = $items['DeliveryData']['DeliveryFee'];
+
+                $estimatedAmount = $checkoutData['items']->sum('amount') + ($checkoutData['bags'] * $checkoutData['bag_price']);
+                if ($estimatedAmount >= 500) $minutes_difference += 5;
+                if ($estimatedAmount >= 1000) $minutes_difference += 5;
+
+                $now = Carbon::now();
+                //if ($now->diffInMinutes($dateTime) < $minutes_difference) {
+                //    return 'You can not submit this order before ' . $now->addMinutes($minutes_difference)->format(config('app.date_time_format'));
+                //    //return __('checkout.need_preparation_time', ['minutes' => $minutes_difference]);
+                //    // We need :minutes at least to prepare food.
+                //}
+
+                $orderMinutes = ($dateTime->hour * 60) + $dateTime->minute;
+                if ($orderMinutes > (21 * 60)) return __('checkout.time_is_over_for_delivery');
+
+                $data['delivery_datetime'] = $dateTime->toDateTimeString();
+                $data['delivery_in_mins'] = $items['DeliveryData']['DeliveryTime'];
+
+                if ($items['DeliveryData']['DeliveryTime']) {
+                    $data['pickup_datetime'] = $dateTime->subMinutes($items['DeliveryData']['DeliveryTime'])->toDateTimeString();
+                } else {
+                    $data['pickup_datetime'] = $items['DeliveryData']['PickupDate'];
+                }
+                $shopName = shop($items['DeliveryData']['RestaurantID'])->code;
             }
-            $items['DeliveryData']['PickupDate'] = Carbon::create($items['DeliveryData']['PickupDate']);
-            $items['DeliveryData']['DeliveryDate'] = Carbon::create($items['DeliveryData']['DeliveryDate']);
-
-            //$minTime = (16 * 60) + config('order.order_prep_time') + $row->deliveryMinutes();
-            //$minutesRequired = config('order.order_prep_time') + $row->deliveryMinutes();
-
-            $online_order_settings = getOption('online_order_settings');
-            $minTimeDifference = (int) empty($online_order_settings["time_difference"]) ? 20 : $online_order_settings["time_difference"];
-            $additional_minutes = (int) isset($online_order_settings[shop($items['DeliveryData']['RestaurantID'])->code]["additional"]) ? $online_order_settings[shop($items['DeliveryData']['RestaurantID'])->code]["additional"] : 0;
-            if ($minTimeDifference < 20) $minTimeDifference = 20;
-            if ($dateTime->dayName === 'Friday' || $dateTime->dayName === 'Saturday') $minTimeDifference = 30;
-            $minutes_difference = $additional_minutes + $minTimeDifference + $items['DeliveryData']['DeliveryTime'];
-            $minTimeCarbon = Carbon::create($items['DeliveryData']['PickupDate']->toDateString() . ' 16:00:00')->addMinutes($minutes_difference);
-            if ($minTimeCarbon->greaterThan($items['DeliveryData']['PickupDate'])) {
-                return 'Order can not place before ' . $minTimeCarbon->addMinutes($items['DeliveryData']['DeliveryTime'])->format(config('app.date_time_format'));
-            }
-//            if ($dateTime->isToday()) {
-//                $minTimeCarbon = Carbon::create($items['DeliveryData']['PickupDate']->toDateString() . ' 16:00:00')->addMinutes($minutes_difference);
-//                if ($minTimeCarbon->greaterThan($items['DeliveryData']['PickupDate'])) {
-//                    return 'Order can not place before ' . $minTimeCarbon->addMinutes($items['DeliveryData']['DeliveryTime'])->format(config('app.date_time_format'));
-//                }
-//            } else {
-//                $minTimeCarbon = Carbon::create($items['DeliveryData']['PickupDate']->toDateString() . ' 16:00:00');
-//                if ($minTimeCarbon->greaterThan($items['DeliveryData']['PickupDate'])) {
-//                    return 'Order can not place before ' . $minTimeCarbon->addMinutes($items['DeliveryData']['DeliveryTime'])->format(config('app.date_time_format'));
-//                }
-//            }
-
-            /**
-             * If today's delivery order and customer selecting less then preparation + delivery time.
-             */
-//            if ($dateTime->isToday() && $dateTime->hour >= 16) {
-//                if ($now->hour < 16 && ($dateTime->hour * 60) + $dateTime->minute < $minTime) {
-//                    return 'Delivery order cannot deliver before ' . $this->minutesToTime((16 * 60) + $minutesRequired) . ' at ' . $data['shipping_postal_code'];
-//                } elseif (($now->hour * 60) + $now->minute + $minutesRequired > ($dateTime->hour * 60) + $dateTime->minute) {
-//                    return 'Delivery order cannot deliver before ' . $this->minutesToTime(($now->hour * 60) + $now->minute + $minutesRequired) . ' at ' . $data['shipping_postal_code'];
-//                }
-//
-//                if ((($dateTime->hour * 60) + $dateTime->minute) - ($now->hour * 60 + $now->minute) <= $minutesRequired) {
-//                    return 'Delivery order cannot deliver before ' . $this->minutesToTime(($now->hour * 60 + $now->minute) + $minutesRequired) . ' at ' . $data['shipping_postal_code'];
-//                }
-//            } else {
-//                if (($dateTime->hour * 60 + $dateTime->minute) < $minTime) {
-//                    return 'Delivery order cannot deliver before ' . $this->minutesToTime($minTime) . ' at ' . $data['shipping_postal_code'];
-//                }
-//            }
-
-            //$maxDeliveryMinutes = 21 * 60 + $row->deliveryMinutes();
-//            $selectedMinutes = $dateTime->hour * 60 + $dateTime->minute;
-//            if ($selectedMinutes > $maxDeliveryMinutes) {
-//                return __('checkout.max_delivery_time', ['time' => $this->minutesToTime($maxDeliveryMinutes)]);
-//            }
-
-            $data['shop'] = shop($items['DeliveryData']['RestaurantID'])->code;
-            $estimatedAmount = $checkoutData['items']->sum('amount') + ($checkoutData['bags'] * $checkoutData['bag_price']);
-            if ($estimatedAmount >= 500) $minutes_difference += 5;
-            if ($estimatedAmount >= 1000) $minutes_difference += 5;
-
-            $data['delivery_fee'] = $items['DeliveryData']['DeliveryFee'];
-
-            $now = Carbon::now();
-            if ($now->diffInMinutes($dateTime) < $minutes_difference) {
-                return 'You can not submit this order before ' . $now->addMinutes($minutes_difference)->format(config('app.date_time_format'));
-                //return __('checkout.need_preparation_time', ['minutes' => $minutes_difference]);
-                // We need :minutes at least to prepare food.
-            }
-
-            $orderMinutes = ($dateTime->hour * 60) + $dateTime->minute;
-            if ($orderMinutes > (21 * 60)) return __('checkout.time_is_over_for_delivery');
-
-            //return $items['DeliveryData']['DeliveryDate'];
-            //return $items['DeliveryData']['PickupDate'];
-            //return $dateTime;
-            $data['delivery_datetime'] = $dateTime;
-            $data['delivery_in_mins'] = $items['DeliveryData']['DeliveryTime'];
-            $data['pickup_datetime'] = $items['DeliveryData']['PickupDate'];
             $paymentUrl = true;
-
-            $shopName = shop($items['DeliveryData']['RestaurantID'])->code;
         }
+
         if ($checkoutData['nan_available'] && $dateTime->isToday() && ! getOption($shopName . "_nan", false)) {
             return __('checkout.nan_not_available', ['shop' => $data['shop']]);
         }
@@ -674,8 +691,16 @@ class Order
             return $exception->getMessage();
         }
 
+        if (isset($items['DeliveryData'])) {
+            $order->setMeta('shipment_response', $items['DeliveryData']);
+            if (Wolt::isWoltEnabled()) {
+                $order->setMeta('is_wolt_order', true);
+            }
+        }
+
         if (isset($items['DeliveryData']['DistanceKm'])) {
-            $order->setData('distance', $items['DeliveryData']['DistanceKm']);
+            //$order->setData('distance', $items['DeliveryData']['DistanceKm']);
+            $order->setMeta('distance', $items['DeliveryData']['DistanceKm']);
         }
 
         foreach ($checkoutData['items'] as $item) {
@@ -713,6 +738,31 @@ class Order
             ]);
         }
 
+        //if (Wolt::isWoltEnabled()) {
+        //    $Wolt = new Wolt();
+        //
+        //    $parcels = [];
+        //    foreach ($items['items'] as $item) {
+        //        $parcels[] = [
+        //            'description' => $item->qty . ' x ' . $item->name,
+        //        ];
+        //    }
+        //
+        //    return $Wolt->createWoltDelivery([
+        //        'address' => $data['shipping_address'],
+        //        'email' => $data['shipping_email'],
+        //        'phone' => $data['shipping_phone'],
+        //        'comments' => $data['comments'],
+        //        'time' => request()->post('date') . ' ' . request()->post('time'),
+        //        'lat' => $items['DeliveryData']['dropoff']['location']['coordinates']['lat'] ?? '',
+        //        'lon' => $items['DeliveryData']['dropoff']['location']['coordinates']['lon'] ?? '',
+        //        'promise_id' => $items['DeliveryData']['id'] ?? 'id',
+        //        'parcels' => $parcels,
+        //        'order_id' => $order->id,
+        //        'name' => trim($data['shipping_first_name'] . ' ' . $data['shipping_last_name']),
+        //    ]);
+        //}
+
         if ($successUrl) {
             $this->sendOrderEmailToCustomer($order->id);
             $this->sendOrderEmailToShop($order->id);
@@ -721,7 +771,7 @@ class Order
             return 'GOTO' . route('order.success') . '?token=' . $order->orderToken();
         } else if ($paymentUrl) {
             if ($order->total_price == 0) {
-                $this->markOrderPaid($order->id);
+                $order->markPaid();
                 $this->clearSession();
 
                 return 'GOTO' . route('order.success') . '?token=' . $order->orderToken();
@@ -842,6 +892,17 @@ class Order
             $time_difference_minutes = $order->delivery_datetime->diffInMinutes();
         } else if (! $order->isDelivery()) {
             $time_difference_minutes = $order->pickup_datetime->diffInMinutes();
+        }
+
+        if ($order->isWoltOrder()) {
+            $W = new Wolt();
+
+            $response = $W->createWoltDelivery($order);
+            try {
+                $order->save();
+            } catch (\Exception $exception) {
+                debug2($exception->getMessage());
+            }
         }
 
         // If order generate time is more 10 minutes and time left for pickup is less then half hour
@@ -981,15 +1042,63 @@ class Order
                         ->where('paid', false)
                         ->where('order_time', '<=', Carbon::now()->subMinutes(2))
                         ->where('order_time', '>=', Carbon::now()->subMinutes(30))
-                        ->select(['id', 'payment_id'])
                         ->get();
 
-        $obj = new self();
         foreach ($orders as $order) {
             $response = Nets::getPaymentInfo($order->payment_id);
             if (isset($response->payment->charges[0]->chargeId)) {
-                $obj->markOrderPaid($order->id);
+                $order->markPaid();
             }
         }
+    }
+
+    /**
+     * @return mixed
+     *
+     * Check if session has side items in it
+     */
+    public function hasSessionSides(): bool
+    {
+        return once(function() {
+            return OrderItems::query()
+                             ->whereIn('id', array_keys($this->getSessionCart()))
+                             ->where('section', 'bn-sides')
+                             ->get()->count() > 0;
+        });
+    }
+
+    /**
+     * @return mixed
+     *
+     * Check if session has rice in it
+     */
+    public function hasSessionRice(): bool
+    {
+        return once(function() {
+            return OrderItems::query()
+                             ->whereIn('id', array_keys($this->getSessionCart()))
+                             ->where('name', 'Pilaoo Rice')
+                             ->get()->count() > 0;
+        });
+    }
+
+    public function hasSessionCurry(): bool
+    {
+        return once(function() {
+            return OrderItems::query()
+                             ->whereIn('id', array_keys($this->getSessionCart()))
+                             ->where('section', 'bn-curries')
+                             ->get()->count() > 0;
+        });
+    }
+
+    public function hasSessionCurryOrVeg()
+    {
+        return once(function() {
+            return OrderItems::query()
+                             ->whereIn('id', array_keys($this->getSessionCart()))
+                             ->whereIn('section', ['bn-curries', 'bn-veg'])
+                             ->get()->count() > 0;
+        });
     }
 }

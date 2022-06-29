@@ -30,9 +30,9 @@ return [
             <div class="bn-content-menu">
                 <p>Placing your order, paying, and picking up your meal are all done at the counter. You can pick any of the available tables (table reservation is not possible).</p>
             </div>
-            <div class="bn-content-menu">
+            <!--div class="bn-content-menu">
                 <p>You’re welcome to take advantage of our Orange Prices when you dine-in at Bindia. All you have to do is order and pay on bindia.dk and use the comment field to let our staff know.</p>
-            </div>
+            </div-->
             <div class="bn-menu-list">
                 See our menu <a href=":takeaway_link">here</a>.
             </div>

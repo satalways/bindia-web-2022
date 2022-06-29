@@ -54,7 +54,7 @@ return [
     'security_p' => 'A S 2006 Holding ApS har skabt tekniske og organisatoriske foranstaltninger, for at sikre at personlige data ikke ved et uheld eller slette hensigter bliver slettet, udgivet, delt, tabt, skadet, misbrugt eller på anden vis håndteret i uoverensstemmelse med loven. Vores sikkerhedsforanstaltninger og -procedurer bliver løbende revideret for at sikre rimelige tekniske og organisatoriske sikkerhedsforanstaltninger.',
     'appeal' => 'Appel',
     'appeal_p_1' => 'Du har altid mulighed for at klage over vores datahåndtering til Datatilsynet.',
-    'appeal_p_2' => 'Se vores kontakt-muligheder <a href=":link" target="_blank">her</a> eller læs mere omkring dine muligheder for at klage <a href="https://www.datatilsynet.dk/borger/klage/saadan-klager-du" target="_blank">her</a>.',
+    'appeal_p_2' => 'Se vores kontakt-muligheder <a href=":link" target="_blank">her</a> eller læs mere omkring dine muligheder for at klage <a href="https://www.datatilsynet.dk/borger/klage/-saadan-klager-du" target="_blank">her</a>.',
 
     'contact_info' => 'Vores kontaktinformation:',
 ];

@@ -7,7 +7,10 @@
             <div class="bn-policy-header mb-lg-4">
                 <div class="row">
                     <div class="col-12">
-                        <h1 class="bn-product-page-heading text-center">{{ $item->name }}</h1>
+                        <h1 class="bn-product-page-heading text-center">
+                            {{ $item->name }}
+                            <small style="font-size: 50%">({{ $item->portion }})</small>
+                        </h1>
                     </div>
                 </div>
 
@@ -26,21 +29,21 @@
             </div>
 
             <div class="row">
-                @if(isset($ing['label']))
+                @if(!blank($ing))
                     <div class="col-lg-4 col-12">
                         <div class="bn-product-text-list">
                             <div class="bn-product-head">
                                 <h4>Ingredients</h4>
                             </div>
                             <hr style="margin-bottom: 8px;">
-                            @foreach($ing['label'] as $key => $label)
+                            @foreach($ing as $key => $label)
                                 <div class="bn-list-text">
                                     <div class="float-start">
-                                        {{ $label }}:
+                                        {{ $label }}
                                     </div>
-                                    <div class="float-end">
-                                        {{ $ing['value'][$key] }}
-                                    </div>
+{{--                                    <div class="float-end">--}}
+{{--                                        {{ $ing['value'][$key] }}--}}
+{{--                                    </div>--}}
                                     <span class="clearfix"></span>
                                 </div>
                             @endforeach
@@ -49,21 +52,21 @@
                     </div>
                 @endif
 
-                @if(isset($all['label']))
+                @if(!blank($all))
                     <div class="col-lg-4 col-12">
                         <div class="bn-product-text-list">
                             <div class="bn-product-head">
                                 <h4>Allergies</h4>
                             </div>
                             <hr style="margin-bottom: 8px;">
-                            @foreach($all['label'] as $key => $label)
+                            @foreach($all as $key => $label)
                                 <div class="bn-list-text">
                                     <div class="float-start">
-                                        {{ $label }}:
+                                        {{ $label }}
                                     </div>
-                                    <div class="float-end">
-                                        {{ $all['value'][$key] }}
-                                    </div>
+{{--                                    <div class="float-end">--}}
+{{--                                        {{ $all['value'][$key] }}--}}
+{{--                                    </div>--}}
                                     <span class="clearfix"></span>
                                 </div>
                             @endforeach
@@ -76,7 +79,7 @@
                     <div class="col-lg-4 col-12">
                         <div class="bn-product-text-list">
                             <div class="bn-product-head">
-                                <h4>Næringsindhold <small>pr. 100g</small></h4>
+                                <h4>Næringsindhold <small></small></h4>
                             </div>
                             <hr style="margin-bottom: 8px;">
                             @foreach($nuts['label'] as $key => $label)

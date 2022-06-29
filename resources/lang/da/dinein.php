@@ -25,9 +25,9 @@ return [
             <div class="bn-content-menu">
                 <p>Alt fra din ordre, betaling og afhentning ordnes ved disken. Du kan sætte dig hvor du vil (bordreservation er ikke muligt).</p>
             </div>
-            <div class="bn-content-menu">
+            <!--div class="bn-content-menu">
                 <p>Du er velkommen til at benytte dig af vores Orange Prices ved dine-in. Du skal blot bestille og betale på bindia.dk, og skrive i kommentar i feltet at du ønsker dine-in.</p>
-            </div>
+            </div-->
             <div class="bn-menu-list">
                 Se vores menu <a href=":takeaway_link">her</a>.
             </div>

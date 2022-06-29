@@ -24,7 +24,6 @@
         "mews/captcha": "^3.2",
         "mikehaertl/phpwkhtmltopdf": "^2.5",
         "php-curl-class/php-curl-class": "^9.4",
-        "sendgrid/sendgrid": "^7.11",
         "shaffe/laravel-mail-log-channel": "^2.1",
         "spatie/once": "^3.0",
         "symfony/mailer": "^6.0",

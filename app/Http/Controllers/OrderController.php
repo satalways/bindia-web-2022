@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Logic\Nets;
 use App\Logic\Order;
 use App\Logic\Takeout;
+use App\Logic\Wolt;
 use App\Models\OrderItems;
 use App\Models\Orders;
 use App\Models\TakeoutZonesModel;
@@ -12,6 +13,7 @@ use Carbon\Carbon;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use PHPUnit\Exception;
 
 class OrderController extends Controller
 {
@@ -29,6 +31,9 @@ class OrderController extends Controller
                 $cartItems = $O->getSessionCart();
 
                 return [
+                    'is_side' => $O->hasSessionSides() ? 1 : 0,
+                    'is_rice' => $O->hasSessionRice() ? 1 : 0,
+                    'is_curry_or_veg' => $O->hasSessionCurryOrVeg() ? 1 : 0,
                     'html' => view('order.ajax.takeaway_cart', [
                         'items' => $O->getSessionCartData(),
                         'cartItems' => $cartItems,
@@ -60,29 +65,34 @@ class OrderController extends Controller
 
     public function takeaway()
     {
-        $currentLang = getCurrentLang();
-        //return cache()->remember('takeawayPage' . $currentLang, now()->addDay(), function () {
-        $sections = config('order.sections');
-        $items = [];
-        foreach ($sections as $slug => $array) {
-            $items[$slug] = OrderItems::query()
-                                      ->where('active', true)
-                                      ->where('section', $slug)
-                                      ->orderBy('code')
-                                      ->get();
-        }
-        $O = new Order();
+        $key = 'takeawayPage' . getCurrentLang();
+        if (cache()->has($key)) {
+            return cache()->get($key);
+        } else {
+            $sections = config('order.sections');
+            $items = [];
+            foreach ($sections as $slug => $array) {
+                $items[$slug] = OrderItems::query()
+                                          ->where('active', true)
+                                          ->where('section', $slug)
+                                          ->orderBy('code')
+                                          ->get();
+            }
+            $O = new Order();
 
-        return view('order.takeaway', [
-            'title' => 'Takeaway',
-            'sections' => $sections,
-            'item_filters' => config('order.item_filters'),
-            'items' => $items,
-            'cartItems' => $O->getSessionCart(),
-            'seo' => seo('Takeaway'),
-            'social_image' => asset('asstes/image/take-away/mask-group-2.jpg'),
-        ])->render();
-        //});
+            $html = view('order.takeaway', [
+                'title' => 'Takeaway',
+                'sections' => $sections,
+                'item_filters' => config('order.item_filters'),
+                'items' => $items,
+                'cartItems' => $O->getSessionCart(),
+                'seo' => seo('Takeaway'),
+                'social_image' => asset('asstes/image/take-away/mask-group-2.jpg'),
+            ])->render();
+            cache()->put($key, $html, now()->addDay());
+
+            return $html;
+        }
     }
 
     public function checkout()
@@ -100,16 +110,13 @@ class OrderController extends Controller
         $T = new Takeout();
 
         return response()->json($T->autocompleteAddress(\request()->query('query')));
-//        return response()->json([
-//            ['value' => 'Andorra', 'data' => 'AD'],
-//            ['value' => 'Pakistan', 'data' => 'PK'],
-//        ]);
     }
 
     public function checkoutPost(Request $request)
     {
         if (! $request->ajax()) abort(404);
         $O = new Order();
+
         switch ($request->post('action')) {
             case 'checkTime':
                 //debug($request->post());
@@ -137,7 +144,6 @@ class OrderController extends Controller
                     if ($post['delivery'] === 'By Taxi') {
                         $post['payment_type'] = 'card';
                     }
-                    debug($post);
                     session()->put('checkout', $post);
                 }
 
@@ -147,28 +153,77 @@ class OrderController extends Controller
             case 'loadCart':
                 $items = $O->getSessionCartData(true);
 
-                if (Carbon::create($items['checkout']['date'])->isToday()) {
-                    $now = Carbon::now();
-                    $currentTime = ($now->hour * 60 + $now->minute);
-                    if ($currentTime > 16 * 60 + config('order.order_prep_time')) {
-                        $currentTime += config('order.order_prep_time');
-                        if ($currentTime % 5 === 0) {
-                            $currentTime += 5;
-                        } else $currentTime += 5 - ($currentTime % 5);
-                        $time = sprintf('%02d:%02d', floor($currentTime / 60), ($currentTime % 60));
-                    } else {
-                        $time = $items['checkout']['time'] ?? '16:' . config('order.order_prep_time');
-                    }
-                } else {
-                    $time = $items['checkout']['time'] ?? '16:' . config('order.order_prep_time');
+                if ( isset($items['error']) ) {
+                    return $items;
                 }
 
-                if (isset($items['checkout']['delivery']) && $items['checkout']['delivery'] === 'By Taxi' && $time === '16:20') {
-                    $time = '';
-                }
-
-                $minTime = 'new Date( ' . \Carbon\Carbon::now()->subMonth()->format('Y,m,d') . ' )';
+                $isToday = Carbon::create($items['checkout']['date'])->isToday();
+                $isDelivery = $items['isDelivery'];
                 $now = Carbon::now();
+
+                /**
+                 * Minimum possible time is 16:00 + preparation time
+                 */
+                $minPossibleTime = (16 * 60) + config('order.order_prep_time');
+
+                /**
+                 * If order is for today and current time is passed from min. possible time then set minimum possible
+                 * time to current time + preparation time
+                 */
+                if ($isToday && ($now->hour * 60) + $now->minute > $minPossibleTime) {
+                    $minPossibleTime = ($now->hour * 60 + $now->minute) + config('order.order_prep_time');
+                }
+
+                /**
+                 * Add extra 5 minutes if order is on Saturday or Sunday
+                 */
+                if (! blank($items['checkout']['date']) && (Carbon::create($items['checkout']['date'])->isSaturday() || Carbon::create($items['checkout']['date'])->isSunday())) {
+                    $minPossibleTime += 5;
+                }
+
+                /**
+                 * If delivery order and delivery time in minutes are available then add in minimum possible time
+                 */
+                if ($isDelivery && isset($items['DeliveryData']['DeliveryTime'])) {
+                    $minPossibleTime += $items['DeliveryData']['DeliveryTime'];
+                }
+
+                /**
+                 * Rounding time according to 5 minutes pulse
+                 */
+                $minPossibleTime = round($minPossibleTime / 5) * 5;
+
+                /**
+                 * Adding additional preparation time if order amount is greater than 1000. 500 pulse for 5 minutes
+                 */
+                if (isset($items['total_price']) && $items['total_price'] >= 1000) {
+                    $minPossibleTime += (intval($items['total_price'] / 500) - 1) * 5;
+                }
+
+                /**
+                 * Setting showing time and minimum time
+                 */
+                $time = $minTime = minutesToTime($minPossibleTime);
+
+                /**
+                 * Getting dropoff time from Wolt, if Wolt ordering system is enabled.
+                 */
+                if (Wolt::isWoltEnabled() && isset($items['DeliveryData']['dropOffTime'])) {
+                    $time = $items['DeliveryData']['dropOffTime'];
+                }
+
+                /**
+                 * if showing time is already selected, and it is not less than minimum possible time then show this time
+                 */
+                if (! blank($items['checkout']['time']) && timeToMinutes($items['checkout']['time']) > $minPossibleTime) {
+                    $time = $items['checkout']['time'];
+                }
+
+                /**
+                 * If order is delivery and no address is selected then do not show current selected time
+                 */
+                if ($isDelivery && empty($items['checkout']['shipping_address'])) $time = '';
+
                 if (($now->hour * 60 + $now->minute) > (21 * 60 + config('order.order_prep_time'))) {
                     $minDate = 1;
                 } else {
@@ -177,22 +232,22 @@ class OrderController extends Controller
 
                 $date = Carbon::create($items['checkout']['date']);
 
-                if ($date->isToday()) {
-                    if (($now->hour * 60 + $now->minute) < (16 * 60 + config('order.order_prep_time'))) {
-                        # If current time is less than 16:00
-                        $minTime = '16:' . config('order.order_prep_time');
-                    } else if (($now->hour * 60 + $now->minute) > (19 * 60 - config('order.order_prep_time'))) {
-                        # If current time is later than 18:40 then select next date and next day's time
-                        $minTime = '16:' . config('order.order_prep_time');
-                        $minDate = 1;
-                    } else {
-                        # Keep it with step 5
-                        $addMinutes = 5 - ($now->minute % 5);
-                        $minTime = $now->addMinutes(config('order.order_prep_time') + $addMinutes)->format('H:i');
-                    }
-                } else {
-                    $minTime = '16:' . config('order.order_prep_time');
-                }
+                //if ($date->isToday()) {
+                //    if (($now->hour * 60 + $now->minute) < (16 * 60 + config('order.order_prep_time'))) {
+                //        # If current time is less than 16:00
+                //        $minTime = '16:' . config('order.order_prep_time');
+                //    } else if (($now->hour * 60 + $now->minute) > (19 * 60 - config('order.order_prep_time'))) {
+                //        # If current time is later than 18:40 then select next date and next day's time
+                //        $minTime = '16:' . config('order.order_prep_time');
+                //        $minDate = 1;
+                //    } else {
+                //        # Keep it with step 5
+                //        $addMinutes = 5 - ($now->minute % 5);
+                //        $minTime = $now->addMinutes(config('order.order_prep_time') + $addMinutes)->format('H:i');
+                //    }
+                //} else {
+                //    $minTime = '16:' . config('order.order_prep_time');
+                //}
 
 //                $deliveryData['is_delivery'] = !empty($items['checkout']['delivery']) && $items['checkout']['delivery'] === 'By Taxi';
 //                if (!empty($items['checkout']['delivery']) && $items['checkout']['delivery'] === 'By Taxi' && !blank($time) && !empty($items['checkout']['date']) && !empty($items['checkout']['shipping_postal_code']) && !empty($items['checkout']['shipping_address'])) {
@@ -210,7 +265,17 @@ class OrderController extends Controller
 //                    }
 //                }
 
-                if ($items['isDelivery']) $minTime = '16:40';
+                //if ($items['isDelivery']) {
+                //    if ($date->isToday()) {
+                //        if (! blank($time)) {
+                //            $minTime = $time;
+                //        }
+                //    } else if (isset($items['DeliveryData']['DeliveryTime'])) {
+                //        $minTime = minutesToTime((16 * 60) + config('order.order_prep_time') + $items['DeliveryData']['DeliveryTime']);
+                //    } else {
+                //        $minTime = '16:' . config('order.order_prep_time');
+                //    }
+                //}
 
                 return [
                     'post' => $request->post(),
@@ -271,6 +336,11 @@ class OrderController extends Controller
         $order = Orders::query()->find($data->id);
         if (! $order) abort(404);
 
+        //if ( testServer() ) {
+        //    $O = new Order();
+        //    $O->markOrderPaid($data->id);
+        //}
+
         return view('order.success', [
             'order' => $order,
         ]);
@@ -294,11 +364,17 @@ class OrderController extends Controller
         if (isset($paymentId->paymentId)) {
             $order->payment_id = $paymentId->paymentId;
 
-            $content = 'Payment ID: ' . $order->payment_id . '<br>';
-            $content .= 'Order ID: ' . $order->id;
+            //$content = 'Payment ID: ' . $order->payment_id . '<br>';
+            //$content .= 'Order ID: ' . $order->id;
             //send_mail('shakeel@shakeel.pk', 'Payment ID Info', $content);
 
-            $order->save();
+            try {
+                $order->save();
+            } catch (Exception $exception) {
+                if (! isLiveServer()) {
+                    dd($exception->getMessage());
+                }
+            }
         }
 
         return view('order.payment', [
@@ -337,8 +413,8 @@ class OrderController extends Controller
             }
 
             $O = new Order();
-            if (localhost()) {
-                $O->markOrderPaid($order->id);
+            if (! isLiveServer()) {
+                $order->markPaid();
             }
             $O->clearSession();
 
@@ -392,11 +468,16 @@ class OrderController extends Controller
             //send_mail('shakeel@shakeel.pk', 'Nets Success Hook', $content);
 
             $O = new Order();
-            $response = $O->markOrderPaid($data->id);
-            if (! $response === 'OK') {
-                return send_mail('shakeel@shakeel.pk', 'Web Hook > Failed to Mark Done Order', $response);
+            $order = Orders::query()->find($data->id);
+            if ($order) {
+                $response = $order->markPaid();
+                if (! $response === 'OK') {
+                    return send_mail('shakeel@shakeel.pk', 'Web Hook > Failed to Mark Done Order', $response);
+                }
+                $O->clearSession();
+            } else {
+                return 'Order not found in database.';
             }
-            $O->clearSession();
 
             return 'OK';
         } else {
@@ -503,7 +584,7 @@ class OrderController extends Controller
 
     public function itemPage($slug)
     {
-        $item = OrderItems::query()->where('slug', $slug)->where('active', true)->firstOrFail();
+        $item = OrderItems::query()->where('slug', $slug)->firstOrFail();
 
         $seo = seo($slug);
         $content = null;
@@ -525,7 +606,7 @@ class OrderController extends Controller
         $col2 = getOption($optionKey . 'col2');
         $nuts = getOption($optionKey . 'nut');
         $all = getOption($optionKey . 'all');
-
+        $ing = getOption($optionKey . 'ing');
 
         return view('order.product3', [
             'item' => $item,
@@ -536,20 +617,21 @@ class OrderController extends Controller
             'col2' => $col2,
             'nuts' => $nuts,
             'all' => $all,
+            'ing' => $ing,
         ]);
     }
 
     public function itemPage2()
     {
         return view('order.product2', [
-            'title' => 'Butter Chicken'
+            'title' => 'Butter Chicken',
         ]);
     }
 
     public function itemPage3()
     {
         return view('order.product3', [
-            'title' => 'Butter Chicken'
+            'title' => 'Butter Chicken',
         ]);
     }
 }

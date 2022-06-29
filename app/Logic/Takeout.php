@@ -47,6 +47,10 @@ class Takeout
         ];
         $args = set_args($args, $default);
 
+        if (empty($args['zip'])) {
+            $args['zip'] = detect_zipcode($args['address']);
+        }
+
         $shop = $this->getShopDistanceByAddress($args['address']);
         $e = (object)config('takeout');
 

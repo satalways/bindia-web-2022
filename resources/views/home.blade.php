@@ -179,14 +179,14 @@
                     <div class="container">
                         <div class="bn-left-review-box float-start">
                             @for($x=0; $x<=12; $x++)
-                                @if( !blank($feedback->{'question_' . $x}) && !isLongFeedbackQuestion($feedback->{'question_' . $x}, $feedback->{'question_' . $x . '_answer'}))
+                                @if( showFeedbackQuestion($feedback->{'question_' . $x}, $feedback->{'question_' . $x . '_answer'}) && !isLongFeedbackQuestion($feedback->{'question_' . $x}, $feedback->{'question_' . $x . '_answer'}))
                                     <span>{{ $feedback->{'question_' . $x} }}</span>
                                 @endif
                             @endfor
                         </div>
                         <div class="bn-right-review-box float-end">
                             @for($x=0; $x<=12; $x++)
-                                @if( !blank($feedback->{'question_' . $x}) && !isLongFeedbackQuestion($feedback->{'question_' . $x}, $feedback->{'question_' . $x . '_answer'}))
+                                @if( showFeedbackQuestion($feedback->{'question_' . $x}, $feedback->{'question_' . $x . '_answer'}) && !isLongFeedbackQuestion($feedback->{'question_' . $x}, $feedback->{'question_' . $x . '_answer'}))
                                     @if($feedback->{'question_' . $x . '_answer'} === '-1')
                                         <span>N/A</span>
                                     @elseif($feedback->{'question_' . $x . '_answer'} === 'rating_5')
@@ -208,7 +208,7 @@
                         <div class="clearfix"></div>
                         <div class="bn-review-footer">
                             @for($x=0; $x<=12; $x++)
-                                @if( isLongFeedbackQuestion($feedback->{'question_' . $x}, $feedback->{'question_' . $x . '_answer'}))
+                                @if( showFeedbackQuestion($feedback->{'question_' . $x}, $feedback->{'question_' . $x . '_answer'}) && isLongFeedbackQuestion($feedback->{'question_' . $x}, $feedback->{'question_' . $x . '_answer'}))
                                     <span>
                                         <b class="d-block">{{ ' ' . $feedback->{'question_' . $x} }}</b>
                                         {{ ' ' . $feedback->{'question_' . $x . '_answer'} }}

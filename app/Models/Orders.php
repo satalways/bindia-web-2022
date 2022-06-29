@@ -3,16 +3,17 @@
 namespace App\Models;
 
 use App\Logic\Nets;
+use App\Logic\Order;
 use App\Logic\PDF;
+use App\Logic\Wolt;
 use Carbon\Carbon;
 use Firebase\JWT\JWT;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use Orders\Spice;
 
-class Orders extends Model
+class Orders extends BaseModel
 {
     use HasFactory;
     use Notifiable;
@@ -239,7 +240,7 @@ class Orders extends Model
 
     public function getFullNameAttribute()
     {
-        return $this->shipping_first_name . ' ' . $this->shipping_last_name;
+        return trim($this->shipping_first_name . ' ' . $this->shipping_last_name);
     }
 
     public function getCustomerEmailAttribute()
@@ -480,7 +481,7 @@ class Orders extends Model
     {
         if ($this->is_custom_order) return;
         if ($this->getTotalAmountAttribute() < 1000) return;
-        if ( !$this->isPaid() && $this->isOnlinePayment() ) return;
+        if (! $this->isPaid() && $this->isOnlinePayment()) return;
 
         $temp = template('12.5.5');
 
@@ -494,11 +495,91 @@ class Orders extends Model
             '{total_amount}' => $this->getTotalAmountAttribute(),
             '{shop_name}' => $this->shop,
             '{order_time}' => $this->order_time->format(config('app.date_time_format')),
+            '{pickup_datetime}' => $this->pickup_datetime->format(config('app.date_time_format')),
         ];
 
         $subject = str_ireplace(array_keys($Fields), array_values($Fields), $temp->subject);
         $content = str_ireplace(array_keys($Fields), array_values($Fields), $temp->content);
 
         send_mail('office@bindia.dk', $subject, $content);
+    }
+
+    /**
+     * @return bool
+     *
+     * Check if this is a wolt order
+     */
+    public function isWoltOrder(): bool
+    {
+        if (! $this->isDelivery()) return false;
+
+        return $this->is_wolt_order ?: false;
+    }
+
+    public function woltShipmentPromiseID(): string
+    {
+        if (! $this->isWoltOrder()) return '';
+
+        return $this->shipment_response['id'] ?: '';
+    }
+
+    public function markPaid()
+    {
+        if ($this->paid) return 'Order is already paid.';
+
+        $order_time_difference = $this->order_time->diffInMinutes();
+        if ($this->isDelivery() && ! $this->is_custom_order) {
+            $time_difference_minutes = $this->delivery_datetime->diffInMinutes();
+        } else if (! $this->isDelivery()) {
+            $time_difference_minutes = $this->pickup_datetime->diffInMinutes();
+        }
+
+        if ($this->isWoltOrder()) {
+            $W = new Wolt();
+
+            $response = $W->createWoltDelivery($this);
+        }
+
+        // If order generate time is more 10 minutes and time left for pickup is less then half hour
+        if (! $this->is_custom_order && $order_time_difference >= 10 && $time_difference_minutes <= 30) {
+            $is_change = true;
+
+            if (! $this->pickup_datetime) {
+                $this->pickup_datetime = Carbon::now();
+            }
+
+            if ($this->is_delivery) {
+                $delivery_datetime = $this->delivery_datetime->addMinutes($order_time_difference);
+                $this->delivery_datetime = $delivery_datetime;
+            }
+
+            $pickup_datetime = $this->pickup_datetime->addMinutes($order_time_difference);
+            $this->pickup_datetime = $pickup_datetime;
+        }
+
+        try {
+            $this->paid = true;
+            $this->paid_time = now();
+            $this->paid_ip = getIP();
+            $this->save();
+        } catch (\Exception $exception) {
+            Log::debug('Order was not paid marked: ' . $exception->getMessage());
+            abort(404);
+        }
+
+        if (! $this->is_custom_order) {
+            $G = new \App\Logic\GiftCard();
+            $G->redeemGiftCardByOrder($this->id);
+
+            $O = new Order();
+            /**
+             * Send email to customer if this is not a delivery order.
+             */
+            $O->sendOrderEmailToCustomer($this->id);
+
+            $O->sendOrderEmailToShop($this->id);
+        }
+
+        return 'OK';
     }
 }

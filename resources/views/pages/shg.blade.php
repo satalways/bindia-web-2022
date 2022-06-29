@@ -31,7 +31,7 @@
         <div class="container">
             <a target="_blank" href="{{ shop('shg')->smily_link }}"><img src="{{ asset('asstes/image/shop/smile.svg') }}" alt=""></a>
             <img class="bn-line-width" src="{{ asset('asstes/image/shop/line-line.svg') }}" alt="">
-            {!! makeGoogleReview(shop('shg')->rating_link, 37, 4.5) !!}
+            {!! makeGoogleReview(shop('shg')->rating_link, 38, 4.5) !!}
             <img class="bn-line-width" src="{{ asset('asstes/image/shop/line-line.svg') }}" alt="">
             <div class="bn-text-shop">
                 <a href="{{ shop('shg')->inside_link }}" target="_blank">

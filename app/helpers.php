@@ -719,11 +719,13 @@ function getIP()
 
 function getRouteName()
 {
-    if (\Request::route()) {
-        return \Request::route()->getName();
-    } else {
-        return '';
-    }
+    return once(function() {
+        if (\Request::route()) {
+            return \Request::route()->getName();
+        } else {
+            return '';
+        }
+    });
 }
 
 function getMilkToolTip()
@@ -806,6 +808,11 @@ function makeGoogleReview($link, $numberOfReviews, $rating)
     ])->render();
 }
 
+/**
+ * @param $question
+ * @param $answer
+ * @return bool
+ */
 function isLongFeedbackQuestion($question, $answer): bool
 {
     if (str_starts_with($answer, 'rating_')) return false;
@@ -813,4 +820,76 @@ function isLongFeedbackQuestion($question, $answer): bool
     if (strlen($answer) > 20) return true;
 
     return false;
+}
+
+/**
+ * @param string $question
+ * @param string $answer
+ * @return bool
+ */
+function showFeedbackQuestion($question, $answer = ''): bool
+{
+    if (blank($question)) return false;
+    if (blank($answer)) return false;
+    if (str_starts_with(strtoupper($question), strtoupper('May we use your feedback'))) return false;
+
+    return true;
+}
+
+function debug2($var, $include_bt = false, $bt = null)
+{
+
+    if (is_array($var) || is_object($var)) {
+        $str = "<pre>" . print_r($var, true) . "</pre>\n";
+    } else if (is_null($var)) {
+        $str = "NULL\n";
+    } else if (is_bool($var)) {
+        if ($var) {
+            $str = "TRUE\n";
+        } else {
+            $str = "FALSE\n";
+        }
+    } else {
+        $str = $var . "\n";
+    }
+
+    if (is_null($bt)) {
+        $bt = debug_backtrace();
+    }
+    $file = $bt[0]["file"];
+    $line = $bt[0]["line"];
+
+    $str = "File: $file, Line #{$line}" . PHP_EOL . $str;
+    if ($include_bt) {
+        $str .= 'BT: ' . print_r($bt, true);
+    }
+    @file_put_contents(public_path('logs.txt'), $str, FILE_APPEND);
+}
+
+function detect_zipcode($address)
+{
+    $words = explode(' ', $address);
+    foreach ($words as $word) {
+        if (is_numeric($word) && strlen($word) === 4) return $word;
+    }
+
+    return 0;
+}
+
+function timeToMinutes($time)
+{
+    if (! str_contains($time, ':')) return (int) $time;
+
+    $time = explode(':', $time);
+
+    return $time[0] * 60 + $time[1];
+}
+
+function minutesToTime($minutes) {
+    if ($minutes < 1) {
+        return;
+    }
+    $hours = floor($minutes / 60);
+    $minutes = ($minutes % 60);
+    return sprintf('%02d:%02d', $hours, $minutes);
 }
